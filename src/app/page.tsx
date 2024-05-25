@@ -16,6 +16,7 @@ const Home = () => {
           alt="Landing Image"
         />
       </div>
+      <div></div>
     </div>
   );
 };
