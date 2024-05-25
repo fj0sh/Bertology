@@ -6,7 +6,7 @@ type Props = {
 
 const Footer = (props: Props) => {
   return (
-    <div {...props}>
+    <div className="h-[]">
       <div>Logos</div>
       <div>Links</div>
       <div>Medias</div>

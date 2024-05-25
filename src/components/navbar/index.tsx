@@ -5,7 +5,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <div className="bg-black-100 z-10">
+    <div className=" bg-black z-10">
       <div className="flex-1 flex items-center justify-between">
         <div className="flex-shrink-0">
           <a href="/" className="text-black text-[30px] font-bold">
