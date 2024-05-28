@@ -6,14 +6,14 @@ const LoginModal = () => {
   return (
     <div className="border border-black flex justify-center h-[100vh] z-10">
       <div className="fixed top-0 left-0 w-full h-full bg-black opacity-75"></div>
-      <div className="flex flex-col items-center border border-black w-[40%] h-[50%] rounded-lg z-20">
+      <div className="flex flex-col items-center border rounded-[15px] border-black w-[40%] h-[50%]  z-20 justify-center gap-4">
         <div className="text-center">
-          <h1>Welcome Back</h1>
+          <h1 className="">Welcome Back</h1>
           <p>Please login to your account</p>
         </div>
-        <div className="text-center flex flex-col">
-          <input className="border rounded bg-slate-400" type="text" />
-          <input className="border rounded bg-slate-400" type="password" />
+        <div className="text-center flex flex-col gap-4">
+          <input className="border rounded" type="text" />
+          <input className="border rounded" type="password" />
           <div className="flex justify-center gap-4">
             <p>Remember Me</p>
             <Link href={""}>Forgot Password</Link>
@@ -25,8 +25,9 @@ const LoginModal = () => {
               SIGN UP NOW
             </Link>
           </p>
+          <hr className="border-white" />
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-4">
           <p>Continue with</p>
           <Button title="GOOGLE"></Button>
           <Button title="FACEBOOK"></Button>
