@@ -25,13 +25,16 @@ const Home = () => {
           />
         </div>
       </div>
-      <div className="h-[100vh]">baw</div>
+      <div className="h-[100vh] bg-slate-400">Book Now Section</div>
       <div className="h-[100vh] bg-black-100">
-        <div className="flex justify-center">
-          <ImageCarousel />
+        <div className="flex justify-center h-[50%] bg-slate-900">
+          Products Carousel
         </div>
-        <div></div>
+        <div className="flex justify-center h-[50%] bg-slate-800">
+          Service Carousel
+        </div>
       </div>
+      <div className="h-[30vh] bg-slate-400">Brand Section</div>
     </div>
   );
 };

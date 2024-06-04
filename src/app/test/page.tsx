@@ -1,10 +1,11 @@
 import LoginModal from "@/components/Modals/LoginModal";
+import RegisterModal from "@/components/Modals/RegisterModal";
 import React from "react";
 
 const Test = () => {
   return (
     <div>
-      <LoginModal></LoginModal>
+      <RegisterModal></RegisterModal>
     </div>
   );
 };
