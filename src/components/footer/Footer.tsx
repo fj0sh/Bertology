@@ -6,10 +6,10 @@ type Props = {
 
 const Footer = (props: Props) => {
   return (
-    <div className="h-[]">
-      <div>Logos</div>
-      <div>Links</div>
-      <div>Medias</div>
+    <div className="flex w-full">
+      <div className="w-[34%] text-center bg-slate-100">Logos</div>
+      <div className="w-[34%] text-center bg-slate-300">Links</div>
+      <div className="w-[34%] text-center bg-slate-400">Medias</div>
     </div>
   );
 };
