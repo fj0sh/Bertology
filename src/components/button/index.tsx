@@ -7,8 +7,12 @@ interface Props {
 }
 
 const Button = (props: Props) => {
-  const { title } = props;
-  return <button {...props}>{title ?? "Click"}</button>;
+  const { title, className } = props;
+  return (
+    <button {...props} className={`${className}`}>
+      {title ?? "Click"}
+    </button>
+  );
 };
 
 export default Button;
