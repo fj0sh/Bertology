@@ -1,12 +1,29 @@
 import Link from "next/link";
 import React from "react";
 import Button from "../button";
+import { IoMdClose } from "react-icons/io";
 
-const LoginModal = () => {
+interface Props {
+  isOpen: boolean;
+  onClose: () => void;
+  openRegister: () => void;
+}
+
+const LoginModal = (props: Props) => {
+  const { isOpen, onClose, openRegister } = props;
+
+  if (!isOpen) return null;
+
   return (
-    <div className="border border-black flex justify-center h-[100vh] z-10">
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="fixed top-0 left-0 w-full h-full bg-black opacity-50"></div>
-      <div className="flex flex-col items-center border rounded-[15px] bg-black bg-opacity-85 border-black w-[30%] h-[80%] z-20 justify-center gap-8 p-[4rem] my-10">
+      <div className="flex relative flex-col items-center border rounded-[15px] bg-black bg-opacity-85 border-black w-[35rem] h-[50rem] z-20 justify-center gap-8 p-[4rem] my-10">
+        <div className="absolute top-5 right-5">
+          <IoMdClose
+            className="text-white text-[30px] cursor-pointer"
+            onClick={onClose}
+          />
+        </div>
         <div className="text-white text-center">
           <p className="">Welcome Back</p>
           <p>Please login to your account</p>
@@ -36,9 +53,11 @@ const LoginModal = () => {
           </div>
           <p className="text-white">
             Not a member?{" "}
-            <Link href={""} className=" text-orange-700 underline">
-              SIGN UP NOW
-            </Link>
+            <Button
+              title="SIGN UP NOW"
+              className=" text-orange-700 underline"
+              onClick={openRegister}
+            />
           </p>
           <hr className="border-white" />
         </div>
