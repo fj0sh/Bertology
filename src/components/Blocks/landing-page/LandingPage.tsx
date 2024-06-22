@@ -4,6 +4,8 @@ import LoginModal from "@/components/Modals/LoginModal";
 import RegisterModal from "@/components/Modals/RegisterModal";
 import Button from "@/components/button";
 import React, { useState } from "react";
+import { BiSolidCarMechanic } from "react-icons/bi";
+import { MdShoppingCart } from "react-icons/md";
 
 const LandingPage = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
@@ -38,7 +40,10 @@ const LandingPage = () => {
           openLogin={() => changeModal()}
         />
         {/* <ForgotPasswordModal /> */}
-        <div className="relative w-full h-[50vh] bg-zinc-800">
+
+        {/* ============================================HERO SECTION =======================================================================*/}
+
+        <div className="relative w-full h-[70vh] bg-zinc-800">
           {/* <Image
             src="/images/LandingImage.png"
             layout="fill"
@@ -59,6 +64,9 @@ const LandingPage = () => {
             />
           </div>
         </div>
+
+        {/* ============================================BOOK NOW SECTION =======================================================================*/}
+
         <div className="h-[80vh] bg-zinc-950 flex">
           <div className="w-[50%]"></div>
           <div className="w-[50%] flex flex-col justify-center items-center gap-10 ">
@@ -71,19 +79,31 @@ const LandingPage = () => {
             />
           </div>
         </div>
-        <div className="bg-zinc-950 flex justify-center h-[50px] text-[25px]">
+        <div className="bg-zinc-950 flex justify-center items-start h-[100px] text-[25px]">
           <p className="text-white font-bold items-center">
             We give the right service and good quality products!
           </p>
         </div>
+
+        {/* ============================================IMAGE CAROUSEL SECTION =======================================================================*/}
+
         <div className="h-[100vh] bg-black-100 ">
-          <div className="flex justify-center h-[50%] bg-zinc-950">
-            <p className="text-white">Products Carousel</p>
+          <div className="flex flex-col items-center h-[50%] bg-zinc-950">
+            <div className="flex justify-center gap-3 border-none bg-orange-500 p-2 rounded-[5px]">
+              <BiSolidCarMechanic className=" self-center text-[25px]" />
+              <p className="font-bold">Installation</p>
+            </div>
           </div>
-          <div className="flex justify-center h-[50%] bg-slate-800">
-            Service Carousel
+          <div className="flex flex-col items-center h-[50%] bg-zinc-950">
+            <div className="flex justify-center gap-3 border-none bg-orange-500 p-2 rounded-[5px]">
+              <MdShoppingCart className=" self-center text-[25px]" />
+              <p className="font-bold">Products</p>
+            </div>
           </div>
         </div>
+
+        {/* ============================================BRAND SECTION =======================================================================*/}
+
         <div className="h-[30vh] bg-slate-400">Brand Section</div>
       </div>
     </>

@@ -4,15 +4,17 @@ import LoginModal from "@/components/Modals/LoginModal";
 import RegisterModal from "@/components/Modals/RegisterModal";
 import ForgotPasswordModal from "@/components/Modals/ForgotPasswordModal";
 import OtpModal from "@/components/Modals/OtpModal";
+import Sidebar from "@/components/sidebar/Sidebar";
 
 const Test = () => {
   return (
     <div className="h-100vh">
       {/* <LoginModal></LoginModal> */}
       {/* <RegisterModal></RegisterModal> */}
-      <ForgotPasswordModal></ForgotPasswordModal>
+      {/* <ForgotPasswordModal></ForgotPasswordModal>
       <OtpModal></OtpModal>
-      <Footer></Footer>
+      <Footer></Footer> */}
+      <Sidebar></Sidebar>
     </div>
   );
 };
