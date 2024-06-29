@@ -54,7 +54,7 @@ const LandingPage = () => {
             alt="Landing Image"
             className=""
           /> */}
-          <div className="absolute inset-0 flex items-center justify-start space-x-4 gap-5 p-5">
+          <div className="absolute inset-0 flex items-center justify-start space-x-4 gap-5 p-5 ml-16">
             <Button title="Login" onClick={() => setIsLoginModalOpen(true)} />
             <Button
               title="Sign Up"
@@ -87,6 +87,9 @@ const LandingPage = () => {
             <div className="flex justify-center gap-3 border-none bg-orange-500 p-2 rounded-[5px]">
               <BiSolidCarMechanic className=" self-center text-[25px]" />
               <p className="font-bold">Installation</p>
+            </div>
+            <div className="h-full">
+              <ImageCarousel></ImageCarousel>
             </div>
           </div>
           <div className="flex flex-col items-center h-[50%] bg-zinc-950">
