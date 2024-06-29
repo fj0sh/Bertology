@@ -30,12 +30,12 @@ const LoginModal = (props: Props) => {
         </div>
         <div className="text-center flex flex-col gap-8 w-full *:text-white">
           <input
-            className="border-none rounded-[10px] h-10 p-5 bg-zinc-800"
+            className="border-none rounded-[10px] h-10 p-5 bg-grey"
             type="text"
             placeholder="Email Address"
           />
           <input
-            className="border-none rounded-[10px] p-5 h-10 bg-zinc-800"
+            className="border-none rounded-[10px] p-5 h-10 bg-grey"
             type="password"
             placeholder="Password"
           />
@@ -46,18 +46,13 @@ const LoginModal = (props: Props) => {
             </Link>
           </div>
           <div>
-            <Button
-              title="LOGIN"
-              className="border-none rounded-[10px] p-[5px] bg-zinc-800 w-36 text-white hover:bg-orange-500"
-            />
+            <Button title="LOGIN" onHover={true} height="3rem" />
           </div>
           <p className="text-white">
             Not a member?{" "}
-            <Button
-              title="SIGN UP NOW"
-              className=" text-orange-700 underline"
-              onClick={openRegister}
-            />
+            <button className="text-orange underline" onClick={openRegister}>
+              Sign Up Now
+            </button>
           </p>
           <hr className="border-white" />
         </div>
@@ -65,11 +60,11 @@ const LoginModal = (props: Props) => {
           <p>Continue with</p>
           <Button
             title="GOOGLE"
-            className="border-2 w-80 border-orange-500 p-2 rounded-[15px] "
+            className="border-2 w-80 border-orange p-2 rounded-[15px]"
           ></Button>
           <Button
             title="FACEBOOK"
-            className="border-2 w-80 border-orange-500 p-2 rounded-[15px] "
+            className="border-2 w-80 border-orange p-2 rounded-[15px] "
           ></Button>
         </div>
       </div>

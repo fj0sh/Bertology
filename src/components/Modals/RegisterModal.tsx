@@ -39,17 +39,14 @@ const RegisterModal = (props: Props) => {
             <input type="text" placeholder="Confirm Password" className="p-5" />
           </div>
           <div className="flex justify-center">
-            <Button
-              title="SIGN UP"
-              className="text-white w-36 border-none rounded-[10px] bg-zinc-800 p-2 hover:bg-orange-600"
-            ></Button>
+            <Button title="SIGN UP" onHover={true}></Button>
           </div>
         </div>
         <div className="*:text-white">
           <p>
             Already have an account?{" "}
             <Button
-              className=" text-orange-600 underline"
+              className=" text-orange underline"
               title="SIGN UP"
               onClick={openLogin}
             />

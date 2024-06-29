@@ -1,4 +1,4 @@
-import Navbar from "./navbar";
+import Navbar from "./navbar/navbar";
 import Footer from "./footer/Footer";
 import ImageCarousel from "./carousel/ImageCarousel";
 

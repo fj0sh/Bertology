@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+const { fontFamily } = require("tailwindcss/defaultTheme");
 
 const config: Config = {
   content: [
@@ -11,8 +12,13 @@ const config: Config = {
       orange: "#FF6000",
       black: "#000000",
       white: "#f4f3f2",
+      grey: "#4C4A48",
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ["var(--font-sans)", ...fontFamily.sans],
+      },
+    },
   },
   plugins: [],
 };

@@ -5,6 +5,13 @@ import RegisterModal from "@/components/Modals/RegisterModal";
 import ForgotPasswordModal from "@/components/Modals/ForgotPasswordModal";
 import OtpModal from "@/components/Modals/OtpModal";
 import Sidebar from "@/components/sidebar/Sidebar";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const Test = () => {
   return (
@@ -14,6 +21,7 @@ const Test = () => {
       {/* <ForgotPasswordModal></ForgotPasswordModal>
       <OtpModal></OtpModal>
       <Footer></Footer> */}
+
       <Sidebar></Sidebar>
     </div>
   );

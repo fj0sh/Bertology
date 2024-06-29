@@ -10,7 +10,7 @@ const Footer = (props: Props) => {
   return (
     <div className="flex w-full h-[20vh] bg-black *:p-5 text-[#FAF9F6] justify-center">
       <div className="flex flex-col items-center w-[34%] text-center">
-        <div className="bg-orange-600 h-[100px] w-[300px]"></div>
+        <div className="bg-orange h-[100px] w-[300px]"></div>
         <p className="font-bold">
           Get your car accessories installed now for free
         </p>
