@@ -1,11 +1,26 @@
 "use client";
+import { usePathname } from "next/navigation";
+import "../../app/globals.css";
 import React, { useState } from "react";
+import Link from "next/link";
+import { IoMdCart } from "react-icons/io";
+import { FaRegUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const pathname = usePathname();
+  console.log(pathname);
+
+  const navLinks = [
+    { name: "Home", href: "/" },
+    { name: "About Us", href: "/about-us" },
+    { name: "Services", href: "/services" },
+    { name: "Products", href: "/products" },
+    { name: <IoMdCart size={30} />, href: "/cart" },
+    { name: <FaRegUserCircle size={30} />, href: "/profile" },
+  ];
 
   return (
-    <div className="bg-black z-10">
+    <div className="bg-black z-10 h-16 p-3">
       <div className="flex-1 flex items-center justify-between">
         <div className="flex-shrink-0">
           <a href="/" className="text-white text-[30px] font-bold">
@@ -14,43 +29,23 @@ const Navbar = () => {
         </div>
         <div className="hidden sm:block sm:ml-6">
           <div className="hidden sm:block sm:ml-6">
-            <div className="flex space-x-4 mr-[45px] text-white">
-              <a
-                href="/"
-                className="hover:text-orange px-3 py-2 rounded-md text-lg font-medium"
-              >
-                Home
-              </a>
-              <a
-                href="/about"
-                className="hover:text-orange px-3 py-2 rounded-md text-lg font-medium"
-              >
-                About Us
-              </a>
-              <a
-                href="/services"
-                className="hover:text-orange px-3 py-2 rounded-md text-lg font-medium"
-              >
-                Services
-              </a>
-              <a
-                href="/products"
-                className="hover:text-orange px-3 py-2 rounded-md text-lg font-medium"
-              >
-                Products
-              </a>
-              <a
-                href="/cart"
-                className="hover:text-orange px-3 py-2 rounded-md text-lg font-medium"
-              >
-                Cart
-              </a>
-              <a
-                href="/profile"
-                className="hover:text-orange px-3 py-2 rounded-md text-lg font-medium"
-              >
-                Profile
-              </a>
+            <div className="flex gap-10 space-x-4 mr-[45px] text-white">
+              {navLinks.map((x) => {
+                const isActive = pathname === x.href;
+
+                return (
+                  <div className="">
+                    <Link
+                      href={x.href}
+                      className={`${
+                        isActive ? "text-orange" : "text-white"
+                      } text-[20px]`}
+                    >
+                      {x.name}
+                    </Link>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

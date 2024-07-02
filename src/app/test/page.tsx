@@ -12,18 +12,13 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import ServiceHomeCard from "@/components/cards/service-Home-card";
 
 const Test = () => {
   return (
-    <div className="h-100vh">
-      {/* <LoginModal></LoginModal> */}
-      {/* <RegisterModal></RegisterModal> */}
-      {/* <ForgotPasswordModal></ForgotPasswordModal>
-      <OtpModal></OtpModal>
-      <Footer></Footer> */}
-
-      <Sidebar></Sidebar>
-    </div>
+    <>
+      <ServiceHomeCard></ServiceHomeCard>
+    </>
   );
 };
 

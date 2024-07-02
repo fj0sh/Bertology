@@ -74,7 +74,7 @@ const LandingPage = () => {
             <Button title="BOOK NOW" width="200px" />
           </div>
         </div>
-        <div className="bg-black bg-opacity-90 flex justify-center items-start h-[100px] text-[25px]">
+        <div className="bg-black bg-opacity-70 flex justify-center items-start h-[100px] text-[25px]">
           <p className="text-white font-bold items-center">
             We give the right service and good quality products!
           </p>
