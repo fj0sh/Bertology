@@ -1,5 +1,5 @@
+import AboutUsInfoCard from "@/components/cards/AboutUsInfoCard";
 import ServiceHomeCard from "@/components/cards/service-Home-card";
-import { Divide } from "lucide-react";
 import React from "react";
 
 const AboutUs = () => {
@@ -20,31 +20,42 @@ const AboutUs = () => {
 
       {/* -----------------------------------OFFERS------------------------------------------------------ */}
 
-      <div className="flex flex-col p-3">
+      <div className="flex flex-col p-3 bg-black ">
         <div className="text-center font-bold text-[45px]">WHAT WE OFFER</div>
-        <div className="flex flex-col gap-6">
-          <ServiceHomeCard title="TITLE 1" description="DESCRIPTION 1" />
+        <div className="flex flex-col gap-6 p-3">
           <ServiceHomeCard
-            title="TITLE 2"
+            title="Sleeping Reyver"
+            description="DESCRIPTION 1"
+          />
+          <ServiceHomeCard
+            title="Sleeping Reyver"
             description="DESCRIPTION 2"
             reverse={true}
           />
-          <ServiceHomeCard title="TITLE 3" description="DESCRIPTION 3" />
           <ServiceHomeCard
-            title="TITLE 4"
+            title="Sleeping Reyver"
+            description="DESCRIPTION 3"
+          />
+          <ServiceHomeCard
+            title="Sleeping Reyver"
             description="DESCRIPTION 4"
             reverse={true}
           />
-          <ServiceHomeCard title="TITLE 6" description="DESCRIPTION 5" />
           <ServiceHomeCard
-            title="TITLE 7"
+            title="Sleeping Reyver"
+            description="DESCRIPTION 5"
+          />
+          <ServiceHomeCard
+            title="Sleeping Reyver"
             description="DESCRIPTION 6"
             reverse={true}
           />
         </div>
       </div>
       {/* -----------------------------------CONTACT/ADDITIONAL INFO------------------------------------------------------ */}
-      <div className="h-[50vh]"></div>
+      <div className="flex justify-center w-full h-[50vh] bg-black">
+        <AboutUsInfoCard />
+      </div>
     </div>
   );
 };
