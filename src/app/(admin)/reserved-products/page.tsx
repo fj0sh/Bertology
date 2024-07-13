@@ -1,7 +1,7 @@
 import React from "react";
 
 const ReservedProducts = () => {
-  return <div></div>;
+  return <div>Reserved Products</div>;
 };
 
 export default ReservedProducts;

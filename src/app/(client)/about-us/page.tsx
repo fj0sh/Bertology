@@ -4,7 +4,7 @@ import React from "react";
 
 const AboutUs = () => {
   return (
-    <div>
+    <div className="bg-black">
       {/* -----------------------------------MAIN------------------------------------------------------ */}
 
       <div className="h-[93vh] bg-orange text-white flex flex-col gap-10 items-center p-40">
@@ -21,7 +21,9 @@ const AboutUs = () => {
       {/* -----------------------------------OFFERS------------------------------------------------------ */}
 
       <div className="flex flex-col p-3 bg-black ">
-        <div className="text-center font-bold text-[45px]">WHAT WE OFFER</div>
+        <div className="text-center font-bold text-[45px] text-orange">
+          WHAT WE OFFER
+        </div>
         <div className="flex flex-col gap-6 p-3">
           <ServiceHomeCard
             title="Sleeping Reyver"
@@ -53,7 +55,7 @@ const AboutUs = () => {
         </div>
       </div>
       {/* -----------------------------------CONTACT/ADDITIONAL INFO------------------------------------------------------ */}
-      <div className="flex justify-center w-full h-[50vh] bg-black">
+      <div className="flex justify-center items-center w-full h-[70vh] bg-black ">
         <AboutUsInfoCard />
       </div>
     </div>

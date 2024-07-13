@@ -6,7 +6,7 @@ import { MdPhoneAndroid } from "react-icons/md";
 
 const AboutUsInfoCard = () => {
   return (
-    <div className="p-10 w-[80%] text-white">
+    <div className="p-10 w-[80%] h-[25rem] text-white">
       <div className="flex flex-col gap-6 relative w-full h-full items-center">
         <div className="absolute top-5 font-semibold bg-orange w-[15rem] border-none rounded-lg text-center p-2 text-black">
           INFORMATIONS
@@ -24,8 +24,8 @@ const AboutUsInfoCard = () => {
                 />
                 <Image
                   src={"/images/paymaya-logo.png"}
-                  width={150}
-                  height={50}
+                  width={120}
+                  height={40}
                   alt="paymaya-logo"
                 />
               </div>
@@ -36,7 +36,7 @@ const AboutUsInfoCard = () => {
           </div>
           <div className="border-l border-r gap-10 w-full flex flex-col items-center">
             <p>CONTACT INFO:</p>
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-8">
               <div className="flex gap-6">
                 <FaFacebook size={30} />
                 <p>Test.facebook.com</p>
