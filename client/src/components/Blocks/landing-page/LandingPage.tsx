@@ -5,6 +5,7 @@ import RegisterModal from "@/components/Modals/RegisterModal";
 import Button from "@/components/button";
 import ImageCarousel from "@/components/carousel/ImageCarousel";
 import Navbar from "@/components/navbar/navbar";
+import useAuth from "@/hooks/requests/useAuth";
 import React, { useState } from "react";
 import { BiSolidCarMechanic } from "react-icons/bi";
 import { MdShoppingCart } from "react-icons/md";
@@ -13,16 +14,6 @@ const LandingPage = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] =
     useState<boolean>(false);
-
-  // const openRegister = () => {
-  //   setIsLoginModalOpen(false);
-  //   setIsRegisterModalOpen(true);
-  // };
-
-  // const openLogin = () => {
-  //   setIsLoginModalOpen(true);
-  //   setIsRegisterModalOpen(false);
-  // };
 
   const changeModal = () => {
     setIsLoginModalOpen((prev) => !prev);

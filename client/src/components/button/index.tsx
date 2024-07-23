@@ -7,6 +7,7 @@ interface Props {
   height?: string;
   className?: string;
   onHover?: boolean;
+  type?: "submit" | "button";
 }
 
 const Button = (props: Props) => {

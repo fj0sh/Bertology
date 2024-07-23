@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-app.use("/auth", authRoute);
+app.use("/api/auth", authRoute);
 
 app.listen(PORT, () => {
   console.log("Currently in PORT " + PORT);

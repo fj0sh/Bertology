@@ -1,6 +1,9 @@
-import React from "react";
+import React, { ReactHTMLElement, useState } from "react";
 import Button from "../button";
 import { IoMdClose } from "react-icons/io";
+import { useMutation } from "@tanstack/react-query";
+import { registerUser } from "@/lib/api/users.api";
+// import useAuth from "@/hooks/requests/useAuth";
 
 interface Props {
   isOpen: boolean;
@@ -10,6 +13,17 @@ interface Props {
 
 const RegisterModal = (props: Props) => {
   const { isOpen, onClose, openLogin } = props;
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState(0);
+  const [emailAddress, setEmailAddress] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const registerHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
 
   if (!isOpen) return null;
 
@@ -27,21 +41,61 @@ const RegisterModal = (props: Props) => {
           <h1 className="">Create an Account</h1>
           <p>Sign in and enjoy our service</p>
         </div>
-        <div className="flex flex-col gap-4 w-full my-10">
-          <div className="flex *:border-none *:rounded-[10px] *:bg-zinc-800 *:p-5  gap-2 h-10 *:text-white">
-            <input type="text" placeholder="Firstname" className="w-[50%] " />
-            <input type="text" placeholder="Lastname" className="w-[50%]" />
+        <form
+          className="flex flex-col gap-4 w-full my-10 "
+          onSubmit={registerHandler}
+        >
+          <div className="flex *:border-none *:rounded-[10px] *:bg-zinc-800 *:p-5  gap-2 h-10 *:text-black">
+            <input
+              type="text"
+              placeholder="Firstname"
+              className="w-[50%] "
+              onChange={(e) => setFirstname(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Lastname"
+              className="w-[50%]"
+              onChange={(e) => setLastname(e.target.value)}
+            />
           </div>
-          <div className="flex flex-col *:border-none *:rounded-[10px] *:bg-zinc-800 gap-4 *:h-10 *:text-white">
-            <input type="text" placeholder="Phone Number" className="p-5" />
-            <input type="text" placeholder="Email Address" className="p-5" />
-            <input type="text" placeholder="Password" className="p-5" />
-            <input type="text" placeholder="Confirm Password" className="p-5" />
+          <div className="flex flex-col *:border-none *:rounded-[10px] *:bg-zinc-800 gap-4 *:h-10 *:text-black">
+            <input
+              type="text"
+              placeholder="Username"
+              className="p-5"
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Phone Number"
+              maxLength={11}
+              className="p-5"
+              onChange={(e) => setPhoneNumber(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Email Address"
+              className="p-5"
+              onChange={(e) => setEmailAddress(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Password"
+              className="p-5"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Confirm Password"
+              className="p-5"
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
           </div>
           <div className="flex justify-center">
-            <Button title="SIGN UP" onHover={true}></Button>
+            <Button title="SIGN UP" type="submit" onHover={true}></Button>
           </div>
-        </div>
+        </form>
         <div className="*:text-white">
           <p>
             Already have an account?{" "}

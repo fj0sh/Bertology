@@ -1,25 +1,21 @@
+"use client";
+import User from "@/constants/Users";
+import { fetchUser } from "@/lib/api/users.api";
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import Footer from "@/components/footer/Footer";
-import LoginModal from "@/components/Modals/LoginModal";
-import RegisterModal from "@/components/Modals/RegisterModal";
-import ForgotPasswordModal from "@/components/Modals/ForgotPasswordModal";
-import OtpModal from "@/components/Modals/OtpModal";
-import Sidebar from "@/components/sidebar/Sidebar";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import ServiceHomeCard from "@/components/cards/service-Home-card";
 
 const Test = () => {
-  return (
-    <>
-      <ServiceHomeCard></ServiceHomeCard>
-    </>
-  );
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["users"],
+    queryFn: fetchUser,
+  });
+
+  console.log(data);
+
+  if (isLoading) return <div>Loading.....</div>;
+  if (error) return <div>Error.....</div>;
+
+  return <div>{JSON.stringify(data)}</div>;
 };
 
 export default Test;
