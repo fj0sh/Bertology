@@ -3,9 +3,9 @@ import ForgotPasswordModal from "@/components/Modals/ForgotPasswordModal";
 import LoginModal from "@/components/Modals/LoginModal";
 import RegisterModal from "@/components/Modals/RegisterModal";
 import Button from "@/components/button";
+import BrandBalls from "@/components/cards/BrandBalls";
 import ImageCarousel from "@/components/carousel/ImageCarousel";
 import Navbar from "@/components/navbar/navbar";
-import useAuth from "@/hooks/requests/useAuth";
 import React, { useState } from "react";
 import { BiSolidCarMechanic } from "react-icons/bi";
 import { MdShoppingCart } from "react-icons/md";
@@ -21,7 +21,7 @@ const LandingPage = () => {
   };
   return (
     <>
-      <div className="">
+      <div className="bg-[#111111]">
         <Navbar />
         <LoginModal
           isOpen={isLoginModalOpen}
@@ -37,7 +37,7 @@ const LandingPage = () => {
 
         {/* ============================================HERO SECTION =======================================================================*/}
 
-        <div className="relative w-full h-[70vh] bg-black bg-opacity-85">
+        <div className="relative w-full h-[70vh] bg-opacity-85">
           {/* <Image
             src="/images/LandingImage.png"
             layout="fill"
@@ -56,7 +56,7 @@ const LandingPage = () => {
 
         {/* ============================================BOOK NOW SECTION =======================================================================*/}
 
-        <div className="relative h-[80vh] bg-black flex">
+        <div className="relative h-[80vh] flex">
           <div className="w-[37rem] h-[37rem] border-none rounded-full bg-grey absolute top-[5rem] left-[46rem] z-10"></div>
           <div className="w-[50%]"></div>
           <div className="w-[50%] flex flex-col justify-center items-center gap-10 ">
@@ -66,7 +66,7 @@ const LandingPage = () => {
             <Button title="BOOK NOW" width="200px" />
           </div>
         </div>
-        <div className="bg-black bg-opacity-70 flex justify-center items-start h-[100px] text-[25px]">
+        <div className=" bg-opacity-70 flex justify-center items-start h-[100px] text-[25px]">
           <p className="text-white font-bold items-center">
             We give the right service and good quality products!
           </p>
@@ -74,7 +74,7 @@ const LandingPage = () => {
 
         {/* ============================================IMAGE CAROUSEL SECTION =======================================================================*/}
 
-        <div className="h-[100vh] bg-black bg-opacity-70 ">
+        <div className="h-[100vh] bg-opacity-70 ">
           <div className="flex flex-col items-center h-[50%] bg-zinc-950">
             <div className="flex justify-center gap-3 border-none bg-orange p-3 px-10 rounded-[5px]">
               <BiSolidCarMechanic
@@ -100,7 +100,12 @@ const LandingPage = () => {
 
         {/* ============================================BRAND SECTION =======================================================================*/}
 
-        <div className="h-[30vh] bg-grey">Brand Section</div>
+        <div className="relative h-full p-12 ">
+          <div className=" rounded-[15px] border-[2px] border-orange flex gap-12 p-6">
+            <BrandBalls />
+            <BrandBalls />
+          </div>
+        </div>
       </div>
     </>
   );

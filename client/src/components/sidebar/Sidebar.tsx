@@ -8,6 +8,7 @@ import { HiMiniUsers, HiMiniWrenchScrewdriver } from "react-icons/hi2";
 import { IoCalendar } from "react-icons/io5";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import { usePathname } from "next/navigation";
+import { useLogoutContext } from "@/providers/logoutProvider";
 
 const navLinks = [
   {
@@ -37,9 +38,12 @@ const navLinks = [
 const Sidebar = () => {
   const pathname = usePathname();
 
+  const { isOpen, setIsOpen } = useLogoutContext();
+
+  console.log(isOpen);
   return (
     <>
-      <div className="flex flex-col fixed w-[17rem] h-screen text-white bg-black gap-20 p-6">
+      <div className="flex flex-col fixed w-[15rem] h-screen text-white bg-black gap-20 p-6">
         <div className="mt-[15px] ">Logo</div>
         <div className="flex flex-col gap-10 flex-grow">
           {navLinks.map((links) => {
@@ -47,8 +51,8 @@ const Sidebar = () => {
 
             return (
               <Link
-                className={`flex gap-6 hover:text-orange items-center text-[20px] ${
-                  isActive ? "text-orange" : ""
+                className={`flex gap-6 hover:text-orange items-center text-[15px] ${
+                  isActive ? "text-orange" : " text-white"
                 }`}
                 key={links.title}
                 href={links.href}
@@ -59,10 +63,13 @@ const Sidebar = () => {
             );
           })}
         </div>
-        <div className="mt-auto mb-4 gap-4 text-[20px] flex items-center">
-          <RiLogoutBoxRLine size={40} />
+        <button
+          className="mt-auto mb-4 gap-4 text-[15px] flex items-center"
+          onClick={() => setIsOpen(true)}
+        >
+          <RiLogoutBoxRLine size={30} />
           <p>Logout</p>
-        </div>
+        </button>
       </div>
     </>
   );

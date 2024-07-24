@@ -8,7 +8,7 @@ const Avatar = (props: AvatarProps) => {
   return (
     <div>
       <div
-        className="border border-black-500 rounded-full bg-white p-4 w-[25px] h-[25px]"
+        className="border border-black-500 rounded-full bg-white p-4 w-[50px] h-[50px]"
         {...props}
       ></div>
     </div>

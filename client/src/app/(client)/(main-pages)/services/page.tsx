@@ -11,8 +11,8 @@ const Services = () => {
           <p className="text-white font-bold text-[40px]">Services</p>
         </div>
       </div>
-      <div className="relative h-[60vh] p-28 w-full">
-        <div className="w-[90%] rounded-xl h-[60%] right-10 bottom-20 bg-grey absolute z-10"></div>
+      <div className="relative h-[60vh] p-32 w-full">
+        <div className="w-[87%] rounded-xl h-[60%] right-20 bottom-16  bg-grey bg-opacity-50 absolute z-10"></div>
         <div className="border border-orange rounded-lg w-full h-full p-6 relative z-20">
           <p className="text-[24px] indent-20 p-10">
             Everything we sell, we can also install, We are your local auto
@@ -21,15 +21,13 @@ const Services = () => {
             electronic upgrades installer, we always strive for the highest
             quality and we treat every car as if it were our own. Our staff are
             experienced automotive technicians who can install any electronic
-            upgrade in your car, whether it's a dash cam, remote starter, backup
-            camera or anything else.
+            upgrade in your car, whether it{"`"}s a dash cam, remote starter,
+            backup camera or anything else.
           </p>
         </div>
       </div>
 
-      <div className="h-[40vh] p-10 flex gap-14 justify-center">
-        <ServicePogs />
-      </div>
+      <div className="h-[40vh] p-10 flex gap-14 justify-center"></div>
       <div className="h-full flex flex-col items-center gap-6 p-20">
         <div>AVAILABLE SERVICES</div>
         <div className="mx-[20rem] grid grid-cols-3 gap-10 border-none ">

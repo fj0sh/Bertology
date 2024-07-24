@@ -15,7 +15,7 @@ const RegisterModal = (props: Props) => {
   const { isOpen, onClose, openLogin } = props;
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState(0);
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
