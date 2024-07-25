@@ -12,12 +12,18 @@ import { MdShoppingCart } from "react-icons/md";
 
 const LandingPage = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
+  const [isForgotPassOpen, setIsForgotPassOpen] = useState<boolean>(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] =
     useState<boolean>(false);
 
   const changeModal = () => {
     setIsLoginModalOpen((prev) => !prev);
     setIsRegisterModalOpen((prev) => !prev);
+  };
+
+  const openForgotPassModal = () => {
+    setIsForgotPassOpen(true);
+    setIsLoginModalOpen(false);
   };
   return (
     <>
@@ -27,13 +33,18 @@ const LandingPage = () => {
           isOpen={isLoginModalOpen}
           onClose={() => setIsLoginModalOpen(false)}
           openRegister={() => changeModal()}
+          openForgotPassword={openForgotPassModal}
         />
         <RegisterModal
           isOpen={isRegisterModalOpen}
           onClose={() => setIsRegisterModalOpen(false)}
           openLogin={() => changeModal()}
         />
-        {/* <ForgotPasswordModal /> */}
+
+        <ForgotPasswordModal
+          isOpen={isForgotPassOpen}
+          onClose={() => setIsForgotPassOpen(false)}
+        />
 
         {/* ============================================HERO SECTION =======================================================================*/}
 
@@ -100,8 +111,11 @@ const LandingPage = () => {
 
         {/* ============================================BRAND SECTION =======================================================================*/}
 
-        <div className="relative h-full p-12 ">
+        <div className="relative h-full p-20 ">
           <div className=" rounded-[15px] border-[2px] border-orange flex gap-12 p-6">
+            <BrandBalls />
+            <BrandBalls />
+            <BrandBalls />
             <BrandBalls />
             <BrandBalls />
           </div>

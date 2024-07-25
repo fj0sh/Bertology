@@ -12,8 +12,8 @@ const OffersCard = (props: Props) => {
   const { reverse, image, description, title } = props;
   if (!reverse) {
     return (
-      <div className="flex rounded-lg text-white bg-gradient-to-t">
-        <div className="flex w-[60%] h-[20rem] border rounded-lg bg-gradient-to-r from-white from-5% to-black to-50%">
+      <div className="flex rounded-lg text-white">
+        <div className="flex w-[60%] h-[20rem] border rounded-lg">
           <div className="h-full w-[40%] flex justify-center items-center">
             <Image
               src={"/images/test_images/roadblock.png"}
@@ -39,7 +39,7 @@ const OffersCard = (props: Props) => {
       <div className="w-[40%] h-[20rem] flex justify-center items-center font-semibold text-[40px]">
         {title}
       </div>
-      <div className="flex w-[60%] h-[20rem] border rounded-lg bg-gradient-to-r from-black to-orange">
+      <div className="flex w-[60%] h-[20rem] border rounded-lg">
         <div className="h-full w-full flex justify-center items-center">
           {description}
         </div>

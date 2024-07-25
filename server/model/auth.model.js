@@ -5,7 +5,7 @@ exports.registerUser = (credentials, callback) => {
     credentials;
 
   conn.query(
-    "insert into users(firstname, lastname, phoneNumber, emailAddress, password, username) values (?,?,?,?,?,?)",
+    "insert into users(firstname, lastname, phoneNumber, emailAddress, password, username, role) values (?,?,?,?,?,?,'CUSTOMER')",
     [firstname, lastname, phoneNumber, emailAddress, password, username],
     callback
   );

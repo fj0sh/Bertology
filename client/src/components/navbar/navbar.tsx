@@ -15,12 +15,12 @@ const Navbar = () => {
     { name: "About Us", href: "/about-us" },
     { name: "Services", href: "/services" },
     { name: "Products", href: "/products" },
-    { name: <IoMdCart size={30} />, href: "/cart" },
-    { name: <FaRegUserCircle size={30} />, href: "/profile" },
+    { name: <IoMdCart size={25} />, href: "/cart" },
+    { name: <FaRegUserCircle size={25} />, href: "/profile" },
   ];
 
   return (
-    <div className="bg-black z-30 h-16 p-3 sticky top-0">
+    <div className="bg-black z-50 h-16 p-3 fixed w-full top-0">
       <div className="flex-1 flex items-center justify-between">
         <div className="flex-shrink-0">
           <a href="/" className="text-white text-[30px] font-bold">
@@ -31,15 +31,16 @@ const Navbar = () => {
           <div className="hidden sm:block sm:ml-6">
             <div className="flex gap-10 space-x-4 mr-[45px] text-white">
               {navLinks.map((x, index) => {
-                const isActive = pathname === x.href;
+                const isActive =
+                  x.href === "/"
+                    ? pathname === "/"
+                    : pathname.startsWith(x.href);
 
                 return (
-                  <div className="" key={index}>
+                  <div className="text-[16px] font-normal" key={index}>
                     <Link
                       href={x.href}
-                      className={`${
-                        isActive ? "text-orange" : "text-white"
-                      } text-[20px]`}
+                      className={`${isActive ? "text-orange" : "text-white"}`}
                     >
                       {x.name}
                     </Link>

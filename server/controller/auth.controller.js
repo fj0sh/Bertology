@@ -9,6 +9,7 @@ exports.registerUser = [
   validate,
   (req, res) => {
     authModel.registerUser(req.body, (err, result) => {
+      console.log(req.body);
       if (err) {
         console.error("Error in insertUser:", err.message);
         return res.status(500).send("Internal Server Error");
