@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 type AvatarProps = {
@@ -6,12 +7,12 @@ type AvatarProps = {
 
 const Avatar = (props: AvatarProps) => {
   return (
-    <div>
+    <Link href={"/admin-profile"}>
       <div
         className="border border-black-500 rounded-full bg-white p-4 w-[50px] h-[50px]"
         {...props}
       ></div>
-    </div>
+    </Link>
   );
 };
 

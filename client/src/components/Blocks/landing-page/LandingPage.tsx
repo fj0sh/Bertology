@@ -95,7 +95,7 @@ const LandingPage = () => {
               <p className="font-bold text-[18px]">Installation</p>
             </div>
             <div className="h-full w-full flex justify-center items-center">
-              <ImageCarousel></ImageCarousel>
+              <ImageCarousel />
             </div>
           </div>
           <div className="flex flex-col items-center h-[50%] bg-zinc-950">
@@ -104,7 +104,7 @@ const LandingPage = () => {
               <p className="font-bold text-[18px]">Products</p>
             </div>
             <div className="h-full w-full flex justify-center items-center">
-              <ImageCarousel></ImageCarousel>
+              <ImageCarousel />
             </div>
           </div>
         </div>
@@ -112,7 +112,8 @@ const LandingPage = () => {
         {/* ============================================BRAND SECTION =======================================================================*/}
 
         <div className="relative h-full p-20 ">
-          <div className=" rounded-[15px] border-[2px] border-orange flex gap-12 p-6">
+          <div className=" rounded-[15px] border border-orange flex justify-center gap-12 p-6 mx-[12rem]">
+            <BrandBalls />
             <BrandBalls />
             <BrandBalls />
             <BrandBalls />

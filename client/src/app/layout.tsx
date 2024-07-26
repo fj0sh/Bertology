@@ -18,9 +18,9 @@ export default function RootLayout({
   return (
     <QueryProvider>
       <html lang="en">
-        <body className={inter.className}>
+        <body>
           <ReactQueryDevtools />
-          <div className="w-full h-screen">{children}</div>
+          <div className="w-full h-screen bg-background">{children}</div>
         </body>
       </html>
     </QueryProvider>

@@ -1,11 +1,17 @@
 import Image from "next/image";
 import React from "react";
 
-const ImagePreviewCard = () => {
+interface Props {
+  image: string;
+}
+
+const ImagePreviewCard = (props: Props) => {
+  const { image } = props;
+
   return (
     <div className="w-[14rem] h-[17rem] border-none rounded-xl">
       <Image
-        src={"/images/test_images/roadblock.png"}
+        src={image}
         alt="roadblock"
         width={0}
         height={0}

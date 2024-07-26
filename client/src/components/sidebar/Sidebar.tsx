@@ -14,24 +14,28 @@ const navLinks = [
   {
     icons: <TbLayoutDashboardFilled size={30} />,
     title: "Dashboard",
-    href: "/dashboard",
+    href: "/admin/dashboard",
   },
   {
     icons: <IoCalendar size={30} />,
     title: "Booking Request",
-    href: "/booking-request",
+    href: "/admin/booking-request",
   },
   {
     icons: <FaTruckLoading size={30} />,
     title: "Orders",
-    href: "/reserved-products",
+    href: "/admin/reserved-products",
   },
-  { icons: <FaBoxes size={30} />, title: "Products", href: "/view-products" },
-  { icons: <HiMiniUsers size={30} />, title: "Users", href: "/users" },
+  {
+    icons: <FaBoxes size={30} />,
+    title: "Products",
+    href: "/admin/view-products",
+  },
+  { icons: <HiMiniUsers size={30} />, title: "Users", href: "/admin/users" },
   {
     icons: <HiMiniWrenchScrewdriver size={30} />,
     title: "Services",
-    href: "/view-services",
+    href: "/admin/view-services",
   },
 ];
 
