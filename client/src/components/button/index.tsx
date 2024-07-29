@@ -8,16 +8,17 @@ interface Props {
   className?: string;
   onHover?: boolean;
   type?: "submit" | "button";
+  fontSize?: string;
 }
 
 const Button = (props: Props) => {
-  const { title, height, width, onHover } = props;
+  const { title, height, width, onHover, fontSize } = props;
   return (
     <button
       className={`border-non text-white p-2 rounded-lg text-[20px] w-[150px] ${
         onHover ? "bg-grey hover:bg-orange" : " bg-orange"
       }`}
-      style={{ height, width }}
+      style={{ height, width, fontSize }}
       {...props}
     >
       {title}

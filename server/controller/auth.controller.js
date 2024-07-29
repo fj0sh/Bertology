@@ -29,4 +29,15 @@ exports.getAllUsers = (req, res) => {
   });
 };
 
-exports.loginUser = (req, res) => {};
+exports.loginUser = (req, res) => {
+  authModel.loginUser(req.body, (err, user) => {
+    if (err) {
+      return res.status(500).send("Error logging in");
+    }
+    if (!user) {
+      return res.status(400).send("User not found");
+    }
+
+    res.send(user);
+  });
+};

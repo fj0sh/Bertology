@@ -7,7 +7,7 @@ exports.registerValidator = () => {
     body("phoneNumber")
       .notEmpty()
       .withMessage()
-      .isLength({ max: 10, min: 9 })
+      .isLength({ max: 10, min: 10 })
       .isNumeric(),
   ];
 };

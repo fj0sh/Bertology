@@ -9,7 +9,7 @@ interface tileProps {
   view: string;
 }
 
-const disabledDates = ["07-27-2024", "07-29-2024", "07-30-2024"].map(
+const disabledDates = ["07-27-2024", "08-01-2024", "07-30-2024"].map(
   (dateStr) => new Date(dateStr)
 );
 
@@ -32,7 +32,10 @@ const AdminDashboard = () => {
           <Calendar tileDisabled={disableDates} />
         </div>
 
-        <div className="relative border border-orange h-full rounded-lg"></div>
+        <div className="relative flex border border-orange h-full rounded-lg">
+          <div className="w-[80%]"></div>
+          <div className="w-[20%] border rounded-lg  border-l-orange rounded-tl-none rounded-bl-none h-full"></div>
+        </div>
       </div>
       <div className=" row-start-2 row-span-3 col-span-4 border-none bg-grey rounded-lg flex flex-col items-center p-4">
         <div className="text-white">Bookings</div>
