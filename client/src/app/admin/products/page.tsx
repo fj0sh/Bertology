@@ -1,10 +1,13 @@
 "use client";
 import Button from "@/components/button";
 import Dropdown from "@/components/input/DropDown";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const Products = () => {
   const data = ["Popularity ", "Id"];
+
+  const router = useRouter();
 
   return (
     <div className="h-full">
@@ -14,7 +17,12 @@ const Products = () => {
           onSelect={() => console.log("test")}
           title="Filter By"
         />
-        <Button title="Add Products" fontSize="20px" height="45px" />
+        <Button
+          title="Add Products"
+          fontSize="20px"
+          height="45px"
+          onClick={() => router.push("/admin/products/add-products")}
+        />
       </div>
       <div>
         <table>

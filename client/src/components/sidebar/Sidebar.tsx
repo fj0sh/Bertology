@@ -24,12 +24,12 @@ const navLinks = [
   {
     icons: <FaTruckLoading size={30} />,
     title: "Orders",
-    href: "/admin/reserved-products",
+    href: "/admin/orders",
   },
   {
     icons: <FaBoxes size={30} />,
     title: "Products",
-    href: "/admin/view-products",
+    href: "/admin/products",
   },
   { icons: <HiMiniUsers size={30} />, title: "Users", href: "/admin/users" },
   {
@@ -51,7 +51,7 @@ const Sidebar = () => {
         <div className="mt-[15px] ">Logo</div>
         <div className="flex flex-col gap-10 flex-grow">
           {navLinks.map((links) => {
-            const isActive = pathname === links.href;
+            const isActive = pathname.startsWith(links.href);
 
             return (
               <Link
