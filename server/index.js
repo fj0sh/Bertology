@@ -8,6 +8,7 @@ const PORT = process.env.PORT;
 const authRoute = require("./routes/auth.route");
 const testRoute = require("./routes/test.route");
 const usersRoute = require("./routes/users.router");
+const productsRoute = require("./routes/products.route");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -16,6 +17,7 @@ app.use(cors());
 app.use("/api/auth", authRoute);
 app.use("/api/test", testRoute);
 app.use("/api/users", usersRoute);
+app.use("/api/products", productsRoute);
 
 app.listen(PORT, () => {
   console.log("Currently in PORT " + PORT);

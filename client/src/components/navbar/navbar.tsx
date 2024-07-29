@@ -13,8 +13,7 @@ const Navbar = () => {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "/client/about-us" },
-    { name: "Services", href: "/client/services" },
-    { name: "Products", href: "/client/products" },
+    { name: "Offers", href: "/client/offers" },
     { name: <IoMdCart size={25} />, href: "/client/cart" },
     { name: <FaRegUserCircle size={25} />, href: "/client/profile" },
   ];
