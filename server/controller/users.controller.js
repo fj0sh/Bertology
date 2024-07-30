@@ -1,7 +1,7 @@
 const usersModel = require("../model/users.model");
 
 exports.getCustomers = (req, res) => {
-  usersModel.getUsers((err, result) => {
+  usersModel.getCustomer((err, result) => {
     if (err) {
       console.log(err.message);
       return res.status(400).send("Error: " + err.message);

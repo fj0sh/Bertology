@@ -1,3 +1,4 @@
+import OrderPreviewCard from "@/components/cards/OrderPreviewCard";
 import React from "react";
 
 const Cart = () => {
@@ -5,6 +6,3 @@ const Cart = () => {
 };
 
 export default Cart;
-
-
-

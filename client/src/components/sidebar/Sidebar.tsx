@@ -35,7 +35,7 @@ const navLinks = [
   {
     icons: <HiMiniWrenchScrewdriver size={30} />,
     title: "Services",
-    href: "/admin/view-services",
+    href: "/admin/services",
   },
 ];
 

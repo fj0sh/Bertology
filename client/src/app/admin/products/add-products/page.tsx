@@ -10,7 +10,7 @@ const AddProducts = () => {
       <div className=" w-1/2 h-full flex flex-col gap-4">
         <InputOrange label="Product Name:" />
         {/* <Dropdown/> */}
-        <InputOrange label="Product Type" />    
+        <InputOrange label="Product Type" />
         <InputOrange label="Price:" />
         <InputOrange label="Stock:" />
         <p className="text-white text-[18px]">Description:</p>

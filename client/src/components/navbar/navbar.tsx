@@ -8,7 +8,6 @@ import { FaRegUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
   const pathname = usePathname();
-  console.log(pathname);
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -36,13 +35,21 @@ const Navbar = () => {
                     : pathname.startsWith(x.href);
 
                 return (
-                  <div className="text-[16px] font-normal" key={index}>
+                  <div key={index} className="relative group">
                     <Link
                       href={x.href}
-                      className={`${isActive ? "text-orange" : "text-white"}`}
+                      className={`${
+                        isActive ? "text-orange" : "text-white"
+                      } text-[16px] font-normal`}
                     >
                       {x.name}
                     </Link>
+                    {x.href === "/client/cart" && (
+                      <div className="absolute left-0 top-full hidden group-hover:block mt-2 bg-white text-black p-2 rounded">
+                        <Link href={""}>Cart</Link>
+                        <Link href={""}>Orders</Link>
+                      </div>
+                    )}
                   </div>
                 );
               })}

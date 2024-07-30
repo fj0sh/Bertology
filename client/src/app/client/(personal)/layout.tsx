@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <>
       <Navbar></Navbar>
-      <div className="bg-background h-full">{children}</div>
+      <div className="bg-background h-full mt-16 p-6">{children}</div>
     </>
   );
 }

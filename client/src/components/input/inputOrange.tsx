@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 
 interface Props {
-  onChange?: () => void;
+  onChange?: (e: any) => void;
   height?: string;
   label?: string;
 }
