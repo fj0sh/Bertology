@@ -6,6 +6,7 @@ import Button from "@/components/button";
 import BrandBalls from "@/components/cards/BrandBalls";
 import ImageCarousel from "@/components/carousel/ImageCarousel";
 import Navbar from "@/components/navbar/navbar";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { BiSolidCarMechanic } from "react-icons/bi";
 import { MdShoppingCart } from "react-icons/md";
@@ -15,6 +16,8 @@ const LandingPage = () => {
   const [isForgotPassOpen, setIsForgotPassOpen] = useState<boolean>(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] =
     useState<boolean>(false);
+
+  const router = useRouter();
 
   const changeModal = () => {
     setIsLoginModalOpen((prev) => !prev);
@@ -74,7 +77,11 @@ const LandingPage = () => {
             <p className="font-bold text-[60px] text-center w-[50rem] text-orange z-20">
               Innovating for Effortless Planning and Resource Optimization
             </p>
-            <Button title="BOOK NOW" width="200px" />
+            <Button
+              title="BOOK NOW"
+              width="200px"
+              onClick={() => router.push("/client/offers/services")}
+            />
           </div>
         </div>
         <div className=" bg-opacity-70 flex justify-center items-start h-[100px] text-[25px]">

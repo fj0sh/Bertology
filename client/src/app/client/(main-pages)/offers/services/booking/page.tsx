@@ -1,17 +1,41 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Calendar from "react-calendar";
-import { formatDateNormal } from "@/lib/function/dateFormatter";
+import {
+  formatDateForSQL,
+  formatDateNormal,
+} from "@/lib/function/dateFormatter";
 import InputOrange from "@/components/input/inputOrange";
 import "@/style/react-calendar.css";
+import instance from "@/lib/util/axios-instance";
 
 const Booking = () => {
   const [date, setDate] = useState<Date | null>(new Date());
   const [test, setTest] = useState(0);
-
-  //   const formatted = Intl.NumberFormat().format(test);
+  const [bookedDates, setBookedDates] = useState<any[]>([]);
 
   const newDate = formatDateNormal(date);
+
+  useEffect(() => {
+    const fetchBookedDates = async () => {
+      try {
+        const res = await instance.get("/services/booked-dates");
+        setBookedDates(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchBookedDates();
+  }, []);
+
+  const tileDisabled = ({ date }: { date: Date }) => {
+    // Check if the date is in the bookedDates list
+    return bookedDates.some(
+      (bookedDate) =>
+        new Date(bookedDate.dateBooked).toDateString() === date.toDateString()
+    );
+  };
 
   return (
     <div className="w-full h-screen flex justify-center items-center p-10">
@@ -26,7 +50,7 @@ const Booking = () => {
           <InputOrange label="Contact Number:" />
           <InputOrange label="Needed Service:" />
           <InputOrange label="Car Model:" />
-          <p className="text-[18px]">Addition Details:</p>
+          <p className="text-[18px]">Additional Details:</p>
           <textarea className="resize-none w-full h-full border border-orange rounded-lg bg-background p-2"></textarea>
         </div>
       </div>
@@ -39,6 +63,7 @@ const Booking = () => {
           <Calendar
             className={""}
             onChange={(value) => setDate(value as Date)}
+            tileDisabled={tileDisabled}
           />
         </div>
       </div>

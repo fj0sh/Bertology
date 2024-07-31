@@ -1,8 +1,8 @@
-import Link from "next/link";
 import React from "react";
 import Button from "../button";
 import { IoMdClose } from "react-icons/io";
 import ModalContainer from "./modalContainer/ModalContainer";
+import { signIn } from "next-auth/react";
 
 interface Props {
   isOpen: boolean;
@@ -61,6 +61,7 @@ const LoginModal = (props: Props) => {
         <Button
           title="GOOGLE"
           className="border-2 w-80 border-orange p-2 rounded-[15px]"
+          onClick={() => signIn("google")}
         ></Button>
         <Button
           title="FACEBOOK"

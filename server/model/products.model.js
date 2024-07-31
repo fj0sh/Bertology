@@ -6,3 +6,20 @@ exports.getAllProducts = (callback) => {
     callback
   );
 };
+
+exports.addProduct = (credentials, callback) => {
+  const {
+    productName,
+    description,
+    price,
+    stocks,
+    productCategory,
+    productImage,
+  } = credentials;
+
+  conn.query(
+    "INSERT INTO products(productName, description, price, stocks, productCategory, productImage, amountSold) VALUES (?,?,?,?,?,?,0)",
+    [productName, description, price, stocks, productCategory, productImage],
+    callback
+  );
+};

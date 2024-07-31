@@ -44,12 +44,6 @@ const Navbar = () => {
                     >
                       {x.name}
                     </Link>
-                    {x.href === "/client/cart" && (
-                      <div className="absolute left-0 top-full hidden group-hover:block mt-2 bg-white text-black p-2 rounded">
-                        <Link href={""}>Cart</Link>
-                        <Link href={""}>Orders</Link>
-                      </div>
-                    )}
                   </div>
                 );
               })}
