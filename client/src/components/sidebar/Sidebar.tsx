@@ -44,7 +44,6 @@ const Sidebar = () => {
 
   const { isOpen, setIsOpen } = useLogoutContext();
 
-  console.log(isOpen);
   return (
     <>
       <div className="flex flex-col fixed w-[15rem] h-screen text-white bg-black gap-20 p-6">

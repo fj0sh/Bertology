@@ -1,12 +1,13 @@
 interface ProductCategory {}
 
 interface ProductType {
-  id: number;
+  productId: number;
   productName: string;
   description: string;
   price: number;
   stocks: number;
-  category: string;
+  type: string;
+  productImage: string;
 }
 
 export type { ProductCategory, ProductType };

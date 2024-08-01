@@ -2,12 +2,13 @@ import React, { Fragment } from "react";
 
 interface Props {
   onChange?: (e: any) => void;
+  value?: string | number;
   height?: string;
   label?: string;
 }
 
 const InputOrange = (props: Props) => {
-  const { height, label } = props;
+  const { height, label, value } = props;
 
   return (
     <>

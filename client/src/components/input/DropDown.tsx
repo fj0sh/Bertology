@@ -1,19 +1,26 @@
-// components/Dropdown.tsx
-
 import React, { useState, FC } from "react";
 
-interface DropdownProps {
-  options: string[];
-  onSelect: (option: string) => void;
+interface DropdownProps<T> {
+  options: T[];
+  onSelect: (option: T) => void;
   label?: string;
   title: string;
+  getOptionLabel: (option: T) => string;
+  getOptionKey: (option: T) => string;
 }
 
-const Dropdown: FC<DropdownProps> = ({ options, onSelect, label, title }) => {
+const Dropdown = <T,>({
+  options,
+  onSelect,
+  label,
+  title,
+  getOptionLabel,
+  getOptionKey,
+}: DropdownProps<T>) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [selectedOption, setSelectedOption] = useState<T | null>(null);
 
-  const handleSelect = (option: string) => {
+  const handleSelect = (option: T) => {
     setSelectedOption(option);
     onSelect(option);
     setIsOpen(false);
@@ -32,7 +39,8 @@ const Dropdown: FC<DropdownProps> = ({ options, onSelect, label, title }) => {
           className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
         >
-          {title}: {selectedOption || "Select an option"}
+          {title}:{" "}
+          {selectedOption ? getOptionLabel(selectedOption) : "Select an option"}
           <svg
             className="ml-2 -mr-1 h-5 w-5"
             xmlns="http://www.w3.org/2000/svg"
@@ -58,12 +66,12 @@ const Dropdown: FC<DropdownProps> = ({ options, onSelect, label, title }) => {
           >
             {options.map((option) => (
               <button
-                key={option}
+                key={getOptionKey(option)} // Use a unique identifier for the key
                 onClick={() => handleSelect(option)}
                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 w-full text-left"
                 role="menuitem"
               >
-                {option}
+                {getOptionLabel(option)}
               </button>
             ))}
           </div>

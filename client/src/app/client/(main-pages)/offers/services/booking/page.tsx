@@ -30,7 +30,6 @@ const Booking = () => {
   }, []);
 
   const tileDisabled = ({ date }: { date: Date }) => {
-    // Check if the date is in the bookedDates list
     return bookedDates.some(
       (bookedDate) =>
         new Date(bookedDate.dateBooked).toDateString() === date.toDateString()
