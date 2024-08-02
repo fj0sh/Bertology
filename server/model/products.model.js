@@ -26,9 +26,21 @@ const getType = (callback) => {
   conn.query(`SELECT * from product_type`, callback);
 };
 
+const updateProduct = (credentials, id, callback) => {
+  const { productName, description, price, stocks, productType, productImage } =
+    credentials;
+
+  conn.query(
+    "UPDATE products SET productName=?, description=?, price=?, stocks=?, productType=?, productImage=? WHERE id=?",
+    [productName, description, price, stocks, productType, productImage, id],
+    callback
+  );
+};
+
 module.exports = {
   getAllProducts,
   getProductById,
   addProduct,
   getType,
+  updateProduct,
 };

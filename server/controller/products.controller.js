@@ -39,9 +39,21 @@ const getTypes = (req, res) => {
   });
 };
 
+const updateProduct = (req, res) => {
+  console.log(req.body);
+  console.log(req.params.id);
+  prodModel.updateProduct(req.body, req.params.id, (err, results) => {
+    if (err) {
+      return res.status(400).send(err);
+    }
+    res.send(results);
+  });
+};
+
 module.exports = {
   addProduct,
   getById,
   getAllProducts,
   getTypes,
+  updateProduct,
 };

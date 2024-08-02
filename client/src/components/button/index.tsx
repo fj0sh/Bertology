@@ -15,7 +15,7 @@ const Button = (props: Props) => {
   const { title, height, width, onHover, fontSize } = props;
   return (
     <button
-      className={`border-non text-white p-2 rounded-lg text-[20px] w-[150px] ${
+      className={`border-none text-white p-2 rounded-lg text-[20px] w-[150px] flex items-center justify-center ${
         onHover ? "bg-grey hover:bg-orange" : " bg-orange"
       }`}
       style={{ height, width, fontSize }}

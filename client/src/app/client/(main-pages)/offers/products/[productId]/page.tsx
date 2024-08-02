@@ -2,7 +2,7 @@
 import Button from "@/components/button";
 import { ProductType } from "@/constants/Products";
 import useFetchData from "@/hooks/fetcher/useFetchData";
-import instance from "@/lib/util/axios-instance";
+import { formatter } from "@/lib/function/currencyFormatter";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -11,7 +11,8 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 const ProductId = ({ params }: { params: { productId: number } }) => {
   const [quantity, setQuantity] = useState<number>(0);
 
-  const { data } = useFetchData(`/products/${params.productId}`);
+  const { data } = useFetchData<ProductType>(`/products/${params.productId}`);
+  console.log(data);
 
   const router = useRouter();
 
@@ -29,7 +30,12 @@ const ProductId = ({ params }: { params: { productId: number } }) => {
     setQuantity((prevQuantity) => prevQuantity - 1);
   };
   const handleQuantityIncrease = () => {
-    setQuantity((prevQuantity) => prevQuantity + 1);
+    if (data) {
+      if (quantity >= data?.stocks) {
+        setQuantity((prevQuantity) => prevQuantity - 1);
+      }
+      setQuantity((prevQuantity) => prevQuantity + 1);
+    }
   };
 
   return (
@@ -38,7 +44,7 @@ const ProductId = ({ params }: { params: { productId: number } }) => {
         {data && (
           <Image
             src={data?.productImage}
-            height={300}
+            height={500}
             width={500}
             alt="Image.1"
           ></Image>
@@ -71,9 +77,10 @@ const ProductId = ({ params }: { params: { productId: number } }) => {
               <FaPlus size={20} />
             </button>
           </div>
+          <p className="text-[15px] opacity-70">Stock/s: {data?.stocks}</p>
         </div>
-        <div className="border border-orange rounded-lg text-orange p-3 w-[15%] font-semibold">
-          <p>{data?.price}</p>
+        <div className="border border-orange rounded-lg text-orange p-3 w-[10rem] font-semibold">
+          <p>₱ {data && formatter(data?.price)}</p>
         </div>
         <div className="flex gap-6 self-end justify-self-end">
           <Button title="Add to Cart" />
