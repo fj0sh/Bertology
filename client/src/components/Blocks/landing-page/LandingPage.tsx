@@ -5,7 +5,7 @@ import RegisterModal from "@/components/Modals/RegisterModal";
 import Button from "@/components/button";
 import BrandBalls from "@/components/cards/BrandBalls";
 import ImageCarousel from "@/components/carousel/ImageCarousel";
-import Navbar from "@/components/navbar/navbar";
+import Navbar from "@/components/navigation/navbar";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { BiSolidCarMechanic } from "react-icons/bi";

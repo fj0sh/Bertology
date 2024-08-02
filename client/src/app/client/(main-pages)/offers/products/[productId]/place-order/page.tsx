@@ -1,15 +1,12 @@
 "use client";
 import Button from "@/components/button";
 import InputOrange from "@/components/input/inputOrange";
+import useFetchData from "@/hooks/fetcher/useFetchData";
 import Image from "next/image";
 import React from "react";
 import Swal from "sweetalert2";
 
-const PlaceOrder = () => {
-  const handleOrder = () => {
-    Swal.fire("SweetAlert2 is working!");
-  };
-
+const PlaceOrder = ({ params }: { params: { productId: number } }) => {
   return (
     <div className="flex justify-center gap-14 h-screen p-20">
       <div className="border-orange border w-[30%] rounded-lg gap-6 p-10 flex flex-col items-center h-full">

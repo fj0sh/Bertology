@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "../globals.css";
-import Sidebar from "@/components/sidebar/Sidebar";
+import Sidebar from "@/components/navigation/Sidebar";
 import Avatar from "@/components/avatar";
 import { LogoutProvider } from "@/providers/logoutProvider";
 import LogoutModal from "@/components/Modals/LogoutModal";

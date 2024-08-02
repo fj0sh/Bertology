@@ -1,5 +1,5 @@
 import LandingPage from "@/components/Blocks/landing-page/LandingPage";
-import Footer from "@/components/footer/Footer";
+import Footer from "@/components/navigation/Footer";
 
 const Home = () => {
   return (

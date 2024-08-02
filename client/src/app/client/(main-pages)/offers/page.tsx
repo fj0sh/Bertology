@@ -6,6 +6,7 @@ import React from "react";
 import OffersCard from "@/components/cards/OffersCard";
 import AboutUsInfoCard from "@/components/cards/AboutUsInfoCard";
 import { useRouter } from "next/navigation";
+import BrandBalls from "@/components/cards/BrandBalls";
 
 const Services = () => {
   const router = useRouter();
@@ -55,9 +56,19 @@ const Services = () => {
           <ImagePreviewCard image={"/images/test_images/roadblock.png"} />
         </div>
 
-        <Button title="See More" />
+        <Button
+          title="See More"
+          onClick={() => router.push("offers/products")}
+        />
       </div>
-      <div className="h-[50vh]"></div>
+      <div className="h-[50vh] flex justify-center items-center gap-10 ">
+        <BrandBalls />
+        <BrandBalls />
+        <BrandBalls />
+        <BrandBalls />
+        <BrandBalls />
+        <BrandBalls />
+      </div>
       <div className="h-full flex flex-col items-center gap-6 p-20">
         <div className="text-orange text-[22px] font-semibold">
           AVAILABLE SERVICES
@@ -73,7 +84,7 @@ const Services = () => {
 
         <Button
           title="See More"
-          onClick={() => router.push("/client/offers/services")}
+          onClick={() => router.push("offers/services")}
         />
       </div>
     </div>

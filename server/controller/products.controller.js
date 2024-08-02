@@ -1,5 +1,5 @@
 const prodModel = require("../model/products.model");
-exports.getAllProducts = (req, res) => {
+const getAllProducts = (req, res) => {
   prodModel.getAllProducts((err, results) => {
     if (err) {
       return res.status(400).send(err);
@@ -9,7 +9,7 @@ exports.getAllProducts = (req, res) => {
   });
 };
 
-exports.getById = (req, res) => {
+const getById = (req, res) => {
   prodModel.getProductById(req.params.id, (err, results) => {
     if (err) {
       return res.status(400).send(err);
@@ -19,7 +19,7 @@ exports.getById = (req, res) => {
   });
 };
 
-exports.addProduct = (req, res) => {
+const addProduct = (req, res) => {
   console.log(req.body);
   prodModel.addProduct(req.body, (err, results) => {
     if (err) {
@@ -29,7 +29,7 @@ exports.addProduct = (req, res) => {
   });
 };
 
-exports.getTypes = (req, res) => {
+const getTypes = (req, res) => {
   prodModel.getType((err, results) => {
     if (err) {
       return res.status(400).send(err);
@@ -37,4 +37,11 @@ exports.getTypes = (req, res) => {
 
     res.send(results);
   });
+};
+
+module.exports = {
+  addProduct,
+  getById,
+  getAllProducts,
+  getTypes,
 };

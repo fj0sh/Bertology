@@ -8,3 +8,4 @@ router.get("/:id", prodController.getById);
 router.post("/add-product", prodController.addProduct);
 
 module.exports = router;
+ 

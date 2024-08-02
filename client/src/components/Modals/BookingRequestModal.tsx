@@ -18,7 +18,7 @@ const BookingRequestModal = (props: Props) => {
 
   return (
     <>
-      <ModalContainer width="50rem" height="       ">
+      <ModalContainer width="50rem">
         <div className="relative text-white w-full h-full flex flex-col gap-6">
           <div className="text-[20px]">Service Request</div>
           <div>

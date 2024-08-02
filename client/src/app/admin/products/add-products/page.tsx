@@ -3,6 +3,8 @@ import Button from "@/components/button";
 import Dropdown from "@/components/input/DropDown";
 import ImageUpload from "@/components/input/ImageUpload";
 import InputOrange from "@/components/input/inputOrange";
+import useFetchData from "@/hooks/fetcher/useFetchData";
+import { formatter } from "@/lib/function/currencyFormatter";
 import instance from "@/lib/util/axios-instance";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
@@ -19,7 +21,6 @@ const AddProducts = () => {
   const [price, setPrice] = useState<number>();
   const [stocks, setStock] = useState<number>();
   const [description, setDescription] = useState("");
-  const [types, setTypes] = useState<TypeType[]>([]);
 
   const AddProduct = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -49,19 +50,7 @@ const AddProducts = () => {
     }
   };
 
-  const getType = async () => {
-    try {
-      const res = await instance.get("/products/get-types");
-      setTypes(res.data);
-      console.log(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getType();
-  }, []);
+  const { data } = useFetchData<TypeType[]>("/products/get-types");
 
   return (
     <form
@@ -76,20 +65,17 @@ const AddProducts = () => {
         />
         <div className="text-black flex flex-col gap-3 w-[18rem]">
           <p className="text-white text-[18px]">Product Type:</p>
-          <Dropdown<TypeType>
-            options={types}
-            title="Product Types"
-            onSelect={(selected) => setProductType(selected.id)}
-            getOptionLabel={(types) => types.type}
-            getOptionKey={(types) => types.type}
-          />
+          {data && (
+            <Dropdown<TypeType>
+              options={data}
+              title="Product Types"
+              onSelect={(selected) => setProductType(selected.id)}
+              getOptionLabel={(types) => types.type}
+              getOptionKey={(types) => types.type}
+            />
+          )}
         </div>
 
-        {/* <InputOrange
-            label="Product Type"
-            value={productType}
-            onChange={(e) => setProductType(e.target.value)}
-          /> */}
         <InputOrange
           label="Price:"
           value={price}
