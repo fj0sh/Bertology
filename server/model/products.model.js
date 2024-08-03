@@ -8,7 +8,11 @@ const getAllProducts = (callback) => {
 };
 
 const getProductById = (id, callback) => {
-  conn.query("SELECT * FROM products WHERE id =?", id, callback);
+  conn.query(
+    "SELECT products.id AS productId, products.productName, products.description, products.price, products.stocks, products.productImage, product_type.type AS type FROM products INNER JOIN product_type ON products.productType = product_type.id where products.id = ?",
+    id,
+    callback
+  );
 };
 
 const addProduct = (credentials, callback) => {

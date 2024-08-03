@@ -3,16 +3,13 @@ import Button from "@/components/button";
 import Dropdown from "@/components/input/DropDown";
 import ImageUpload from "@/components/input/ImageUpload";
 import InputOrange from "@/components/input/inputOrange";
+import { TypeType } from "@/constants/Product-types";
 import useFetchData from "@/hooks/fetcher/useFetchData";
 import { formatter } from "@/lib/function/currencyFormatter";
 import instance from "@/lib/util/axios-instance";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
-interface TypeType {
-  id: number;
-  type: string;
-}
 
 const AddProducts = () => {
   const [productImage, setImage] = useState("");

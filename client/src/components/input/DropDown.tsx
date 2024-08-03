@@ -27,7 +27,7 @@ const Dropdown = <T,>({
   };
 
   return (
-    <div className="relative inline-block text-left">
+    <div className="relative inline-block text-left text-black">
       {label && (
         <label className="block text-sm font-medium text-gray-700">
           {label}
