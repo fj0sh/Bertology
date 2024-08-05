@@ -4,50 +4,30 @@ import Dropdown from "@/components/input/DropDown";
 import ImageUpload from "@/components/input/ImageUpload";
 import InputOrange from "@/components/input/inputOrange";
 import { TypeType } from "@/constants/Product-types";
-import useFetchData from "@/hooks/fetcher/useFetchData";
-import { formatter } from "@/lib/function/currencyFormatter";
-import instance from "@/lib/util/axios-instance";
-import Image from "next/image";
-import React, { useEffect, useState } from "react";
-
+import useProducts from "@/hooks/requests/useProducts";
+import React, { useState } from "react";
 
 const AddProducts = () => {
   const [productImage, setImage] = useState("");
   const [productName, setProductName] = useState("");
-  const [productType, setProductType] = useState<number | null>(null);
-  const [price, setPrice] = useState<number>();
-  const [stocks, setStock] = useState<number>();
+  const [productType, setProductType] = useState<number>(1);
+  const [price, setPrice] = useState<number>(0);
+  const [stocks, setStock] = useState<number>(0);
   const [description, setDescription] = useState("");
+
+  const { addProduct, types } = useProducts("/products");
 
   const AddProduct = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    const body = {
+    addProduct(
       productName,
       description,
       price,
       stocks,
       productType,
-      productImage,
-    };
-
-    console.log(body);
-
-    try {
-      const res = await instance.post("/products/add-product", body);
-      console.log(res.data);
-      setImage("");
-      setProductName("");
-      setDescription("");
-      setProductType(0);
-      setPrice(0);
-      setStock(0);
-    } catch (error) {
-      console.log(error);
-    }
+      productImage
+    );
   };
-
-  const { data } = useFetchData<TypeType[]>("/products/get-types");
 
   return (
     <form
@@ -62,9 +42,9 @@ const AddProducts = () => {
         />
         <div className="text-black flex flex-col gap-3 w-[18rem]">
           <p className="text-white text-[18px]">Product Type:</p>
-          {data && (
+          {types && (
             <Dropdown<TypeType>
-              options={data}
+              options={types}
               title="Product Types"
               onSelect={(selected) => setProductType(selected.id)}
               getOptionLabel={(types) => types.type}

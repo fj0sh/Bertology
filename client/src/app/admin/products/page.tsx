@@ -2,22 +2,16 @@
 import Button from "@/components/button";
 import Dropdown from "@/components/input/DropDown";
 import { ProductType } from "@/constants/Products";
-import useFetchData from "@/hooks/fetcher/useFetchData";
 import { useRouter } from "next/navigation";
 import React from "react";
 import "@/style/tables.css";
-import Image from "next/image";
+import useProducts from "@/hooks/requests/useProducts";
 
 const Products = () => {
   const data = ["id", "name"];
   const router = useRouter();
 
-  const {
-    data: products,
-    loading,
-    error,
-  } = useFetchData<ProductType[]>("/products/");
-
+  const { products } = useProducts<ProductType[]>("/products");
   console.log(products);
 
   return (
@@ -49,18 +43,16 @@ const Products = () => {
             </tr>
           </thead>
           <tbody className="white">
-            {products?.map((products, index) => (
+            {products?.map((product, index) => (
               <tr key={index} className={`bg-white text-black`}>
-                <td>{products.productName}</td>
-                <td>{products.type}</td>
-                <td>{products.price}</td>
-                <td>{products.stocks}</td>
+                <td>{product.productName}</td>
+                <td>{product.type}</td>
+                <td>{product.price}</td>
+                <td>{product.stocks}</td>
                 <td>
                   <button
-                    className="bg-orange text-white border-none p-2 rounded-lg" 
-                    onClick={() =>
-                      router.push(`products/${products.productId}`)
-                    }
+                    className="bg-orange text-white border-none p-2 rounded-lg"
+                    onClick={() => router.push(`products/${product.productId}`)}
                   >
                     View
                   </button>

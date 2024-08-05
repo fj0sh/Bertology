@@ -1,10 +1,8 @@
 "use client";
 import Button from "@/components/button";
 import InputOrange from "@/components/input/inputOrange";
-import useFetchData from "@/hooks/fetcher/useFetchData";
 import Image from "next/image";
 import React from "react";
-import Swal from "sweetalert2";
 
 const PlaceOrder = ({ params }: { params: { productId: number } }) => {
   return (

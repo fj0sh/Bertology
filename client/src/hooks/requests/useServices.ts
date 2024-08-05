@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const useServices = () => {
-  return (
+  return;
+};
 
-  )
-}
-
-export default useServices
+export default useServices;

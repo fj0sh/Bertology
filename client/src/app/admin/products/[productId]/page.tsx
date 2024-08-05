@@ -5,20 +5,12 @@ import ImageUpload from "@/components/input/ImageUpload";
 import InputOrange from "@/components/input/inputOrange";
 import { TypeType } from "@/constants/Product-types";
 import { ProductType } from "@/constants/Products";
-import useFetchData from "@/hooks/fetcher/useFetchData";
-import instance from "@/lib/util/axios-instance";
+import useProducts from "@/hooks/requests/useProducts";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 const ProductId = ({ params }: { params: { productId: number } }) => {
   const [isEditing, setIsEditing] = useState(false);
-
-  const { data: product } = useFetchData<ProductType>(
-    `/products/${params.productId}`
-  );
-
-  const { data: types } = useFetchData<TypeType[]>("/products/get-types");
-
   const [newName, setNewName] = useState("");
   const [newType, setNewType] = useState(0);
   const [newDescription, setNewDescription] = useState("");
@@ -26,15 +18,19 @@ const ProductId = ({ params }: { params: { productId: number } }) => {
   const [newStocks, setNewStocks] = useState(0);
   const [newImage, setNewImage] = useState("");
 
+  const { editProduct, types, products } = useProducts<ProductType>(
+    `/products/${params.productId}`
+  );
+
   useEffect(() => {
-    if (product) {
-      setNewName(product.productName);
+    if (products) {
+      setNewName(products.productName);
       setNewType(0);
-      setNewDescription(product.description);
-      setNewPrice(product.price);
-      setNewStocks(product.stocks);
+      setNewDescription(products.description);
+      setNewPrice(products.price);
+      setNewStocks(products.stocks);
     }
-  }, [product]);
+  }, [products]);
 
   const editProductHandler = () => {
     setIsEditing((prev) => !prev);
@@ -42,26 +38,15 @@ const ProductId = ({ params }: { params: { productId: number } }) => {
 
   const saveEdit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    const body = {
-      productName: newName,
-      description: newDescription,
-      price: newPrice,
-      stocks: newStocks,
-      productType: newType,
-      productImage: newImage,
-    };
-
-    try {
-      await instance.patch(
-        `/products/update-product/${params.productId}`,
-        body
-      );
-
-      console.log(body);
-    } catch (error) {
-      console.log(error);
-    }
+    editProduct(
+      params.productId,
+      newName,
+      newDescription,
+      newPrice,
+      newStocks,
+      newType,
+      newImage
+    );
   };
 
   return (
@@ -75,23 +60,23 @@ const ProductId = ({ params }: { params: { productId: number } }) => {
           onClick={() => editProductHandler()}
         />
       </div>
-      {product && (
+      {products && (
         <div className="border border-orange p-10">
           <form className="flex flex-col gap-6" onSubmit={saveEdit}>
             {isEditing ? (
               <div className="h-[20rem] w-[20rem]">
                 <ImageUpload
-                  value={newImage == "" ? product.productImage : newImage}
+                  value={newImage == "" ? products.productImage : newImage}
                   onChange={(value) => setNewImage(value)}
                 />
               </div>
             ) : (
               <Image
-                src={product.productImage}
+                src={products.productImage}
                 height={0}
                 width={0}
                 sizes="100vw"
-                alt={product.productName}
+                alt={products.productName}
                 style={{ width: "20rem", height: "20rem" }}
               />
             )}
@@ -103,7 +88,7 @@ const ProductId = ({ params }: { params: { productId: number } }) => {
                   onChange={(e) => setNewName(e.target.value)}
                 />
               ) : (
-                <p className="p-2">{product.productName}</p>
+                <p className="p-2">{products.productName}</p>
               )}
               {isEditing ? (
                 <InputOrange
@@ -112,7 +97,7 @@ const ProductId = ({ params }: { params: { productId: number } }) => {
                   onChange={(e) => setNewDescription(e.target.value)}
                 />
               ) : (
-                <p className="p-2">{product.description}</p>
+                <p className="p-2">{products.description}</p>
               )}
               {isEditing && types ? (
                 <Dropdown<TypeType>
@@ -123,7 +108,7 @@ const ProductId = ({ params }: { params: { productId: number } }) => {
                   getOptionKey={(types) => types.type}
                 />
               ) : (
-                <p className="p-2">{product.type}</p>
+                <p className="p-2">{products.type}</p>
               )}
               {isEditing ? (
                 <InputOrange
@@ -132,7 +117,7 @@ const ProductId = ({ params }: { params: { productId: number } }) => {
                   onChange={(e) => setNewPrice(e.target.value)}
                 />
               ) : (
-                <p className="p-2">{product.price}</p>
+                <p className="p-2">{products.price}</p>
               )}
               {isEditing ? (
                 <InputOrange
@@ -141,7 +126,7 @@ const ProductId = ({ params }: { params: { productId: number } }) => {
                   onChange={(e) => setNewStocks(e.target.value)}
                 />
               ) : (
-                <p className="p-2">{product.stocks}</p>
+                <p className="p-2">{products.stocks}</p>
               )}
             </div>
             {isEditing && <Button title="Save Edit" />}
