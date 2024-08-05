@@ -8,7 +8,7 @@ import "@/style/tables.css";
 import useProducts from "@/hooks/requests/useProducts";
 
 const Products = () => {
-  const data = ["id", "name"];
+  const filterOptions = ["id", "name"];
   const router = useRouter();
 
   const { products } = useProducts<ProductType[]>("/products");
@@ -18,7 +18,7 @@ const Products = () => {
     <div className="h-full flex flex-col gap-6">
       <div className="flex justify-between p-4">
         <Dropdown
-          options={data}
+          options={filterOptions}
           onSelect={() => console.log("test")}
           title="Filter By"
           getOptionLabel={(option) => option}
