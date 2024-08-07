@@ -8,23 +8,28 @@ interface Props {
   type?: "text" | "number";
 }
 
-const InputOrange = (props: Props) => {
-  const { height, label, value, type } = props;
+const InputOrange = React.forwardRef<HTMLInputElement, Props>(
+  (props: Props, ref) => {
+    const { height, label, value, type } = props;
 
-  return (
-    <>
-      <div className="w-full flex flex-col gap-2">
-        {label ? <p className="text-white text-[18px]">{label}</p> : <></>}
-        <input
-          type={type}
-          className="border text-white p-2 border-orange bg-background w-full rounded-lg focus:outline-none"
-          style={{ height }}
-          value={value}
-          {...props}
-        />
-      </div>
-    </>
-  );
-};
+    return (
+      <>
+        <div className="w-full flex flex-col gap-2">
+          {label && <p className="text-white text-[18px]">{label}</p>}
+          <input
+            ref={ref}
+            type={type}
+            className="border text-white p-2 border-orange bg-background w-full rounded-lg focus:outline-none"
+            style={{ height }}
+            value={value}
+            {...props}
+          />
+        </div>
+      </>
+    );
+  }
+);
+
+InputOrange.displayName = "InputOrange";
 
 export default InputOrange;

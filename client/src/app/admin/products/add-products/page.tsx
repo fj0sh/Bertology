@@ -19,6 +19,7 @@ const AddProducts = () => {
 
   const AddProduct = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     addProduct(
       productName,
       description,
@@ -27,6 +28,13 @@ const AddProducts = () => {
       productType,
       productImage
     );
+
+    setImage("");
+    setProductName("");
+    setProductType(1);
+    setPrice(0);
+    setStock(0);
+    setDescription("");
   };
 
   return (
@@ -71,7 +79,7 @@ const AddProducts = () => {
         ></textarea>
       </div>
       <div className=" w-1/2 h-full flex flex-col gap-14 items-center justify-center">
-        <div className="border border-orange rounded-lg w-[35rem] h-[35rem]">
+        <div className="border-[2px] border-orange rounded-lg w-[35rem] h-[35rem]">
           <ImageUpload
             value={productImage}
             onChange={(value) => setImage(value)}

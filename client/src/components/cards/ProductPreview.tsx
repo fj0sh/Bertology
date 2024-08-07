@@ -18,7 +18,7 @@ const ProductPreview = (props: Props) => {
     <Link href={href} className="flex flex-col w-[18rem] h-[20rem] shadow-lg">
       <div className=" flex justify-center items-center">
         <Image
-          src={image}
+          src={!image ? "/images/empty-image.png" : image}
           alt="img"
           height={0}
           width={0}
