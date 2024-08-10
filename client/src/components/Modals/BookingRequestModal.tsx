@@ -1,5 +1,6 @@
 import React from "react";
 import ModalContainer from "./modalContainer/ModalContainer";
+import { IoMdClose } from "react-icons/io";
 
 interface Props {
   isOpen: boolean;
@@ -12,14 +13,21 @@ interface Props {
 }
 
 const BookingRequestModal = (props: Props) => {
-  const { isOpen, name, date, location, model, description } = props;
+  const { isOpen, name, date, location, model, description, onClose } = props;
 
   if (!isOpen) return null;
 
   return (
     <>
-      <ModalContainer width="50rem">
-        <div className="relative text-white w-full h-full flex flex-col gap-6">
+      <ModalContainer width="50rem" height="55rem">
+        <div className="absolute top-5 right-5 border-none rounded-full hover:bg-grey p-2">
+          <IoMdClose
+            className="text-white text-[30px] cursor-pointer"
+            onClick={onClose}
+          />
+        </div>
+
+        <div className="relative text-white w-full h-full flex flex-col gap-6 p-6">
           <div className="text-[20px]">Service Request</div>
           <div>
             <p>
@@ -38,11 +46,13 @@ const BookingRequestModal = (props: Props) => {
               {model}
             </p>
           </div>
-          <div className="flex flex-col gap-3 relative">
-            <p className="font-bold ">Service Description: </p>
-            <p className="whitespace-pre-line break-words text-justify">
-              {description}
-            </p>
+          <div className="flex flex-col gap-3 relative flex-grow overflow-hidden">
+            <p className="font-bold">Service Description: </p>
+            <div className="overflow-y-auto">
+              <p className="whitespace-pre-line break-words text-justify">
+                {description}
+              </p>
+            </div>
           </div>
         </div>
       </ModalContainer>

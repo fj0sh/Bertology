@@ -1,8 +1,11 @@
+"use client";
 import BookingRequestCard from "@/components/cards/BookingRequestCard";
 import BookingRequestModal from "@/components/Modals/BookingRequestModal";
-import React from "react";
+import React, { useState } from "react";
 
 const BookingRequest = () => {
+  const [isRequestShow, setIsRequestShow] = useState(false);
+
   return (
     <div className="flex flex-col gap-4">
       <BookingRequestModal
@@ -17,7 +20,8 @@ In hac habitasse platea dictumst. Fusce tincidunt nisi eu pretium ultrices. Aene
         location="test"
         model="test"
         name="test"
-        isOpen={true}
+        isOpen={isRequestShow}
+        onClose={() => setIsRequestShow(false)}
       />
 
       <BookingRequestCard

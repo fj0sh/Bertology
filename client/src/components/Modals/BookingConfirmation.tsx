@@ -15,7 +15,7 @@ const BookingConfirmation = (props: Props) => {
 
   return (
     <ModalContainer>
-      <div className="absolute top-5 right-5">
+      <div className="absolute top-5 right-5 border-none rounded-full hover:bg-grey">
         <IoMdClose
           className="text-white text-[30px] cursor-pointer"
           onClick={onClose}

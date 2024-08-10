@@ -4,8 +4,10 @@ import LoginModal from "@/components/Modals/LoginModal";
 import RegisterModal from "@/components/Modals/RegisterModal";
 import Button from "@/components/button";
 import BrandBalls from "@/components/cards/BrandBalls";
-import ImageCarousel from "@/components/carousel/ImageCarousel";
+import ImageCarousel from "@/components/cards/carousel/ImageCarousel";
 import Navbar from "@/components/navigation/navbar";
+import { ProductType } from "@/constants/Products";
+import useProducts from "@/hooks/requests/useProducts";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { BiSolidCarMechanic } from "react-icons/bi";
@@ -16,6 +18,14 @@ const LandingPage = () => {
   const [isForgotPassOpen, setIsForgotPassOpen] = useState<boolean>(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] =
     useState<boolean>(false);
+
+  const { products } = useProducts<ProductType[]>("/products");
+
+  const images = products?.map((images) => {
+    return images.productImage;
+  });
+
+  console.log(images);
 
   const router = useRouter();
 
@@ -28,6 +38,7 @@ const LandingPage = () => {
     setIsForgotPassOpen(true);
     setIsLoginModalOpen(false);
   };
+
   return (
     <>
       <div className="bg-[#111111]">
@@ -111,7 +122,7 @@ const LandingPage = () => {
               <p className="font-bold text-[18px]">Products</p>
             </div>
             <div className="h-full w-full flex justify-center items-center">
-              <ImageCarousel />
+              <ImageCarousel images={images} />
             </div>
           </div>
         </div>

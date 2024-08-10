@@ -7,8 +7,14 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import Image from "next/image";
 
-const ImageCarousel = () => {
+interface Props {
+  images?: string[];
+}
+
+const ImageCarousel = (props: Props) => {
+  const { images } = props;
   return (
     <Carousel
       opts={{
@@ -17,12 +23,23 @@ const ImageCarousel = () => {
       className="w-full max-w-screen-lg"
     >
       <CarouselContent>
-        {Array.from({ length: 10 }).map((_, index) => (
+        {images?.map((image, index) => (
           <CarouselItem key={index} className=" md:basis-1/2 lg:basis-1/3">
             <div className="p-1">
               <Card>
-                <CardContent className="flex h-[20rem] aspect-square items-center justify-center p-6">
-                  <span className="text-3xl font-semibold">{index + 1}</span>
+                <CardContent className="flex h-[20rem] aspect-square items-center justify-center p-3">
+                  <Image
+                    src={image}
+                    alt="roadblock"
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      borderRadius: "10px",
+                    }}
+                  />
                 </CardContent>
               </Card>
             </div>

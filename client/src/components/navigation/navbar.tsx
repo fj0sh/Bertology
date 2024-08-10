@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { IoMdCart } from "react-icons/io";
 import { FaRegUserCircle } from "react-icons/fa";
+import SearchBar from "../input/SearchBar";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -25,9 +26,11 @@ const Navbar = () => {
             Logo
           </a>
         </div>
+
         <div className="hidden sm:block sm:ml-6">
           <div className="hidden sm:block sm:ml-6">
             <div className="flex gap-10 space-x-4 mr-[45px] text-white">
+              <SearchBar />
               {navLinks.map((x, index) => {
                 const isActive =
                   x.href === "/"

@@ -29,7 +29,7 @@ const AdminDashboard = () => {
 
       <div className="relative row-start-2 row-span-3 col-span-4 border-none border-orange flex flex-col gap-3">
         <div className="shadow-lg">
-          <Calendar tileDisabled={disableDates} />
+          <Calendar tileDisabled={disableDates} className={"     "} />
         </div>
 
         <div className="relative flex border border-orange h-full rounded-lg">

@@ -13,6 +13,10 @@ import instance from "@/lib/util/axios-instance";
 import Button from "@/components/button";
 import { BookingSchema, BookingType } from "@/lib/util/schema";
 import BookingConfirmation from "@/components/Modals/BookingConfirmation";
+import {
+  DatePickerComponent,
+  TimePickerComponent,
+} from "@/components/input/reactPickers";
 
 const Booking = () => {
   const [date, setDate] = useState<Date | null>(new Date());
@@ -36,9 +40,16 @@ const Booking = () => {
   }, []);
 
   const tileDisabled = ({ date }: { date: Date }) => {
-    return bookedDates.some(
-      (bookedDate) =>
-        new Date(bookedDate.dateBooked).toDateString() === date.toDateString()
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    date.setHours(0, 0, 0, 0);
+
+    return (
+      date < today ||
+      bookedDates.some(
+        (bookedDate) =>
+          new Date(bookedDate.dateBooked).toDateString() === date.toDateString()
+      )
     );
   };
 
@@ -68,9 +79,28 @@ const Booking = () => {
         onClose={() => setShowConfirmation(false)}
       />
       <div className="w-full h-screen flex justify-center items-center p-10">
-        <div className="w-[50%] p-[3rem] px-[5rem] h-full">
+        <div className="w-[60%] h-full flex flex-col justify-center items-center gap-6">
+          <div className="flex flex-col gap-3 bg-black p-6 rounded-md text-white">
+            <div className="flex gap-3 text-[18px]">
+              <p>Time:</p>
+              <TimePickerComponent />
+            </div>
+            <div className="flex gap-3 text-[18px]">
+              <p>Date:</p>
+              <DatePickerComponent />
+            </div>
+          </div>
+          <div className="w-[55rem] h-[35rem] flex mb-10">
+            <Calendar
+              className={"leading-[2.8rem]"}
+              onChange={(value) => setDate(value as Date)}
+              tileDisabled={tileDisabled}
+            />
+          </div>
+        </div>
+        <div className="w-[40%] h-full">
           <form
-            className="w-full h-full text-white bg-black rounded-[15px] p-8 flex flex-col gap-3"
+            className="w-full h-[90%] text-white bg-black rounded-[15px] p-8 flex flex-col gap-3"
             onSubmit={handleSubmit(onSubmit)}
           >
             <p className="text-[25px]">Customer Details</p>
@@ -96,19 +126,6 @@ const Booking = () => {
 
             <Button title="Submit" type="submit" />
           </form>
-        </div>
-        <div className="w-[50%] flex flex-col justify-center items-center gap-10">
-          <div className="flex gap-3 text-white text-[22px] items-center">
-            <p>Selected Date:</p>
-            <div className="text-[18px]">{newDate}</div>
-          </div>
-          <div className="w-[30rem] h-[40rem]">
-            <Calendar
-              className={""}
-              onChange={(value) => setDate(value as Date)}
-              tileDisabled={tileDisabled}
-            />
-          </div>
         </div>
       </div>
     </>

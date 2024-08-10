@@ -2,7 +2,7 @@ const conn = require("../config/db-config");
 
 const getAllProducts = (callback) => {
   conn.query(
-    "SELECT products.id AS productId, products.productName, products.description, products.price, products.stocks, products.productImage, product_type.type AS type FROM products INNER JOIN product_type ON products.productType = product_type.id",
+    "SELECT products.id AS productId, products.productName, products.description, products.price, products.stocks, products.productImage, product_type.type AS type FROM products INNER JOIN product_type ON products.productType = product_type.id where isDeleted = 0",
     callback
   );
 };
