@@ -1,4 +1,4 @@
-import AdminDashboard from "@/components/Blocks/Dashboard/AdminDashboard";
+import AdminDashboard from "@/components/pages/Dashboard/AdminDashboard";
 import React from "react";
 
 const Dashboard = () => {

@@ -67,6 +67,7 @@ const Booking = () => {
     } else {
       console.log("No date selected");
     }
+
     setShowConfirmation(true);
     reset();
   };

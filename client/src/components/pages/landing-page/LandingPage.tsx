@@ -80,7 +80,7 @@ const LandingPage = () => {
         </div>
 
         {/* ============================================BOOK NOW SECTION =======================================================================*/}
-
+ 
         <div className="relative h-[80vh] flex">
           <div className="w-[37rem] h-[37rem] border-none rounded-full bg-grey absolute top-[5rem] left-[46rem] z-10"></div>
           <div className="w-[50%]"></div>

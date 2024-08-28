@@ -29,14 +29,14 @@ const ProductId = ({ params }: { params: { productId: number } }) => {
       setNewDescription(products.description);
       setNewPrice(products.price);
       setNewStocks(products.stocks);
-      setImage(products.productImage);
+      setNewImage(products.productImage);
     }
   }, [products]);
 
   const editProductHandler = () => {
     setIsEditing((prev) => !prev);
   };
-s
+
   const saveEdit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (newImage === "") {
