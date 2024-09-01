@@ -1,5 +1,5 @@
 import React, { ReactHTMLElement, useState } from "react";
-import Button from "../button";
+import Button from "../button/OrangeButton";
 import { IoMdClose } from "react-icons/io";
 import { useMutation } from "@tanstack/react-query";
 import ModalContainer from "./modalContainer/ModalContainer";
@@ -54,7 +54,7 @@ const RegisterModal = (props: Props) => {
             type="text"
             placeholder="Lastname"
             className="w-[50%]"
-            onChange={(e) => setLastname(e.target.value)}  
+            onChange={(e) => setLastname(e.target.value)}
           />
         </div>
         <div className="flex flex-col *:border-none *:rounded-[10px] *:bg-zinc-800 gap-4 *:h-10 *:text-black">

@@ -17,7 +17,7 @@ export default function RootLayout({
       <html lang="en">
         <body>
           <ReactQueryDevtools />
-          <div className="w-full h-full bg-background">{children}</div>
+          <div className="w-full h-screen bg-background">{children}</div>
         </body>
       </html>
     </QueryProvider>

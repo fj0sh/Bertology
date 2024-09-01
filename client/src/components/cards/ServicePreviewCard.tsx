@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import Button from "../button";
+import LinkButton from "../button/OrangeLinkButton";
 
 interface Props {
   title: string;
@@ -26,7 +26,7 @@ const ServicePreviewCard = (props: Props) => {
       <div className="h-full w-[80%] flex flex-col gap-3">
         <div className="text-[20px]">{title}</div>
         <div>{description}</div>
-        <Button title="Book Now" />
+        <LinkButton name="Book Now!" href="/client/offers/services/booking" />
       </div>
     </div>
   );

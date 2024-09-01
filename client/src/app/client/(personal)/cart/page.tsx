@@ -1,8 +1,12 @@
-import OrderPreviewCard from "@/components/cards/OrderPreviewCard";
+import CartPage from "@/components/pages/cart/Cart";
 import React from "react";
 
 const Cart = () => {
-  return <div></div>;
+  return (
+    <>
+      <CartPage></CartPage>
+    </>
+  );
 };
 
 export default Cart;

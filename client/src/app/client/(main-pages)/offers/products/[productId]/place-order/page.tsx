@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/components/button";
+import Button from "@/components/button/OrangeButton";
 import InputOrange from "@/components/input/inputOrange";
 import Image from "next/image";
 import React from "react";
