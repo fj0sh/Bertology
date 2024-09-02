@@ -65,13 +65,13 @@ const LandingPage = () => {
         {/* ============================================HERO SECTION =======================================================================*/}
 
         <div className="relative w-full h-[70vh] bg-opacity-85">
-          <Image
+          {/* <Image
             src="/images/LandingImage.png"
             layout="fill"
             objectFit="cover"
             alt="Landing Image"
             className=""
-          />
+          /> */}
           <div className="absolute inset-0 flex items-center justify-start space-x-4 gap-5 p-5 ml-16">
             <Button title="Login" onClick={() => setIsLoginModalOpen(true)} />
             <Button

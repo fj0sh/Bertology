@@ -1,9 +1,11 @@
 import React, { ReactHTMLElement, useState } from "react";
 import Button from "../button/OrangeButton";
 import { IoMdClose } from "react-icons/io";
-import { useMutation } from "@tanstack/react-query";
 import ModalContainer from "./modalContainer/ModalContainer";
-// import useAuth from "@/hooks/requests/useAuth";
+import { useForm } from "react-hook-form";
+import { UserType, userSchema } from "@/constants/Users";
+import instance from "@/lib/util/axios-instance";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 interface Props {
   isOpen: boolean;
@@ -11,18 +13,29 @@ interface Props {
   openLogin: () => void;
 }
 
+
 const RegisterModal = (props: Props) => {
   const { isOpen, onClose, openLogin } = props;
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [emailAddress, setEmailAddress] = useState("");
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
 
-  const registerHandler = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<UserType>({ resolver: zodResolver(userSchema) })
+
+  const onSubmit = async (data: UserType) => {
+    try {
+      const body = {
+        firstname: data.firstname,
+        lastname: data.lastname,
+        phoneNumber: data.phoneNumber,
+        emailAddress: data.emailAddress,
+        password: data.password,
+        username: data.username
+      }
+      const res = await instance.post("/auth/register", body)
+      reset();
+      console.log(res)
+
+    } catch (error) {
+      console.log('error', error)
+    }
   };
 
   if (!isOpen) return null;
@@ -41,20 +54,21 @@ const RegisterModal = (props: Props) => {
       </div>
       <form
         className="flex flex-col gap-4 w-full my-10 "
-        onSubmit={registerHandler}
+        onSubmit={handleSubmit(onSubmit)}
       >
         <div className="flex *:border-none *:rounded-[10px] *:bg-zinc-800 *:p-5  gap-2 h-10 *:text-black">
           <input
             type="text"
             placeholder="Firstname"
             className="w-[50%] "
-            onChange={(e) => setFirstname(e.target.value)}
+            {...register("firstname")}
           />
+          {/* <p>{ }</p> */}
           <input
             type="text"
             placeholder="Lastname"
             className="w-[50%]"
-            onChange={(e) => setLastname(e.target.value)}
+            {...register("lastname")}
           />
         </div>
         <div className="flex flex-col *:border-none *:rounded-[10px] *:bg-zinc-800 gap-4 *:h-10 *:text-black">
@@ -62,32 +76,33 @@ const RegisterModal = (props: Props) => {
             type="text"
             placeholder="Username"
             className="p-5"
-            onChange={(e) => setUsername(e.target.value)}
+            {...register("username")}
           />
           <input
             type="text"
             placeholder="Phone Number"
             maxLength={11}
             className="p-5"
-            onChange={(e) => setPhoneNumber(e.target.value)}
+            {...register("phoneNumber")}
           />
           <input
             type="text"
             placeholder="Email Address"
             className="p-5"
-            onChange={(e) => setEmailAddress(e.target.value)}
+            {...register("emailAddress")}
           />
           <input
             type="text"
             placeholder="Password"
             className="p-5"
-            onChange={(e) => setPassword(e.target.value)}
+            {...register("password")}
           />
           <input
             type="text"
             placeholder="Confirm Password"
             className="p-5"
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            {...register("confirmPassword")}
+
           />
         </div>
         <div className="flex justify-center">
