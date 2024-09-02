@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Button from "../button";
+import Button from "../button/OrangeButton";
 import BookingRequestModal from "../Modals/BookingRequestModal";
 import { useRouter } from "next/navigation";
 

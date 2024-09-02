@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../button";
+import Button from "../button/OrangeButton";
 import { IoMdClose } from "react-icons/io";
 import ModalContainer from "./modalContainer/ModalContainer";
 

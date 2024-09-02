@@ -1,16 +1,10 @@
-"use client";
-import Button from "@/components/button";
 import ServicePogs from "@/components/cards/ServicePogs";
 import ImagePreviewCard from "@/components/cards/ImagePreviewCard";
 import React from "react";
-import OffersCard from "@/components/cards/OffersCard";
-import AboutUsInfoCard from "@/components/cards/AboutUsInfoCard";
-import { useRouter } from "next/navigation";
 import BrandBalls from "@/components/cards/BrandBalls";
+import LinkButton from "@/components/button/OrangeLinkButton";
 
 const Services = () => {
-  const router = useRouter();
-
   return (
     <div className="bg-black text-white">
       <div className="flex items-center justify-center h-screen bg-orange">
@@ -30,7 +24,7 @@ const Services = () => {
             electronic upgrades installer, we always strive for the highest
             quality and we treat every car as if it were our own. Our staff are
             experienced automotive technicians who can install any electronic
-            upgrade in your car, whether it{"`"}s a dash cam, remote starter,
+            upgrade in your car, whether it{"'"}s a dash cam, remote starter,
             backup camera or anything else.
           </p>
         </div>
@@ -56,13 +50,9 @@ const Services = () => {
           <ImagePreviewCard image={"/images/test_images/roadblock.png"} />
         </div>
 
-        <Button
-          title="See More"
-          onClick={() => router.push("offers/products")}
-        />
+        <LinkButton name="See More" href={"offers/products"} />
       </div>
       <div className="h-[50vh] flex justify-center items-center gap-10 ">
-        <BrandBalls />
         <BrandBalls />
         <BrandBalls />
         <BrandBalls />
@@ -82,10 +72,7 @@ const Services = () => {
           <ImagePreviewCard image={"/images/test_images/roadblock.png"} />
         </div>
 
-        <Button
-          title="See More"
-          onClick={() => router.push("offers/services")}
-        />
+        <LinkButton name="See More" href={"offers/services"} />
       </div>
     </div>
   );

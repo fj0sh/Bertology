@@ -2,12 +2,14 @@
 import ForgotPasswordModal from "@/components/Modals/ForgotPasswordModal";
 import LoginModal from "@/components/Modals/LoginModal";
 import RegisterModal from "@/components/Modals/RegisterModal";
-import Button from "@/components/button";
+import Button from "@/components/button/OrangeButton";
+import LinkButton from "@/components/button/OrangeLinkButton";
 import BrandBalls from "@/components/cards/BrandBalls";
 import ImageCarousel from "@/components/cards/carousel/ImageCarousel";
 import Navbar from "@/components/navigation/navbar";
 import { ProductType } from "@/constants/Products";
 import useProducts from "@/hooks/requests/useProducts";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { BiSolidCarMechanic } from "react-icons/bi";
@@ -63,13 +65,13 @@ const LandingPage = () => {
         {/* ============================================HERO SECTION =======================================================================*/}
 
         <div className="relative w-full h-[70vh] bg-opacity-85">
-          {/* <Image
+          <Image
             src="/images/LandingImage.png"
             layout="fill"
             objectFit="cover"
             alt="Landing Image"
             className=""
-          /> */}
+          />
           <div className="absolute inset-0 flex items-center justify-start space-x-4 gap-5 p-5 ml-16">
             <Button title="Login" onClick={() => setIsLoginModalOpen(true)} />
             <Button
@@ -80,7 +82,7 @@ const LandingPage = () => {
         </div>
 
         {/* ============================================BOOK NOW SECTION =======================================================================*/}
- 
+
         <div className="relative h-[80vh] flex">
           <div className="w-[37rem] h-[37rem] border-none rounded-full bg-grey absolute top-[5rem] left-[46rem] z-10"></div>
           <div className="w-[50%]"></div>
@@ -88,11 +90,7 @@ const LandingPage = () => {
             <p className="font-bold text-[60px] text-center w-[50rem] text-orange z-20">
               Innovating for Effortless Planning and Resource Optimization
             </p>
-            <Button
-              title="BOOK NOW"
-              width="200px"
-              onClick={() => router.push("/client/offers/services")}
-            />
+            <LinkButton name="See More" href={"client/offers/services"} />
           </div>
         </div>
         <div className=" bg-opacity-70 flex justify-center items-start h-[100px] text-[25px]">

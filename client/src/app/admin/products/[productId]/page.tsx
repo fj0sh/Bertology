@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/components/button";
+import Button from "@/components/button/OrangeButton";
 import Dropdown from "@/components/input/DropDown";
 import ImageUpload from "@/components/input/ImageUpload";
 import InputOrange from "@/components/input/inputOrange";

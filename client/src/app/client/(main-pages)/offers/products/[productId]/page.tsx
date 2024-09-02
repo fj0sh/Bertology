@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/components/button";
+import Button from "@/components/button/OrangeButton";
 import { ProductType } from "@/constants/Products";
 import useProducts from "@/hooks/requests/useProducts";
 import { formatter } from "@/lib/function/currencyFormatter";

@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-import Button from "../button";
+import Button from "../button/OrangeButton";
 import { IoMdClose } from "react-icons/io";
 import { useLogoutContext } from "@/providers/logoutProvider";
 import ModalContainer from "./modalContainer/ModalContainer";

@@ -10,7 +10,7 @@ import "@/style/react-calendar.css";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import instance from "@/lib/util/axios-instance";
-import Button from "@/components/button";
+import Button from "@/components/button/OrangeButton";
 import { BookingSchema, BookingType } from "@/lib/util/schema";
 import BookingConfirmation from "@/components/Modals/BookingConfirmation";
 import {
