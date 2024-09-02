@@ -22,16 +22,22 @@ DROP TABLE IF EXISTS `booking`;
 
 CREATE TABLE `booking` (
   `id` int NOT NULL AUTO_INCREMENT,
+  `location` varchar(127) DEFAULT NULL,
+  `fbAccount` varchar(63) DEFAULT NULL,
+  `contact` varchar(11) DEFAULT NULL,
+  `serviceRequest` varchar(64) DEFAULT NULL,
+  `carModel` varchar(64) DEFAULT NULL,
+  `detail` varchar(255) DEFAULT NULL,
   `serviceId` int DEFAULT NULL,
   `userId` int DEFAULT NULL,
-  `dateBoooked` datetime DEFAULT NULL,
+  `dateBooked` datetime DEFAULT NULL,
   `status` enum('Pending','Approved','Cancelled','Declined') DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `service_fk` (`serviceId`),
   KEY `user_booking_fk` (`userId`),
   CONSTRAINT `service_fk` FOREIGN KEY (`serviceId`) REFERENCES `services` (`id`),
   CONSTRAINT `user_booking_fk` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `booking` */
 
@@ -77,19 +83,19 @@ insert  into `draft`(`id`,`test`) values
 (35,'asd'),
 (36,'asd');
 
-/*Table structure for table `product_category` */
+/*Table structure for table `product_type` */
 
-DROP TABLE IF EXISTS `product_category`;
+DROP TABLE IF EXISTS `product_type`;
 
-CREATE TABLE `product_category` (
+CREATE TABLE `product_type` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `category` varchar(64) DEFAULT NULL,
+  `type` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-/*Data for the table `product_category` */
+/*Data for the table `product_type` */
 
-insert  into `product_category`(`id`,`category`) values 
+insert  into `product_type`(`id`,`type`) values 
 (1,'Interiors'),
 (2,'Exteriors'),
 (3,'Performance'),
@@ -107,17 +113,30 @@ CREATE TABLE `products` (
   `description` varchar(255) DEFAULT NULL,
   `price` int DEFAULT NULL,
   `stocks` int DEFAULT NULL,
-  `productCategory` int DEFAULT NULL,
+  `productType` int DEFAULT NULL,
   `amountSold` int DEFAULT NULL,
+  `productImage` varchar(255) DEFAULT NULL,
+  `isDeleted` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`),
-  KEY `product_category_fk` (`productCategory`),
-  CONSTRAINT `product_category_fk` FOREIGN KEY (`productCategory`) REFERENCES `product_category` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `product_category_fk` (`productType`),
+  CONSTRAINT `product_category_fk` FOREIGN KEY (`productType`) REFERENCES `product_type` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `products` */
 
-insert  into `products`(`id`,`productName`,`description`,`price`,`stocks`,`productCategory`,`amountSold`) values 
-(1,'Coolest Seat Cover Ever','This things good man',100000,1,1,NULL);
+insert  into `products`(`id`,`productName`,`description`,`price`,`stocks`,`productType`,`amountSold`,`productImage`,`isDeleted`) values 
+(32,'LeBonboners','Sunshine',1000000,10,3,0,'https://res.cloudinary.com/dgxlqujte/image/upload/v1722653480/vdudfprko3erhegpcgj0.jpg',0),
+(35,'Alden Recharge X Cat','dasdasdad',123,123,2,0,'https://res.cloudinary.com/dgxlqujte/image/upload/v1722491753/kinbe27yxdcireool56r.jpg',0),
+(40,'Martin','This guy has a dream',25,1,2,0,'https://res.cloudinary.com/dgxlqujte/image/upload/v1722579385/jpfrdk9otbtimzpruyc4.jpg',0),
+(41,'Random Germon','Random German with unique mustache',1000000,1,4,0,'https://res.cloudinary.com/dgxlqujte/image/upload/v1722579657/bzm3jz2xqxpyasu5pnbl.jpg',0),
+(42,'Arvie Ingal Gwapo','Buang',900000,2,3,0,'https://res.cloudinary.com/dgxlqujte/image/upload/v1722655001/j4jqtoiffpbc7xoir41j.png',0),
+(43,'wofo','qweqwe',123,123,2,0,'',0),
+(44,'tset','test',123,123,1,0,'https://res.cloudinary.com/dgxlqujte/image/upload/v1722826222/ipgli9n7fkght3zgimi1.gif',0),
+(45,'qwe','zxczxczxczxc',123,123,3,0,'',0),
+(46,'tst','asdfcvbcvbg',34534,1,2,0,'',0),
+(47,'adas','qweqweqwe',123,345,1,0,'/images/empty-image.png',0),
+(48,'zxczxc','asdasdasdazxczxcz zcasdasdasd',123,45,5,0,'',0),
+(49,'jhu marie','jhu marie aringay',10000000,20,5,0,'https://res.cloudinary.com/dgxlqujte/image/upload/v1724834070/jfawl5t4od1qdmf3z0yc.jpg',0);
 
 /*Table structure for table `services` */
 
@@ -128,9 +147,12 @@ CREATE TABLE `services` (
   `serviceName` varchar(63) DEFAULT NULL,
   `serviceDescription` varchar(254) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `services` */
+
+insert  into `services`(`id`,`serviceName`,`serviceDescription`) values 
+(1,'Test','Test description');
 
 /*Table structure for table `user_purchase` */
 
