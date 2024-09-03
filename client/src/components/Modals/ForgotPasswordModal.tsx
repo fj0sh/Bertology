@@ -29,7 +29,7 @@ const ForgotPasswordModal = (props: Props) => {
           type="text"
           className="h-10 border border-none rounded-[10px] bg-zinc-600 w-full"
         />
-        <Button title="Enter Email" onHover={true}></Button>
+        <Button title="Enter Email" hover={true}></Button>
       </div>
     </ModalContainer>
   );

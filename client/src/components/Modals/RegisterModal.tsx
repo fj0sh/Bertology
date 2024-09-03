@@ -56,14 +56,13 @@ const RegisterModal = (props: Props) => {
         className="flex flex-col gap-4 w-full my-10 "
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div className="flex *:border-none *:rounded-[10px] *:bg-zinc-800 *:p-5  gap-2 h-10 *:text-black">
+        <div className="flex *:border-none *:rounded-[10px] *:bg-zinc-800 *:p-5  gap-2 h-10 *:text-white">
           <input
             type="text"
             placeholder="Firstname"
-            className="w-[50%] "
+            className="w-[50%]"
             {...register("firstname")}
           />
-          {/* <p>{ }</p> */}
           <input
             type="text"
             placeholder="Lastname"
@@ -71,7 +70,7 @@ const RegisterModal = (props: Props) => {
             {...register("lastname")}
           />
         </div>
-        <div className="flex flex-col *:border-none *:rounded-[10px] *:bg-zinc-800 gap-4 *:h-10 *:text-black">
+        <div className="flex flex-col *:border-none *:rounded-[10px] *:bg-zinc-800 gap-4 *:h-10 *:text-white  ">
           <input
             type="text"
             placeholder="Username"
@@ -106,7 +105,7 @@ const RegisterModal = (props: Props) => {
           />
         </div>
         <div className="flex justify-center">
-          <Button title="SIGN UP" type="submit" onHover={true} />
+          <Button title="SIGN UP" type="submit" hover={true} />
         </div>
       </form>
       <div className="*:text-white">

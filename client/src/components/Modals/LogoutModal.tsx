@@ -6,7 +6,7 @@ import { IoMdClose } from "react-icons/io";
 import { useLogoutContext } from "@/providers/logoutProvider";
 import ModalContainer from "./modalContainer/ModalContainer";
 
-interface Props {}
+interface Props { }
 
 const LogoutModal = () => {
   const { isOpen, setIsOpen } = useLogoutContext();
@@ -25,8 +25,8 @@ const LogoutModal = () => {
         <p className="text-orange">LOGO</p>
         <p className="text-[30px]">Are you sure you want to Logout?</p>
         <div className="flex gap-10">
-          <Button title="YES" onHover={true} />
-          <Button title="NO" onHover={true} onClick={() => setIsOpen(false)} />
+          <Button title="YES" hover={true} />
+          <Button title="NO" hover={true} onClick={() => setIsOpen(false)} />
         </div>
       </div>
     </ModalContainer>

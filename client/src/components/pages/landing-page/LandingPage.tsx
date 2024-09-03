@@ -27,10 +27,6 @@ const LandingPage = () => {
     return images.productImage;
   });
 
-  console.log(images);
-
-  const router = useRouter();
-
   const changeModal = () => {
     setIsLoginModalOpen((prev) => !prev);
     setIsRegisterModalOpen((prev) => !prev);

@@ -29,7 +29,7 @@ const ImageCarousel = (props: Props) => {
               <Card>
                 <CardContent className="flex h-[20rem] aspect-square items-center justify-center p-3">
                   <Image
-                    src={image}
+                    src={image || "/images/empty-image.png"}
                     alt="roadblock"
                     width={0}
                     height={0}

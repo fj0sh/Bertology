@@ -18,16 +18,13 @@ enum status {
   "INACTIVE",
 }
 export const userSchema = z.object({
-  id: z.number(),
+  id: z.number().optional(),
   firstname: z.string(),
   lastname: z.string(),
   emailAddress: z.string().email(),
   username: z.string(),
   password: z.string().min(8),
-  phoneNumber: z
-    .number()
-    .min(10, "Invalid Phone Number")
-    .max(11, "Invalid Phone Number"),
+  phoneNumber: z.string().max(11, "Invalid Phone Number"),
   confirmPassword: z.string().min(8),
   // status: z.enum(status),
 });

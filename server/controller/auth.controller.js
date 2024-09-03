@@ -30,14 +30,15 @@ exports.getAllUsers = (req, res) => {
 };
 
 exports.loginUser = (req, res) => {
-  authModel.loginUser(req.body, (err, user) => {
+  authModel.loginUser(req.body, (err, result) => {
     if (err) {
-      return res.status(500).send("Error logging in");
+      console.log("Error in loginUser:", err.message);
+      return res.status(401).send("Invalid credentials");
     }
-    if (!user) {
-      return res.status(400).send("User not found");
+    if (result == "") {
+      return res.status(404).send("User Not Found");
     }
 
-    res.send(user);
+    res.status(200).send(result);
   });
 };
