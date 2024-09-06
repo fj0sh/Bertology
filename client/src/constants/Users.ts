@@ -1,18 +1,5 @@
 import { z } from "zod";
 
-// interface User {
-//   id: number;
-//   firstname: string;
-//   lastname: string;
-//   emailAddress: string;
-//   password: string;
-//   phoneNumber: number;
-//   username: string;
-//   status: status;
-// }
-
-// export default User;
-
 enum status {
   "ACTIVE",
   "INACTIVE",

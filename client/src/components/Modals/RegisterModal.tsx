@@ -68,7 +68,7 @@ const RegisterModal = (props: Props) => {
             placeholder="Lastname"
             className="w-[50%]"
             {...register("lastname")}
-          />
+          /> 
         </div>
         <div className="flex flex-col *:border-none *:rounded-[10px] *:bg-zinc-800 gap-4 *:h-10 *:text-white  ">
           <input
