@@ -13,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <QueryProvider>
+    <QueryProvider>  
       <html lang="en">
         <body>
           <ReactQueryDevtools />

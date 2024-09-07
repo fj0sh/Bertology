@@ -1,4 +1,5 @@
 var jwt = require("jsonwebtoken");
+const cookie = require("cookie");
 
 const {
   registerValidator,
@@ -50,6 +51,15 @@ exports.loginUser = (req, res) => {
     );
 
     console.log(token);
+
+    res.setHeader(
+      "Set-Header",
+      cookie.serialize("token", token, {
+        httpOnly: true,
+        expiresIn: 60 * 60 * 6,
+        path: "/",
+      })
+    );
 
     res.status(200).send({
       token,

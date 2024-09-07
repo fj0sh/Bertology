@@ -8,7 +8,9 @@ import { userSchema, UserType } from "@/constants/Users";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import instance from "@/lib/util/axios-instance";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
+
+import Cookie from "js-cookie"
 
 interface Props {
   isOpen: boolean;
@@ -39,8 +41,11 @@ const LoginModal = (props: Props) => {
 
       const res = await instance.post("/auth/login", body)
 
-      if (res) {
-        sessionStorage.setItem('token', `${res.data.token}`)
+      if (res.status == 200) {
+        Cookie.set("token", res.data.token, {
+          expires: 1,
+          path: "/"
+        })
       }
 
       if (res.status === 200) {
