@@ -21,10 +21,16 @@ exports.loginUser = (credentials, callback) => {
   );
 };
 
-exports.getUser = (callback) => {
-  conn.query("select * from users", callback);
+exports.getUserById = (id, callback) => {
+  conn.query("select * from users where id = ? ", id, callback);
 };
 
 exports.getLogInUser = (credentials, callback) => {
   const { username, password } = credentials;
+
+  conn.query(
+    "SELECT * FROM users where username = ? and password = ? ",
+    [username, password],
+    callback
+  );
 };
