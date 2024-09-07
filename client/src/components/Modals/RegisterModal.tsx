@@ -41,7 +41,7 @@ const RegisterModal = (props: Props) => {
   if (!isOpen) return null;
 
   return (
-    <ModalContainer width="30%" height="80%">
+    <ModalContainer >
       <div className="absolute top-5 right-5">
         <IoMdClose
           className="text-white text-[30px] cursor-pointer"
@@ -56,53 +56,80 @@ const RegisterModal = (props: Props) => {
         className="flex flex-col gap-4 w-full my-10 "
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div className="flex *:border-none *:rounded-[10px] *:bg-zinc-800 *:p-5  gap-2 h-10 *:text-white">
-          <input
-            type="text"
-            placeholder="Firstname"
-            className="w-[50%]"
-            {...register("firstname")}
-          />
-          <input
-            type="text"
-            placeholder="Lastname"
-            className="w-[50%]"
-            {...register("lastname")}
-          /> 
-        </div>
-        <div className="flex flex-col *:border-none *:rounded-[10px] *:bg-zinc-800 gap-4 *:h-10 *:text-white  ">
-          <input
-            type="text"
-            placeholder="Username"
-            className="p-5"
-            {...register("username")}
-          />
-          <input
-            type="text"
-            placeholder="Phone Number"
-            maxLength={11}
-            className="p-5"
-            {...register("phoneNumber")}
-          />
-          <input
-            type="text"
-            placeholder="Email Address"
-            className="p-5"
-            {...register("emailAddress")}
-          />
-          <input
-            type="text"
-            placeholder="Password"
-            className="p-5"
-            {...register("password")}
-          />
-          <input
-            type="text"
-            placeholder="Confirm Password"
-            className="p-5"
-            {...register("confirmPassword")}
+        <div className="flex gap-2">
+          <div className="flex flex-col gap-1">
+            <input
+              type="text"
+              placeholder="Firstname"
+              className={` bg-zinc-800 p-5 text-white h-10 w-full rounded-[10px] border-red-600`}
+              {...register("firstname")}
+            />
+            {errors.firstname && (<p className="text-red-600 text-[13px]">{errors.firstname.message}</p>)}
+          </div>
+          <div className="flex flex-col gap-1">
+            <input
+              type="text"
+              placeholder="Lastname"
+              className=" bg-zinc-800 p-5 text-white h-10 w-full rounded-[10px]"
+              {...register("lastname")}
+            />
+            {errors.lastname && (<p className="text-red-600 text-[13px]">{errors.lastname.message}</p>)}
+          </div>
 
-          />
+        </div>
+        <div className="flex flex-col gap-3 ">
+          <div className="flex flex-col gap-1">
+            <input
+              type="text"
+              placeholder="Username"
+              className=" bg-zinc-800 p-5 text-white h-10 w-full rounded-[10px]"
+              {...register("username")}
+            />
+            {errors.username && (<p className="text-red-600 text-[13px]">{errors.username.message}</p>)}
+          </div>
+
+          <div className="flex flex-col gap-1">
+            <input
+              type="text"
+              placeholder="Phone Number"
+              maxLength={11}
+              className=" bg-zinc-800 p-5 text-white h-10 w-full rounded-[10px]"
+              {...register("phoneNumber")}
+            />
+            {errors.phoneNumber && (<p className="text-red-600 text-[13px]">{errors.phoneNumber.message}</p>)}
+          </div>
+
+          <div className="flex flex-col gap-1">
+            <input
+              type="text"
+              placeholder="Email Address"
+              className=" bg-zinc-800 p-5 text-white h-10 w-full rounded-[10px]"
+              {...register("emailAddress")}
+            />
+            {errors.emailAddress && (<p className="text-red-600 text-[13px]">{errors.emailAddress.message}</p>)}
+          </div>
+
+          <div className="flex flex-col gap-1">
+            <input
+              type="text"
+              placeholder="Password"
+              className=" bg-zinc-800 p-5 text-white h-10 w-full rounded-[10px]"
+              {...register("password")}
+            />
+            {errors.password && (<p className="text-red-600 text-[13px]">{errors.password.message}</p>)}
+          </div>
+
+          <div className="flex flex-col gap-1">
+            <input
+              type="text"
+              placeholder="Confirm Password"
+              className=" bg-zinc-800 p-5 text-white h-10 w-full rounded-[10px]"
+              {...register("confirmPassword")}
+
+            />
+            {errors.confirmPassword && (<p className="text-red-600 text-[13px]">{errors.confirmPassword.message}</p>)}
+          </div>
+
         </div>
         <div className="flex justify-center">
           <Button title="SIGN UP" type="submit" hover={true} />

@@ -11,6 +11,10 @@ interface Props { }
 const LogoutModal = () => {
   const { isOpen, setIsOpen } = useLogoutContext();
 
+  const handleLogout = () => {
+
+  }
+
   if (!isOpen) return null;
 
   return (
@@ -25,7 +29,7 @@ const LogoutModal = () => {
         <p className="text-orange">LOGO</p>
         <p className="text-[30px]">Are you sure you want to Logout?</p>
         <div className="flex gap-10">
-          <Button title="YES" hover={true} />
+          <Button title="YES" hover={true} onClick={handleLogout} />
           <Button title="NO" hover={true} onClick={() => setIsOpen(false)} />
         </div>
       </div>

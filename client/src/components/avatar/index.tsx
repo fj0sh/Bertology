@@ -1,18 +1,19 @@
 import Link from "next/link";
 import React from "react";
 
-type AvatarProps = {
-  className?: string;
-};
 
-const Avatar = (props: AvatarProps) => {
+const Avatar = () => {
   return (
-    <Link href={"/admin-profile"}>
-      <div
-        className="border border-black-500 rounded-full bg-white p-4 w-[50px] h-[50px]"
-        {...props}
-      ></div>
-    </Link>
+    <div className="flex border-none bg-gray-700 p-2 rounded-lg gap-3">
+      <Link href={"/admin-profile"}>
+        <div
+          className="border border-black-500 rounded-full bg-white p-4 w-[50px] h-[50px]"
+        ></div>
+      </Link>
+      <div className="self-center">
+        sdifhoiduh
+      </div>
+    </div>
   );
 };
 

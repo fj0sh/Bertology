@@ -41,9 +41,8 @@ const Navbar = () => {
                   <div key={index} className="relative group">
                     <Link
                       href={x.href}
-                      className={`${
-                        isActive ? "text-orange" : "text-white"
-                      } text-[16px] font-normal`}
+                      className={`${isActive ? "text-orange" : "text-white"
+                        } text-[16px] font-normal`}
                     >
                       {x.name}
                     </Link>

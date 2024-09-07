@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
 import useFetchData from "@/hooks/fetcher/useFetchData";
-import User from "@/constants/Users";
+import { UserType } from "@/constants/Users";
 import "../../../style/tables.css";
 import Link from "next/link";
-
+     
 const Users = () => {
-  const { data, loading, error } = useFetchData<User[]>("/users");
+  const { data, loading, error } = useFetchData<UserType[]>("/users");
 
   console.log(data);
 
