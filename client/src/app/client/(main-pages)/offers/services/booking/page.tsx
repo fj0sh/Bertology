@@ -1,12 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Calendar from "react-calendar";
 import {
   formatDateForSQL,
   formatDateNormal,
 } from "@/lib/function/dateFormatter";
 import InputOrange from "@/components/input/inputOrange";
-import "@/style/react-calendar.css";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import instance from "@/lib/util/axios-instance";
@@ -17,6 +15,8 @@ import {
   DatePickerComponent,
   TimePickerComponent,
 } from "@/components/input/reactPickers";
+
+import { Calendar } from "primereact/calendar";
 
 const Booking = () => {
   const [date, setDate] = useState<Date | null>(new Date());
@@ -79,23 +79,28 @@ const Booking = () => {
         isOpen={showConfirmation}
         onClose={() => setShowConfirmation(false)}
       />
-      <div className="w-full h-screen flex justify-center items-center p-10">
+      <div className="w-full h-screen flex justify-center items-center p-10 gap-[3rem]">
         <div className="w-[60%] h-full flex flex-col justify-center items-center gap-6">
-          <div className="flex flex-col gap-3 bg-black p-6 rounded-md text-white">
-            <div className="flex gap-3 text-[18px]">
-              <p>Time:</p>
-              <TimePickerComponent />
-            </div>
-            <div className="flex gap-3 text-[18px]">
-              <p>Date:</p>
-              <DatePickerComponent />
+          <div className="flex w-full justify-around ">
+            <div className="text-white"></div>
+            <div className="flex flex-col gap-3 bg-black p-6 rounded-md text-white">
+              <div className="flex gap-3 text-[18px]">
+                <p>Time:</p>
+                <TimePickerComponent />
+              </div>
+              <div className="flex gap-3 text-[18px]">
+                <p>Date:</p>
+                <DatePickerComponent />
+              </div>
             </div>
           </div>
-          <div className="w-[55rem] h-[35rem] flex mb-10">
+          <div className="flex mb-10 w-[80%]">
             <Calendar
-              className={"leading-[2.8rem]"}
-              onChange={(value) => setDate(value as Date)}
-              tileDisabled={tileDisabled}
+              inline
+              className="w-full"
+              pt={{
+                table: { className: "text-[20px]" },
+              }}
             />
           </div>
         </div>

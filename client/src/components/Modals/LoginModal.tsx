@@ -10,7 +10,7 @@ import { z } from "zod";
 import instance from "@/lib/util/axios-instance";
 import { useRouter } from "next/navigation";
 
-import Cookie from "js-cookie"
+import Cookie from "js-cookie";
 
 interface Props {
   isOpen: boolean;
@@ -21,50 +21,52 @@ interface Props {
 
 const loginSchema = z.object({
   username: z.string().min(1, "Username is required"),
-  password: z.string().min(1, "Password is required")
-})
+  password: z.string().min(1, "Password is required"),
+});
 
-type loginType = z.infer<typeof loginSchema>
+type loginType = z.infer<typeof loginSchema>;
 
 const LoginModal = (props: Props) => {
   const { isOpen, onClose, openRegister, openForgotPassword } = props;
-  const { register, handleSubmit, formState: { errors } } = useForm<loginType>({ resolver: zodResolver(loginSchema) })
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<loginType>({ resolver: zodResolver(loginSchema) });
 
-  const router = useRouter()
+  const router = useRouter();
 
   const onSubmit = async (data: loginType) => {
     try {
       const body = {
         username: data.username,
-        password: data.password
-      }
+        password: data.password,
+      };
 
-      const res = await instance.post("/auth/login", body)
+      const res = await instance.post("/auth/login", body);
 
       if (res.status == 200) {
         Cookie.set("token", res.data.token, {
           expires: 1,
-          path: "/"
-        })
+          path: "/",
+        });
       }
 
       if (res.status === 200) {
         if (res.data.user.role === "ADMIN") {
-          router.push("admin/dashboard")
+          router.push("admin/dashboard");
         } else {
-
         }
       }
-
     } catch (error: any) {
       if (error.response) {
         if (error.response.status === 404) {
-          console.log("User not Found")
+          console.log("User not Found");
         }
       }
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   if (!isOpen) return null;
 
@@ -80,7 +82,10 @@ const LoginModal = (props: Props) => {
         <p className="">Welcome Back</p>
         <p>Please login to your account</p>
       </div>
-      <form className="text-center flex flex-col gap-8 w-full *:text-white" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className="text-center flex flex-col gap-8 w-full *:text-white"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <div className="flex flex-col gap-2">
           <input
             className="border-none rounded-[10px] h-10 p-5 bg-grey"
@@ -88,7 +93,11 @@ const LoginModal = (props: Props) => {
             placeholder="Username"
             {...register("username")}
           />
-          {errors.username && (<p className="text-red-500 text-[13px] self-start">{errors.username.message}</p>)}
+          {errors.username && (
+            <p className="text-red-500 text-[13px] self-start">
+              {errors.username.message}
+            </p>
+          )}
         </div>
         <div className="flex flex-col gap-2">
           <input
@@ -96,13 +105,20 @@ const LoginModal = (props: Props) => {
             type="password"
             placeholder="Password"
             {...register("password")}
-
           />
-          {errors.password && (<p className="text-red-500 text-[13px] self-start">{errors.password.message}</p>)}
+          {errors.password && (
+            <p className="text-red-500 text-[13px] self-start">
+              {errors.password.message}
+            </p>
+          )}
         </div>
-        <div className="flex justify-around gap-4 text-white">
+        <div className="flex justify-around gap-2 text-white">
           <p className="text-sm">Remember Me</p>
-          <button className="text-sm" onClick={openForgotPassword}>
+          <button
+            className="text-sm"
+            type="button"
+            onClick={openForgotPassword}
+          >
             Forgot Password?
           </button>
         </div>
@@ -117,7 +133,7 @@ const LoginModal = (props: Props) => {
         </p>
         <hr className="border-white" />
       </form>
-      <div className="flex flex-col gap-8 text-white w-full items-center">
+      <div className="flex flex-col gap-3 text-white w-full items-center">
         <p>Continue with</p>
         <Button
           title="GOOGLE"

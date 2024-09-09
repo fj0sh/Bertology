@@ -61,13 +61,7 @@ const LandingPage = () => {
         {/* ============================================HERO SECTION =======================================================================*/}
 
         <div className="relative w-full h-[70vh] bg-opacity-85">
-          {/* <Image
-            src="/images/LandingImage.png"
-            layout="fill"
-            objectFit="cover"
-            alt="Landing Image"
-            className=""
-          /> */}
+         
           <div className="absolute inset-0 flex items-center justify-start space-x-4 gap-5 p-5 ml-16">
             <Button title="Login" onClick={() => setIsLoginModalOpen(true)} />
             <Button
@@ -80,16 +74,15 @@ const LandingPage = () => {
         {/* ============================================BOOK NOW SECTION =======================================================================*/}
 
         <div className="relative h-[80vh] flex">
-          <div className="w-[37rem] h-[37rem] border-none rounded-full bg-grey absolute top-[5rem] left-[46rem] z-10"></div>
           <div className="w-[50%]"></div>
-          <div className="w-[50%] flex flex-col justify-center items-center gap-10 ">
-            <p className="font-bold text-[60px] text-center w-[50rem] text-orange z-20">
+          <div className="w-[50%] flex flex-col justify-center items-center gap-10 z-20">
+            <p className="font-bold text-[60px] text-center text-orange z-20">
               Innovating for Effortless Planning and Resource Optimization
             </p>
             <LinkButton name="See More" href={"client/offers/services"} />
           </div>
         </div>
-        <div className=" bg-opacity-70 flex justify-center items-start h-[100px] text-[25px]">
+        <div className=" bg-opacity-70 flex justify-center items-start h-[100px] text-[25px] z-20">
           <p className="text-white font-bold items-center">
             We give the right service and good quality products!
           </p>

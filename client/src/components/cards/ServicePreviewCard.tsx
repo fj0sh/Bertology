@@ -5,11 +5,12 @@ import LinkButton from "../button/OrangeLinkButton";
 interface Props {
   title: string;
   description: string;
+  duration: number;
   image: string;
 }
 
 const ServicePreviewCard = (props: Props) => {
-  const { title, description, image } = props;
+  const { title, description, image, duration } = props;
 
   return (
     <div className="flex border-orange border gap-6 p-3 text-white rounded-lg">
@@ -25,6 +26,7 @@ const ServicePreviewCard = (props: Props) => {
       </div>
       <div className="h-full w-[80%] flex flex-col gap-3">
         <div className="text-[20px]">{title}</div>
+        <div>{duration}</div>
         <div>{description}</div>
         <LinkButton name="Book Now!" href="/client/offers/services/booking" />
       </div>
