@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import Calendar from "react-calendar";
-import "@/style/react-calendar.css";
 import DashboardCard from "@/components/cards/DashboardCard";
+import { useUser } from "@/providers/UserProvider";
 
 interface tileProps {
   date: Date;

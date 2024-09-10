@@ -18,17 +18,15 @@ export default function RootLayout({
   return (
     <LogoutProvider>
       <LogoutModal />
-      <UserProvider>
-        <div className="flex h-screen bg-background">
-          <Sidebar />
-          <div className="ml-[15rem] px-12 py-6 gap-6 w-full flex flex-col">
-            <div className="self-end">
-              <Avatar />
-            </div>
-            <div className="w-full h-full">{children}</div>
+      <div className="flex h-screen bg-background">
+        <Sidebar />
+        <div className="ml-[15rem] px-12 py-6 gap-6 w-full flex flex-col">
+          <div className="self-end">
+            <Avatar />
           </div>
+          <div className="w-full h-full">{children}</div>
         </div>
-      </UserProvider>
+      </div>
     </LogoutProvider>
   );
 }

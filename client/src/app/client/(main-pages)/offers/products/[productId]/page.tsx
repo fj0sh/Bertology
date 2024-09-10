@@ -3,6 +3,8 @@ import Button from "@/components/button/OrangeButton";
 import { ProductType } from "@/constants/Products";
 import useProducts from "@/hooks/requests/useProducts";
 import { formatter } from "@/lib/function/currencyFormatter";
+import instance from "@/lib/util/axios-instance";
+import { useUser } from "@/providers/UserProvider";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -14,6 +16,9 @@ const ProductId = ({ params }: { params: { productId: number } }) => {
     `/products/${params.productId}`
   );
   const router = useRouter();
+  const { user } = useUser();
+
+  console.log(user?.id);
   console.log(products);
 
   const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,6 +40,17 @@ const ProductId = ({ params }: { params: { productId: number } }) => {
         setQuantity((prevQuantity) => prevQuantity - 1);
       }
       setQuantity((prevQuantity) => prevQuantity + 1);
+    }
+  };
+
+  const addToCart = async () => {
+    try {
+      const res = await instance.post(`/cart/${params.productId}`, {
+        userId: user?.id,
+      });
+      console.log(res);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -83,7 +99,7 @@ const ProductId = ({ params }: { params: { productId: number } }) => {
           <p>₱ {products && formatter(products?.price)}</p>
         </div>
         <div className="flex gap-6 self-end justify-self-end">
-          <Button title="Add to Cart" />
+          <Button title="Add to Cart" onClick={() => addToCart()} />
           <Button
             title="Checkout"
             onClick={() => router.push(`${params.productId}/place-order`)}

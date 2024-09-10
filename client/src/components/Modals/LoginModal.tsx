@@ -56,6 +56,7 @@ const LoginModal = (props: Props) => {
         if (res.data.user.role === "ADMIN") {
           router.push("admin/dashboard");
         } else {
+          console.log("Logged as Customer");
         }
       }
     } catch (error: any) {

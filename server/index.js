@@ -11,6 +11,7 @@ const usersRoute = require("./routes/users.router");
 const productsRoute = require("./routes/products.route");
 const servicesRoute = require("./routes/services.route");
 const bookingRoute = require("./routes/booking.route");
+const cartRoute = require("./routes/cart.route");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -22,6 +23,7 @@ app.use("/api/users", usersRoute);
 app.use("/api/products", productsRoute);
 app.use("/api/services", servicesRoute);
 app.use("/api/booking", bookingRoute);
+app.use("/api/cart", cartRoute);
 
 app.listen(PORT, () => {
   console.log("Currently in PORT " + PORT);
