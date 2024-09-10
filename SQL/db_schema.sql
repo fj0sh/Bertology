@@ -1,6 +1,6 @@
 /*
 SQLyog Community v13.2.1 (64 bit)
-MySQL - 8.0.36 : Database - brtgy_draft
+MySQL - 8.0.37 : Database - brtgy_draft
 *********************************************************************
 */
 
@@ -31,15 +31,19 @@ CREATE TABLE `booking` (
   `serviceId` int DEFAULT NULL,
   `userId` int DEFAULT NULL,
   `dateBooked` datetime DEFAULT NULL,
-  `status` enum('Pending','Approved','Cancelled','Declined') DEFAULT NULL,
+  `status` enum('Pending','Approved','Cancelled','Declined') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'Pending',
   PRIMARY KEY (`id`),
   KEY `service_fk` (`serviceId`),
   KEY `user_booking_fk` (`userId`),
   CONSTRAINT `service_fk` FOREIGN KEY (`serviceId`) REFERENCES `services` (`id`),
   CONSTRAINT `user_booking_fk` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `booking` */
+
+insert  into `booking`(`id`,`location`,`fbAccount`,`contact`,`serviceRequest`,`carModel`,`detail`,`serviceId`,`userId`,`dateBooked`,`status`) values 
+(4,'Elizabeth','testfb','0966889101','Fix it felix','Ferrarariri','test',1,15,'2022-04-22 10:34:23','Pending'),
+(5,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,'Pending');
 
 /*Table structure for table `cart` */
 
@@ -49,16 +53,26 @@ CREATE TABLE `cart` (
   `id` int NOT NULL AUTO_INCREMENT,
   `userId` int DEFAULT NULL,
   `productId` int DEFAULT NULL,
-  `amount` int DEFAULT NULL,
   `dateAdded` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `user_cart_fk` (`userId`),
   KEY `product_cart_fk` (`productId`),
   CONSTRAINT `product_cart_fk` FOREIGN KEY (`productId`) REFERENCES `products` (`id`),
   CONSTRAINT `user_cart_fk` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `cart` */
+
+insert  into `cart`(`id`,`userId`,`productId`,`dateAdded`) values 
+(4,16,32,'2024-09-10 19:52:54'),
+(5,16,35,'2024-09-10 20:04:08'),
+(6,16,35,'2024-09-10 20:07:25'),
+(7,NULL,32,'2024-09-10 20:15:56'),
+(8,15,32,'2024-09-10 20:17:59'),
+(9,16,NULL,'2024-09-10 21:17:12'),
+(10,16,NULL,'2024-09-10 21:17:14'),
+(11,15,NULL,'2024-09-10 21:17:48'),
+(12,15,NULL,'2024-09-10 21:19:49');
 
 /*Table structure for table `draft` */
 
@@ -146,13 +160,14 @@ CREATE TABLE `services` (
   `id` int NOT NULL AUTO_INCREMENT,
   `serviceName` varchar(63) DEFAULT NULL,
   `serviceDescription` varchar(254) DEFAULT NULL,
+  `serviceDuration` varchar(31) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `services` */
 
-insert  into `services`(`id`,`serviceName`,`serviceDescription`) values 
-(1,'Test','Test description');
+insert  into `services`(`id`,`serviceName`,`serviceDescription`,`serviceDuration`) values 
+(1,'Test','Test description',NULL);
 
 /*Table structure for table `user_purchase` */
 
