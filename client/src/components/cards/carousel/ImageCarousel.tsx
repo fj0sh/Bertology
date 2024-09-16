@@ -46,8 +46,8 @@ const ImageCarousel = (props: Props) => {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      <CarouselPrevious className="text-orangePrimary border-none text-3xl" />
+      <CarouselNext className="text-orangePrimary border-none" />
     </Carousel>
   );
 };

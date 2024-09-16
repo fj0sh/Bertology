@@ -27,14 +27,14 @@ const AdminDashboard = () => {
       <DashboardCard title="Pending Request" value={0} />
       <DashboardCard title="Pending Bookings" value={0} />
 
-      <div className="relative row-start-2 row-span-3 col-span-4 border-none border-orange flex flex-col gap-3">
+      <div className="relative row-start-2 row-span-3 col-span-4 border-none border-orangePrimary flex flex-col gap-3">
         <div className="shadow-lg">
           <Calendar tileDisabled={disableDates} className={"     "} />
         </div>
 
-        <div className="relative flex border border-orange h-full rounded-lg">
+        <div className="relative flex border border-orangePrimary h-full rounded-lg">
           <div className="w-[80%]"></div>
-          <div className="w-[20%] border rounded-lg  border-l-orange rounded-tl-none rounded-bl-none h-full"></div>
+          <div className="w-[20%] border rounded-lg  border-l-orangePrimary rounded-tl-none rounded-bl-none h-full"></div>
         </div>
       </div>
       <div className=" row-start-2 row-span-3 col-span-4 border-none bg-grey rounded-lg flex flex-col items-center p-4">

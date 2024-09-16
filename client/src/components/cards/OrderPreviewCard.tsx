@@ -14,7 +14,7 @@ const OrderPreviewCard = (props: Props) => {
   const { customer, productName, price, date, address, image } = props;
 
   return (
-    <div className="flex p-3 h-[8rem] text-white gap-4 w-full border border-orange rounded-lg">
+    <div className="flex p-3 h-[8rem] text-white gap-4 w-full border border-orangePrimary rounded-lg">
       <div className="relative w-[10%]">
         <Image
           src={image}

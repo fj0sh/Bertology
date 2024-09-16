@@ -7,7 +7,7 @@ import LinkButton from "@/components/button/OrangeLinkButton";
 const Services = () => {
   return (
     <div className="bg-black text-white">
-      <div className="flex items-center justify-center h-screen bg-orange">
+      <div className="flex items-center justify-center h-screen bg-orangePrimary">
         <div className="text-center">
           <p className="text-white font-bold text-[40px]">
             Products And Services
@@ -16,7 +16,7 @@ const Services = () => {
       </div>
       <div className="relative h-[60vh] py-32 px-52 w-full">
         <div className="w-[82%] rounded-xl h-[60%] right-24 bottom-16  bg-grey bg-opacity-50 absolute z-10"></div>
-        <div className="border border-orange rounded-lg w-full h-full p-6 relative z-20">
+        <div className="border border-orangePrimary rounded-lg w-full h-full p-6 relative z-20">
           <p className="text-[24px] indent-20 p-10">
             Everything we sell, we can also install, We are your local auto
             electronics upgrades with certified and experienced technicians who
@@ -38,7 +38,7 @@ const Services = () => {
         <ServicePogs />
       </div>
       <div className="h-full flex flex-col items-center gap-6 p-20">
-        <div className="text-orange font-semibold text-[22px]">
+        <div className="text-orangePrimary font-semibold text-[22px]">
           AVAILABLE PRODUCTS
         </div>
         <div className="mx-[20rem] grid grid-cols-3 gap-8 border-none ">
@@ -60,7 +60,7 @@ const Services = () => {
         <BrandBalls />
       </div>
       <div className="h-full flex flex-col items-center gap-6 p-20">
-        <div className="text-orange text-[22px] font-semibold">
+        <div className="text-orangePrimary text-[22px] font-semibold">
           AVAILABLE SERVICES
         </div>
         <div className="mx-[20rem] grid grid-cols-3 gap-8 border-none ">

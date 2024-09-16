@@ -4,7 +4,7 @@ import useFetchData from "@/hooks/fetcher/useFetchData";
 import { UserType } from "@/constants/Users";
 import "../../../style/tables.css";
 import Link from "next/link";
-     
+
 const Users = () => {
   const { data, loading, error } = useFetchData<UserType[]>("/users");
 
@@ -13,7 +13,7 @@ const Users = () => {
   return (
     <div className="w-full h-full p-[15px]">
       <table className="bg-white w-full rounded-tl-lg rounded-tr-lg">
-        <thead className="shadow-lg bg-orange text-white font-[22px] ">
+        <thead className="shadow-lg bg-orangePrimary text-white font-[22px] ">
           <tr>
             <td>Username</td>
             <td>Email</td>

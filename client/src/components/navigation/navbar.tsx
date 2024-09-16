@@ -19,7 +19,7 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="bg-black z-50 h-16 p-3 fixed w-full top-0">
+    <div className="bg-black z-[9999999999] h-16 p-3 fixed w-full top-0">
       <div className="flex-1 flex items-center justify-between">
         <div className="flex-shrink-0">
           <a href="/" className="text-white text-[30px] font-bold">
@@ -41,8 +41,9 @@ const Navbar = () => {
                   <div key={index} className="relative group">
                     <Link
                       href={x.href}
-                      className={`${isActive ? "text-orange" : "text-white"
-                        } text-[16px] font-normal`}
+                      className={`${
+                        isActive ? "text-orangePrimary" : "text-white"
+                      } text-[16px] font-normal`}
                     >
                       {x.name}
                     </Link>

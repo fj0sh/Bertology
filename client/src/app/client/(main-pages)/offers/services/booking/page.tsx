@@ -125,7 +125,7 @@ const Booking = () => {
             {errors.model && <p>{`${errors.model.message}`} </p>}
             <p className="text-[18px]">Additional Details:</p>
             <textarea
-              className="resize-none w-full h-full border border-orange rounded-lg bg-background p-2"
+              className="resize-none w-full h-full border border-orangePrimary rounded-lg bg-background p-2"
               {...register("details")}
             ></textarea>
             {errors.details && <p>{`${errors.details.message}`} </p>}

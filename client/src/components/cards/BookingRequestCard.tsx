@@ -19,7 +19,7 @@ const BookingRequestCard = (props: Props) => {
 
   return (
     <>
-      <div className="relative flex h-[10rem] p-4 text-white border border-orange rounded-lg gap-6">
+      <div className="relative flex h-[10rem] p-4 text-white border border-orangePrimary rounded-lg gap-6">
         <div className="w-[70%] border-white flex flex-col gap-3 ">
           <div className="text-[25px]">{vehicleType}</div>
           <div className=" line-clamp-3 text-wrap whitespace-pre-line text-justify indent-12">

@@ -7,18 +7,18 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  theme: {  
+  theme: {
     extend: {
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },
       colors: {
-        orange: "#FF6000",
+        orangePrimary: "#F96C2F",
         black: "#000000",
         white: "#f2f2f2",
-        grey: "#4C4A48",
-        background: "#151515",
-        orangeRed: "#FF45000",       
+        grey: "##252531",
+        background: "#080808",
+        orangeRed: "#FF661F",
       },
     },
   },

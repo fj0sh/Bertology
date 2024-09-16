@@ -66,7 +66,7 @@ const ProductId = ({ params }: { params: { productId: number } }) => {
           ></Image>
         )}
       </div>
-      <div className="h-[90%] w-[60%] border-orange bg-black rounded-lg flex flex-col gap-12 p-16 text-white">
+      <div className="h-[90%] w-[60%] border-orangePrimary bg-black rounded-lg flex flex-col gap-12 p-16 text-white">
         <div className="flex flex-col items-center gap-6">
           <p className="font-semibold text-[30px]">{products?.productName}</p>
           <p className="text-center text-[18px]">{products?.description}</p>
@@ -75,7 +75,7 @@ const ProductId = ({ params }: { params: { productId: number } }) => {
           <p className="text-[22px]">Quantity:</p>
           <div className="h-full flex">
             <button
-              className="bg-white p-2 text-black rounded-tl-lg rounded-bl-lg hover:text-orange"
+              className="bg-white p-2 text-black rounded-tl-lg rounded-bl-lg hover:text-orangePrimary"
               onClick={handleQuantityDecrease}
             >
               <FaMinus size={20} />
@@ -87,7 +87,7 @@ const ProductId = ({ params }: { params: { productId: number } }) => {
               onChange={handleQuantityChange}
             />
             <button
-              className="bg-white p-2 text-black rounded-tr-lg rounded-br-lg hover:text-orange"
+              className="bg-white p-2 text-black rounded-tr-lg rounded-br-lg hover:text-orangePrimary"
               onClick={handleQuantityIncrease}
             >
               <FaPlus size={20} />
@@ -95,7 +95,7 @@ const ProductId = ({ params }: { params: { productId: number } }) => {
           </div>
           <p className="text-[15px] opacity-70">Stock/s: {products?.stocks}</p>
         </div>
-        <div className="border border-orange rounded-lg text-orange p-3 w-[10rem] font-semibold">
+        <div className="border border-orangePrimary rounded-lg text-orangePrimary p-3 w-[10rem] font-semibold">
           <p>₱ {products && formatter(products?.price)}</p>
         </div>
         <div className="flex gap-6 self-end justify-self-end">

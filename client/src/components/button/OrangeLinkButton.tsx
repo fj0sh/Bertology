@@ -12,7 +12,7 @@ const LinkButton = (props: Props) => {
   return (
     <Link
       href={href}
-      className={`border-none text-white p-2 rounded-lg text-[20px] w-[150px] flex items-center justify-center bg-orange `}
+      className={`border-none text-white p-2 rounded-lg text-[20px] w-[150px] flex items-center justify-center bg-orangePrimary `}
     >
       {name}
     </Link>

@@ -10,4 +10,3 @@ exports.getBookedDates = (callback) => {
     callback
   );
 };
-

@@ -54,8 +54,8 @@ const Sidebar = () => {
 
             return (
               <Link
-                className={`flex gap-6 hover:text-orange items-center text-[15px] ${
-                  isActive ? "text-orange" : " text-white"
+                className={`flex gap-6 hover:text-orangePrimary items-center text-[15px] ${
+                  isActive ? "text-orangePrimary" : " text-white"
                 }`}
                 key={links.title}
                 href={links.href}

@@ -3,7 +3,7 @@ import React from "react";
 
 const BrandBalls = () => {
   return (
-    <div className=" border-none rounded-full w-[10rem] h-[10rem] bg-orange flex justify-center items-center">
+    <div className=" border-none rounded-full w-[10rem] h-[10rem] bg-orangePrimary flex justify-center items-center">
       <Image
         src={"/images/test_images/choese.jpg"}
         width={50}

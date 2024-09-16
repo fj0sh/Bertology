@@ -8,7 +8,7 @@ const AboutUsInfoCard = () => {
   return (
     <div className="p-10 w-[80%] h-[25rem] text-white">
       <div className="flex flex-col gap-6 relative w-full h-full items-center">
-        <div className="absolute top-5 font-semibold bg-orange w-[15rem] border-none rounded-lg text-center p-2 text-black">
+        <div className="absolute top-5 font-semibold bg-orangePrimary w-[15rem] border-none rounded-lg text-center p-2 text-black">
           INFORMATIONS
         </div>
         <div className="flex border mt-10 rounded-lg p-10 w-full h-full ">

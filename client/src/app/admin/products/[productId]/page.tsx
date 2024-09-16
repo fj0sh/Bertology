@@ -65,7 +65,7 @@ const ProductId = ({ params }: { params: { productId: number } }) => {
         />
       </div>
       {products && (
-        <div className="border border-orange p-10">
+        <div className="border border-orangePrimary p-10">
           <form className="flex flex-col gap-6" onSubmit={saveEdit}>
             {isEditing ? (
               <div className="h-[20rem] w-[20rem]">

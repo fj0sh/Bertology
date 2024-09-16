@@ -13,11 +13,15 @@ interface Props {
   openLogin: () => void;
 }
 
-
 const RegisterModal = (props: Props) => {
   const { isOpen, onClose, openLogin } = props;
 
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<UserType>({ resolver: zodResolver(userSchema) })
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<UserType>({ resolver: zodResolver(userSchema) });
 
   const onSubmit = async (data: UserType) => {
     try {
@@ -27,21 +31,20 @@ const RegisterModal = (props: Props) => {
         phoneNumber: data.phoneNumber,
         emailAddress: data.emailAddress,
         password: data.password,
-        username: data.username
-      }
-      const res = await instance.post("/auth/register", body)
+        username: data.username,
+      };
+      const res = await instance.post("/auth/register", body);
       reset();
-      console.log(res)
-
+      console.log(res);
     } catch (error) {
-      console.log('error', error)
+      console.log("error", error);
     }
   };
 
   if (!isOpen) return null;
 
   return (
-    <ModalContainer >
+    <ModalContainer>
       <div className="absolute top-5 right-5">
         <IoMdClose
           className="text-white text-[30px] cursor-pointer"
@@ -64,7 +67,11 @@ const RegisterModal = (props: Props) => {
               className={` bg-zinc-800 p-5 text-white h-10 w-full rounded-[10px] border-red-600`}
               {...register("firstname")}
             />
-            {errors.firstname && (<p className="text-red-600 text-[13px]">{errors.firstname.message}</p>)}
+            {errors.firstname && (
+              <p className="text-red-600 text-[13px]">
+                {errors.firstname.message}
+              </p>
+            )}
           </div>
           <div className="flex flex-col gap-1">
             <input
@@ -73,9 +80,12 @@ const RegisterModal = (props: Props) => {
               className=" bg-zinc-800 p-5 text-white h-10 w-full rounded-[10px]"
               {...register("lastname")}
             />
-            {errors.lastname && (<p className="text-red-600 text-[13px]">{errors.lastname.message}</p>)}
+            {errors.lastname && (
+              <p className="text-red-600 text-[13px]">
+                {errors.lastname.message}
+              </p>
+            )}
           </div>
-
         </div>
         <div className="flex flex-col gap-3 ">
           <div className="flex flex-col gap-1">
@@ -85,7 +95,11 @@ const RegisterModal = (props: Props) => {
               className=" bg-zinc-800 p-5 text-white h-10 w-full rounded-[10px]"
               {...register("username")}
             />
-            {errors.username && (<p className="text-red-600 text-[13px]">{errors.username.message}</p>)}
+            {errors.username && (
+              <p className="text-red-600 text-[13px]">
+                {errors.username.message}
+              </p>
+            )}
           </div>
 
           <div className="flex flex-col gap-1">
@@ -96,7 +110,11 @@ const RegisterModal = (props: Props) => {
               className=" bg-zinc-800 p-5 text-white h-10 w-full rounded-[10px]"
               {...register("phoneNumber")}
             />
-            {errors.phoneNumber && (<p className="text-red-600 text-[13px]">{errors.phoneNumber.message}</p>)}
+            {errors.phoneNumber && (
+              <p className="text-red-600 text-[13px]">
+                {errors.phoneNumber.message}
+              </p>
+            )}
           </div>
 
           <div className="flex flex-col gap-1">
@@ -106,7 +124,11 @@ const RegisterModal = (props: Props) => {
               className=" bg-zinc-800 p-5 text-white h-10 w-full rounded-[10px]"
               {...register("emailAddress")}
             />
-            {errors.emailAddress && (<p className="text-red-600 text-[13px]">{errors.emailAddress.message}</p>)}
+            {errors.emailAddress && (
+              <p className="text-red-600 text-[13px]">
+                {errors.emailAddress.message}
+              </p>
+            )}
           </div>
 
           <div className="flex flex-col gap-1">
@@ -116,7 +138,11 @@ const RegisterModal = (props: Props) => {
               className=" bg-zinc-800 p-5 text-white h-10 w-full rounded-[10px]"
               {...register("password")}
             />
-            {errors.password && (<p className="text-red-600 text-[13px]">{errors.password.message}</p>)}
+            {errors.password && (
+              <p className="text-red-600 text-[13px]">
+                {errors.password.message}
+              </p>
+            )}
           </div>
 
           <div className="flex flex-col gap-1">
@@ -125,11 +151,13 @@ const RegisterModal = (props: Props) => {
               placeholder="Confirm Password"
               className=" bg-zinc-800 p-5 text-white h-10 w-full rounded-[10px]"
               {...register("confirmPassword")}
-
             />
-            {errors.confirmPassword && (<p className="text-red-600 text-[13px]">{errors.confirmPassword.message}</p>)}
+            {errors.confirmPassword && (
+              <p className="text-red-600 text-[13px]">
+                {errors.confirmPassword.message}
+              </p>
+            )}
           </div>
-
         </div>
         <div className="flex justify-center">
           <Button title="SIGN UP" type="submit" hover={true} />
@@ -139,7 +167,7 @@ const RegisterModal = (props: Props) => {
         <p>
           Already have an account?{" "}
           <Button
-            className=" text-orange underline"
+            className=" text-orangePrimaryPrimary underline"
             title="SIGN UP"
             onClick={openLogin}
           />

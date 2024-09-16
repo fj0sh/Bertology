@@ -23,7 +23,9 @@ const SearchBar = () => {
   return (
     <div className="text-white flex gap-2 bg-white border-none h-[2rem]">
       <div className="flex justify-center bg-white p-3 items-center">
-        <FaSearch className={`${query ? "text-orange" : "text-black"}`} />
+        <FaSearch
+          className={`${query ? "text-orangePrimary" : "text-black"}`}
+        />
       </div>
       <div className="text-black h-full text-center">
         <input

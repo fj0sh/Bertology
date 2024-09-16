@@ -128,7 +128,10 @@ const LoginModal = (props: Props) => {
         </div>
         <p className="text-white">
           Not a member?{" "}
-          <button className="text-orange underline" onClick={openRegister}>
+          <button
+            className="text-orangePrimary underline"
+            onClick={openRegister}
+          >
             Sign Up Now
           </button>
         </p>
@@ -138,12 +141,12 @@ const LoginModal = (props: Props) => {
         <p>Continue with</p>
         <Button
           title="GOOGLE"
-          className="border-2 w-80 border-orange p-2 rounded-[15px]"
+          className="border-2 w-80 border-orangePrimary p-2 rounded-[15px]"
           onClick={() => signIn("google")}
         ></Button>
         <Button
           title="FACEBOOK"
-          className="border-2 w-80 border-orange p-2 rounded-[15px] "
+          className="border-2 w-80 border-orangePrimary p-2 rounded-[15px] "
         ></Button>
       </div>
     </ModalContainer>

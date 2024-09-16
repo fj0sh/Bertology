@@ -13,7 +13,7 @@ const ServicePreviewCard = (props: Props) => {
   const { title, description, image, duration } = props;
 
   return (
-    <div className="flex border-orange border gap-6 p-3 text-white rounded-lg">
+    <div className="flex border-orangePrimary border gap-6 p-3 text-white rounded-lg">
       <div className="w-[20%] h-full p-3">
         <Image
           src={image}

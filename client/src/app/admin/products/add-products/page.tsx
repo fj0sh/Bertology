@@ -39,7 +39,7 @@ const AddProducts = () => {
 
   return (
     <form
-      className="h-full border border-orange rounded-lg p-10 flex gap-10 "
+      className="h-full border border-orangePrimary rounded-lg p-10 flex gap-10 "
       onSubmit={AddProduct}
     >
       <div className=" w-1/2 h-full flex flex-col gap-4 text-white">
@@ -73,13 +73,13 @@ const AddProducts = () => {
         />
         <p className="text-white text-[18px]">Description:</p>
         <textarea
-          className="bg-background resize-none rounded-lg border border-orange w-full h-full p-2"
+          className="bg-background resize-none rounded-lg border border-orangePrimary w-full h-full p-2"
           onChange={(e) => setDescription(e.target.value)}
           value={description}
         ></textarea>
       </div>
       <div className=" w-1/2 h-full flex flex-col gap-14 items-center justify-center">
-        <div className="border-[2px] border-orange rounded-lg w-[35rem] h-[35rem]">
+        <div className="border-[2px] border-orangePrimary rounded-lg w-[35rem] h-[35rem]">
           <ImageUpload
             value={productImage}
             onChange={(value) => setImage(value)}

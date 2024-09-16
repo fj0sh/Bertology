@@ -33,7 +33,7 @@ const Products = () => {
       </div>
       <div>
         <table className="text-white">
-          <thead className="bg-orange shadow-lg text-white">
+          <thead className="bg-orangePrimary shadow-lg text-white">
             <tr>
               <th>Product Name</th>
               <th>Product Type</th>
@@ -51,7 +51,7 @@ const Products = () => {
                 <td>{product.stocks}</td>
                 <td>
                   <button
-                    className="bg-orange text-white border-none p-2 rounded-lg"
+                    className="bg-orangePrimary text-white border-none p-2 rounded-lg"
                     onClick={() => router.push(`products/${product.productId}`)}
                   >
                     View

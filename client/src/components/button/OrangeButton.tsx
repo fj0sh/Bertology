@@ -15,8 +15,9 @@ const Button = (props: Props) => {
   const { title, height, width, hover, fontSize } = props;
   return (
     <button
-      className={`border-none text-white p-2 rounded-lg text-[20px] w-[150px] flex items-center justify-center ${hover ? "bg-grey hover:bg-orange" : " bg-orange"
-        }`}
+      className={`border-none text-white p-2 rounded-lg text-[20px] w-[150px] flex items-center justify-center ${
+        hover ? "bg-grey hover:bg-orangePrimary" : " bg-orangePrimary"
+      }`}
       style={{ height, width, fontSize }}
       {...props}
     >
