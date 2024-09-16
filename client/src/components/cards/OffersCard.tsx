@@ -31,7 +31,7 @@ const OffersCard = (props: Props) => {
     return (
       <div className="flex flex-col rounded-lg text-white text-center">
         <div className="items-center relative w-full flex flex-col">
-          <hr className="w-full top-[50%] absolute border-orangePrimary" />
+          <hr className="w-full top-[50%] absolute border-orangePrimary border-t-[3px]" />
           <p className=" text-[30px] z-10 w-fit bg-background p-2 px-8">
             <span className="text-orangePrimary">{text1}</span> {text2}
           </p>
@@ -60,7 +60,7 @@ const OffersCard = (props: Props) => {
   return (
     <div className="flex flex-col rounded-lg text-white text-center">
       <div className="items-center relative w-full flex flex-col">
-        <hr className="w-full top-[50%] absolute border-orangePrimary" />
+        <hr className="w-full top-[50%] absolute border-orangePrimary border-t-[3px]" />
         <p className=" text-[30px] z-10 w-fit bg-background p-2 px-8">
           {text1} <span className="text-orangePrimary">{text2}</span>
         </p>
