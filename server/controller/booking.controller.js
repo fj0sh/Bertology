@@ -5,6 +5,13 @@ exports.bookService = (req, res) => {
     if (err) {
       res.status(400).send(err);
     }
+
+    console.log(req.body);
+
+    if (!req.body || Object.keys(req.body).length === 0) {
+      return res.status(400).send({ error: "Please fill out all fields" });
+    }
+
     res.status(200).send(result);
   });
 };

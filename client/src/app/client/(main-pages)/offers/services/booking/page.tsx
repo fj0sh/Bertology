@@ -17,6 +17,7 @@ import {
 } from "@/components/input/reactPickers";
 
 import { Calendar } from "primereact/calendar";
+import axios from "axios";
 
 const Booking = () => {
   const [date, setDate] = useState<Date | null>(new Date());
@@ -61,12 +62,18 @@ const Booking = () => {
   } = useForm<BookingType>({ resolver: zodResolver(BookingSchema) });
 
   const onSubmit = (data: BookingType) => {
-    if (date) {
-      const formData = { ...data, date: formatDateForSQL(date) };
-      setFormData(formData);
-    } else {
-      console.log("No date selected");
+    try {
+      const res = axios.get(`${process.env.NEXT_PUBLIC_URL}`)
+    } catch (error) {
+      console.log(error)
     }
+
+    // if (date) {
+    //   const formData = { ...data, date: formatDateForSQL(date) };
+    //   setFormData(formData);
+    // } else {
+    //   console.log("No date selected");
+    // }
 
     setShowConfirmation(true);
     reset();
@@ -112,17 +119,22 @@ const Booking = () => {
             <p className="text-[25px]">Customer Details</p>
             <InputOrange label="Location:" {...register("location")} />
             {errors.location && <p>{`${errors.location.message}`} </p>}
+
             <InputOrange
               label="FB Account(Optional):"
               {...register("account")}
             />
             {errors.account && <p>{`${errors.account.message}`} </p>}
+
             <InputOrange label="Contact Number:" {...register("number")} />
             {errors.number && <p>{`${errors.number.message}`} </p>}
+
             <InputOrange label="Needed Service:" {...register("service")} />
             {errors.service && <p>{`${errors.service.message}`} </p>}
+
             <InputOrange label="Car Model:" {...register("model")} />
             {errors.model && <p>{`${errors.model.message}`} </p>}
+
             <p className="text-[18px]">Additional Details:</p>
             <textarea
               className="resize-none w-full h-full border border-orangePrimary rounded-lg bg-background p-2"

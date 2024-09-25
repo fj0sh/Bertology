@@ -14,7 +14,7 @@ const Services = () => {
           </p>
         </div>
       </div>
-      <div className="relative h-[60vh] py-32 px-52 w-full">
+      <div className="relative h-full py-32 px-52 w-full">
         <div className="w-[82%] rounded-xl h-[60%] right-24 bottom-16  bg-grey bg-opacity-50 absolute z-10"></div>
         <div className="border border-orangePrimary rounded-lg w-full h-full p-6 relative z-20">
           <p className="text-[24px] indent-20 p-10">
