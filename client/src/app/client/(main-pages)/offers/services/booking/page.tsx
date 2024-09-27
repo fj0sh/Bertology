@@ -86,27 +86,14 @@ const Booking = () => {
         isOpen={showConfirmation}
         onClose={() => setShowConfirmation(false)}
       />
-      <div className="w-full h-screen flex justify-center items-center p-10 gap-[3rem]">
+      <div className="w-full h-screen flex justify-center items-center p-10 gap-[3rem] px-52">
         <div className="w-[60%] h-full flex flex-col justify-center items-center gap-6">
-          <div className="flex w-full justify-around ">
-            <div className="text-white"></div>
-            <div className="flex flex-col gap-3 bg-black p-6 rounded-md text-white">
-              <div className="flex gap-3 text-[18px]">
-                <p>Time:</p>
-                <TimePickerComponent />
-              </div>
-              <div className="flex gap-3 text-[18px]">
-                <p>Date:</p>
-                <DatePickerComponent />
-              </div>
-            </div>
-          </div>
-          <div className="flex mb-10 w-[80%]">
+          <div className="flex w-full px-10">
             <Calendar
               inline
-              className="w-full"
+              className="w-full h-full"
               pt={{
-                table: { className: "text-[20px]" },
+                table: { className: "text-[18px]" },
               }}
             />
           </div>

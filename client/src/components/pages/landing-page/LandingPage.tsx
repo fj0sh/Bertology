@@ -3,12 +3,14 @@ import ForgotPasswordModal from "@/components/Modals/ForgotPasswordModal";
 import LoginModal from "@/components/Modals/LoginModal";
 import RegisterModal from "@/components/Modals/RegisterModal";
 import Button from "@/components/button/OrangeButton";
+import PrimeCalendar from "@/components/cards/calendar/Calendar";
 import ImageCarousel from "@/components/cards/carousel/ImageCarousel";
 import Navbar from "@/components/navigation/navbar";
 import { ProductType } from "@/constants/Products";
 import useProducts from "@/hooks/requests/useProducts";
 import useServices from "@/hooks/requests/useServices";
 import Link from "next/link";
+import { Calendar } from "primereact/calendar";
 
 import React, { useState } from "react";
 
@@ -124,12 +126,24 @@ const LandingPage = () => {
               See More
             </Link>
           </div>
+        </div>s
+
+        {/* ============================================BOOKING SECTION =======================================================================*/}
+
+        <div className="relative h-full p-20 px-48 gap-8 flex">
+          <div className="w-full flex justify-center">
+            <PrimeCalendar />
+            {/* <Calendar inline className="w-full h-full" /> */}
+          </div>
+          <div className="text-white flex justify-center items-center w-full">YEahhhhhh</div>
         </div>
-
-        {/* ============================================BRAND SECTION =======================================================================*/}
-
-        <div className="relative h-full p-20"></div>
+        <div className="flex flex-col items-center justify-center gap-3 text-white p-10">
+          <p className="text-[30px]">Yeeeeeeeeeeeeaaaaaaaaaaaaaahhhhh</p>
+          <Link href={"/client/offers/services"} className="text-background bg-orangeRed p-3 rounded-lg text-[20px]">Book Now</Link>
+        </div>
       </div>
+
+      <div className="w-full"></div>
     </>
   );
 };
