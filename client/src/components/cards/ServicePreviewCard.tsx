@@ -7,28 +7,29 @@ interface Props {
   description: string;
   duration: number;
   image: string;
+  id: number;
 }
 
 const ServicePreviewCard = (props: Props) => {
-  const { title, description, image, duration } = props;
+  const { title, description, image, duration, id } = props;
 
   return (
-    <div className="flex border-orangePrimary border gap-6 p-3 text-white rounded-lg">
-      <div className="w-[20%] h-full p-3">
+    <div className="flex border-orangePrimary border gap-6 p-1 text-white rounded-lg">
+      <div className="w-[30%] h-full flex justify-center items-center">
         <Image
           src={image}
           alt="roadblock"
           width={0}
           height={0}
-          sizes="100vw"
-          style={{ width: "100%", height: "100%" }}
+          sizes="100%"
+          style={{ width: "90%", height: "90%" }}
         ></Image>
       </div>
-      <div className="h-full w-[80%] flex flex-col gap-3">
+      <div className=" w-[70%] flex flex-col gap-1 p-3">
         <div className="text-[20px]">{title}</div>
-        <div>{duration}</div>
-        <div>{description}</div>
-        <LinkButton name="Book Now!" href="/client/offers/services/booking" />
+        <div>Service Duration: {duration} hrs</div>
+        <div className="w-full truncate">{description}</div>
+        <LinkButton name="Book Now!" href={`/client/offers/services/${id}`} />
       </div>
     </div>
   );

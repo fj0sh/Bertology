@@ -1,4 +1,3 @@
-import ServicePogs from "@/components/cards/ServicePogs";
 import ImagePreviewCard from "@/components/cards/ImagePreviewCard";
 import React from "react";
 import BrandBalls from "@/components/cards/BrandBalls";
@@ -30,13 +29,6 @@ const Services = () => {
         </div>
       </div>
 
-      <div className="h-[40vh] p-10 flex gap-14 justify-center items-center">
-        <ServicePogs />
-        <ServicePogs />
-        <ServicePogs />
-        <ServicePogs />
-        <ServicePogs />
-      </div>
       <div className="h-full flex flex-col items-center gap-6 p-20">
         <div className="text-orangePrimary font-semibold text-[22px]">
           AVAILABLE PRODUCTS

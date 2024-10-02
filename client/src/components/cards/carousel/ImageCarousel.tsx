@@ -25,9 +25,9 @@ const ImageCarousel = (props: Props) => {
       <CarouselContent>
         {images?.map((image, index) => (
           <CarouselItem key={index} className=" md:basis-1/2 lg:basis-1/3">
-            <div className="p-1">
+            <div className="flex justify-center">
               <Card>
-                <CardContent className="flex h-[20rem] aspect-square items-center justify-center p-3">
+                <CardContent className="flex h-[17rem] aspect-square items-center justify-center p-1 border-none">
                   <Image
                     src={image || "/images/empty-image.png"}
                     alt="roadblock"

@@ -3,6 +3,7 @@ import ForgotPasswordModal from "@/components/Modals/ForgotPasswordModal";
 import LoginModal from "@/components/Modals/LoginModal";
 import RegisterModal from "@/components/Modals/RegisterModal";
 import Button from "@/components/button/OrangeButton";
+import BrandBalls from "@/components/cards/BrandBalls";
 import PrimeCalendar from "@/components/cards/calendar/Calendar";
 import ImageCarousel from "@/components/cards/carousel/ImageCarousel";
 import Navbar from "@/components/navigation/navbar";
@@ -56,14 +57,11 @@ const LandingPage = () => {
           onClose={() => setIsRegisterModalOpen(false)}
           openLogin={() => changeModal()}
         />
-
         <ForgotPasswordModal
           isOpen={isForgotPassOpen}
           onClose={() => setIsForgotPassOpen(false)}
         />
-
         {/* ============================================HERO SECTION =======================================================================*/}
-
         <div className=" flex w-full bg-opacity-85">
           <div className="w-1/2 h-full"></div>
           <div className="w-1/2 h-full flex flex-col items-center justify-center gap-10">
@@ -89,19 +87,15 @@ const LandingPage = () => {
             </div>
           </div>
         </div>
-
         {/* ============================================BOOK NOW SECTION =======================================================================*/}
-
         <div className="relative p-[3rem] flex flex-col items-center gap-4 text-white">
           <p className="font-bold text-[30px]">
             We give the right service and good quality products
           </p>
-          <p className="text-[20px]">Palit na mo ayaw mo pa jorge2</p>
+          <p className="text-[20px]">TEST DESCRIPTION</p>
         </div>
-
         {/* ============================================IMAGE CAROUSEL SECTION =======================================================================*/}
-
-        <div className="bg-opacity-70 flex flex-col items-center gap-12">
+        <div className="bg-opacity-70 flex flex-col items-center gap-12 px-[10rem] my-[5rem]">
           <div className="flex flex-col items-center text-white text-[30px] h-[50%] w-[80%] gap-8">
             <p className="self-start font-bold">Installation</p>
             <div className="h-full w-full gap-3 flex flex-col justify-center items-center">
@@ -114,9 +108,9 @@ const LandingPage = () => {
               </Link>
             </div>
           </div>
-          <div className="flex flex-col items-center text-white text-[30px] h-[50%] w-[80%] gap-8">
+          <div className="flex flex-col items-center text-white text-[30px] h-[50%] w-[80%] gap-8  my-[5rem]">
             <p className="self-start font-bold">Products</p>
-            <div className="h-full w-full gap-3 flex flex-col justify-center items-center">
+            <div className="h-full w-full gap-3 flex flex-col justify-center items-center p-10">
               <ImageCarousel images={ProductImages} />
             </div>{" "}
             <Link
@@ -126,24 +120,42 @@ const LandingPage = () => {
               See More
             </Link>
           </div>
-        </div>s
-
+        </div>
+        s
         {/* ============================================BOOKING SECTION =======================================================================*/}
-
-        <div className="relative h-full p-20 px-48 gap-8 flex">
+        <div className="relative h-full px-48 gap-8 flex">
           <div className="w-full flex justify-center">
             <PrimeCalendar />
             {/* <Calendar inline className="w-full h-full" /> */}
           </div>
-          <div className="text-white flex justify-center items-center w-full">YEahhhhhh</div>
+          <div className="text-white flex justify-center items-center w-full">
+            YEahhhhhh
+          </div>
         </div>
         <div className="flex flex-col items-center justify-center gap-3 text-white p-10">
           <p className="text-[30px]">Yeeeeeeeeeeeeaaaaaaaaaaaaaahhhhh</p>
-          <Link href={"/client/offers/services"} className="text-background bg-orangeRed p-3 rounded-lg text-[20px]">Book Now</Link>
+          <Link
+            href={"/client/offers/services"}
+            className="text-background bg-orangeRed p-3 rounded-lg text-[20px]"
+          >
+            Book Now
+          </Link>
         </div>
       </div>
 
-      <div className="w-full"></div>
+      <div className="w-full text-white flex flex-col gap-10 justify-center items-center px-[15rem] py-[5rem]">
+        <p className="uppercase text-[30px] font-semibold">
+          our <span className="text-orangeRed"> trusted </span>brands
+        </p>
+        <div className="flex gap-3 border-orangePrimary border-[2px] p-6 w-fit rounded-md">
+          <BrandBalls />
+          <BrandBalls />
+          <BrandBalls />
+          <BrandBalls />
+          <BrandBalls />
+          <BrandBalls />
+        </div>
+      </div>
     </>
   );
 };

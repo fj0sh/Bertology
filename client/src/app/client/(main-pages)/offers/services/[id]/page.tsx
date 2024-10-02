@@ -1,57 +1,30 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import {
-  formatDateForSQL,
-  formatDateNormal,
-} from "@/lib/function/dateFormatter";
+import { formatDateNormal } from "@/lib/function/dateFormatter";
 import InputOrange from "@/components/input/inputOrange";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import instance from "@/lib/util/axios-instance";
 import Button from "@/components/button/OrangeButton";
 import { BookingSchema, BookingType } from "@/lib/util/schema";
 import BookingConfirmation from "@/components/Modals/BookingConfirmation";
-import {
-  DatePickerComponent,
-  TimePickerComponent,
-} from "@/components/input/reactPickers";
 
-import { Calendar } from "primereact/calendar";
 import axios from "axios";
+import PrimeCalendar from "@/components/cards/calendar/Calendar";
+import { useUser } from "@/providers/UserProvider";
 
-const Booking = () => {
-  const [date, setDate] = useState<Date | null>(new Date());
-  const [bookedDates, setBookedDates] = useState<any[]>([]);
+const Booking = ({ params }: { params: { id: string } }) => {
+  // const [date, setDate] = useState<Date | null>(new Date());
+  // const [bookedDates, setBookedDates] = useState<any[]>([]);
   const [formData, setFormData] = useState<BookingType | null>(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
 
-  const newDate = formatDateNormal(date);
+  const { user } = useUser();
 
-  useEffect(() => {
-    const fetchBookedDates = async () => {
-      try {
-        const res = await instance.get("/services/booked-dates");
-        setBookedDates(res.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+  const [date, setDate] = useState<Date | null>(null); // State to hold the selected date
 
-    fetchBookedDates();
-  }, []);
-
-  const tileDisabled = ({ date }: { date: Date }) => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    date.setHours(0, 0, 0, 0);
-
-    return (
-      date < today ||
-      bookedDates.some(
-        (bookedDate) =>
-          new Date(bookedDate.dateBooked).toDateString() === date.toDateString()
-      )
-    );
+  const handleDateSelection = (selectedDate: Date) => {
+    setDate(selectedDate); // Update the date in the parent state
+    console.log("Selected Date:", selectedDate); // You can do other things with the selected date here
   };
 
   const {
@@ -61,19 +34,30 @@ const Booking = () => {
     formState: { errors },
   } = useForm<BookingType>({ resolver: zodResolver(BookingSchema) });
 
-  const onSubmit = (data: BookingType) => {
-    try {
-      const res = axios.get(`${process.env.NEXT_PUBLIC_URL}`)
-    } catch (error) {
-      console.log(error)
-    }
+  const onSubmit = async (data: BookingType) => {
+    const body = {
+      userId: user?.id,
+      serviceId: params.id,
+      location: data.location,
+      fbAccount: data.account,
+      contact: data.number,
+      serviceRequest: data.service,
+      carModel: data.model,
+      detail: data.details,
+      dateBooked: data.date,
+      paymentType: "Cash",
+    };
 
-    // if (date) {
-    //   const formData = { ...data, date: formatDateForSQL(date) };
-    //   setFormData(formData);
-    // } else {
-    //   console.log("No date selected");
-    // }
+    try {
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_URL}/booking/`,
+        body
+      );
+
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
 
     setShowConfirmation(true);
     reset();
@@ -89,13 +73,7 @@ const Booking = () => {
       <div className="w-full h-screen flex justify-center items-center p-10 gap-[3rem] px-52">
         <div className="w-[60%] h-full flex flex-col justify-center items-center gap-6">
           <div className="flex w-full px-10">
-            <Calendar
-              inline
-              className="w-full h-full"
-              pt={{
-                table: { className: "text-[18px]" },
-              }}
-            />
+            <PrimeCalendar selectedDate={handleDateSelection} />
           </div>
         </div>
         <div className="w-[40%] h-full">

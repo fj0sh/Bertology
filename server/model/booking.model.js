@@ -11,10 +11,11 @@ exports.bookService = (bookingInformation, callback) => {
     carModel,
     detail,
     dateBooked,
+    paymentType,
   } = bookingInformation;
 
   conn.query(
-    "insert into booking(userId, serviceId, location, fbAccount, contact, serviceRequest, carModel, detail, dateBooked) values (?,?,?,?,?,?,?,?,?) ",
+    "insert into booking(userId, serviceId, location, fbAccount, contact, serviceRequest, carModel, detail, dateBooked, payment_type) values (?,?,?,?,?,?,?,?,?,?) ",
     [
       userId,
       serviceId,
@@ -25,6 +26,7 @@ exports.bookService = (bookingInformation, callback) => {
       carModel,
       detail,
       dateBooked,
+      paymentType,
     ],
     callback
   );
