@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import LinkButton from "../button/OrangeLinkButton";
+import { GrServices } from "react-icons/gr";
 
 interface Props {
   title: string;
@@ -16,14 +17,18 @@ const ServicePreviewCard = (props: Props) => {
   return (
     <div className="flex border-orangePrimary border gap-6 p-1 text-white rounded-lg">
       <div className="w-[30%] h-full flex justify-center items-center">
-        <Image
-          src={image}
-          alt="roadblock"
-          width={0}
-          height={0}
-          sizes="100%"
-          style={{ width: "90%", height: "90%" }}
-        ></Image>
+        {image ? (
+          <Image
+            src={image}
+            alt="roadblock"
+            width={0}
+            height={0}
+            sizes="100%"
+            style={{ width: "90%", height: "90%" }}
+          />
+        ) : (
+          <GrServices color={"orangeRed"} size={"7rem"} />
+        )}
       </div>
       <div className=" w-[70%] flex flex-col gap-1 p-3">
         <div className="text-[20px]">{title}</div>

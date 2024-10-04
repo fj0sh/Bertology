@@ -5,5 +5,6 @@ const { verifyToken } = require("../lib/lib");
 
 router.get("/", serviceController.getAllServices);
 router.get("/booked-dates", serviceController.getAllBookedDates);
+router.get("/:id", serviceController.getServiceById);
 
 module.exports = router;

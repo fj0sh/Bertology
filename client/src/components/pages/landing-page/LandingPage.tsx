@@ -64,7 +64,7 @@ const LandingPage = () => {
         {/* ============================================HERO SECTION =======================================================================*/}
         <div className=" flex w-full bg-opacity-85">
           <div className="w-1/2 h-full"></div>
-          <div className="w-1/2 h-full flex flex-col items-center justify-center gap-10">
+          <div className="w-1/2 h-full flex flex-col items-center justify-center gap-10 p-[10rem]">
             <div className="text-[60px] font-bold text-white text-center w-[40rem]">
               Innovating for <br /> Effortless
               <span className="text-orangePrimary"> Planning</span>
@@ -126,7 +126,6 @@ const LandingPage = () => {
         <div className="relative h-full px-48 gap-8 flex">
           <div className="w-full flex justify-center">
             <PrimeCalendar />
-            {/* <Calendar inline className="w-full h-full" /> */}
           </div>
           <div className="text-white flex justify-center items-center w-full">
             YEahhhhhh
@@ -143,11 +142,11 @@ const LandingPage = () => {
         </div>
       </div>
 
-      <div className="w-full text-white flex flex-col gap-10 justify-center items-center px-[15rem] py-[5rem]">
+      <div className="w-full text-white flex flex-col gap-10 p-3 justify-center items-center">
         <p className="uppercase text-[30px] font-semibold">
           our <span className="text-orangeRed"> trusted </span>brands
         </p>
-        <div className="flex gap-3 border-orangePrimary border-[2px] p-6 w-fit rounded-md">
+        <div className="flex justify-center gap-5 py-3 border-orangePrimary border-[2px] w-full rounded-sm">
           <BrandBalls />
           <BrandBalls />
           <BrandBalls />
