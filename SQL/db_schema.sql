@@ -1,6 +1,6 @@
 /*
 SQLyog Community v13.2.1 (64 bit)
-MySQL - 8.0.37 : Database - brtgy_draft
+MySQL - 8.0.36 : Database - brtgy_draft
 *********************************************************************
 */
 
@@ -32,18 +32,23 @@ CREATE TABLE `booking` (
   `userId` int DEFAULT NULL,
   `dateBooked` datetime DEFAULT NULL,
   `status` enum('Pending','Approved','Cancelled','Declined') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'Pending',
+  `payment_type` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `service_fk` (`serviceId`),
   KEY `user_booking_fk` (`userId`),
+  KEY `payment_fk` (`payment_type`),
+  CONSTRAINT `payment_fk` FOREIGN KEY (`payment_type`) REFERENCES `payment` (`id`),
   CONSTRAINT `service_fk` FOREIGN KEY (`serviceId`) REFERENCES `services` (`id`),
   CONSTRAINT `user_booking_fk` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `booking` */
 
-insert  into `booking`(`id`,`location`,`fbAccount`,`contact`,`serviceRequest`,`carModel`,`detail`,`serviceId`,`userId`,`dateBooked`,`status`) values 
-(4,'Elizabeth','testfb','0966889101','Fix it felix','Ferrarariri','test',1,15,'2022-04-22 10:34:23','Pending'),
-(5,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,'Pending');
+insert  into `booking`(`id`,`location`,`fbAccount`,`contact`,`serviceRequest`,`carModel`,`detail`,`serviceId`,`userId`,`dateBooked`,`status`,`payment_type`) values 
+(4,'Elizabeth','testfb','0966889101','Fix it felix','Ferrarariri','test',1,15,'2022-04-22 10:34:23','Pending',NULL),
+(14,'Test','Test','12312312312','Test','Test','Test',1,16,'2024-09-26 20:40:58','Pending',NULL),
+(15,'Test','Test','123123123','Test','Test','TEset',1,16,'2024-10-29 14:33:46','Pending',NULL),
+(17,'Test','test','12312312312','test','test','123123',1,NULL,'2024-10-17 00:00:00','Pending',1);
 
 /*Table structure for table `cart` */
 
@@ -67,7 +72,6 @@ insert  into `cart`(`id`,`userId`,`productId`,`dateAdded`) values
 (4,16,32,'2024-09-10 19:52:54'),
 (5,16,35,'2024-09-10 20:04:08'),
 (6,16,35,'2024-09-10 20:07:25'),
-(7,NULL,32,'2024-09-10 20:15:56'),
 (8,15,32,'2024-09-10 20:17:59'),
 (9,16,NULL,'2024-09-10 21:17:12'),
 (10,16,NULL,'2024-09-10 21:17:14'),
@@ -96,6 +100,23 @@ insert  into `draft`(`id`,`test`) values
 (34,'asd'),
 (35,'asd'),
 (36,'asd');
+
+/*Table structure for table `payment` */
+
+DROP TABLE IF EXISTS `payment`;
+
+CREATE TABLE `payment` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `payment_type` varchar(255) DEFAULT NULL,
+  KEY `id` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*Data for the table `payment` */
+
+insert  into `payment`(`id`,`payment_type`) values 
+(1,'Cash'),
+(2,'Gcash'),
+(3,'PayPal');
 
 /*Table structure for table `product_type` */
 
@@ -162,12 +183,15 @@ CREATE TABLE `services` (
   `serviceDescription` varchar(254) DEFAULT NULL,
   `serviceDuration` varchar(31) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `services` */
 
 insert  into `services`(`id`,`serviceName`,`serviceDescription`,`serviceDuration`) values 
-(1,'Test','Test description',NULL);
+(1,'Test','Test description','10'),
+(2,'Test2','Test2 Description','3'),
+(3,'Test3','Test3 Description','1'),
+(4,'Lorem','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque auctor sit amet eros ut convallis. Donec tincidunt mauris a justo sodales ultrices. Nulla ac quam fringilasdassssssssssssssssssssssssssssssssssssssssssssssla, rutrum sapien','2');
 
 /*Table structure for table `user_purchase` */
 
