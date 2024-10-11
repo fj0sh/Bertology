@@ -22,33 +22,29 @@ DROP TABLE IF EXISTS `booking`;
 
 CREATE TABLE `booking` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `location` varchar(127) DEFAULT NULL,
-  `fbAccount` varchar(63) DEFAULT NULL,
-  `contact` varchar(11) DEFAULT NULL,
-  `serviceRequest` varchar(64) DEFAULT NULL,
-  `carModel` varchar(64) DEFAULT NULL,
-  `detail` varchar(255) DEFAULT NULL,
+  `firstName` varchar(45) DEFAULT NULL,
+  `lastName` varchar(45) DEFAULT NULL,
+  `email` varchar(128) DEFAULT NULL,
+  `contactNumber` int DEFAULT NULL,
+  `facebookAccount` varchar(128) DEFAULT NULL,
+  `municipality` varchar(45) DEFAULT NULL,
+  `barangay` varchar(45) DEFAULT NULL,
+  `landmark` varchar(255) DEFAULT NULL,
   `serviceId` int DEFAULT NULL,
-  `userId` int DEFAULT NULL,
-  `dateBooked` datetime DEFAULT NULL,
-  `status` enum('Pending','Approved','Cancelled','Declined') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'Pending',
-  `payment_type` int DEFAULT NULL,
+  `carModel` varchar(45) DEFAULT NULL,
+  `additionalDetails` varchar(128) DEFAULT NULL,
+  `proofOfPayment` varchar(255) DEFAULT NULL,
+  `bookedDate` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `service_fk` (`serviceId`),
-  KEY `user_booking_fk` (`userId`),
-  KEY `payment_fk` (`payment_type`),
-  CONSTRAINT `payment_fk` FOREIGN KEY (`payment_type`) REFERENCES `payment` (`id`),
-  CONSTRAINT `service_fk` FOREIGN KEY (`serviceId`) REFERENCES `services` (`id`),
-  CONSTRAINT `user_booking_fk` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `service_fk` FOREIGN KEY (`serviceId`) REFERENCES `services` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `booking` */
 
-insert  into `booking`(`id`,`location`,`fbAccount`,`contact`,`serviceRequest`,`carModel`,`detail`,`serviceId`,`userId`,`dateBooked`,`status`,`payment_type`) values 
-(4,'Elizabeth','testfb','0966889101','Fix it felix','Ferrarariri','test',1,15,'2022-04-22 10:34:23','Pending',NULL),
-(14,'Test','Test','12312312312','Test','Test','Test',1,16,'2024-09-26 20:40:58','Pending',NULL),
-(15,'Test','Test','123123123','Test','Test','TEset',1,16,'2024-10-29 14:33:46','Pending',NULL),
-(17,'Test','test','12312312312','test','test','123123',1,NULL,'2024-10-17 00:00:00','Pending',1);
+insert  into `booking`(`id`,`firstName`,`lastName`,`email`,`contactNumber`,`facebookAccount`,`municipality`,`barangay`,`landmark`,`serviceId`,`carModel`,`additionalDetails`,`proofOfPayment`,`bookedDate`) values 
+(3,'jernol','Abayon','test@gmail.com',1231231231,'Jerlon Abayot','ALCOY','ATABAY','Petron Gas Station',9,'asdasd','123123','https://res.cloudinary.com/dgxlqujte/image/upload/v1728669408/vp5p3pffavodhktzl97k.jpg','2024-10-23T16:00:00.000Z'),
+(4,'jernol','Abayon','dev_test2@gmail.com',1231231231,'Jerlon Abayot','ALCOY','DAAN-LUNGSOD','Petron Gas Station',9,'asdasd','sdasd','https://res.cloudinary.com/dgxlqujte/image/upload/v1728669476/glkjvraa2vmfbpxkca6n.jpg','2024-10-25 00:00:00');
 
 /*Table structure for table `cart` */
 
@@ -61,10 +57,8 @@ CREATE TABLE `cart` (
   `dateAdded` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `user_cart_fk` (`userId`),
-  KEY `product_cart_fk` (`productId`),
-  CONSTRAINT `product_cart_fk` FOREIGN KEY (`productId`) REFERENCES `products` (`id`),
-  CONSTRAINT `user_cart_fk` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `product_cart_fk` (`productId`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `cart` */
 
@@ -73,10 +67,7 @@ insert  into `cart`(`id`,`userId`,`productId`,`dateAdded`) values
 (5,16,35,'2024-09-10 20:04:08'),
 (6,16,35,'2024-09-10 20:07:25'),
 (8,15,32,'2024-09-10 20:17:59'),
-(9,16,NULL,'2024-09-10 21:17:12'),
-(10,16,NULL,'2024-09-10 21:17:14'),
-(11,15,NULL,'2024-09-10 21:17:48'),
-(12,15,NULL,'2024-09-10 21:19:49');
+(13,NULL,35,'2024-10-09 18:06:20');
 
 /*Table structure for table `draft` */
 
@@ -153,25 +144,10 @@ CREATE TABLE `products` (
   `productImage` varchar(255) DEFAULT NULL,
   `isDeleted` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`),
-  KEY `product_category_fk` (`productType`),
-  CONSTRAINT `product_category_fk` FOREIGN KEY (`productType`) REFERENCES `product_type` (`id`)
+  KEY `product_category_fk` (`productType`)
 ) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `products` */
-
-insert  into `products`(`id`,`productName`,`description`,`price`,`stocks`,`productType`,`amountSold`,`productImage`,`isDeleted`) values 
-(32,'LeBonboners','Sunshine',1000000,10,3,0,'https://res.cloudinary.com/dgxlqujte/image/upload/v1722653480/vdudfprko3erhegpcgj0.jpg',0),
-(35,'Alden Recharge X Cat','dasdasdad',123,123,2,0,'https://res.cloudinary.com/dgxlqujte/image/upload/v1722491753/kinbe27yxdcireool56r.jpg',0),
-(40,'Martin','This guy has a dream',25,1,2,0,'https://res.cloudinary.com/dgxlqujte/image/upload/v1722579385/jpfrdk9otbtimzpruyc4.jpg',0),
-(41,'Random Germon','Random German with unique mustache',1000000,1,4,0,'https://res.cloudinary.com/dgxlqujte/image/upload/v1722579657/bzm3jz2xqxpyasu5pnbl.jpg',0),
-(42,'Arvie Ingal Gwapo','Buang',900000,2,3,0,'https://res.cloudinary.com/dgxlqujte/image/upload/v1722655001/j4jqtoiffpbc7xoir41j.png',0),
-(43,'wofo','qweqwe',123,123,2,0,'',0),
-(44,'tset','test',123,123,1,0,'https://res.cloudinary.com/dgxlqujte/image/upload/v1722826222/ipgli9n7fkght3zgimi1.gif',0),
-(45,'qwe','zxczxczxczxc',123,123,3,0,'',0),
-(46,'tst','asdfcvbcvbg',34534,1,2,0,'',0),
-(47,'adas','qweqweqwe',123,345,1,0,'/images/empty-image.png',0),
-(48,'zxczxc','asdasdasdazxczxcz zcasdasdasd',123,45,5,0,'',0),
-(49,'jhu marie','jhu marie aringay',10000000,20,5,0,'https://res.cloudinary.com/dgxlqujte/image/upload/v1724834070/jfawl5t4od1qdmf3z0yc.jpg',0);
 
 /*Table structure for table `services` */
 
@@ -180,18 +156,15 @@ DROP TABLE IF EXISTS `services`;
 CREATE TABLE `services` (
   `id` int NOT NULL AUTO_INCREMENT,
   `serviceName` varchar(63) DEFAULT NULL,
-  `serviceDescription` varchar(254) DEFAULT NULL,
   `serviceDuration` varchar(31) DEFAULT NULL,
+  `servicePrice` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `services` */
 
-insert  into `services`(`id`,`serviceName`,`serviceDescription`,`serviceDuration`) values 
-(1,'Test','Test description','10'),
-(2,'Test2','Test2 Description','3'),
-(3,'Test3','Test3 Description','1'),
-(4,'Lorem','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque auctor sit amet eros ut convallis. Donec tincidunt mauris a justo sodales ultrices. Nulla ac quam fringilasdassssssssssssssssssssssssssssssssssssssssssssssla, rutrum sapien','2');
+insert  into `services`(`id`,`serviceName`,`serviceDuration`,`servicePrice`) values 
+(9,'LED','Installation',400);
 
 /*Table structure for table `user_purchase` */
 
