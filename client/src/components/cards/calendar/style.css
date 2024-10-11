@@ -1,0 +1,18 @@
+.custom-calendar .p-datepicker-calendar .p-disabled {
+  background-color: #cccccc !important; /* Gray background */
+  color: black !important; /* Gray text color */
+  border-radius: 10px;
+}
+
+.custom-calendar .p-datepicker-calendar .p-datepicker-calendar {
+  background-color: orangeRed; /* Darker gray on hover */
+}
+
+.custom-calendar .p-datepicker-calendar .p-highlight {
+  background-color: orangered !important; /* Custom background color for the selected date */
+  color: white !important; /* Custom text color for the selected date */
+}
+
+.custom-calendar .p-datepicker-calendar .p-datepicker-today {
+  color: orange !important; /* Custom text color for the selected date */
+}

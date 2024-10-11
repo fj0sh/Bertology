@@ -1,30 +1,42 @@
+import { BookingResponse } from "@/constants/Booking";
 import instance from "@/lib/util/axios-instance";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const useBooking = () => {
+  const [data, setData] = useState();
+  const [allBookings, setAllBookings] = useState<BookingResponse[] | undefined>(
+    undefined
+  );
+
   const bookService = async (
-    userId: number,
+    firstName: string,
+    lastName: string,
+    email: string,
+    contactNumber: number,
+    facebookAccount: string,
+    municipality: string,
+    barangay: string,
+    landmark: string,
     serviceId: number,
-    location: string,
-    fbAccount: string,
-    contact: number,
-    serviceRequest: string,
     carModel: string,
-    detail: string,
-    dateBooked: string,
-    paymentType: number
+    additionalDetails: string,
+    proofOfPayment: string,
+    bookedDate: string
   ) => {
     const body = {
-      userId: userId,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      contactNumber: contactNumber,
+      facebookAccount: facebookAccount,
+      municipality: municipality,
+      barangay: barangay,
+      landmark: landmark,
       serviceId: serviceId,
-      location: location,
-      fbAccount: fbAccount,
-      contact: contact,
-      serviceRequest: serviceRequest,
       carModel: carModel,
-      detail: detail,
-      dateBooked: dateBooked,
-      paymentType: paymentType,
+      additionalDetails: additionalDetails,
+      proofOfPayment: proofOfPayment,
+      bookedDate: bookedDate,
     };
 
     try {
@@ -44,14 +56,25 @@ const useBooking = () => {
       const res = await instance.get(
         `${process.env.NEXT_PUBLIC_URL}/services/${id}`
       );
-      console.log(res.data);
+      setData(res.data);
       return res.data;
     } catch (error) {
       console.log(error);
     }
   };
 
-  return { bookService, getServiceById };
+  const getAllBookings = async () => {
+    try {
+      const res = await instance.get(
+        `${process.env.NEXT_PUBLIC_URL}/booking/bookings`
+      );
+      setAllBookings(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return { bookService, getServiceById, getAllBookings, data, allBookings };
 };
 
 export default useBooking;

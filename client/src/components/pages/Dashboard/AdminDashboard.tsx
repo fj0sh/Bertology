@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import Calendar from "react-calendar";
 import DashboardCard from "@/components/cards/DashboardCard";
 import { useUser } from "@/providers/UserProvider";
+import PrimeCalendar from "@/components/cards/calendar/Calendar";
 
 interface tileProps {
   date: Date;
@@ -14,14 +14,8 @@ const disabledDates = ["07-27-2024", "08-01-2024", "07-30-2024"].map(
 );
 
 const AdminDashboard = () => {
-  const disableDates = ({ date }: tileProps): boolean => {
-    return disabledDates.some(
-      (disabledDate) => date.toDateString() === disabledDate.toDateString()
-    );
-  };
-
   return (
-    <div className="grid grid-cols-12 grid-rows-4 w-full h-full gap-10 grid-flow-row">
+    <div className="grid grid-cols-12 grid-rows-4 w-full h-[85.4vh] gap-10 grid-flow-row ">
       <DashboardCard title="Booking Request" value={0} />
       <DashboardCard title="Product Request" value={0} />
       <DashboardCard title="Pending Request" value={0} />
@@ -29,7 +23,7 @@ const AdminDashboard = () => {
 
       <div className="relative row-start-2 row-span-3 col-span-4 border-none border-orangePrimary flex flex-col gap-3">
         <div className="shadow-lg">
-          <Calendar tileDisabled={disableDates} className={"     "} />
+          <PrimeCalendar />
         </div>
 
         <div className="relative flex border border-orangePrimary h-full rounded-lg">

@@ -15,3 +15,11 @@ exports.getUserCart = (userId, callback) => {
     callback
   );
 };
+
+exports.deleteCartProduct = (userId, productId, callback) => {
+  conn.query(
+    "DELETE FROM cart WHERE userId =? AND productId =?",
+    [userId, productId],
+    callback
+  );
+};

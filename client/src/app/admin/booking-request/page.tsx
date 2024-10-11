@@ -1,14 +1,24 @@
 "use client";
 import BookingRequestCard from "@/components/cards/BookingRequestCard";
 import BookingRequestModal from "@/components/Modals/BookingRequestModal";
-import React, { useState } from "react";
+import { BookingResponse } from "@/constants/Booking";
+import useBooking from "@/hooks/requests/useBooking";
+import React, { useEffect, useState } from "react";
 
 const BookingRequest = () => {
   const [isRequestShow, setIsRequestShow] = useState(false);
 
+  const { getAllBookings, allBookings } = useBooking();
+
+  useEffect(() => {
+    getAllBookings();
+  }, []);
+
+  console.log(allBookings);
+
   return (
     <div className="flex flex-col gap-4">
-      <BookingRequestModal
+      {/* <BookingRequestModal
         date="test"
         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur scelerisque finibus felis facilisis ultrices. Vivamus aliquam faucibus ipsum, sed fringilla neque condimentum ac. Pellentesque facilisis sit amet velit vitae volutpat. Praesent eget dictum felis. Sed eget semper urna, id maximus ligula. Vivamus luctus malesuada mattis. Proin sodales lorem felis, et pharetra ex porttitor ac. Aenean hendrerit condimentum elit, non fermentum sapien.
 
@@ -24,13 +34,18 @@ In hac habitasse platea dictumst. Fusce tincidunt nisi eu pretium ultrices. Aene
         onClose={() => setIsRequestShow(false)}
       />
 
-      <BookingRequestCard
-        description="Lorem ipsum dolor sit am equivalents of Lore mauris sed diam non pro id elit. Lorem ipsum dolor sit am equivalents of Lore mauris sed diam non pro id el it. Lorem ipsum dolor sit am equivalents of Lore maur is sed diam non pro id elit. Lorem ipsum dolor sit am equivalents of Lore mauris sed diam non pro id elit in id tempor vit  eu dui. Lorem ipsum dolor sit am equivalents of Lore mauris sed diam non pro id el  it. Lorem ipsum dolor sit am equivalents of Lore  mauris sed diam non pro id elit in id tempor vit e"
-        date="now"
-        vehicleType="Honda"
-        location="Mabolo"
-        bookingId={0}
-      />
+      */}
+      {allBookings &&
+        allBookings?.map((bookings: BookingResponse) => (
+          <BookingRequestCard
+            key={bookings.data?.id}
+            bookingId={bookings.data?.id}
+            date={bookings.data?.dateBooked}
+            description={bookings.data?.serviceRequest}
+            location={bookings.data?.location}
+            vehicleType={bookings.data?.carModel}
+          />
+        ))}
     </div>
   );
 };

@@ -1,15 +1,15 @@
 "use client";
 import React from "react";
 import Button from "../button/OrangeButton";
-import BookingRequestModal from "../Modals/BookingRequestModal";
 import { useRouter } from "next/navigation";
+import { formatDateNormal } from "@/lib/function/dateFormatter";
 
 interface Props {
-  description: string;
-  location: string;
-  date: string;
-  vehicleType: string;
-  bookingId: number;
+  description?: string;
+  location?: string;
+  date?: string;
+  vehicleType?: string;
+  bookingId?: number;
 }
 
 const BookingRequestCard = (props: Props) => {
@@ -28,7 +28,7 @@ const BookingRequestCard = (props: Props) => {
         </div>
         <div className=" w-[30%] border-white flex flex-col">
           <div className="flex flex-col gap-4">
-            <p>Date: {date}</p>
+            <p>Date: {date?.toString().split("T")[0]}</p>
             <p>Location: {location}</p>
             <div className="flex gap-4">
               <Button

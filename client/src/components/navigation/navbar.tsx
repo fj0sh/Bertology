@@ -6,6 +6,8 @@ import Link from "next/link";
 import { IoMdCart } from "react-icons/io";
 import { FaRegUserCircle } from "react-icons/fa";
 import SearchBar from "../input/SearchBar";
+import Logo from "../Logo";
+import Image from "next/image";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -23,7 +25,7 @@ const Navbar = () => {
       <div className="flex-1 flex items-center justify-between">
         <div className="flex-shrink-0">
           <a href="/" className="text-white text-[30px] font-bold">
-            Logo
+            <p>Logo</p>
           </a>
         </div>
 

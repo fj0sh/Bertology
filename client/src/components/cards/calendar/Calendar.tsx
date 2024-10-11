@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Calendar } from "primereact/calendar";
-import axios from "axios";
 import instance from "@/lib/util/axios-instance";
+import "./style.css";
 
 interface Props {
   disable?: boolean;
@@ -43,17 +43,10 @@ const PrimeCalendar = (props: Props) => {
     }
   };
 
+  const today = new Date(); // Get today's date
+
   return (
     <>
-      {/* Inline style for highlighting selected date */}
-      <style jsx>{`
-        .custom-calendar .p-highlight {
-          background-color: #fe4500 !important; /* Tomato color for selected date */
-          color: white !important; /* Ensure text remains readable */
-          border-radius: 50%; /* Make the selected date circular */
-        }
-      `}</style>
-
       <Calendar
         value={currentSelectedDate} // Control the selected date value
         className="custom-calendar w-full h-full"
@@ -61,6 +54,7 @@ const PrimeCalendar = (props: Props) => {
         disabledDates={bookedDates}
         disabled={disable}
         onChange={handleDateChange} // Custom date change handler
+        minDate={today} // Disable past dates
         pt={{
           yearTitle: { className: "px-4" },
           header: { className: "bg-orangeRed text-white" },

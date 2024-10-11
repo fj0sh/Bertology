@@ -1,16 +1,17 @@
 import { z } from "zod";
 
 export const BookingSchema = z.object({
-  location: z.string().min(1, "Location is Required"),
-  date: z.string().optional(),
-  account: z.string().optional(),
+  firstName: z.string().min(1, "First Name is Required"),
+  lastName: z.string().min(1, "Last Name is Required"),
+  email: z.string().min(1, "Email is Required"),
   number: z
     .string()
     .min(10, "Invalid Phone Number")
     .max(11, "Invalid Phone Number"),
-  service: z.string().min(1, "Needed Service is Required"),
+  account: z.string().optional(),
   model: z.string().min(1, "Car Model is Required"),
   details: z.string().min(1, "Details is Required"),
+  landmark: z.string().min(1, "Landmark is Required"),
 });
 
 export type BookingType = z.infer<typeof BookingSchema>;

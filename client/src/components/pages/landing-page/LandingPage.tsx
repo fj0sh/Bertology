@@ -10,8 +10,9 @@ import Navbar from "@/components/navigation/navbar";
 import { ProductType } from "@/constants/Products";
 import useProducts from "@/hooks/requests/useProducts";
 import useServices from "@/hooks/requests/useServices";
+import Image from "next/image";
 import Link from "next/link";
-import { Calendar } from "primereact/calendar";
+import { TfiCheckBox } from "react-icons/tfi";
 
 import React, { useState } from "react";
 
@@ -62,17 +63,36 @@ const LandingPage = () => {
           onClose={() => setIsForgotPassOpen(false)}
         />
         {/* ============================================HERO SECTION =======================================================================*/}
-        <div className=" flex w-full bg-opacity-85">
-          <div className="w-1/2 h-full"></div>
-          <div className="w-1/2 h-full flex flex-col items-center justify-center gap-10 p-[10rem]">
-            <div className="text-[60px] font-bold text-white text-center w-[40rem]">
+        <div className="flex h-full w-full bg-opacity-85">
+          <div className="w-full h-full flex justify-center items-center p-10">
+            <Image
+              src={"/images/landing-image.png"}
+              height={1000}
+              width={2000}
+              quality={100}
+              className="w-full h-full"
+              alt="landing-image.png"
+            ></Image>
+          </div>
+          <div className="w-full h-full flex flex-col items-center justify-center gap-10 p-[5rem]">
+            <div className="text-[65px] font-bold text-white text-center w-[40rem]">
               Innovating for <br /> Effortless
               <span className="text-orangePrimary"> Planning</span>
               <br /> and Resource <br />
               <span className="text-orangePrimary"> Optimization</span>
             </div>
-            <div className="flex gap-[15rem]">
-              <Button
+            <div className="flex flex-col gap-10 items-center justify-center">
+              <p className="text-white w-[35rem] text-center h-full text-[25px]">
+                Book now to experience our convenient and hustle free services.
+              </p>
+              <Link
+                href={"/client/offers/services"}
+                className="text-background bg-orangeRed self-center py-2 px-6 text-[30px] rounded-sm font-semibold"
+              >
+                Book Now
+              </Link>
+
+              {/* <Button
                 title="Login"
                 fontSize="26px"
                 width="12rem"
@@ -83,21 +103,87 @@ const LandingPage = () => {
                 fontSize="26px"
                 width="12rem"
                 onClick={() => setIsRegisterModalOpen(true)}
-              />
+              /> */}
             </div>
           </div>
         </div>
         {/* ============================================BOOK NOW SECTION =======================================================================*/}
-        <div className="relative p-[3rem] flex flex-col items-center gap-4 text-white">
-          <p className="font-bold text-[30px]">
-            We give the right service and good quality products
-          </p>
-          <p className="text-[20px]">TEST DESCRIPTION</p>
+        <div className="relative w-full h-full p-[3rem] flex gap-10 text-white px-[10rem]">
+          <div className="w-[80%] h-full">
+            <div className="flex flex-col justify-center items-center gap-10 h-full">
+              <div className="w-[45rem]">
+                <p className="text-[45px] text-center font-semibold">
+                  We give the right service and good quality products!
+                </p>
+              </div>
+              <div className="bg-zinc-900 flex items-center w-full h-full justify-center gap-10 text-[30px] px-20 py-8 rounded-lg">
+                <ul className="*:flex *:mb-7 *:items-center ">
+                  <li>
+                    <TfiCheckBox className="mr-4 text-orangePrimary " />
+                    Free Installation
+                  </li>
+                  <li>
+                    <TfiCheckBox className="mr-4 text-orangePrimary" />
+                    Home Service
+                  </li>
+                  <li>
+                    <TfiCheckBox className="mr-4 text-orangePrimary" />
+                    Expert Technician
+                  </li>
+                </ul>
+
+                <ul className="*:flex *:mb-7 *:items-center">
+                  <li>
+                    <TfiCheckBox className="mr-4 text-orangePrimary" />
+                    Safe and Guaranteed
+                  </li>
+                  <li>
+                    <TfiCheckBox className="mr-4 text-orangePrimary" />
+                    Several Years of Experience
+                  </li>
+                  <li>
+                    <TfiCheckBox className="mr-4 text-orangePrimary" />
+                    Fast Transactions
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div></div>
+          </div>
+          <div className="relative w-[30%] h-[30rem] border-none rounded-lg">
+            {/* Make sure to use relative positioning */}
+            <Image
+              src="/images/wcu.jpg" // Correct path to the image
+              layout="fill" // Make the image fill the parent container
+              objectFit="cover" // Cover the container while maintaining aspect ratio
+              quality={80} // Set image quality
+              alt="image.jpg"
+            />
+            <div className="bg-black bg-opacity-50 w-full h-full absolute top-0 left-0 flex items-center justify-center">
+              <p className="text-[80px] text-orangeRed font-semibold text-center">
+                Why Choose Us?
+              </p>
+            </div>
+          </div>
         </div>
         {/* ============================================IMAGE CAROUSEL SECTION =======================================================================*/}
-        <div className="bg-opacity-70 flex flex-col items-center gap-12 px-[10rem] my-[5rem]">
-          <div className="flex flex-col items-center text-white text-[30px] h-[50%] w-[80%] gap-8">
-            <p className="self-start font-bold">Installation</p>
+        <div className="bg-opacity-70 flex flex-col gap-12 my-[5rem]">
+          <div className="flex items-center text-white text-[30px] h-full w-full gap-8 pr-8">
+            <div className="relative w-[40%] h-[30rem] ">
+              <Image
+                className="border-none rounded-tr-lg rounded-br-lg"
+                src="/images/wcu.jpg" // Correct path to the image
+                layout="fill" // Make the image fill the parent container
+                objectFit="cover" // Cover the container while maintaining aspect ratio
+                quality={80} // Set image quality
+                alt="image.jpg"
+              />
+              <div className="bg-black bg-opacity-50 w-full h-full absolute top-0 left-0 flex items-center justify-center">
+                <p className="text-[70px] text-white font-semibold text-center">
+                  Installation
+                </p>
+              </div>
+            </div>
             <div className="h-full w-full gap-3 flex flex-col justify-center items-center">
               <ImageCarousel images={servicesImage} />
               <Link
@@ -108,7 +194,7 @@ const LandingPage = () => {
               </Link>
             </div>
           </div>
-          <div className="flex flex-col items-center text-white text-[30px] h-[50%] w-[80%] gap-8  my-[5rem]">
+          {/* <div className="flex flex-col items-center text-white text-[30px] h-[50%] w-[80%] gap-8  my-[5rem]">
             <p className="self-start font-bold">Products</p>
             <div className="h-full w-full gap-3 flex flex-col justify-center items-center p-10">
               <ImageCarousel images={ProductImages} />
@@ -119,7 +205,7 @@ const LandingPage = () => {
             >
               See More
             </Link>
-          </div>
+          </div> */}
         </div>
         s
         {/* ============================================BOOKING SECTION =======================================================================*/}
@@ -127,26 +213,25 @@ const LandingPage = () => {
           <div className="w-full flex justify-center">
             <PrimeCalendar />
           </div>
-          <div className="text-white flex justify-center items-center w-full">
-            YEahhhhhh
+          <div className="text-white flex flex-col justify-center items-center w-full gap-10 text-center">
+            <p className="text-[30px] font-semibold">
+              Check Our Calendar to Plan your future Installation
+            </p>
+            <Link
+              href={"/client/offers/services"}
+              className="text-background bg-orangeRed self-center py-2 px-6 text-[25px] rounded-sm font-semibold"
+            >
+              Book A Service
+            </Link>
           </div>
-        </div>
-        <div className="flex flex-col items-center justify-center gap-3 text-white p-10">
-          <p className="text-[30px]">Yeeeeeeeeeeeeaaaaaaaaaaaaaahhhhh</p>
-          <Link
-            href={"/client/offers/services"}
-            className="text-background bg-orangeRed p-3 rounded-lg text-[20px]"
-          >
-            Book Now
-          </Link>
         </div>
       </div>
 
-      <div className="w-full text-white flex flex-col gap-10 p-3 justify-center items-center">
+      <div className="w-full text-white flex flex-col gap-10 py-[10rem] px-[18rem] justify-center items-center">
         <p className="uppercase text-[30px] font-semibold">
           our <span className="text-orangeRed"> trusted </span>brands
         </p>
-        <div className="flex justify-center gap-5 py-3 border-orangePrimary border-[2px] w-full rounded-sm">
+        <div className="flex justify-center gap-8 py-6 border-orangePrimary border-[2px] w-full rounded-md">
           <BrandBalls />
           <BrandBalls />
           <BrandBalls />

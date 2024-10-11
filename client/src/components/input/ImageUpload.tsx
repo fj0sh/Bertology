@@ -36,7 +36,7 @@ const ImageUpload = (props: ImageUploadProps) => {
             onClick={() => open?.()}
             className="relative cursor-pointer hover:opacity-70 transition p-20 flex flex-col justify-center items-center gap-4 text-white h-full w-full"
           >
-            <BiImageAdd size={70} />
+            <BiImageAdd />
             <div> Upload Image</div>
             {value && (
               <div className="absolute inset-0 w-full h-full">

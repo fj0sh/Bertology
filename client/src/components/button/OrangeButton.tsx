@@ -9,14 +9,17 @@ interface Props {
   hover?: boolean;
   type?: "submit" | "button";
   fontSize?: string;
+  disabled?: boolean;
 }
 
 const Button = (props: Props) => {
-  const { title, height, width, hover, fontSize } = props;
+  const { title, height, width, hover, fontSize, disabled } = props;
   return (
     <button
-      className={`border-none text-white p-2 rounded-lg text-[20px] w-[150px] flex items-center justify-center ${hover ? "bg-grey hover:bg-orangeRed" : " bg-orangeRed"
-        }`}
+      disabled={disabled}
+      className={`border-none text-white p-2 rounded-lg text-[20px] w-[150px] flex items-center justify-center ${
+        hover ? "bg-grey hover:bg-orangeRed" : " bg-orangeRed"
+      } ${disabled ? "bg-[#252531]" : " bg-orangeRed"}`}
       style={{ height, width, fontSize }}
       {...props}
     >

@@ -2,32 +2,53 @@ const conn = require("../config/db-config");
 
 exports.bookService = (bookingInformation, callback) => {
   const {
-    userId,
+    firstName,
+    lastName,
+    email,
+    contactNumber,
+    facebookAccount,
+    municipality,
+    barangay,
+    landmark,
     serviceId,
-    location,
-    fbAccount,
-    contact,
-    serviceRequest,
     carModel,
-    detail,
-    dateBooked,
-    paymentType,
+    additionalDetails,
+    proofOfPayment,
+    bookedDate,
   } = bookingInformation;
 
   conn.query(
-    "insert into booking(userId, serviceId, location, fbAccount, contact, serviceRequest, carModel, detail, dateBooked, payment_type) values (?,?,?,?,?,?,?,?,?,?) ",
+    "INSERT INTO booking (firstName, lastName, email, contactNumber, facebookAccount, municipality, barangay, landmark, serviceId, carModel, additionalDetails, proofOfPayment, bookedDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)",
     [
-      userId,
+      firstName,
+      lastName,
+      email,
+      contactNumber,
+      facebookAccount,
+      municipality,
+      barangay,
+      landmark,
       serviceId,
-      location,
-      fbAccount,
-      contact,
-      serviceRequest,
       carModel,
-      detail,
-      dateBooked,
-      paymentType,
+      additionalDetails,
+      proofOfPayment,
+      bookedDate,
     ],
+    callback
+  );
+};
+
+exports.getBookedServices = (callback) => {
+  conn.query(
+    "SELECT b.id, b.location, b.contact, b.serviceRequest, b.carModel, b.detail, b.serviceId, b.userId, b.dateBooked, b.status, b.payment_type, b.payment_proof, b.email, u.firstname, u.lastname, u.username, s.serviceName, s.serviceDescription, s.serviceDuration FROM booking AS b INNER JOIN users AS u ON u.id = b.userId INNER JOIN services AS s ON s.id = b.serviceId",
+    callback
+  );
+};
+
+exports.getBookedServicesById = (id, callback) => {
+  conn.query(
+    "SELECT b.id, b.location, b.contact, b.serviceRequest, b.carModel, b.detail, b.serviceId, b.userId, b.dateBooked, b.status, b.payment_type, b.payment_proof, b.email, u.firstname, u.lastname, u.username, s.serviceName, s.serviceDescription, s.serviceDuration FROM booking AS b INNER JOIN users AS u ON u.id = b.userId INNER JOIN services AS s ON s.id = b.serviceId WHERE b.id = ?",
+    id,
     callback
   );
 };
