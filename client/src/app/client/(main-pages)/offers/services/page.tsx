@@ -21,6 +21,9 @@ import useServices from "@/hooks/requests/useServices";
 import { ServiceType } from "@/constants/Service";
 import Locations from "@/constants/Cebuprovinces";
 import Image from "next/image";
+import axios from "axios";
+
+import carModels from "@/constants/CarModel";
 
 const Booking = ({ params }: { params: { id: string } }) => {
   const [selectedDate, setSelectedDate] = useState("");
@@ -33,6 +36,9 @@ const Booking = ({ params }: { params: { id: string } }) => {
   const [barangay, setBarangay] = useState([]);
   const [imageLarger1, setIsImageLarger1] = useState(false);
   const [imageLarger2, setIsImageLarger2] = useState(false);
+  const [serviceMode, setServiceMode] = useState("homeService");
+  const [models, setModels] = useState<string[]>([]);
+  const [selectedModel, setSelectedModel] = useState("");
 
   const {
     register,
@@ -44,11 +50,21 @@ const Booking = ({ params }: { params: { id: string } }) => {
   const { data, bookService, getServiceById } = useBooking();
   const { services } = useServices();
 
-  console.log(Locations.CEBU.municipality_list.ALCANTARA.barangay_list);
-
   useEffect(() => {
-    console.log(serviceType);
-  }, [serviceType]);
+    const allModels: string[] = [];
+    carModels.map((model) => {
+      let brands = model.brand;
+      let models = model.models;
+
+      models.map((res: string) => allModels.push(`${brands} ${res}`));
+    });
+
+    setModels(allModels);
+  }, []);
+
+  const filteredModels = models.filter((model) =>
+    model.toLowerCase().includes(selectedModel.toLowerCase())
+  );
 
   const municipalityList = Object.keys(Locations.CEBU.municipality_list).map(
     (test: any) => {
@@ -66,9 +82,6 @@ const Booking = ({ params }: { params: { id: string } }) => {
   }, [municipality]);
 
   // Log the barangay list to verify
-  useEffect(() => {
-    console.log(barangay);
-  }, [barangay]);
 
   const noDateSelected = () => {
     Swal.fire({
@@ -89,6 +102,14 @@ const Booking = ({ params }: { params: { id: string } }) => {
   };
 
   const onSubmit = async (data: BookingType) => {
+    try {
+      const res = await axios.post("/api/mailer", { recepient: data.email });
+
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+
     if (!selectedDate) {
       noDateSelected();
     } else {
@@ -178,6 +199,30 @@ const Booking = ({ params }: { params: { id: string } }) => {
             <p className="text-[30px] font-semibold text-orangeRed">
               Service Detail
             </p>
+
+            <div className="flex gap-4">
+              <div className="flex gap-2">
+                <input
+                  type="radio"
+                  id="onsite"
+                  name="serviceType"
+                  value="onsite"
+                  onChange={() => setServiceMode("onSite")}
+                />
+                <label htmlFor="onsite">On-Site</label>
+              </div>
+              <div className="flex gap-2">
+                <input
+                  type="radio"
+                  id="homeService"
+                  name="serviceType"
+                  value="homeService"
+                  onChange={() => setServiceMode("homeService")}
+                />
+                <label htmlFor="homeService">Home Service</label>
+              </div>
+            </div>
+
             <div className="flex w-full gap-8">
               <div className="w-full">
                 <InputOrange label="First Name:" {...register("firstName")} />
@@ -217,7 +262,7 @@ const Booking = ({ params }: { params: { id: string } }) => {
               </div>
             </div>
 
-            <div>
+            {/* <div>
               <InputOrange
                 label="Facebook Account(Optional):"
                 {...register("account")}
@@ -227,41 +272,55 @@ const Booking = ({ params }: { params: { id: string } }) => {
                   {`${errors.account?.message}`}
                 </p>
               )}
-            </div>
+            </div> */}
 
-            <div className="flex gap-8 w-full justify-around">
-              <div className="p-1 flex flex-col gap-2 w-full">
-                <p className="text-[18px] self-start">Municipality:</p>
-                <Dropdown
-                  options={municipalityList}
-                  title="Municipality"
-                  onSelect={(selected) => setMunicipality(selected)}
-                  getOptionLabel={(types) => types}
-                  getOptionKey={(types) => types}
-                />
-              </div>
-              <div className="p-1 flex flex-col gap-2 w-full">
-                <p className="text-[18px] self-start">Barangay:</p>
-                <Dropdown
-                  disabled={municipality ? false : true}
-                  options={barangay}
-                  title="Barangay"
-                  onSelect={(selected) => setBarangay(selected)}
-                  getOptionLabel={(types) => types}
-                  getOptionKey={(types) => types}
-                />
-              </div>
-            </div>
+            <div
+              className={`transition-all duration-1000 ease-in-out ${
+                serviceMode !== "homeService"
+                  ? "max-h-0 opacity-0 overflow-hidden"
+                  : "max-h-[500px] opacity-100"
+              }`}
+            >
+              {serviceMode === "homeService" ? (
+                <>
+                  <div className="flex gap-8 w-full justify-around">
+                    <div className="p-1 flex flex-col gap-2 w-full">
+                      <p className="text-[18px] self-start">Municipality:</p>
+                      <Dropdown
+                        options={municipalityList}
+                        title="Municipality"
+                        onSelect={(selected) => setMunicipality(selected)}
+                        getOptionLabel={(types) => types}
+                        getOptionKey={(types) => types}
+                      />
+                    </div>
+                    <div className="p-1 flex flex-col gap-2 w-full">
+                      <p className="text-[18px] self-start">Barangay:</p>
+                      <Dropdown
+                        disabled={!municipality}
+                        options={barangay}
+                        title="Barangay"
+                        onSelect={(selected) => setBarangay(selected)}
+                        getOptionLabel={(types) => types}
+                        getOptionKey={(types) => types}
+                      />
+                    </div>
+                  </div>
 
-            <div>
-              <InputOrange
-                label="Nearest Landmark or Pin Location:"
-                {...register("landmark")}
-              />
-              {errors.model && (
-                <p className="text-red-500 text-[13px]">
-                  {`${errors.model.message}`}
-                </p>
+                  <div className="mt-4">
+                    <InputOrange
+                      label="Nearest Landmark or Pin Location:"
+                      {...register("landmark")}
+                    />
+                    {errors.model && (
+                      <p className="text-red-500 text-[13px]">
+                        {errors.model.message}
+                      </p>
+                    )}
+                  </div>
+                </>
+              ) : (
+                <div></div>
               )}
             </div>
 
@@ -291,12 +350,40 @@ const Booking = ({ params }: { params: { id: string } }) => {
             </div>
 
             <div>
-              <InputOrange label="Car Model:" {...register("model")} />
+              {/* <InputOrange label="Car Model:" {...register("model")} />
               {errors.model && (
                 <p className="text-red-500 text-[13px]">
                   {`${errors.model.message}`}
                 </p>
-              )}
+              )} */}
+
+              {/* {services && (
+                <Dropdown<any>
+                  options={models}
+                  title="Services"
+                  onSelect={(selected) => setSelectedModel(selected)}
+                  getOptionLabel={(types) => types}
+                  getOptionKey={(types) => types}
+                />
+              )} */}
+
+              <div className="text-black h-full text-center">
+                <input
+                  type="text"
+                  value={selectedModel}
+                  className="bg-white h-full focus:outline-none p-[8px] text-[16px]"
+                  onChange={(e) => setSelectedModel(e.target.value)}
+                />
+              </div>
+              <div
+                className={`text-black absolute bg-white top-14 p-3 w-[15rem] truncate shadow-md z-10 rounded-sm border-none text-justify flex flex-col ${
+                  selectedModel === "" ? "hidden" : ""
+                }`}
+              >
+                {filteredModels.map((result, index) => (
+                  <p key={index}>{result}</p>
+                ))}
+              </div>
             </div>
 
             <div>
