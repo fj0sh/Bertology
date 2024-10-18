@@ -21,6 +21,8 @@ import useServices from "@/hooks/requests/useServices";
 import { ServiceType } from "@/constants/Service";
 import Locations from "@/constants/Cebuprovinces";
 import Image from "next/image";
+import useSendMail from "@/hooks/requests/useSendMail";
+import carModels from "@/constants/CarModel";
 
 const Booking = ({ params }: { params: { id: string } }) => {
   const [selectedDate, setSelectedDate] = useState("");
@@ -32,6 +34,7 @@ const Booking = ({ params }: { params: { id: string } }) => {
   const [barangay, setBarangay] = useState([]);
   const [imageLarger1, setIsImageLarger1] = useState(false);
   const [imageLarger2, setIsImageLarger2] = useState(false);
+  const [concatModel, setConcatModel] = useState();
 
   const {
     register,
@@ -43,8 +46,16 @@ const Booking = ({ params }: { params: { id: string } }) => {
   const { user } = useUser();
   const { bookService, getServiceById } = useBooking();
   const { services } = useServices();
+  const { sendMail } = useSendMail();
 
-  console.log(Locations.CEBU.municipality_list.ALCANTARA.barangay_list);
+  carModels.map((models) => {
+    const carModelResult = models;
+
+    console.log(carModelResult);
+
+    let model;
+    let brand;
+  });
 
   useEffect(() => {
     console.log(serviceType);
@@ -122,6 +133,7 @@ const Booking = ({ params }: { params: { id: string } }) => {
         paymentProof,
         formatDateForSQL(selectedDate)
       );
+      sendMail("francisjoshuacutamora@gmail.com");
       successfulBooking();
       reset();
     }
