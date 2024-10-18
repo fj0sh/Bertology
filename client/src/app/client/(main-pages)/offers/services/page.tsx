@@ -21,8 +21,6 @@ import useServices from "@/hooks/requests/useServices";
 import { ServiceType } from "@/constants/Service";
 import Locations from "@/constants/Cebuprovinces";
 import Image from "next/image";
-import useSendMail from "@/hooks/requests/useSendMail";
-import carModels from "@/constants/CarModel";
 
 const Booking = ({ params }: { params: { id: string } }) => {
   const [selectedDate, setSelectedDate] = useState("");
@@ -30,11 +28,11 @@ const Booking = ({ params }: { params: { id: string } }) => {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [paymentProof, setPaymentProof] = useState("");
   const [serviceType, setServiceType] = useState(0);
+  const [downPayment, setDownPayment] = useState<any | undefined>(undefined);
   const [municipality, setMunicipality] = useState();
   const [barangay, setBarangay] = useState([]);
   const [imageLarger1, setIsImageLarger1] = useState(false);
   const [imageLarger2, setIsImageLarger2] = useState(false);
-  const [concatModel, setConcatModel] = useState();
 
   const {
     register,
@@ -43,19 +41,10 @@ const Booking = ({ params }: { params: { id: string } }) => {
     formState: { errors },
   } = useForm<BookingType>({ resolver: zodResolver(BookingSchema) });
 
-  const { user } = useUser();
-  const { bookService, getServiceById } = useBooking();
+  const { data, bookService, getServiceById } = useBooking();
   const { services } = useServices();
-  const { sendMail } = useSendMail();
 
-  carModels.map((models) => {
-    const carModelResult = models;
-
-    console.log(carModelResult);
-
-    let model;
-    let brand;
-  });
+  console.log(Locations.CEBU.municipality_list.ALCANTARA.barangay_list);
 
   useEffect(() => {
     console.log(serviceType);
@@ -133,7 +122,6 @@ const Booking = ({ params }: { params: { id: string } }) => {
         paymentProof,
         formatDateForSQL(selectedDate)
       );
-      sendMail("francisjoshuacutamora@gmail.com");
       successfulBooking();
       reset();
     }
@@ -151,8 +139,17 @@ const Booking = ({ params }: { params: { id: string } }) => {
   };
 
   useEffect(() => {
-    getServiceById(parseInt(params.id));
-  }, [params.id]);
+    getServiceById(serviceType);
+  }, [serviceType]);
+
+  useEffect(() => {
+    if (data && data.length > 0) {
+      const deductedPrice = data[0].servicePrice * 0.3;
+      setDownPayment(deductedPrice);
+    } else {
+      console.log("Data is empty or undefined");
+    }
+  }, [data]);
 
   return (
     <>
@@ -225,7 +222,7 @@ const Booking = ({ params }: { params: { id: string } }) => {
                 label="Facebook Account(Optional):"
                 {...register("account")}
               />
-              {errors.email && (
+              {errors.account && (
                 <p className="text-red-500 text-[13px]">
                   {`${errors.account?.message}`}
                 </p>
@@ -268,17 +265,29 @@ const Booking = ({ params }: { params: { id: string } }) => {
               )}
             </div>
 
-            <div className="">
-              <p className="text-[18px]">Select Service:</p>
-              {services && (
-                <Dropdown<ServiceType>
-                  options={services}
-                  title="Services"
-                  onSelect={(selected) => setServiceType(selected.id)}
-                  getOptionLabel={(types) => types.serviceName}
-                  getOptionKey={(types) => types.id}
-                />
-              )}
+            <div className="flex gap-8">
+              <div className="flex flex-col gap-1">
+                <p className="text-[18px] ">Select Service:</p>
+                {services && (
+                  <Dropdown<ServiceType>
+                    options={services}
+                    title="Services"
+                    onSelect={(selected) => setServiceType(selected.id)}
+                    getOptionLabel={(types) => types.serviceName}
+                    getOptionKey={(types) => types.id}
+                  />
+                )}
+              </div>
+              <div className=" flex flex-col gap-1">
+                <p className="text-[18px]"> Down Payment:</p>
+                <div className="text-[20px] text-orangeRed justify-self-center">
+                  {downPayment ? (
+                    <p> ₱ {downPayment} </p>
+                  ) : (
+                    <p className="text-[18px]">Please Select A Service</p>
+                  )}
+                </div>
+              </div>
             </div>
 
             <div>
@@ -366,7 +375,7 @@ const Booking = ({ params }: { params: { id: string } }) => {
               >
                 <div className="relative">
                   <Image
-                    src={"/images/maya-qr-test. png"}
+                    src={"/images/maya-qr-test.png"}
                     height={400}
                     width={400}
                     alt="Large QR Code"

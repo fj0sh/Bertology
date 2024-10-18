@@ -34,37 +34,45 @@ const Services = () => {
           AVAILABLE PRODUCTS
         </div>
         <div className="mx-[20rem] grid grid-cols-3 gap-8 border-none ">
-          <ImagePreviewCard image={"/images/test_images/roadblock.png"} />
-          <ImagePreviewCard image={"/images/test_images/roadblock.png"} />
-          <ImagePreviewCard image={"/images/test_images/roadblock.png"} />
-          <ImagePreviewCard image={"/images/test_images/roadblock.png"} />
-          <ImagePreviewCard image={"/images/test_images/roadblock.png"} />
-          <ImagePreviewCard image={"/images/test_images/roadblock.png"} />
+          <ImagePreviewCard image={"/images/service-images/image1.jpg"} />
+          <ImagePreviewCard image={"/images/service-images/image1.jpg"} />
+          <ImagePreviewCard image={"/images/service-images/image1.jpg"} />
+          <ImagePreviewCard image={"/images/service-images/image1.jpg"} />
+          <ImagePreviewCard image={"/images/service-images/image1.jpg"} />
+          <ImagePreviewCard image={"/images/service-images/image1.jpg"} />
         </div>
 
-        <LinkButton name="See More" href={"offers/products"} />
+        {/* <LinkButton name="See More" href={"offers/products"} /> */}
       </div>
-      <div className="h-[50vh] flex justify-center items-center gap-10 ">
-        <BrandBalls />
-        <BrandBalls />
-        <BrandBalls />
-        <BrandBalls />
-        <BrandBalls />
+      <div className=" px-16">
+        <div className="items-center relative w-full flex flex-col">
+          <hr className="w-full top-[50%] absolute border-orangePrimary border-t-[3px]" />
+          <p className=" text-[30px] z-10 w-fit bg-black p-2 px-8">
+            <span className="text-orangePrimary">TRUSTED</span> BRANDS
+          </p>
+        </div>
+        <div className="h-[50vh] flex justify-center items-center gap-10 ">
+          <BrandBalls />
+          <BrandBalls />
+          <BrandBalls />
+          <BrandBalls />
+          <BrandBalls />
+        </div>
       </div>
       <div className="h-full flex flex-col items-center gap-6 p-20">
         <div className="text-orangePrimary text-[22px] font-semibold">
           AVAILABLE SERVICES
         </div>
         <div className="mx-[20rem] grid grid-cols-3 gap-8 border-none ">
-          <ImagePreviewCard image={"/images/test_images/roadblock.png"} />
-          <ImagePreviewCard image={"/images/test_images/roadblock.png"} />
-          <ImagePreviewCard image={"/images/test_images/roadblock.png"} />
-          <ImagePreviewCard image={"/images/test_images/roadblock.png"} />
-          <ImagePreviewCard image={"/images/test_images/roadblock.png"} />
-          <ImagePreviewCard image={"/images/test_images/roadblock.png"} />
+          <ImagePreviewCard image={"/images/service-images/image1.jpg"} />
+          <ImagePreviewCard image={"/images/service-images/image2.jpg"} />
+          <ImagePreviewCard image={"/images/service-images/image3.jpg"} />
+          <ImagePreviewCard image={"/images/service-images/image4.jpg"} />
+          <ImagePreviewCard image={"/images/service-images/image5.jpg"} />
+          <ImagePreviewCard image={"/images/service-images/image6.jpg"} />
         </div>
 
-        <LinkButton name="See More" href={"offers/services"} />
+        <LinkButton name="Book Service" href={"/client/offers/services"} />
       </div>
     </div>
   );

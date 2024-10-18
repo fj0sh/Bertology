@@ -4,14 +4,19 @@ import { UserType } from "./Users";
 interface BookingType {
   id: number;
   location: string;
-  fbAccount: string;
-  contact: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  facebookAccount: string;
+  contactnumber: string;
   serviceRequest: string;
   carModel: string;
-  detail: string;
-  dateBooked: string;
-  paymentType: string;
-  paymentProof: string;
+  additionalDetails: string;
+  bookedDate: string;
+  municipality: string;
+  barangay: string;
+  landmark: string;
+  proofOfPayment: string;
   user: UserType;
   service: ServiceType;
 }

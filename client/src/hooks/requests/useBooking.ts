@@ -3,7 +3,7 @@ import instance from "@/lib/util/axios-instance";
 import React, { useEffect, useState } from "react";
 
 const useBooking = () => {
-  const [data, setData] = useState();
+  const [data, setData] = useState<any | undefined>(undefined);
   const [allBookings, setAllBookings] = useState<BookingResponse[] | undefined>(
     undefined
   );

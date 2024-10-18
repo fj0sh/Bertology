@@ -6,7 +6,7 @@ import useBooking from "@/hooks/requests/useBooking";
 import React, { useEffect, useState } from "react";
 
 const BookingRequest = () => {
-  const [isRequestShow, setIsRequestShow] = useState(false);
+  // const [isRequestShow, setIsRequestShow] = useState(false);
 
   const { getAllBookings, allBookings } = useBooking();
 
@@ -17,7 +17,7 @@ const BookingRequest = () => {
   console.log(allBookings);
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 px-10">
       {/* <BookingRequestModal
         date="test"
         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur scelerisque finibus felis facilisis ultrices. Vivamus aliquam faucibus ipsum, sed fringilla neque condimentum ac. Pellentesque facilisis sit amet velit vitae volutpat. Praesent eget dictum felis. Sed eget semper urna, id maximus ligula. Vivamus luctus malesuada mattis. Proin sodales lorem felis, et pharetra ex porttitor ac. Aenean hendrerit condimentum elit, non fermentum sapien.
@@ -40,10 +40,15 @@ In hac habitasse platea dictumst. Fusce tincidunt nisi eu pretium ultrices. Aene
           <BookingRequestCard
             key={bookings.data?.id}
             bookingId={bookings.data?.id}
-            date={bookings.data?.dateBooked}
+            date={bookings.data?.bookedDate}
             description={bookings.data?.serviceRequest}
-            location={bookings.data?.location}
+            location={`${bookings.data?.barangay}, ${bookings.data?.municipality} `}
             vehicleType={bookings.data?.carModel}
+            landmark={bookings.data?.landmark}
+            firstName={bookings.data?.firstName}
+            lastName={bookings.data?.lastName}
+            email={bookings.data?.email}
+            proofOfPayment={bookings.data?.proofOfPayment}
           />
         ))}
     </div>

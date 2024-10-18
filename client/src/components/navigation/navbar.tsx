@@ -15,9 +15,10 @@ const Navbar = () => {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "/client/about-us" },
-    { name: "Offers", href: "/client/offers" },
-    { name: <IoMdCart size={25} />, href: "/client/cart" },
-    { name: <FaRegUserCircle size={25} />, href: "/client/profile" },
+    { name: "Services", href: "/client/offers" },
+    // { name: "Offers", href: "/client/offers" },
+    // { name: <IoMdCart size={25} />, href: "/client/cart" },
+    // { name: <FaRegUserCircle size={25} />, href: "/client/profile" },
   ];
 
   return (

@@ -25,7 +25,16 @@ const LandingPage = () => {
   const { products } = useProducts<ProductType[]>("/products");
   const { services } = useServices();
 
-  const servicesImage = services?.map((services) => {
+  const serviceImagesSet = [
+    { image: "/images/service-images/image1.jpg" },
+    { image: "/images/service-images/image2.jpg" },
+    { image: "/images/service-images/image3.jpg" },
+    { image: "/images/service-images/image4.jpg" },
+    { image: "/images/service-images/image5.jpg" },
+    { image: "/images/service-images/image6.jpg" },
+  ];
+
+  const servicesImage = serviceImagesSet?.map((services) => {
     return services.image;
   });
 

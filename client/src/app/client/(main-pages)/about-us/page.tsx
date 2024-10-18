@@ -43,22 +43,37 @@ const AboutUs = () => {
           </p>
         </div>
         <div className="flex flex-col gap-6 p-3 px-[20rem]">
-          <OffersCard title="Sleeping Reyver" description="DESCRIPTION 1" />
           <OffersCard
-            title="Sleeping Reyver"
-            description="DESCRIPTION 2"
+            image={"/images/service-images/image1.jpg"}
+            title="Free Installation"
+            description=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mattis nisi quis ex blandit vulputate. Vivamus ornare auctor mauris vel condimentum. Aliquam suscipit tortor quis ante vehicula cursus. Quisque eu ex venenatis, sagittis dui eu, ultricies urna. Duis facilisis dui eget quam molestie placerat. Praesent enim diam, auctor volutpat massa eget, fringilla porta risus. Aliquam sodales ligula sit amet pellentesque varius. Fusce sollicitudin eu odio eget elementum. Quisque egestas sagittis tortor eget laoreet. Pellentesque tortor risus, congue in condimentum at, sodales ut sem. Quisque viverra, dui in tempor tincidunt, nunc erat semper quam, quis luctus augue ex et nunc."
+          />
+          <OffersCard
+            image={"/images/service-images/image2.jpg"}
+            title="Home Service"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mattis nisi quis ex blandit vulputate. Vivamus ornare auctor mauris vel condimentum. Aliquam suscipit tortor quis ante vehicula cursus. Quisque eu ex venenatis, sagittis dui eu, ultricies urna. Duis facilisis dui eget quam molestie placerat. Praesent enim diam, auctor volutpat massa eget, fringilla porta risus. Aliquam sodales ligula sit amet pellentesque varius. Fusce sollicitudin eu odio eget elementum. Quisque egestas sagittis tortor eget laoreet. Pellentesque tortor risus, congue in condimentum at, sodales ut sem. Quisque viverra, dui in tempor tincidunt, nunc erat semper quam, quis luctus augue ex et nunc."
             reverse={true}
           />
-          <OffersCard title="Sleeping Reyver" description="DESCRIPTION 3" />
           <OffersCard
-            title="Sleeping Reyver"
-            description="DESCRIPTION 4"
+            image={"/images/service-images/image3.jpg"}
+            title="Expert Technician"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mattis nisi quis ex blandit vulputate. Vivamus ornare auctor mauris vel condimentum. Aliquam suscipit tortor quis ante vehicula cursus. Quisque eu ex venenatis, sagittis dui eu, ultricies urna. Duis facilisis dui eget quam molestie placerat. Praesent enim diam, auctor volutpat massa eget, fringilla porta risus. Aliquam sodales ligula sit amet pellentesque varius. Fusce sollicitudin eu odio eget elementum. Quisque egestas sagittis tortor eget laoreet. Pellentesque tortor risus, congue in condimentum at, sodales ut sem. Quisque viverra, dui in tempor tincidunt, nunc erat semper quam, quis luctus augue ex et nunc."
+          />
+          <OffersCard
+            image={"/images/service-images/image4.jpg"}
+            title="Safe Assurance"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mattis nisi quis ex blandit vulputate. Vivamus ornare auctor mauris vel condimentum. Aliquam suscipit tortor quis ante vehicula cursus. Quisque eu ex venenatis, sagittis dui eu, ultricies urna. Duis facilisis dui eget quam molestie placerat. Praesent enim diam, auctor volutpat massa eget, fringilla porta risus. Aliquam sodales ligula sit amet pellentesque varius. Fusce sollicitudin eu odio eget elementum. Quisque egestas sagittis tortor eget laoreet. Pellentesque tortor risus, congue in condimentum at, sodales ut sem. Quisque viverra, dui in tempor tincidunt, nunc erat semper quam, quis luctus augue ex et nunc."
             reverse={true}
           />
-          <OffersCard title="Sleeping Reyver" description="DESCRIPTION 5" />
           <OffersCard
-            title="Sleeping Reyver"
-            description="DESCRIPTION 6"
+            image={"/images/service-images/image5.jpg"}
+            title="Experienced Mechanics"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mattis nisi quis ex blandit vulputate. Vivamus ornare auctor mauris vel condimentum. Aliquam suscipit tortor quis ante vehicula cursus. Quisque eu ex venenatis, sagittis dui eu, ultricies urna. Duis facilisis dui eget quam molestie placerat. Praesent enim diam, auctor volutpat massa eget, fringilla porta risus. Aliquam sodales ligula sit amet pellentesque varius. Fusce sollicitudin eu odio eget elementum. Quisque egestas sagittis tortor eget laoreet. Pellentesque tortor risus, congue in condimentum at, sodales ut sem. Quisque viverra, dui in tempor tincidunt, nunc erat semper quam, quis luctus augue ex et nunc."
+          />
+          <OffersCard
+            image={"/images/service-images/image6.jpg"}
+            title="Fast Transaction"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mattis nisi quis ex blandit vulputate. Vivamus ornare auctor mauris vel condimentum. Aliquam suscipit tortor quis ante vehicula cursus. Quisque eu ex venenatis, sagittis dui eu, ultricies urna. Duis facilisis dui eget quam molestie placerat. Praesent enim diam, auctor volutpat massa eget, fringilla porta risus. Aliquam sodales ligula sit amet pellentesque varius. Fusce sollicitudin eu odio eget elementum. Quisque egestas sagittis tortor eget laoreet. Pellentesque tortor risus, congue in condimentum at, sodales ut sem. Quisque viverra, dui in tempor tincidunt, nunc erat semper quam, quis luctus augue ex et nunc."
             reverse={true}
           />
         </div>
