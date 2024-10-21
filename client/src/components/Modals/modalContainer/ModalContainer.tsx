@@ -10,10 +10,10 @@ interface Props {
 const ModalContainer = (props: Props) => {
   const { children, width, height } = props;
   return (
-    <div className=" fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-[9999999999999999999] overflow-y-auto">
+    <div className=" fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-[9999999999999999999] overflow-y-auto ">
       <div className="fixed top-0 left-0 w-full h-full bg-black opacity-45"></div>
       <div
-        className="relative flex flex-col *:text-white items-center border rounded-[15px] bg-background bg-opacity-85 border-black z-20 justify-center gap-8 p-[2rem] my-10"
+        className="relative flex flex-col *:text-white items-center border rounded-[15px] bg-background bg-opacity-95 border-black z-20 justify-center gap-8 p-[2rem] my-10"
         style={{ width, height }}
       >
         {children}

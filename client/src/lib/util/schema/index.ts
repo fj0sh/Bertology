@@ -8,10 +8,8 @@ export const BookingSchema = z.object({
     .string()
     .min(10, "Invalid Phone Number")
     .max(11, "Invalid Phone Number"),
-  account: z.string().optional(),
-  model: z.string().min(1, "Car Model is Required"),
   details: z.string().min(1, "Details is Required"),
-  landmark: z.string().min(1, "Landmark is Required"),
+  landmark: z.string().optional(),
 });
 
 export type BookingType = z.infer<typeof BookingSchema>;

@@ -1,15 +1,16 @@
 import React from "react";
 import ModalContainer from "./modalContainer/ModalContainer";
 import { IoMdClose } from "react-icons/io";
+import InputOrange from "../input/inputOrange";
+import Button from "../button/OrangeButton";
 
 interface Props {
-  test?: string;
   isOpen?: boolean;
   onClose?: () => void;
 }
 
 const BookingConfirmation = (props: Props) => {
-  const { test, isOpen, onClose } = props;
+  const { isOpen, onClose } = props;
 
   if (!isOpen) return null;
 
@@ -21,7 +22,16 @@ const BookingConfirmation = (props: Props) => {
           onClick={onClose}
         />
       </div>
-      <div>{test}</div>
+      <div className="flex flex-col gap-3 items-center">
+        <p className="text-[22px] font-semibold">Enter Your OTP</p>
+        <p className="text-[18px]">
+          Please check the OTP has been sent to your Email
+        </p>
+        <div>
+          <InputOrange placeholder="XXXXXX" />
+        </div>
+        <Button title="Verify"></Button>
+      </div>
     </ModalContainer>
   );
 };

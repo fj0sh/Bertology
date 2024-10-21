@@ -25,7 +25,7 @@ import axios from "axios";
 
 import carModels from "@/constants/CarModel";
 
-const Booking = ({ params }: { params: { id: string } }) => {
+const Booking = () => {
   const [selectedDate, setSelectedDate] = useState("");
   const [formData, setFormData] = useState<BookingType | null>(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -94,7 +94,7 @@ const Booking = ({ params }: { params: { id: string } }) => {
   const successfulBooking = () => {
     Swal.fire({
       title: "Booking Successful",
-      text: "Your booking has been made successfully",
+      text: "Please wait a confirmation from the admin",
       icon: "success",
     });
     setShowConfirmation(false);
@@ -104,48 +104,47 @@ const Booking = ({ params }: { params: { id: string } }) => {
   const onSubmit = async (data: BookingType) => {
     try {
       const res = await axios.post("/api/mailer", { recepient: data.email });
-
       console.log(res.data);
     } catch (error) {
       console.log(error);
     }
 
-    if (!selectedDate) {
-      noDateSelected();
-    } else {
-      console.log(
-        data.firstName,
-        data.lastName,
-        data.email,
-        parseInt(data.number),
-        data.account!,
-        municipality!,
-        barangay.toString(),
-        data.landmark,
-        serviceType,
-        data.model,
-        data.details,
-        paymentProof,
-        selectedDate
-      );
-      bookService(
-        data.firstName,
-        data.lastName,
-        data.email,
-        parseInt(data.number),
-        data.account!,
-        municipality!,
-        barangay.toString(),
-        data.landmark,
-        serviceType,
-        data.model,
-        data.details,
-        paymentProof,
-        formatDateForSQL(selectedDate)
-      );
-      successfulBooking();
-      reset();
-    }
+    setShowConfirmation(true);
+
+    // if (!selectedDate) {
+    //   noDateSelected();
+    // } else {
+    //   console.log(
+    //     data.firstName,
+    //     data.lastName,
+    //     data.email,
+    //     parseInt(data.number),
+    //     municipality!,
+    //     barangay.toString(),
+    //     data.landmark,
+    //     serviceType,
+    //     selectedModel,
+    //     data.details,
+    //     paymentProof,
+    //     selectedDate
+    //   );
+    //   bookService(
+    //     data.firstName,
+    //     data.lastName,
+    //     data.email,
+    //     parseInt(data.number),
+    //     municipality!,
+    //     barangay.toString(),
+    //     data.landmark!,
+    //     serviceType,
+    //     selectedModel,
+    //     data.details,
+    //     paymentProof,
+    //     formatDateForSQL(selectedDate)
+    //   );
+    //   successfulBooking();
+    //   reset();
+    // }
   };
 
   const handleDate = (date: any) => {
@@ -174,11 +173,12 @@ const Booking = ({ params }: { params: { id: string } }) => {
 
   return (
     <>
-      {/* <BookingConfirmation
-        test={formData?.location}
-        isOpen={showConfirmation}
-        onClose={() => setShowConfirmation(false)}
-      /> */}
+      <div className="transition-all duration-1000 ease-in-out">
+        <BookingConfirmation
+          onClose={() => setShowConfirmation(false)}
+          isOpen={showConfirmation}
+        />
+      </div>
       <div className="w-full h-full flex justify-center p-10 gap-x-[10rem]">
         <div className="w-full h-full items-end flex flex-col gap-8">
           <div className="flex w-[80%] px-10">
@@ -262,18 +262,6 @@ const Booking = ({ params }: { params: { id: string } }) => {
               </div>
             </div>
 
-            {/* <div>
-              <InputOrange
-                label="Facebook Account(Optional):"
-                {...register("account")}
-              />
-              {errors.account && (
-                <p className="text-red-500 text-[13px]">
-                  {`${errors.account?.message}`}
-                </p>
-              )}
-            </div> */}
-
             <div
               className={`transition-all duration-1000 ease-in-out ${
                 serviceMode !== "homeService"
@@ -312,9 +300,9 @@ const Booking = ({ params }: { params: { id: string } }) => {
                       label="Nearest Landmark or Pin Location:"
                       {...register("landmark")}
                     />
-                    {errors.model && (
+                    {errors.landmark && (
                       <p className="text-red-500 text-[13px]">
-                        {errors.model.message}
+                        {errors.landmark.message}
                       </p>
                     )}
                   </div>
@@ -350,39 +338,36 @@ const Booking = ({ params }: { params: { id: string } }) => {
             </div>
 
             <div>
-              {/* <InputOrange label="Car Model:" {...register("model")} />
-              {errors.model && (
-                <p className="text-red-500 text-[13px]">
-                  {`${errors.model.message}`}
-                </p>
-              )} */}
-
-              {/* {services && (
-                <Dropdown<any>
-                  options={models}
-                  title="Services"
-                  onSelect={(selected) => setSelectedModel(selected)}
-                  getOptionLabel={(types) => types}
-                  getOptionKey={(types) => types}
-                />
-              )} */}
-
-              <div className="text-black h-full text-center">
-                <input
-                  type="text"
-                  value={selectedModel}
-                  className="bg-white h-full focus:outline-none p-[8px] text-[16px]"
-                  onChange={(e) => setSelectedModel(e.target.value)}
-                />
-              </div>
-              <div
-                className={`text-black absolute bg-white top-14 p-3 w-[15rem] truncate shadow-md z-10 rounded-sm border-none text-justify flex flex-col ${
-                  selectedModel === "" ? "hidden" : ""
-                }`}
-              >
-                {filteredModels.map((result, index) => (
-                  <p key={index}>{result}</p>
-                ))}
+              <p className="text-[18px]"> Car Model:</p>
+              <div className="relative">
+                <div className="text-black h-full">
+                  <input
+                    type="text"
+                    value={selectedModel}
+                    className="bg-background rounded-md border text-white border-orangeRed h-full focus:outline-none p-[8px] text-[16px]"
+                    onChange={(e) => setSelectedModel(e.target.value)}
+                  />
+                </div>
+                <div
+                  className={`text-black absolute bg-white top-14 p-3 overflow-y-auto w-[12rem] truncate shadow-md z-10 rounded-sm border-none text-justify flex flex-col ${
+                    selectedModel === "" ? "hidden" : ""
+                  }`}
+                >
+                  {filteredModels.length === 0 ? (
+                    <p>No Result</p>
+                  ) : (
+                    filteredModels.map((result, index) => (
+                      <button
+                        type="button"
+                        key={index}
+                        className="text-left"
+                        onClick={() => setSelectedModel(result)}
+                      >
+                        {result}
+                      </button>
+                    ))
+                  )}
+                </div>
               </div>
             </div>
 
@@ -475,7 +460,7 @@ const Booking = ({ params }: { params: { id: string } }) => {
             <Button
               title="Submit"
               type="submit"
-              disabled={paymentProof ? false : true}
+              // disabled={paymentProof ? false : true}
             />
           </form>
         </div>

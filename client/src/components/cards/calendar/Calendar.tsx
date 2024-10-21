@@ -23,13 +23,10 @@ const PrimeCalendar = (props: Props) => {
           `${process.env.NEXT_PUBLIC_URL}/services/booked-dates`
         );
 
-        console.log(res.data);
-
         const disableDates = res.data.map((booked: any) => {
           return new Date(booked.bookedDate);
         });
 
-        console.log(disableDates);
         setBookedDates(disableDates);
       } catch (error) {
         console.log(error);
@@ -38,8 +35,6 @@ const PrimeCalendar = (props: Props) => {
 
     fetchBookedDates();
   }, [selectedDate]);
-
-  console.log(bookedDates);
 
   const handleDateChange = (e: any) => {
     if (selectedDate && e.value) {

@@ -6,11 +6,12 @@ interface Props {
   height?: string;
   label?: string;
   type?: "text" | "number";
+  placeholder?: string;
 }
 
 const InputOrange = React.forwardRef<HTMLInputElement, Props>(
   (props: Props, ref) => {
-    const { height, label, value, type } = props;
+    const { height, label, value, type, placeholder } = props;
 
     return (
       <>
@@ -19,6 +20,7 @@ const InputOrange = React.forwardRef<HTMLInputElement, Props>(
           <input
             ref={ref}
             type={type}
+            placeholder={placeholder}
             className="border text-white p-2 border-orangeRed bg-background w-full rounded-lg focus:outline-none"
             style={{ height }}
             value={value}

@@ -6,7 +6,6 @@ exports.bookService = (bookingInformation, callback) => {
     lastName,
     email,
     contactNumber,
-    facebookAccount,
     municipality,
     barangay,
     landmark,
@@ -18,13 +17,12 @@ exports.bookService = (bookingInformation, callback) => {
   } = bookingInformation;
 
   conn.query(
-    "INSERT INTO booking (firstName, lastName, email, contactNumber, facebookAccount, municipality, barangay, landmark, serviceId, carModel, additionalDetails, proofOfPayment, bookedDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)",
+    "INSERT INTO booking (firstName, lastName, email, contactNumber, municipality, barangay, landmark, serviceId, carModel, additionalDetails, proofOfPayment, bookedDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)",
     [
       firstName,
       lastName,
       email,
       contactNumber,
-      facebookAccount,
       municipality,
       barangay,
       landmark,
