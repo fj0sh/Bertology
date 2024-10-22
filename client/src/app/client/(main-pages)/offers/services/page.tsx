@@ -24,6 +24,7 @@ import Image from "next/image";
 import axios from "axios";
 
 import carModels from "@/constants/CarModel";
+import TimeCard from "@/components/cards/calendar/timeCard/TimeCard";
 
 const Booking = () => {
   const [selectedDate, setSelectedDate] = useState("");
@@ -36,9 +37,10 @@ const Booking = () => {
   const [barangay, setBarangay] = useState([]);
   const [imageLarger1, setIsImageLarger1] = useState(false);
   const [imageLarger2, setIsImageLarger2] = useState(false);
-  const [serviceMode, setServiceMode] = useState("homeService");
+  const [serviceMode, setServiceMode] = useState("onsite");
   const [models, setModels] = useState<string[]>([]);
   const [selectedModel, setSelectedModel] = useState("");
+  const [showDropdown, setShowDropdown] = useState(false);
 
   const {
     register,
@@ -62,7 +64,7 @@ const Booking = () => {
     setModels(allModels);
   }, []);
 
-  const filteredModels = models.filter((model) =>
+  let filteredModels = models.filter((model) =>
     model.toLowerCase().includes(selectedModel.toLowerCase())
   );
 
@@ -101,6 +103,16 @@ const Booking = () => {
     reset();
   };
 
+  const handleModelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedModel(e.target.value);
+    setShowDropdown(true); // Show the dropdown when typing
+  };
+
+  const handleModelSelect = (model: string) => {
+    setSelectedModel(model); // Set the selected model
+    setShowDropdown(false); // Hide the dropdown after selection
+  };
+
   const onSubmit = async (data: BookingType) => {
     try {
       const res = await axios.post("/api/mailer", { recepient: data.email });
@@ -111,40 +123,40 @@ const Booking = () => {
 
     setShowConfirmation(true);
 
-    // if (!selectedDate) {
-    //   noDateSelected();
-    // } else {
-    //   console.log(
-    //     data.firstName,
-    //     data.lastName,
-    //     data.email,
-    //     parseInt(data.number),
-    //     municipality!,
-    //     barangay.toString(),
-    //     data.landmark,
-    //     serviceType,
-    //     selectedModel,
-    //     data.details,
-    //     paymentProof,
-    //     selectedDate
-    //   );
-    //   bookService(
-    //     data.firstName,
-    //     data.lastName,
-    //     data.email,
-    //     parseInt(data.number),
-    //     municipality!,
-    //     barangay.toString(),
-    //     data.landmark!,
-    //     serviceType,
-    //     selectedModel,
-    //     data.details,
-    //     paymentProof,
-    //     formatDateForSQL(selectedDate)
-    //   );
-    //   successfulBooking();
-    //   reset();
-    // }
+    if (!selectedDate) {
+      noDateSelected();
+    } else {
+      console.log(
+        data.firstName,
+        data.lastName,
+        data.email,
+        parseInt(data.number),
+        municipality!,
+        barangay.toString(),
+        data.landmark,
+        serviceType,
+        selectedModel,
+        data.details,
+        paymentProof,
+        selectedDate
+      );
+      bookService(
+        data.firstName,
+        data.lastName,
+        data.email,
+        parseInt(data.number),
+        municipality!,
+        barangay.toString(),
+        data.landmark!,
+        serviceType,
+        selectedModel,
+        data.details,
+        paymentProof,
+        formatDateForSQL(selectedDate)
+      );
+      successfulBooking();
+      reset();
+    }
   };
 
   const handleDate = (date: any) => {
@@ -190,6 +202,9 @@ const Booking = () => {
               ? formatDateNormal(selectedDate)
               : "Please Select a Date"}
           </div>
+          <div>
+            <TimeCard />
+          </div>
         </div>
         <div className="w-full">
           <form
@@ -207,6 +222,7 @@ const Booking = () => {
                   id="onsite"
                   name="serviceType"
                   value="onsite"
+                  checked={serviceMode === "onSite"} // Ensure it stays selected
                   onChange={() => setServiceMode("onSite")}
                 />
                 <label htmlFor="onsite">On-Site</label>
@@ -217,6 +233,7 @@ const Booking = () => {
                   id="homeService"
                   name="serviceType"
                   value="homeService"
+                  checked={serviceMode === "homeService"} // Reflect state change
                   onChange={() => setServiceMode("homeService")}
                 />
                 <label htmlFor="homeService">Home Service</label>
@@ -338,36 +355,35 @@ const Booking = () => {
             </div>
 
             <div>
-              <p className="text-[18px]"> Car Model:</p>
+              <p className="text-[18px]">Car Model:</p>
               <div className="relative">
                 <div className="text-black h-full">
                   <input
                     type="text"
                     value={selectedModel}
                     className="bg-background rounded-md border text-white border-orangeRed h-full focus:outline-none p-[8px] text-[16px]"
-                    onChange={(e) => setSelectedModel(e.target.value)}
+                    onChange={handleModelChange}
                   />
                 </div>
-                <div
-                  className={`text-black absolute bg-white top-14 p-3 overflow-y-auto w-[12rem] truncate shadow-md z-10 rounded-sm border-none text-justify flex flex-col ${
-                    selectedModel === "" ? "hidden" : ""
-                  }`}
-                >
-                  {filteredModels.length === 0 ? (
-                    <p>No Result</p>
-                  ) : (
-                    filteredModels.map((result, index) => (
-                      <button
-                        type="button"
-                        key={index}
-                        className="text-left"
-                        onClick={() => setSelectedModel(result)}
-                      >
-                        {result}
-                      </button>
-                    ))
-                  )}
-                </div>
+
+                {showDropdown && selectedModel !== "" && (
+                  <div className="text-black absolute bg-white top-14 p-3 overflow-y-auto h-fit max-h-[10rem] w-fit truncate shadow-md z-10 rounded-sm border-none text-justify flex flex-col">
+                    {filteredModels.length === 0 ? (
+                      <p>No Result</p>
+                    ) : (
+                      filteredModels.map((result, index) => (
+                        <button
+                          type="button"
+                          key={index}
+                          className="text-left"
+                          onClick={() => handleModelSelect(result)}
+                        >
+                          {result}
+                        </button>
+                      ))
+                    )}
+                  </div>
+                )}
               </div>
             </div>
 
@@ -397,14 +413,13 @@ const Booking = () => {
               <div className="flex flex-col h-full w-full items-center p-3 gap-5">
                 <p className="text-[18px]">Scan To Pay!</p>
                 <div className="flex w-full h-full gap-8 justify-center items-center">
-                  {/* Image that enlarges on click */}
                   <Image
                     src={"/images/gcash-qr-test.png"}
                     height={100}
                     width={100}
                     className={`transition-transform duration-300 ease-in-out cursor-pointer ${
                       imageLarger1 ? "scale-200" : ""
-                    }`} // Tailwind classes for transition and scaling
+                    }`}
                     onClick={handleImageClick1}
                     alt="GCash QR Code"
                   />

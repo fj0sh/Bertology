@@ -1429,6 +1429,10 @@ const carModels = [
     brand: "Yugo",
     models: ["GV", "GVC", "GVL", "GVS", "GVX"],
   },
+  {
+    brand: "Others",
+    models: [""],
+  },
 ];
 
 export default carModels;
