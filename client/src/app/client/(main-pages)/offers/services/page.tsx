@@ -113,9 +113,14 @@ const Booking = () => {
     setShowDropdown(false); // Hide the dropdown after selection
   };
 
+  const OTP = Math.floor(Math.random() * (999999 - 100000) + 100000);
+
   const onSubmit = async (data: BookingType) => {
     try {
-      const res = await axios.post("/api/mailer", { recepient: data.email });
+      const res = await axios.post("/api/mailer", {
+        recepient: data.email,
+        OTP: OTP,
+      });
       console.log(res.data);
     } catch (error) {
       console.log(error);
@@ -152,7 +157,8 @@ const Booking = () => {
         selectedModel,
         data.details,
         paymentProof,
-        formatDateForSQL(selectedDate)
+        formatDateForSQL(selectedDate),
+        OTP
       );
       successfulBooking();
       reset();

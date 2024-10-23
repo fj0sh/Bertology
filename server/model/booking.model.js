@@ -14,10 +14,11 @@ exports.bookService = (bookingInformation, callback) => {
     additionalDetails,
     proofOfPayment,
     bookedDate,
+    OTP,
   } = bookingInformation;
 
   conn.query(
-    "INSERT INTO booking (firstName, lastName, email, contactNumber, municipality, barangay, landmark, serviceId, carModel, additionalDetails, proofOfPayment, bookedDate, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'VERIFYING')",
+    "INSERT INTO booking (firstName, lastName, email, contactNumber, municipality, barangay, landmark, serviceId, carModel, additionalDetails, proofOfPayment, bookedDate, status, OTP) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'VERIFYING', ?)",
     [
       firstName,
       lastName,
@@ -31,6 +32,7 @@ exports.bookService = (bookingInformation, callback) => {
       additionalDetails,
       proofOfPayment,
       bookedDate,
+      OTP,
     ],
     callback
   );

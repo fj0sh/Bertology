@@ -14,15 +14,13 @@ const transporter = nodemailer.createTransport({
 });
 
 exports.sendMail = async (req, res) => {
-  const { recepient } = req.body;
+  const { recepient, OTP } = req.body;
 
   if (!recepient) {
     return res.status(400).json({ message: "Recipient email is required." });
   }
 
   try {
-    const otp = Math.floor(Math.random() * (999999 - 100000) + 100000);
-
     const info = await transporter.sendMail({
       from: {
         name: "NodeMailer",
@@ -31,7 +29,7 @@ exports.sendMail = async (req, res) => {
       to: recepient,
       subject: "Test Email for Capstone OTP",
       text: "OTP",
-      html: `<div><p>Your OTP is ${otp}</p> <a href="https://youtu.be/2nuDZtSYPOA?si=_EzplpZfwUCYLmEM">Click me to enter OTP</a></div>`,
+      html: `<div><p>Your OTP is ${OTP}</p> <a href="https://youtu.be/2nuDZtSYPOA?si=_EzplpZfwUCYLmEM">Click me to enter OTP</a></div>`,
     });
 
     console.log("Email sent: %s", info.messageId);

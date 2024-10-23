@@ -20,7 +20,8 @@ const useBooking = () => {
     carModel: string,
     additionalDetails: string,
     proofOfPayment: string,
-    bookedDate: string
+    bookedDate: string,
+    OTP: number
   ) => {
     const body = {
       firstName: firstName,
@@ -35,6 +36,7 @@ const useBooking = () => {
       additionalDetails: additionalDetails,
       proofOfPayment: proofOfPayment,
       bookedDate: bookedDate,
+      OTP: OTP,
     };
 
     try {
