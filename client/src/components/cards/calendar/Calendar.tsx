@@ -4,12 +4,11 @@ import instance from "@/lib/util/axios-instance";
 import "./style.css";
 
 interface Props {
-  disable?: boolean;
   selectedDate?: (date: Date) => void;
 }
 
 const PrimeCalendar = (props: Props) => {
-  const { disable, selectedDate } = props;
+  const { selectedDate } = props;
 
   const [bookedDates, setBookedDates] = useState<Date[]>([]);
   const [currentSelectedDate, setCurrentSelectedDate] = useState<Date | null>(
@@ -34,9 +33,10 @@ const PrimeCalendar = (props: Props) => {
     };
 
     fetchBookedDates();
-  }, [selectedDate]);
+  }, []);
 
   const handleDateChange = (e: any) => {
+    console.log(e.value);
     if (selectedDate && e.value) {
       setCurrentSelectedDate(e.value); // Update the selected date state
       selectedDate(e.value as Date); // Pass selected date up to parent
@@ -52,7 +52,6 @@ const PrimeCalendar = (props: Props) => {
         className="custom-calendar w-full h-full"
         inline
         disabledDates={bookedDates}
-        disabled={disable}
         onChange={handleDateChange} // Custom date change handler
         minDate={today} // Disable past dates
         pt={{

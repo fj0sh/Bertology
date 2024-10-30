@@ -14,6 +14,10 @@ const BookingConfirmation = (props: Props) => {
 
   if (!isOpen) return null;
 
+  const handleVerification = () => {
+    //handle OTP verification
+  };
+
   return (
     <ModalContainer>
       <div className="absolute top-5 right-5 border-none rounded-full hover:bg-grey">
@@ -30,7 +34,7 @@ const BookingConfirmation = (props: Props) => {
         <div>
           <InputOrange placeholder="XXXXXX" />
         </div>
-        <Button title="Verify"></Button>
+        <Button title="Verify" onClick={handleVerification}></Button>
       </div>
     </ModalContainer>
   );

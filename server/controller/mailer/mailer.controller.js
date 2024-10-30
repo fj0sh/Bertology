@@ -1,5 +1,6 @@
 const nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
+const { emailLayout } = require("../../lib/emailLayout/emailLayout");
 
 dotenv.config();
 
@@ -14,26 +15,28 @@ const transporter = nodemailer.createTransport({
 });
 
 exports.sendMail = async (req, res) => {
-  const { recepient, OTP } = req.body;
+  const { recepient, message, username } = req.body;
 
   if (!recepient) {
     return res.status(400).json({ message: "Recipient email is required." });
   }
 
+  const layout = emailLayout(message, recepient, username);
+
   try {
     const info = await transporter.sendMail({
       from: {
-        name: "NodeMailer",
+        name: "Bertology",
         address: "lemonjuzz360@gmail.com",
       },
       to: recepient,
-      subject: "Test Email for Capstone OTP",
-      text: "OTP",
-      html: `<div><p>Your OTP is ${OTP}</p> <a href="https://youtu.be/2nuDZtSYPOA?si=_EzplpZfwUCYLmEM">Click me to enter OTP</a></div>`,
+      subject: "Bertology OTP",
+      text: " OTP",
+      html: layout,
     });
 
     console.log("Email sent: %s", info.messageId);
-    res.status(200).json({ message: "Email sent", otp });
+    res.status(200).json({ message: "Email sent", OTP });
   } catch (error) {
     console.error("Error sending email:", error);
     res.status(500).json({ message: "Error sending email" });

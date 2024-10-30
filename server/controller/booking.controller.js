@@ -19,7 +19,7 @@ exports.bookService = (req, res) => {
 exports.getBookedServices = (req, res) => {
   bookingModel.getBookedServices((err, result) => {
     if (err) {
-      res.status(400).send(err);
+      return res.status(400).send(err);
     }
 
     const formattedResult = result.map((results) => ({
@@ -40,6 +40,8 @@ exports.getBookedServices = (req, res) => {
         proofOfPayment: results.proofOfPayment,
         bookedDate: results.bookedDate,
         paymentType: results.payment_type,
+        mode: results.mode,
+        status: results.status,
         service: {
           id: results.serviceId,
           serviceName: results.serviceName,
@@ -49,17 +51,16 @@ exports.getBookedServices = (req, res) => {
         // test: results,
       },
     }));
-    console.log(formattedResult);
-    res.status(200).send(formattedResult);
+    return res.status(200).send(formattedResult);
   });
 };
 
 exports.getBookedServiceId = (req, res) => {
   bookingModel.getBookedServicesById(req.params.id, (err, results) => {
     if (err) {
-      res.status(400).send(err);
+      return res.status(400).send(err);
     }
     console.log(results);
-    res.status(200).send(results);
+    return res.status(200).send(results);
   });
 };

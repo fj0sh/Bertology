@@ -1,11 +1,15 @@
 import axios from "axios";
 
 const useSendMail = () => {
-  const sendMail = async (recepient: string, OTP: number) => {
+  const sendMail = async (
+    recepient: string,
+    message: number,
+    username: string
+  ) => {
     try {
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_URL}/mail/sendMail`, // Ensure the correct path
-        { recepient, OTP }, // Send the body directly
+        { recepient, message, username }, // Send the body directly
         {
           headers: { "Content-Type": "application/json" }, // Correct MIME type
         }

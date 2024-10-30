@@ -27,7 +27,8 @@ import carModels from "@/constants/CarModel";
 import TimeCard from "@/components/cards/calendar/timeCard/TimeCard";
 
 const Booking = () => {
-  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedBookingDate, setSelectedBookingDate] = useState("");
+
   const [formData, setFormData] = useState<BookingType | null>(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [paymentProof, setPaymentProof] = useState("");
@@ -41,6 +42,7 @@ const Booking = () => {
   const [models, setModels] = useState<string[]>([]);
   const [selectedModel, setSelectedModel] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
     register,
@@ -100,7 +102,7 @@ const Booking = () => {
       icon: "success",
     });
     setShowConfirmation(false);
-    reset();
+    reset;
   };
 
   const handleModelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -119,16 +121,17 @@ const Booking = () => {
     try {
       const res = await axios.post("/api/mailer", {
         recepient: data.email,
-        OTP: OTP,
+        message: `Your OTP is ${OTP}`,
+        username: `${data.firstName} ${data.lastName}`,
       });
       console.log(res.data);
     } catch (error) {
       console.log(error);
     }
 
-    setShowConfirmation(true);
+    setIsSubmitting(true);
 
-    if (!selectedDate) {
+    if (!selectedBookingDate) {
       noDateSelected();
     } else {
       console.log(
@@ -143,7 +146,8 @@ const Booking = () => {
         selectedModel,
         data.details,
         paymentProof,
-        selectedDate
+        formatDateForSQL(selectedBookingDate),
+        serviceMode
       );
       bookService(
         data.firstName,
@@ -157,16 +161,20 @@ const Booking = () => {
         selectedModel,
         data.details,
         paymentProof,
-        formatDateForSQL(selectedDate),
-        OTP
+        formatDateForSQL(selectedBookingDate),
+        OTP,
+        serviceMode
       );
+      setIsSubmitting(false);
+      setShowConfirmation(true);
       successfulBooking();
       reset();
     }
   };
 
   const handleDate = (date: any) => {
-    setSelectedDate(date);
+    console.log(date);
+    setSelectedBookingDate(date);
   };
 
   const handleImageClick1 = () => {
@@ -187,7 +195,11 @@ const Booking = () => {
     } else {
       console.log("Data is empty or undefined");
     }
-  }, [data]);
+  }, []);
+
+  if (isSubmitting) {
+    Swal.fire({ title: "Processing Your Booking" });
+  }
 
   return (
     <>
@@ -204,8 +216,8 @@ const Booking = () => {
           </div>
           <div className="text-white self-center flex items-center gap-2">
             <p className="font-bold text-[18px]">Selected Date:</p>
-            {selectedDate
-              ? formatDateNormal(selectedDate)
+            {selectedBookingDate
+              ? formatDateNormal(selectedBookingDate)
               : "Please Select a Date"}
           </div>
           <div>

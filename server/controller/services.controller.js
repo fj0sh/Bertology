@@ -15,7 +15,6 @@ exports.getServiceById = (req, res) => {
     if (err) {
       res.status(400).send(err);
     }
-    console.log(result);
     res.send(result);
   });
 };
