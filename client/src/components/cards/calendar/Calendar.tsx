@@ -4,7 +4,7 @@ import instance from "@/lib/util/axios-instance";
 import "./style.css";
 
 interface Props {
-  selectedDate?: (date: Date) => void;
+  selectedDate?: (date: string) => void;
 }
 
 const PrimeCalendar = (props: Props) => {
@@ -16,7 +16,7 @@ const PrimeCalendar = (props: Props) => {
   );
 
   useEffect(() => {
-    const fetchBookedDates = async () => {
+    const fetchFullyBookedDates = async () => {
       try {
         const res = await instance.get(
           `${process.env.NEXT_PUBLIC_URL}/services/booked-dates`
@@ -26,20 +26,22 @@ const PrimeCalendar = (props: Props) => {
           return new Date(booked.bookedDate);
         });
 
+        console.log(disableDates);
+
         setBookedDates(disableDates);
       } catch (error) {
         console.log(error);
       }
     };
 
-    fetchBookedDates();
+    fetchFullyBookedDates();
   }, []);
 
   const handleDateChange = (e: any) => {
     console.log(e.value);
     if (selectedDate && e.value) {
       setCurrentSelectedDate(e.value); // Update the selected date state
-      selectedDate(e.value as Date); // Pass selected date up to parent
+      selectedDate(e.value); // Pass selected date up to parent
     }
   };
 

@@ -9,17 +9,15 @@ exports.bookService = (bookingInformation, callback) => {
     municipality,
     barangay,
     landmark,
-    serviceId,
     carModel,
     additionalDetails,
     proofOfPayment,
     bookedDate,
-    OTP,
     mode,
   } = bookingInformation;
 
   conn.query(
-    "INSERT INTO booking (firstName, lastName, email, contactNumber, municipality, barangay, landmark, serviceId, carModel, additionalDetails, proofOfPayment, bookedDate, status, OTP, mode ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'VERIFYING', ?, ?)",
+    "INSERT INTO booking (firstName, lastName, email, contactNumber, municipality, barangay, landmark, carModel, additionalDetails, proofOfPayment, bookedDate, status, mode ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'PENDING', ?)",
     [
       firstName,
       lastName,
@@ -28,12 +26,10 @@ exports.bookService = (bookingInformation, callback) => {
       municipality,
       barangay,
       landmark,
-      serviceId,
       carModel,
       additionalDetails,
       proofOfPayment,
       bookedDate,
-      OTP,
       mode,
     ],
     callback
@@ -41,10 +37,7 @@ exports.bookService = (bookingInformation, callback) => {
 };
 
 exports.getBookedServices = (callback) => {
-  conn.query(
-    "SELECT b.id, b.firstName, b.lastName, b.mode, b.email, b.contactNumber, b.municipality, b.barangay, b.landmark, b.serviceId, b.carModel, b.additionalDetails, b.proofOfPayment, b.bookedDate, s.serviceName, s.serviceDuration, s.servicePrice, b.status FROM booking AS b INNER JOIN services AS s ON s.id = b.serviceId",
-    callback
-  );
+  conn.query("SELECT * FROM booking", callback);
 };
 
 exports.getBookedServicesById = (id, callback) => {
@@ -55,6 +48,35 @@ exports.getBookedServicesById = (id, callback) => {
   );
 };
 
-exports.confirmBooking = (callback) => {
-  conn.query("", callback);
+exports.selectServiceTypes = (serviceTypeInformation, callback) => {
+  const { serviceId, bookingId } = serviceTypeInformation;
+
+  conn.query(
+    "INSERT INTO booked_service (serviceId, bookingId) values (?,?)",
+    [serviceId, bookingId],
+    callback
+  );
+};
+
+exports.getSelectedType = (bookingId, callback) => {
+  conn.query(
+    "SELECT s.* FROM booked_service bs JOIN services s ON bs.serviceId = s.id JOIN booking b ON bs.bookingId = b.id WHERE b.id = ?",
+    bookingId,
+    callback
+  );
+};
+
+exports.confirmBooking = (bookingId, callback) => {
+  conn.query(
+    "UPDATE booking SET status = 'APPROVED' WHERE id = ?",
+    bookingId,
+    callback
+  );
+};
+exports.declineBooking = (bookingId, callback) => {
+  conn.query(
+    "UPDATE booking SET status = 'DECLINED' WHERE id = ?",
+    bookingId,
+    callback
+  );
 };

@@ -12,27 +12,31 @@ import { BookingSchema, BookingType } from "@/lib/util/schema";
 import BookingConfirmation from "@/components/Modals/BookingConfirmation";
 
 import PrimeCalendar from "@/components/cards/calendar/Calendar";
-import { useUser } from "@/providers/UserProvider";
 import useBooking from "@/hooks/requests/useBooking";
 import Swal from "sweetalert2";
 import ImageUpload from "@/components/input/ImageUpload";
 import Dropdown from "@/components/input/DropDown";
 import useServices from "@/hooks/requests/useServices";
-import { ServiceType } from "@/constants/Service";
+
 import Locations from "@/constants/Cebuprovinces";
 import Image from "next/image";
-import axios from "axios";
 
 import carModels from "@/constants/CarModel";
 import TimeCard from "@/components/cards/calendar/timeCard/TimeCard";
+import useMailer from "@/hooks/mailer/useMailer";
+
+import { MultiSelect } from "primereact/multiselect";
 
 const Booking = () => {
   const [selectedBookingDate, setSelectedBookingDate] = useState("");
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState("");
+  const [selectedService, setSelectedService] = useState([]);
+  const [bookedSlot, setBookedSlot] = useState([]);
 
   const [formData, setFormData] = useState<BookingType | null>(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [paymentProof, setPaymentProof] = useState("");
-  const [serviceType, setServiceType] = useState(0);
+  const [serviceType, setServiceType] = useState();
   const [downPayment, setDownPayment] = useState<any | undefined>(undefined);
   const [municipality, setMunicipality] = useState();
   const [barangay, setBarangay] = useState([]);
@@ -51,8 +55,8 @@ const Booking = () => {
     formState: { errors },
   } = useForm<BookingType>({ resolver: zodResolver(BookingSchema) });
 
-  const { data, bookService, getServiceById } = useBooking();
-  const { services } = useServices();
+  const { data, bookService, selectTypes } = useBooking();
+  const { services, dateInfo, getDateInformation } = useServices();
 
   useEffect(() => {
     const allModels: string[] = [];
@@ -90,7 +94,7 @@ const Booking = () => {
   const noDateSelected = () => {
     Swal.fire({
       title: "Error",
-      text: "Please select a date for booking",
+      text: "Please select a date and time for booking",
       icon: "error",
     });
   };
@@ -117,39 +121,16 @@ const Booking = () => {
 
   const OTP = Math.floor(Math.random() * (999999 - 100000) + 100000);
 
-  const onSubmit = async (data: BookingType) => {
-    try {
-      const res = await axios.post("/api/mailer", {
-        recepient: data.email,
-        message: `Your OTP is ${OTP}`,
-        username: `${data.firstName} ${data.lastName}`,
-      });
-      console.log(res.data);
-    } catch (error) {
-      console.log(error);
-    }
+  const { sendMail } = useMailer();
 
+  const onSubmit = async (data: BookingType) => {
     setIsSubmitting(true);
 
-    if (!selectedBookingDate) {
+    if (!selectedBookingDate || !selectedTimeSlot) {
+      setIsSubmitting(false);
       noDateSelected();
     } else {
-      console.log(
-        data.firstName,
-        data.lastName,
-        data.email,
-        parseInt(data.number),
-        municipality!,
-        barangay.toString(),
-        data.landmark,
-        serviceType,
-        selectedModel,
-        data.details,
-        paymentProof,
-        formatDateForSQL(selectedBookingDate),
-        serviceMode
-      );
-      bookService(
+      const bookingResponse = await bookService(
         data.firstName,
         data.lastName,
         data.email,
@@ -157,14 +138,26 @@ const Booking = () => {
         municipality!,
         barangay.toString(),
         data.landmark!,
-        serviceType,
         selectedModel,
         data.details,
         paymentProof,
-        formatDateForSQL(selectedBookingDate),
+        `${
+          formatDateForSQL(selectedBookingDate).split(" ")[0]
+        } ${selectedTimeSlot}`,
         OTP,
         serviceMode
       );
+
+      const insertId = bookingResponse.insertId;
+
+      selectedService.map((res: any) => selectTypes(insertId, res.id));
+
+      sendMail(
+        data.email,
+        `<p>Your OTP is ${OTP}</p>`,
+        `${data.firstName} ${data.lastName}`
+      );
+
       setIsSubmitting(false);
       setShowConfirmation(true);
       successfulBooking();
@@ -172,9 +165,25 @@ const Booking = () => {
     }
   };
 
-  const handleDate = (date: any) => {
+  const handleDate = (date: string) => {
     console.log(date);
+    getDateInformation(formatDateForSQL(date).split(" ")[0]);
     setSelectedBookingDate(date);
+  };
+
+  useEffect(() => {
+    if (dateInfo.length > 0) {
+      const slots: any = dateInfo.map(
+        (res: any) => res.bookedDate.split(" ")[1]
+      );
+      setBookedSlot(slots); // Store all slots in an array
+    } else {
+      setBookedSlot([]);
+    }
+  }, [dateInfo]); // Update bookedSlot whenever dateInfo changes
+
+  const handleTimeSelect = (slot: string) => {
+    setSelectedTimeSlot(slot);
   };
 
   const handleImageClick1 = () => {
@@ -185,20 +194,17 @@ const Booking = () => {
   };
 
   useEffect(() => {
-    getServiceById(serviceType);
-  }, [serviceType]);
-
-  useEffect(() => {
-    if (data && data.length > 0) {
-      const deductedPrice = data[0].servicePrice * 0.3;
-      setDownPayment(deductedPrice);
-    } else {
-      console.log("Data is empty or undefined");
-    }
-  }, []);
+    let test = 0;
+    selectedService.map((result: any) => (test += result.servicePrice));
+    setDownPayment(Math.ceil(test * 0.3));
+  }, [selectedService]);
 
   if (isSubmitting) {
-    Swal.fire({ title: "Processing Your Booking" });
+    Swal.fire({
+      title: "Processing Your Booking",
+      showConfirmButton: false,
+      timer: 2500,
+    });
   }
 
   return (
@@ -217,11 +223,14 @@ const Booking = () => {
           <div className="text-white self-center flex items-center gap-2">
             <p className="font-bold text-[18px]">Selected Date:</p>
             {selectedBookingDate
-              ? formatDateNormal(selectedBookingDate)
+              ? `${formatDateNormal(selectedBookingDate)} ${selectedTimeSlot}`
               : "Please Select a Date"}
           </div>
           <div>
-            <TimeCard />
+            <TimeCard
+              handleTimeSelect={handleTimeSelect}
+              bookedSlots={bookedSlot}
+            />
           </div>
         </div>
         <div className="w-full">
@@ -347,16 +356,19 @@ const Booking = () => {
               )}
             </div>
 
-            <div className="flex gap-8">
+            <div className="flex gap-8 w-full ">
               <div className="flex flex-col gap-1">
                 <p className="text-[18px] ">Select Service:</p>
                 {services && (
-                  <Dropdown<ServiceType>
+                  <MultiSelect
+                    value={selectedService}
+                    onChange={(e) => setSelectedService(e.value)}
                     options={services}
-                    title="Services"
-                    onSelect={(selected) => setServiceType(selected.id)}
-                    getOptionLabel={(types) => types.serviceName}
-                    getOptionKey={(types) => types.id}
+                    optionLabel="serviceName"
+                    display="chip"
+                    placeholder="Select a Service..."
+                    maxSelectedLabels={3}
+                    className="w-full md:w-20rem"
                   />
                 )}
               </div>

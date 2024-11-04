@@ -34,7 +34,6 @@ exports.getBookedServices = (req, res) => {
         municipality: results.municipality,
         barangay: results.barangay,
         landmark: results.landmark,
-        serviceId: results.serviceId,
         carModel: results.carModel,
         additionalDetails: results.additionalDetails,
         proofOfPayment: results.proofOfPayment,
@@ -55,8 +54,48 @@ exports.getBookedServices = (req, res) => {
   });
 };
 
+exports.selectServiceType = (req, res) => {
+  bookingModel.selectServiceTypes(req.body, (err, results) => {
+    if (err) {
+      return res.status(400).send(err);
+    }
+
+    return res.status(200).send(results);
+  });
+};
+
+exports.getSelectedTypes = (req, res) => {
+  bookingModel.getSelectedType(req.params.id, (err, results) => {
+    if (err) {
+      return res.status(400).send(err);
+    }
+
+    return res.status(200).send(results);
+  });
+};
+
 exports.getBookedServiceId = (req, res) => {
   bookingModel.getBookedServicesById(req.params.id, (err, results) => {
+    if (err) {
+      return res.status(400).send(err);
+    }
+    console.log(results);
+    return res.status(200).send(results);
+  });
+};
+
+exports.acceptBooking = (req, res) => {
+  bookingModel.confirmBooking(req.params.id, (err, results) => {
+    if (err) {
+      return res.status(400).send(err);
+    }
+    console.log(results);
+    return res.status(200).send(results);
+  });
+};
+
+exports.declineBooking = (req, res) => {
+  bookingModel.declineBooking(req.params.id, (err, results) => {
     if (err) {
       return res.status(400).send(err);
     }

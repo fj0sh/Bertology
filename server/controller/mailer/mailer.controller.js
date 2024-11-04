@@ -36,7 +36,7 @@ exports.sendMail = async (req, res) => {
     });
 
     console.log("Email sent: %s", info.messageId);
-    res.status(200).json({ message: "Email sent", OTP });
+    res.status(200).json({ message: "Email sent" });
   } catch (error) {
     console.error("Error sending email:", error);
     res.status(500).json({ message: "Error sending email" });

@@ -1,8 +1,9 @@
-exports.emailLayout = (message, username) => {
+exports.emailLayout = (message, recepient, username) => {
   return `
     <div>
       <h2>Hello ${username}!</h2>
-      <p>${message}</p>
+      <div>${message}</div>
+      <div>${recepient}</div>
     </div>
     `;
 };

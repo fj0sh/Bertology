@@ -6,24 +6,35 @@ exports.getAllServices = (req, res) => {
       console.log(err);
     }
     console.log(result);
-    res.send(result);
+    return res.status(200).send(result);
   });
 };
 
 exports.getServiceById = (req, res) => {
   serviceModel.getServiceById(req.params.id, (err, result) => {
     if (err) {
-      res.status(400).send(err);
+      return res.status(400).send(err);
     }
-    res.send(result);
+    return res.status(200).send(result);
   });
 };
 
-exports.getAllBookedDates = (req, res) => {
-  serviceModel.getBookedDates((err, result) => {
+exports.getFullyBookedDates = (req, res) => {
+  serviceModel.getFullyBookedDates((err, result) => {
     if (err) {
-      console.log(err);
+      return res.status(400).send(err);
     }
-    res.send(result);
+    return res.status(200).send(result);
+  });
+};
+
+exports.getDateInfo = (req, res) => {
+  const { date } = req.body; // Destructure `date` from req.body
+
+  serviceModel.getDateInformation(date, (err, result) => {
+    if (err) {
+      return res.status(400).send(err);
+    }
+    return res.status(200).send(result);
   });
 };

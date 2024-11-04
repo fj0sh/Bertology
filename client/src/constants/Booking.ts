@@ -8,7 +8,7 @@ interface BookingType {
   lastName: string;
   email: string;
   facebookAccount: string;
-  contactnumber: string;
+  contactNumber: string;
   serviceRequest: string;
   carModel: string;
   additionalDetails: string;
@@ -17,6 +17,7 @@ interface BookingType {
   barangay: string;
   landmark: string;
   proofOfPayment: string;
+  mode: string;
   user: UserType;
   service: ServiceType;
 }
