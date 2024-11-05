@@ -103,3 +103,13 @@ exports.declineBooking = (req, res) => {
     return res.status(200).send(results);
   });
 };
+
+exports.deleteBooking = (req, res) => {
+  bookingModel.deleteBooking(req.params.id, (err, results) => {
+    if (err) {
+      return res.status(400).send(err);
+    }
+    console.log(results);
+    return res.status(200).send(results);
+  });
+};

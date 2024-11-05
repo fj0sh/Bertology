@@ -41,10 +41,7 @@ const useBooking = () => {
     };
 
     try {
-      const res = await instance.post(
-        `${process.env.NEXT_PUBLIC_URL}/booking/`,
-        body
-      );
+      const res = await instance.post(`/booking/`, body);
 
       console.log(res.data);
       return res.data;
@@ -55,9 +52,7 @@ const useBooking = () => {
 
   const getServiceById = async (id: number) => {
     try {
-      const res = await instance.get(
-        `${process.env.NEXT_PUBLIC_URL}/services/${id}`
-      );
+      const res = await instance.get(`/services/${id}`);
       setData(res.data);
       return res.data;
     } catch (error) {
@@ -67,9 +62,7 @@ const useBooking = () => {
 
   const getAllBookings = async () => {
     try {
-      const res = await instance.get(
-        `${process.env.NEXT_PUBLIC_URL}/booking/bookings`
-      );
+      const res = await instance.get(`/booking/bookings`);
       setAllBookings(res.data);
     } catch (error) {
       console.log(error);
@@ -91,9 +84,7 @@ const useBooking = () => {
 
   const acceptBooking = async (id: number) => {
     try {
-      const res = instance.patch(
-        `${process.env.NEXT_PUBLIC_URL}/booking/accept/${id}`
-      );
+      const res = instance.patch(`/booking/accept/${id}`);
       console.log(res);
     } catch (error) {
       console.log(error);
@@ -102,9 +93,7 @@ const useBooking = () => {
 
   const declineBooking = async (id: number) => {
     try {
-      const res = instance.patch(
-        `${process.env.NEXT_PUBLIC_URL}/booking/decline/${id}`
-      );
+      const res = instance.patch(`/booking/decline/${id}`);
       console.log(res);
     } catch (error) {
       console.log(error);
@@ -113,11 +102,18 @@ const useBooking = () => {
 
   const getSelectedTypes = async (id: number) => {
     try {
-      const res = await instance.get(
-        `${process.env.NEXT_PUBLIC_URL}/booking/bookings/${id}`
-      );
+      const res = await instance.get(`/booking/bookings/${id}`);
       setServiceType(res.data);
       return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteBooking = async (id: number) => {
+    try {
+      const res = await instance.delete(`/booking/${id}`);
+      console.log(res);
     } catch (error) {
       console.log(error);
     }
@@ -131,6 +127,7 @@ const useBooking = () => {
     declineBooking,
     selectTypes,
     getSelectedTypes,
+    deleteBooking,
     data,
     allBookings,
     serviceType,

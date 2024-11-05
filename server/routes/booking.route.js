@@ -3,6 +3,7 @@ const router = express.Router();
 const bookingController = require("../controller/booking.controller");
 
 router.post("/", bookingController.bookService);
+router.delete("/:id", bookingController.deleteBooking);
 router.post("/selectTypes", bookingController.selectServiceType);
 router.get("/bookings", bookingController.getBookedServices);
 router.get("/bookings/:id", bookingController.getSelectedTypes);

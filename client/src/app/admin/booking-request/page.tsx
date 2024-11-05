@@ -11,17 +11,26 @@ const BookingRequest = () => {
   const [isRequestShow, setIsRequestShow] = useState(false);
   const [rowData, setRowData] = useState<BookingResponse>();
 
-  const { getAllBookings, getSelectedTypes, allBookings, serviceType } =
-    useBooking();
+  const {
+    getAllBookings,
+    getSelectedTypes,
+    deleteBooking,
+    allBookings,
+    serviceType,
+  } = useBooking();
 
   useEffect(() => {
     getAllBookings();
-  }, []);
+  }, [deleteBooking]);
 
   const handleViewClick = (data: any, index: number) => {
     getSelectedTypes(data.data.id);
     setIsRequestShow(true);
     setRowData(data);
+  };
+
+  const handleDeleteBooking = (data: any) => {
+    deleteBooking(data.data.id);
   };
 
   const viewColumn = (rowData: any, rowIndex: number) => {
@@ -32,6 +41,13 @@ const BookingRequest = () => {
           className="px-2 py-1 bg-blue-500 text-white rounded"
         >
           View
+        </button>
+
+        <button
+          onClick={() => handleDeleteBooking(rowData)}
+          className="px-2 py-1 bg-red-500 text-white rounded"
+        >
+          Delete
         </button>
       </div>
     );

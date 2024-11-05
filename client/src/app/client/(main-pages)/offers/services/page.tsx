@@ -176,11 +176,11 @@ const Booking = () => {
       const slots: any = dateInfo.map(
         (res: any) => res.bookedDate.split(" ")[1]
       );
-      setBookedSlot(slots); // Store all slots in an array
+      setBookedSlot(slots);
     } else {
       setBookedSlot([]);
     }
-  }, [dateInfo]); // Update bookedSlot whenever dateInfo changes
+  }, [dateInfo]);
 
   const handleTimeSelect = (slot: string) => {
     setSelectedTimeSlot(slot);

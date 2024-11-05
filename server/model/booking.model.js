@@ -80,3 +80,7 @@ exports.declineBooking = (bookingId, callback) => {
     callback
   );
 };
+
+exports.deleteBooking = (bookingId, callback) => {
+  conn.query("DELETE FROM booking WHERE id =?", bookingId, callback);
+};
