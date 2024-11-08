@@ -29,7 +29,7 @@ CREATE TABLE `booked_service` (
   KEY `service_fk` (`serviceId`),
   CONSTRAINT `booking_fk` FOREIGN KEY (`bookingId`) REFERENCES `booking` (`id`) ON DELETE CASCADE,
   CONSTRAINT `service_fk` FOREIGN KEY (`serviceId`) REFERENCES `services` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `booked_service` */
 
@@ -45,7 +45,9 @@ insert  into `booked_service`(`id`,`serviceId`,`bookingId`) values
 (105,11,282),
 (106,12,282),
 (107,10,283),
-(108,11,283);
+(108,11,283),
+(109,10,287),
+(110,11,287);
 
 /*Table structure for table `booking` */
 
@@ -66,17 +68,19 @@ CREATE TABLE `booking` (
   `bookedDate` varchar(45) DEFAULT NULL,
   `status` enum('PENDING','APPROVED','DECLINED','VERIFYING','DONE') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `mode` enum('ONSITE','HOMESERVICE') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `street` varchar(128) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=287 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=288 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `booking` */
 
-insert  into `booking`(`id`,`firstName`,`lastName`,`email`,`contactNumber`,`municipality`,`barangay`,`landmark`,`carModel`,`additionalDetails`,`proofOfPayment`,`bookedDate`,`status`,`mode`) values 
-(276,'Jaira','Gallo','jairagallo@gmail.com','12312312312',NULL,'',NULL,'Audi Quattro','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tortor risus, venenatis ut lobortis et, gravida sed dolor. Nunc in convallis sem, eget bibendum arcu. Pellentesque quis ipsum nec nibh viverra tempor. Integer laoreet porta sem, quis rutrum odio vulputate suscipit. Curabitur consequat eleifend tellus, sit amet laoreet felis sodales quis. Nam hendrerit velit sed purus volutpat fringilla. Nunc commodo sapien at nisl efficitur, eu semper nisi ultrices.','https://res.cloudinary.com/dgxlqujte/image/upload/v1730980339/ghxashgn0tcpqbe8lstq.jpg','2024-11-09 7:00-8:00','PENDING','ONSITE'),
-(280,'Dexter','Lab','Dex@gmail.com','12312312312','ALEGRIA','GUADALUPE','Narra tree','Alfa Romeo GTV-6','test','https://res.cloudinary.com/dgxlqujte/image/upload/v1730980710/m111dx3s7yticvzoc63w.jpg','2024-11-16 4:00-7:00','PENDING','HOMESERVICE'),
-(281,'Numb','Skull','Numb@gmail.com','12312312312','ALEGRIA','GUADALUPE','','Alfa Romeo GTV-6','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tortor risus, venenatis ut lobortis et, gravida sed dolor. Nunc in convallis sem, eget bibendum arcu. Pellentesque quis ipsum nec nibh viverra tempor. Integer laoreet porta sem, quis rutrum odio vulputate suscipit. Curabitur consequat eleifend tellus, sit amet laoreet felis sodales quis. Nam hendrerit velit sed purus volutpat fringilla. Nunc commodo sapien at nisl efficitur, eu semper nisi ultrices.','https://res.cloudinary.com/dgxlqujte/image/upload/v1730980710/m111dx3s7yticvzoc63w.jpg','2024-11-16 7:00-10:00','PENDING','HOMESERVICE'),
-(282,'Chester','Benington','Chester@gmail.com','12312312312','ALEGRIA','GUADALUPE','punks not dead','Alfa Romeo GTV-6','PUNKS NOT DEAD','https://res.cloudinary.com/dgxlqujte/image/upload/v1730980710/m111dx3s7yticvzoc63w.jpg','2024-11-29 4:00-7:00','PENDING','HOMESERVICE'),
-(283,'Francis','Cutamora','francisjoshuacutamora@gmail.com','12312312312','ALCANTARA','CABADIANGAN','Petron Gas Station','Buick Electra','Lorem ','https://res.cloudinary.com/dgxlqujte/image/upload/v1730981525/maibgducqdv0upgjq7b3.jpg','2024-11-22 4:00-7:00','PENDING','HOMESERVICE');
+insert  into `booking`(`id`,`firstName`,`lastName`,`email`,`contactNumber`,`municipality`,`barangay`,`landmark`,`carModel`,`additionalDetails`,`proofOfPayment`,`bookedDate`,`status`,`mode`,`street`) values 
+(276,'Jaira','Gallo','jairagallo@gmail.com','12312312312',NULL,'',NULL,'Audi Quattro','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tortor risus, venenatis ut lobortis et, gravida sed dolor. Nunc in convallis sem, eget bibendum arcu. Pellentesque quis ipsum nec nibh viverra tempor. Integer laoreet porta sem, quis rutrum odio vulputate suscipit. Curabitur consequat eleifend tellus, sit amet laoreet felis sodales quis. Nam hendrerit velit sed purus volutpat fringilla. Nunc commodo sapien at nisl efficitur, eu semper nisi ultrices.','https://res.cloudinary.com/dgxlqujte/image/upload/v1730980339/ghxashgn0tcpqbe8lstq.jpg','2024-11-09 7:00-8:00','APPROVED','ONSITE',NULL),
+(280,'Dexter','Lab','Dex@gmail.com','12312312312','ALEGRIA','GUADALUPE','Narra tree','Alfa Romeo GTV-6','test','https://res.cloudinary.com/dgxlqujte/image/upload/v1730980710/m111dx3s7yticvzoc63w.jpg','2024-11-16 4:00-7:00','DECLINED','HOMESERVICE',NULL),
+(281,'Numb','Skull','Numb@gmail.com','12312312312','ALEGRIA','GUADALUPE','','Alfa Romeo GTV-6','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tortor risus, venenatis ut lobortis et, gravida sed dolor. Nunc in convallis sem, eget bibendum arcu. Pellentesque quis ipsum nec nibh viverra tempor. Integer laoreet porta sem, quis rutrum odio vulputate suscipit. Curabitur consequat eleifend tellus, sit amet laoreet felis sodales quis. Nam hendrerit velit sed purus volutpat fringilla. Nunc commodo sapien at nisl efficitur, eu semper nisi ultrices.','https://res.cloudinary.com/dgxlqujte/image/upload/v1730980710/m111dx3s7yticvzoc63w.jpg','2024-11-16 7:00-10:00','DONE','HOMESERVICE',NULL),
+(282,'Chester','Benington','Chester@gmail.com','12312312312','ALEGRIA','GUADALUPE','punks not dead','Alfa Romeo GTV-6','PUNKS NOT DEAD','https://res.cloudinary.com/dgxlqujte/image/upload/v1730980710/m111dx3s7yticvzoc63w.jpg','2024-11-29 4:00-7:00','DONE','HOMESERVICE',NULL),
+(283,'Francis','Cutamora','francisjoshuacutamora@gmail.com','12312312312','ALCANTARA','CABADIANGAN','Petron Gas Station','Buick Electra','Lorem ','https://res.cloudinary.com/dgxlqujte/image/upload/v1730981525/maibgducqdv0upgjq7b3.jpg','2024-11-22 4:00-7:00','PENDING','HOMESERVICE',NULL),
+(287,'Francis','Cutamora','francisjoshuacutamora@gmail.com','12312312314','ALCANTARA','CABADIANGAN','Petron Gas Station','Ferrari Testarossa','test','https://res.cloudinary.com/dgxlqujte/image/upload/v1731065034/fg6jv3hhqeol2gmrtoqj.jpg','2024-11-20 1:00-4:00','PENDING','HOMESERVICE','6315, Sardines Street');
 
 /*Table structure for table `cart` */
 
