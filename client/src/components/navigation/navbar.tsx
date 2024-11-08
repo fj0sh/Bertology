@@ -33,7 +33,7 @@ const Navbar = () => {
         <div className="hidden sm:block sm:ml-6">
           <div className="hidden sm:block sm:ml-6">
             <div className="flex gap-10 space-x-4 mr-[45px] text-white">
-              <SearchBar />
+              {/* <SearchBar /> */}
               {navLinks.map((x, index) => {
                 const isActive =
                   x.href === "/"

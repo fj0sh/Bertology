@@ -7,7 +7,6 @@ const useServices = () => {
   const { data: services } = useFetchData<ServiceType[]>("/services");
   const [dateInfo, setDateInfo] = useState([]);
 
-  
   const getDateInformation = async (date: string) => {
     try {
       const res = await instance.post("/services/date-info", { date: date });

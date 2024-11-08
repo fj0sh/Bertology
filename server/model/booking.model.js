@@ -40,6 +40,10 @@ exports.getBookedServices = (callback) => {
   conn.query("SELECT * FROM booking", callback);
 };
 
+exports.getBookingByStatus = (status, callback) => {
+  conn.query("SELECT * FROM booking WHERE status = ?", [status], callback);
+};
+
 exports.getBookedServicesById = (id, callback) => {
   conn.query(
     "SELECT b.id, b.location, b.contact, b.serviceRequest, b.carModel, b.detail, b.serviceId, b.userId, b.dateBooked, b.status, b.payment_type, b.payment_proof, b.email, u.firstname, u.lastname, u.username, s.serviceName, s.serviceDescription, s.serviceDuration FROM booking AS b INNER JOIN users AS u ON u.id = b.userId INNER JOIN services AS s ON s.id = b.serviceId WHERE b.id = ?",
@@ -83,4 +87,11 @@ exports.declineBooking = (bookingId, callback) => {
 
 exports.deleteBooking = (bookingId, callback) => {
   conn.query("DELETE FROM booking WHERE id =?", bookingId, callback);
+};
+
+exports.getStatusCount = (callback) => {
+  conn.query(
+    "SELECT status, COUNT(*) AS count FROM booking WHERE status IN ('PENDING', 'DECLINED', 'DONE', 'APPROVED') GROUP BY status",
+    callback
+  );
 };

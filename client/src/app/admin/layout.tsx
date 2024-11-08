@@ -18,9 +18,9 @@ export default function RootLayout({
   return (
     <LogoutProvider>
       <LogoutModal />
-      <div className="flex h-screen bg-background">
+      <div className="flex h-full w-full bg-background">
         <Sidebar />
-        <div className="ml-[15rem] px-12 py-6 gap-6 w-full flex flex-col">
+        <div className="ml-[15rem] px-12 py-6 gap-6 w-full h-full flex flex-col">
           <div className="self-end">
             <Avatar />
           </div>

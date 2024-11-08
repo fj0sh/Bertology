@@ -28,8 +28,15 @@ const Footer = (props: Props) => {
         <div className="flex flex-col gap-4">
           <p>Connnect with us now</p>
           <div className="flex justify-center gap-6">
-            <FaFacebookSquare fontSize={"40px"} />
-            <FaFacebookMessenger fontSize={"40px"} />
+            <Link
+              href={"https://www.facebook.com/BossbertologyInstaller032402"}
+            >
+              <FaFacebookSquare fontSize={"40px"} />
+            </Link>
+
+            <Link href={"https://www.messenger.com/t/107835038134226"}>
+              <FaFacebookMessenger fontSize={"40px"} />
+            </Link>
           </div>
         </div>
       </div>

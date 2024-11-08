@@ -21,17 +21,17 @@ const navLinks = [
     title: "Booking Request",
     href: "/admin/booking-request",
   },
-  {
-    icons: <FaTruckLoading size={30} />,
-    title: "Orders",
-    href: "/admin/orders",
-  },
-  {
-    icons: <FaBoxes size={30} />,
-    title: "Products",
-    href: "/admin/products",
-  },
-  { icons: <HiMiniUsers size={30} />, title: "Users", href: "/admin/users" },
+  // {
+  //   icons: <FaTruckLoading size={30} />,
+  //   title: "Orders",
+  //   href: "/admin/orders",
+  // },
+  // {
+  //   icons: <FaBoxes size={30} />,
+  //   title: "Products",
+  //   href: "/admin/products",
+  // },
+  // { icons: <HiMiniUsers size={30} />, title: "Users", href: "/admin/users" },
   {
     icons: <HiMiniWrenchScrewdriver size={30} />,
     title: "Services",

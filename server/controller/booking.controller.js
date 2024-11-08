@@ -54,6 +54,16 @@ exports.getBookedServices = (req, res) => {
   });
 };
 
+exports.getBookedServiceByStatus = (req, res) => {
+  bookingModel.getBookingByStatus(req.body.status, (err, result) => {
+    if (err) {
+      return res.status(400).send(err);
+    }
+
+    return res.status(200).send(result);
+  });
+};
+
 exports.selectServiceType = (req, res) => {
   bookingModel.selectServiceTypes(req.body, (err, results) => {
     if (err) {
@@ -110,6 +120,15 @@ exports.deleteBooking = (req, res) => {
       return res.status(400).send(err);
     }
     console.log(results);
+    return res.status(200).send(results);
+  });
+};
+
+exports.getStatusCount = (req, res) => {
+  bookingModel.getStatusCount((err, results) => {
+    if (err) {
+      return res.status(400).send(err);
+    }
     return res.status(200).send(results);
   });
 };

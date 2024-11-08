@@ -22,11 +22,13 @@ const PrimeCalendar = (props: Props) => {
           `${process.env.NEXT_PUBLIC_URL}/services/booked-dates`
         );
 
+        console.log(res.data);
+
         const disableDates = res.data.map((booked: any) => {
-          return new Date(booked.bookedDate);
+          return new Date(booked.bookingDate);
         });
 
-        console.log(disableDates);
+        console.log("Disabled Dates:", disableDates);
 
         setBookedDates(disableDates);
       } catch (error) {
@@ -40,22 +42,22 @@ const PrimeCalendar = (props: Props) => {
   const handleDateChange = (e: any) => {
     console.log(e.value);
     if (selectedDate && e.value) {
-      setCurrentSelectedDate(e.value); // Update the selected date state
-      selectedDate(e.value); // Pass selected date up to parent
+      setCurrentSelectedDate(e.value);
+      selectedDate(e.value);
     }
   };
 
-  const today = new Date(); // Get today's date
+  const today = new Date();
 
   return (
     <>
       <Calendar
-        value={currentSelectedDate} // Control the selected date value
+        value={currentSelectedDate}
         className="custom-calendar w-full h-full"
         inline
         disabledDates={bookedDates}
-        onChange={handleDateChange} // Custom date change handler
-        minDate={today} // Disable past dates
+        onChange={handleDateChange}
+        minDate={today}
         pt={{
           yearTitle: { className: "px-4" },
           header: { className: "bg-orangeRed text-white" },

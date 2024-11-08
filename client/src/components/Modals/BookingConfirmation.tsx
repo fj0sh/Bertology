@@ -7,16 +7,13 @@ import Button from "../button/OrangeButton";
 interface Props {
   isOpen?: boolean;
   onClose?: () => void;
+  verifyOTP?: () => void;
 }
 
 const BookingConfirmation = (props: Props) => {
-  const { isOpen, onClose } = props;
+  const { isOpen, onClose, verifyOTP } = props;
 
   if (!isOpen) return null;
-
-  const handleVerification = () => {
-    //handle OTP verification
-  };
 
   return (
     <ModalContainer>
@@ -34,7 +31,7 @@ const BookingConfirmation = (props: Props) => {
         <div>
           <InputOrange placeholder="XXXXXX" />
         </div>
-        <Button title="Verify" onClick={handleVerification}></Button>
+        <Button title="Verify" onClick={verifyOTP}></Button>
       </div>
     </ModalContainer>
   );

@@ -3,9 +3,11 @@ import BookingRequestCard from "@/components/cards/BookingRequestCard";
 import BookingRequestModal from "@/components/Modals/BookingRequestModal";
 import { BookingResponse, BookingType } from "@/constants/Booking";
 import useBooking from "@/hooks/requests/useBooking";
+import { FilterMatchMode } from "primereact/api";
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
 import React, { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 const BookingRequest = () => {
   const [isRequestShow, setIsRequestShow] = useState(false);
@@ -30,7 +32,20 @@ const BookingRequest = () => {
   };
 
   const handleDeleteBooking = (data: any) => {
-    deleteBooking(data.data.id);
+    Swal.fire({
+      title: "Delete Booking?",
+      text: "You are about to delete this booking.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+    }).then((res) => {
+      if (res.isConfirmed) {
+        deleteBooking(data.data.id);
+      }
+    });
   };
 
   const viewColumn = (rowData: any, rowIndex: number) => {
@@ -79,18 +94,19 @@ const BookingRequest = () => {
       <DataTable
         value={allBookings}
         paginator
-        rows={10}
-        size="small"
+        rows={20}
+        size="medium"
         pt={{
           table: { className: "" },
           bodyRow: { className: "border border-black" },
+          thead: { className: "bg-orangePrimary text-white" },
         }}
       >
         <Column field="data.bookedDate" header="Booked Date" sortable />
         <Column header="Customer" body={customerColumn} />
-        <Column field="data.carModel" header="Car Model" />
-        <Column field="data.mode" header="Service Mode" />
-        <Column field="data.status" header="Status" />
+        <Column field="data.carModel" header="Car Model" sortable />
+        <Column field="data.mode" header="Service Mode" sortable />
+        <Column field="data.status" header="Status" sortable />
         <Column
           header="Actions"
           body={(rowData, { rowIndex }) => viewColumn(rowData, rowIndex)}

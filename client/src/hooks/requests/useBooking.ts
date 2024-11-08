@@ -8,6 +8,7 @@ const useBooking = () => {
   const [allBookings, setAllBookings] = useState<BookingResponse[] | undefined>(
     undefined
   );
+  const [dataByStatus, setDataByStatus] = useState();
 
   const bookService = async (
     firstName: string,
@@ -21,7 +22,6 @@ const useBooking = () => {
     additionalDetails: string,
     proofOfPayment: string,
     bookedDate: string,
-    OTP: number,
     mode: string
   ) => {
     const body = {
@@ -36,7 +36,6 @@ const useBooking = () => {
       additionalDetails: additionalDetails,
       proofOfPayment: proofOfPayment,
       bookedDate: bookedDate,
-      OTP: OTP,
       mode: mode,
     };
 
@@ -100,6 +99,18 @@ const useBooking = () => {
     }
   };
 
+  const getBookingByStatus = async (status: string) => {
+    try {
+      const res = await instance.post(`/booking/status`, {
+        status: status,
+      });
+      console.log(res.data);
+      setDataByStatus(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const getSelectedTypes = async (id: number) => {
     try {
       const res = await instance.get(`/booking/bookings/${id}`);
@@ -128,7 +139,9 @@ const useBooking = () => {
     selectTypes,
     getSelectedTypes,
     deleteBooking,
+    getBookingByStatus,
     data,
+    dataByStatus,
     allBookings,
     serviceType,
   };

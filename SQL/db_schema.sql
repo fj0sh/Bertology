@@ -29,14 +29,23 @@ CREATE TABLE `booked_service` (
   KEY `service_fk` (`serviceId`),
   CONSTRAINT `booking_fk` FOREIGN KEY (`bookingId`) REFERENCES `booking` (`id`) ON DELETE CASCADE,
   CONSTRAINT `service_fk` FOREIGN KEY (`serviceId`) REFERENCES `services` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `booked_service` */
 
 insert  into `booked_service`(`id`,`serviceId`,`bookingId`) values 
-(63,9,60),
-(64,10,60),
-(65,11,60);
+(93,10,276),
+(98,10,280),
+(99,12,280),
+(100,11,280),
+(101,10,281),
+(102,11,281),
+(103,12,281),
+(104,10,282),
+(105,11,282),
+(106,12,282),
+(107,10,283),
+(108,11,283);
 
 /*Table structure for table `booking` */
 
@@ -52,18 +61,22 @@ CREATE TABLE `booking` (
   `barangay` varchar(45) DEFAULT NULL,
   `landmark` varchar(255) DEFAULT NULL,
   `carModel` varchar(45) DEFAULT NULL,
-  `additionalDetails` varchar(128) DEFAULT NULL,
+  `additionalDetails` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `proofOfPayment` varchar(255) DEFAULT NULL,
   `bookedDate` varchar(45) DEFAULT NULL,
-  `status` enum('PENDING','APPROVED','DECLINED','VERIFYING') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `status` enum('PENDING','APPROVED','DECLINED','VERIFYING','DONE') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `mode` enum('ONSITE','HOMESERVICE') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=287 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `booking` */
 
 insert  into `booking`(`id`,`firstName`,`lastName`,`email`,`contactNumber`,`municipality`,`barangay`,`landmark`,`carModel`,`additionalDetails`,`proofOfPayment`,`bookedDate`,`status`,`mode`) values 
-(60,'Francis ','Cutamora','francisjoshuacutamora@gmail.com','9941205303',NULL,'',NULL,'Ford Freestar','test','https://res.cloudinary.com/dgxlqujte/image/upload/v1730767825/snry7x8ujohhd5bivkos.jpg','2024-11-14 7:00-8:00','DECLINED','ONSITE');
+(276,'Jaira','Gallo','jairagallo@gmail.com','12312312312',NULL,'',NULL,'Audi Quattro','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tortor risus, venenatis ut lobortis et, gravida sed dolor. Nunc in convallis sem, eget bibendum arcu. Pellentesque quis ipsum nec nibh viverra tempor. Integer laoreet porta sem, quis rutrum odio vulputate suscipit. Curabitur consequat eleifend tellus, sit amet laoreet felis sodales quis. Nam hendrerit velit sed purus volutpat fringilla. Nunc commodo sapien at nisl efficitur, eu semper nisi ultrices.','https://res.cloudinary.com/dgxlqujte/image/upload/v1730980339/ghxashgn0tcpqbe8lstq.jpg','2024-11-09 7:00-8:00','PENDING','ONSITE'),
+(280,'Dexter','Lab','Dex@gmail.com','12312312312','ALEGRIA','GUADALUPE','Narra tree','Alfa Romeo GTV-6','test','https://res.cloudinary.com/dgxlqujte/image/upload/v1730980710/m111dx3s7yticvzoc63w.jpg','2024-11-16 4:00-7:00','PENDING','HOMESERVICE'),
+(281,'Numb','Skull','Numb@gmail.com','12312312312','ALEGRIA','GUADALUPE','','Alfa Romeo GTV-6','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tortor risus, venenatis ut lobortis et, gravida sed dolor. Nunc in convallis sem, eget bibendum arcu. Pellentesque quis ipsum nec nibh viverra tempor. Integer laoreet porta sem, quis rutrum odio vulputate suscipit. Curabitur consequat eleifend tellus, sit amet laoreet felis sodales quis. Nam hendrerit velit sed purus volutpat fringilla. Nunc commodo sapien at nisl efficitur, eu semper nisi ultrices.','https://res.cloudinary.com/dgxlqujte/image/upload/v1730980710/m111dx3s7yticvzoc63w.jpg','2024-11-16 7:00-10:00','PENDING','HOMESERVICE'),
+(282,'Chester','Benington','Chester@gmail.com','12312312312','ALEGRIA','GUADALUPE','punks not dead','Alfa Romeo GTV-6','PUNKS NOT DEAD','https://res.cloudinary.com/dgxlqujte/image/upload/v1730980710/m111dx3s7yticvzoc63w.jpg','2024-11-29 4:00-7:00','PENDING','HOMESERVICE'),
+(283,'Francis','Cutamora','francisjoshuacutamora@gmail.com','12312312312','ALCANTARA','CABADIANGAN','Petron Gas Station','Buick Electra','Lorem ','https://res.cloudinary.com/dgxlqujte/image/upload/v1730981525/maibgducqdv0upgjq7b3.jpg','2024-11-22 4:00-7:00','PENDING','HOMESERVICE');
 
 /*Table structure for table `cart` */
 
@@ -175,21 +188,31 @@ DROP TABLE IF EXISTS `services`;
 CREATE TABLE `services` (
   `id` int NOT NULL AUTO_INCREMENT,
   `serviceName` varchar(63) DEFAULT NULL,
-  `serviceDuration` varchar(31) DEFAULT NULL,
   `servicePrice` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `services` */
 
-insert  into `services`(`id`,`serviceName`,`serviceDuration`,`servicePrice`) values 
-(9,'LED','Installation',400),
-(10,'TEST','10',10000),
-(11,'Test2','5',1200),
-(12,'TEst3','3',1200),
-(13,'test4','4',23424),
-(14,'test5','6',564564),
-(15,'test6','8',10000);
+insert  into `services`(`id`,`serviceName`,`servicePrice`) values 
+(10,'LED installation',1000),
+(11,'Horn Installation',1200),
+(12,'Central Locking',1200),
+(13,'Car Sound Setup',2000),
+(14,'DashCam',1500),
+(15,'Stereo',10000),
+(16,'Speaker',2000),
+(17,'SubWoofer',1000),
+(18,'Turbo Timer',500),
+(19,'Keyless Entry Installation',1500),
+(20,'Spoiler',1500),
+(21,'Rain Visor',800),
+(22,'Skirt',700),
+(23,'Sound System Troubleshoot',800),
+(24,'Door Lock Problems',1000),
+(25,'Parking Sensor',1000),
+(26,'DRL Installation',2000),
+(27,'Bulbs Installation',500);
 
 /*Table structure for table `time_slot` */
 

@@ -24,14 +24,17 @@ import Image from "next/image";
 import carModels from "@/constants/CarModel";
 import TimeCard from "@/components/cards/calendar/timeCard/TimeCard";
 import useMailer from "@/hooks/mailer/useMailer";
+import Cookies from "universal-cookie";
 
 import { MultiSelect } from "primereact/multiselect";
+import { encrypter } from "@/lib/function/encrypter/encrypter";
 
 const Booking = () => {
   const [selectedBookingDate, setSelectedBookingDate] = useState("");
   const [selectedTimeSlot, setSelectedTimeSlot] = useState("");
   const [selectedService, setSelectedService] = useState([]);
   const [bookedSlot, setBookedSlot] = useState([]);
+  const [serviceBooked, setServiceBooked] = useState("");
 
   const [formData, setFormData] = useState<BookingType | null>(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -57,6 +60,9 @@ const Booking = () => {
 
   const { data, bookService, selectTypes } = useBooking();
   const { services, dateInfo, getDateInformation } = useServices();
+  const { sendMail } = useMailer();
+
+  const cookies = new Cookies();
 
   useEffect(() => {
     const allModels: string[] = [];
@@ -89,8 +95,6 @@ const Booking = () => {
     }
   }, [municipality]);
 
-  // Log the barangay list to verify
-
   const noDateSelected = () => {
     Swal.fire({
       title: "Error",
@@ -106,7 +110,7 @@ const Booking = () => {
       icon: "success",
     });
     setShowConfirmation(false);
-    reset;
+    reset();
   };
 
   const handleModelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -120,8 +124,6 @@ const Booking = () => {
   };
 
   const OTP = Math.floor(Math.random() * (999999 - 100000) + 100000);
-
-  const { sendMail } = useMailer();
 
   const onSubmit = async (data: BookingType) => {
     setIsSubmitting(true);
@@ -144,7 +146,6 @@ const Booking = () => {
         `${
           formatDateForSQL(selectedBookingDate).split(" ")[0]
         } ${selectedTimeSlot}`,
-        OTP,
         serviceMode
       );
 
@@ -159,11 +160,18 @@ const Booking = () => {
       );
 
       setIsSubmitting(false);
-      setShowConfirmation(true);
       successfulBooking();
       reset();
     }
   };
+
+  useEffect(() => {
+    if (selectedService.length > 1) {
+      setServiceBooked("MULTIPLE");
+    } else {
+      setServiceBooked("SINGLE");
+    }
+  }, [selectedService]);
 
   const handleDate = (date: string) => {
     console.log(date);
@@ -213,10 +221,11 @@ const Booking = () => {
         <BookingConfirmation
           onClose={() => setShowConfirmation(false)}
           isOpen={showConfirmation}
+          verifyOTP={() => {}}
         />
       </div>
       <div className="w-full h-full flex justify-center p-10 gap-x-[10rem]">
-        <div className="w-full h-full items-end flex flex-col gap-8">
+        <div className="w-full h-full items-end flex flex-col gap-8 ">
           <div className="flex w-[80%] px-10">
             <PrimeCalendar selectedDate={handleDate} />
           </div>
@@ -226,10 +235,11 @@ const Booking = () => {
               ? `${formatDateNormal(selectedBookingDate)} ${selectedTimeSlot}`
               : "Please Select a Date"}
           </div>
-          <div>
+          <div className="self-center">
             <TimeCard
               handleTimeSelect={handleTimeSelect}
               bookedSlots={bookedSlot}
+              serviceBooked={serviceBooked}
             />
           </div>
         </div>
@@ -364,6 +374,7 @@ const Booking = () => {
                     value={selectedService}
                     onChange={(e) => setSelectedService(e.value)}
                     options={services}
+                    selectionLimit={5}
                     optionLabel="serviceName"
                     display="chip"
                     placeholder="Select a Service..."
@@ -384,7 +395,7 @@ const Booking = () => {
               </div>
             </div>
 
-            <div>
+            <div className="">
               <p className="text-[18px]">Car Model:</p>
               <div className="relative">
                 <div className="text-black h-full">

@@ -10,7 +10,7 @@ exports.getServiceById = (id, callback) => {
 
 exports.getFullyBookedDates = (callback) => {
   conn.query(
-    "SELECT bookedDate FROM booking GROUP BY bookedDate HAVING COUNT(*) >= 6",
+    "SELECT LEFT(bookedDate, 10) AS bookingDate, COUNT(*) AS bookingCount FROM booking GROUP BY bookingDate HAVING bookingCount >= 4;",
     callback
   );
 };
