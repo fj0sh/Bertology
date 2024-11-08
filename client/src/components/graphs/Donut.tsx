@@ -1,12 +1,43 @@
 import { Doughnut } from "react-chartjs-2";
 
 import { Chart as ChartJS, Tooltip, Legend, ArcElement } from "chart.js";
-import { donutData } from "@/hooks/fetcher/graphDatas/donutGraph";
+import instance from "@/lib/util/axios-instance";
+import { useEffect, useState } from "react";
 
 ChartJS.register(Tooltip, Legend, ArcElement);
 
 export const DonutChart = () => {
-  const options = { cutout: 90 };
+  const [chartData, setChartData] = useState([]);
 
-  return <Doughnut options={options} data={donutData} />;
+  useEffect(() => {
+    const fetchBookingData = async () => {
+      try {
+        const res = await instance.get("/booking/status");
+        const counts = res.data.map((status: any) => status.count);
+        setChartData(counts);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchBookingData();
+  }, []);
+
+  const options = { cutout: 90 };
+  const data = {
+    labels: ["PENDING", "APPROVED", "DECLINED", "DONE"],
+    datasets: [
+      {
+        label: "My First Dataset",
+        data: chartData,
+        backgroundColor: ["#FFC857", "#3772FF", "#F22B29", "#32E875"],
+        hoverOffset: 4,
+        borderWidth: 2,
+        borderColor: "#080808",
+        weight: 0.5,
+      },
+    ],
+  };
+
+  return <Doughnut options={options} data={data} />;
 };

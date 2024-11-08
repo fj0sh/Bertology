@@ -1,4 +1,17 @@
+import instance from "@/lib/util/axios-instance";
 import { Weight } from "lucide-react";
+import { fetchData } from "next-auth/client/_utils";
+
+const fetchBookingData = async () => {
+  try {
+    const res = await instance.get("/api/booking/status");
+    console.log(res.data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+fetchBookingData;
 
 export const donutData = {
   labels: ["PENDING", "APPROVED", "DECLINED", "DONE"],
