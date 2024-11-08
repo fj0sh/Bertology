@@ -27,7 +27,6 @@ import useMailer from "@/hooks/mailer/useMailer";
 import Cookies from "universal-cookie";
 
 import { MultiSelect } from "primereact/multiselect";
-import { encrypter } from "@/lib/function/encrypter/encrypter";
 
 const Booking = () => {
   const [selectedBookingDate, setSelectedBookingDate] = useState("");
@@ -146,7 +145,8 @@ const Booking = () => {
         `${
           formatDateForSQL(selectedBookingDate).split(" ")[0]
         } ${selectedTimeSlot}`,
-        serviceMode
+        serviceMode,
+        data.street
       );
 
       const insertId = bookingResponse.insertId;
@@ -188,7 +188,7 @@ const Booking = () => {
     } else {
       setBookedSlot([]);
     }
-  }, [dateInfo]);
+  }, [dateInfo, isSubmitting]);
 
   const handleTimeSelect = (slot: string) => {
     setSelectedTimeSlot(slot);
@@ -226,7 +226,7 @@ const Booking = () => {
       </div>
       <div className="w-full h-full flex justify-center p-10 gap-x-[10rem]">
         <div className="w-full h-full items-end flex flex-col gap-8 ">
-          <div className="flex w-[80%] px-10">
+          <div className="flex w-[80%] px-10 items-center justify-center">
             <PrimeCalendar selectedDate={handleDate} />
           </div>
           <div className="text-white self-center flex items-center gap-2">
@@ -235,7 +235,9 @@ const Booking = () => {
               ? `${formatDateNormal(selectedBookingDate)} ${selectedTimeSlot}`
               : "Please Select a Date"}
           </div>
-          <div className="self-center">
+          <div className="self-end">
+            <p className="text-white font-semibold text-[20px]">Time Slots:</p>
+
             <TimeCard
               handleTimeSelect={handleTimeSelect}
               bookedSlots={bookedSlot}
@@ -349,16 +351,29 @@ const Booking = () => {
                     </div>
                   </div>
 
-                  <div className="mt-4">
-                    <InputOrange
-                      label="Nearest Landmark or Pin Location:"
-                      {...register("landmark")}
-                    />
-                    {errors.landmark && (
-                      <p className="text-red-500 text-[13px]">
-                        {errors.landmark.message}
-                      </p>
-                    )}
+                  <div className="flex gap-8 w-full justify-around">
+                    <div className="mt-4 w-full">
+                      <InputOrange
+                        label="Nearest Landmark:"
+                        {...register("landmark")}
+                      />
+                      {errors.landmark && (
+                        <p className="text-red-500 text-[13px]">
+                          {errors.landmark.message}
+                        </p>
+                      )}
+                    </div>
+                    <div className="mt-4 w-full">
+                      <InputOrange
+                        label="House #, street, village:"
+                        {...register("street")}
+                      />
+                      {errors.street && (
+                        <p className="text-red-500 text-[13px]">
+                          {errors.street.message}
+                        </p>
+                      )}
+                    </div>
                   </div>
                 </>
               ) : (

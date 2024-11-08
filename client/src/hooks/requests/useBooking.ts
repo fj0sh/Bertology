@@ -22,7 +22,8 @@ const useBooking = () => {
     additionalDetails: string,
     proofOfPayment: string,
     bookedDate: string,
-    mode: string
+    mode: string,
+    street?: string
   ) => {
     const body = {
       firstName: firstName,
@@ -37,6 +38,7 @@ const useBooking = () => {
       proofOfPayment: proofOfPayment,
       bookedDate: bookedDate,
       mode: mode,
+      street: street,
     };
 
     try {

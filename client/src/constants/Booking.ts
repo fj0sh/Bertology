@@ -18,6 +18,7 @@ interface BookingType {
   landmark: string;
   proofOfPayment: string;
   mode: string;
+  street: string;
   user: UserType;
   service: ServiceType;
 }

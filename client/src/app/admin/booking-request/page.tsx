@@ -74,6 +74,9 @@ const BookingRequest = () => {
 
   return (
     <div className="flex flex-col gap-4 px-10">
+      <p className="text-[22px] text-orangePrimary font-semibold">
+        BOOKING REQUESTS
+      </p>
       <BookingRequestModal
         id={rowData?.data?.id}
         date={rowData?.data?.bookedDate}
@@ -94,7 +97,7 @@ const BookingRequest = () => {
       <DataTable
         value={allBookings}
         paginator
-        rows={20}
+        rows={12}
         size="medium"
         pt={{
           table: { className: "" },

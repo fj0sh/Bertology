@@ -34,7 +34,7 @@ const ServiceHistory = () => {
           size={"medium"}
           value={services}
           paginator
-          rows={20}
+          rows={12}
           // tableStyle={{ maxWidth: "80rem" }}
           pt={{
             table: { className: "" },

@@ -58,16 +58,18 @@ const TimeCard = ({
   }, [serviceBooked]);
 
   return (
-    <div className="p-10 grid grid-cols-4 gap-3">
-      {timeType.map((slot) => (
-        <SchedCard
-          key={slot}
-          slot={slot}
-          onSelect={handleTimeSelect}
-          isBooked={bookedSlots.includes(slot)} // Check if slot is booked
-        />
-      ))}
-    </div>
+    <>
+      <div className="p-5 grid grid-cols-4 gap-3">
+        {timeType.map((slot) => (
+          <SchedCard
+            key={slot}
+            slot={slot}
+            onSelect={handleTimeSelect}
+            isBooked={bookedSlots.includes(slot)} // Check if slot is booked
+          />
+        ))}
+      </div>
+    </>
   );
 };
 

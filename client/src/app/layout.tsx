@@ -5,6 +5,8 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { PrimeReactProvider } from "primereact/api";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import { UserProvider } from "@/providers/UserProvider";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -18,14 +20,16 @@ export default function RootLayout({
   return (
     <QueryProvider>
       <html lang="en">
-        <PrimeReactProvider>
-          <body>
-            <ReactQueryDevtools />
-            <UserProvider>
-              <div className="w-full h-full bg-background">{children}</div>
-            </UserProvider>
-          </body>
-        </PrimeReactProvider>
+        <Suspense fallback={<Loading />}>
+          <PrimeReactProvider>
+            <body className="bg-background">
+              <ReactQueryDevtools />
+              <UserProvider>
+                <div className="w-full h-full bg-background">{children}</div>
+              </UserProvider>
+            </body>
+          </PrimeReactProvider>
+        </Suspense>
       </html>
     </QueryProvider>
   );

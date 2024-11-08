@@ -1,12 +1,12 @@
 import React from "react";
 import { ClipLoader } from "react-spinners";
 
-const loading = () => {
+const Loading = () => {
   return (
     <div className="w-full h-screen flex justify-center items-center">
-      <ClipLoader color="#FF661F" size={70} speedMultiplier={1} />
+      <div className="animate-spin h-[10rem] w-[10rem] text-orangePrimary"></div>
     </div>
   );
 };
 
-export default loading;
+export default Loading;
