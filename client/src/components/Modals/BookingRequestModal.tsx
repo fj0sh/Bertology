@@ -155,8 +155,10 @@ const BookingRequestModal = (props: Props) => {
                   ))}
                 </div>
               </div>
-              <p>Additional Details:</p>
-              <p className=" indent-10">{description}</p>
+              <div className="flex flex-col gap-2">
+                <p>Additional Details:</p>
+                <p className="px-10 indent-10 text-justify">{description}</p>
+              </div>
             </div>
           </div>
           <div className="flex gap-4 self-end">

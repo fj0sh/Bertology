@@ -132,3 +132,11 @@ exports.getStatusCount = (req, res) => {
     return res.status(200).send(results);
   });
 };
+
+exports.getMonthlySales = (req, res) => {
+  bookingModel.getMonthlySales((err, results) => {
+    if (err) return res.status(400).send(err);
+
+    return res.status(200).send(results);
+  });
+};

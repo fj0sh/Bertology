@@ -97,3 +97,9 @@ exports.getStatusCount = (callback) => {
     callback
   );
 };
+exports.getMonthlySales = (callback) => {
+  conn.query(
+    "SELECT  MONTH(b.bookedDate) AS MONTH, YEAR(b.bookedDate) AS YEAR, SUM(s.servicePrice) AS total_sales FROM booked_service bs JOIN services s ON bs.serviceId = s.id JOIN booking b ON bs.bookingId = b.id WHERE b.status = 'DONE' GROUP BY YEAR(b.bookedDate), MONTH(b.bookedDate) ORDER BY YEAR, MONTH;",
+    callback
+  );
+};

@@ -8,6 +8,7 @@ router.post("/status", bookingController.getBookedServiceByStatus);
 router.get("/bookings", bookingController.getBookedServices);
 router.get("/bookings/:id", bookingController.getSelectedTypes);
 router.get("/status", bookingController.getStatusCount);
+router.get("/getMonthlySales", bookingController.getMonthlySales);
 router.patch("/accept/:id", bookingController.acceptBooking);
 router.patch("/decline/:id", bookingController.declineBooking);
 router.delete("/:id", bookingController.deleteBooking);
