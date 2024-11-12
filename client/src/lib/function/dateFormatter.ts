@@ -19,3 +19,10 @@ export const formatDateNormal = (date: any) => {
   const options = { year: "numeric", month: "long", day: "2-digit" };
   return date.toLocaleString("en-US", options);
 };
+
+export const formatDateToWords = (dateStr: any) => {
+  const date = new Date(dateStr);
+
+  const options = { year: "numeric", month: "long", day: "numeric" };
+  return date.toLocaleDateString("en-US", options);
+};

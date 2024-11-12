@@ -21,6 +21,7 @@ interface BookingType {
   street: string;
   user: UserType;
   service: ServiceType;
+  status: string;
 }
 
 interface BookingResponse {

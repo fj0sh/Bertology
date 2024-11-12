@@ -1,8 +1,13 @@
 "use client";
 import BookingRequestCard from "@/components/cards/BookingRequestCard";
+import AssignInstallerModal from "@/components/Modals/AssignInstallerModal";
 import BookingRequestModal from "@/components/Modals/BookingRequestModal";
 import { BookingResponse, BookingType } from "@/constants/Booking";
 import useBooking from "@/hooks/requests/useBooking";
+import {
+  formatDateNormal,
+  formatDateToWords,
+} from "@/lib/function/dateFormatter";
 import { FilterMatchMode } from "primereact/api";
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
@@ -23,7 +28,7 @@ const BookingRequest = () => {
 
   useEffect(() => {
     getAllBookings();
-  }, [deleteBooking]);
+  }, []);
 
   const handleViewClick = (data: any, index: number) => {
     getSelectedTypes(data.data.id);
@@ -72,6 +77,18 @@ const BookingRequest = () => {
     return `${rowData.data.firstName} ${rowData.data.lastName}`;
   };
 
+  const formattedDateBody = (rowData: any) => {
+    const date = rowData.data.bookedDate.split(" ")[0];
+    const time = rowData.data.bookedDate.split(" ")[1];
+
+    return (
+      <div className="flex flex-col gap-2">
+        <span>{formatDateToWords(date)}</span>
+        <span>{time}</span>
+      </div>
+    );
+  };
+
   return (
     <div className="flex flex-col gap-4 px-10">
       <p className="text-[22px] text-orangePrimary font-semibold">
@@ -91,6 +108,7 @@ const BookingRequest = () => {
         description={rowData?.data?.additionalDetails}
         isOpen={isRequestShow}
         serviceTypes={serviceType}
+        statsu={rowData?.data?.status}
         onClose={() => setIsRequestShow(false)}
       />
 
@@ -105,7 +123,11 @@ const BookingRequest = () => {
           thead: { className: "bg-orangePrimary text-white" },
         }}
       >
-        <Column field="data.bookedDate" header="Booked Date" sortable />
+        <Column
+          field="data.bookedDate"
+          header="Booked Date"
+          body={formattedDateBody}
+        />
         <Column header="Customer" body={customerColumn} />
         <Column field="data.carModel" header="Car Model" sortable />
         <Column field="data.mode" header="Service Mode" sortable />

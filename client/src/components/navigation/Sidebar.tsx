@@ -3,8 +3,8 @@ import { TbLayoutDashboardFilled } from "react-icons/tb";
 import Logo from "../Logo";
 import React from "react";
 import Link from "next/link";
-import { FaBoxes, FaTruckLoading } from "react-icons/fa";
-import { HiMiniUsers, HiMiniWrenchScrewdriver } from "react-icons/hi2";
+import { BsPersonFillGear } from "react-icons/bs";
+import { HiMiniWrenchScrewdriver } from "react-icons/hi2";
 import { IoCalendar } from "react-icons/io5";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import { usePathname } from "next/navigation";
@@ -20,6 +20,11 @@ const navLinks = [
     icons: <IoCalendar size={30} />,
     title: "Booking Request",
     href: "/admin/booking-request",
+  },
+  {
+    icons: <BsPersonFillGear size={30} />,
+    title: "Installers",
+    href: "/admin/installers",
   },
   // {
   //   icons: <FaTruckLoading size={30} />,

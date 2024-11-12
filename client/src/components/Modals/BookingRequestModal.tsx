@@ -7,6 +7,7 @@ import useBooking from "@/hooks/requests/useBooking";
 import { decl } from "postcss";
 import useMailer from "@/hooks/mailer/useMailer";
 import Swal from "sweetalert2";
+import AssignInstallerModal from "./AssignInstallerModal";
 
 interface Props {
   isOpen?: boolean;
@@ -25,6 +26,7 @@ interface Props {
   serviceTypes: any;
   model?: string;
   description?: string;
+  status?: string;
 }
 
 const BookingRequestModal = (props: Props) => {
@@ -43,39 +45,20 @@ const BookingRequestModal = (props: Props) => {
     serviceTypes,
     model,
     description,
+    status,
     onClose,
   } = props;
 
   const [imageLarger, setIsImageLarger] = useState(false);
-  const { acceptBooking, declineBooking } = useBooking();
+  const [showInstallerModal, setInstallerModal] = useState(false);
 
+  const { declineBooking } = useBooking();
   const { sendMail } = useMailer();
 
-  const handleAcceptBooking = (id: number, email: string) => {
-    Swal.fire({
-      title: "Accept Booking?",
-      text: "You are about to accept this booking.",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Accept",
-    }).then((res) => {
-      if (res.isConfirmed) {
-        Swal.fire({
-          title: "Booking Accepted",
-          icon: "success",
-        });
-        acceptBooking(id);
-        sendMail(
-          email,
-          `Your Booking for the ${date} has been accepted`,
-          `${fName} ${lName}`
-        );
-        onClose;
-      }
-    });
+  const handleAcceptBooking = () => {
+    setInstallerModal(true);
   };
+
   const handleDeclineBooking = (id: number, email: string) => {
     Swal.fire({
       title: "Decline Booking?",
@@ -111,6 +94,14 @@ const BookingRequestModal = (props: Props) => {
 
   return (
     <>
+      <AssignInstallerModal
+        isOpen={showInstallerModal}
+        onClose={() => {
+          setInstallerModal(false);
+        }}
+        bookingId={id}
+        email={email}
+      />
       <ModalContainer width="70rem" height="50rem">
         <div className="absolute top-5 right-5 border-none rounded-full hover:bg-grey p-2">
           <IoMdClose
@@ -145,6 +136,7 @@ const BookingRequestModal = (props: Props) => {
               <p className="text-[25px] text-orangePrimary font-semibold">
                 {model}
               </p>
+              <p>{status}</p>
               <p>Booked Date: {date}</p>
 
               <div>
@@ -164,7 +156,7 @@ const BookingRequestModal = (props: Props) => {
           <div className="flex gap-4 self-end">
             <button
               className="bg-green-500 text-[18px] rounded-sm py-1 px-2"
-              onClick={(e) => email && handleAcceptBooking(id, email)}
+              onClick={() => handleAcceptBooking()}
             >
               Accept
             </button>

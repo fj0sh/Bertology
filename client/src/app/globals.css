@@ -25,3 +25,7 @@
 ::-webkit-scrollbar-thumb:hover {
   background: orangered;
 }
+
+.swal2-container {
+  z-index: 999999999999;
+}

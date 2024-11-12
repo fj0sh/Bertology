@@ -12,6 +12,7 @@ const productsRoute = require("./routes/products.route");
 const servicesRoute = require("./routes/services.route");
 const bookingRoute = require("./routes/booking.route");
 const cartRoute = require("./routes/cart.route");
+const installerRoute = require("./routes/installer.route");
 const mailerRoute = require("./routes/mailer/mailer.route");
 
 app.use(bodyParser.json());
@@ -26,6 +27,7 @@ app.use("/api/services", servicesRoute);
 app.use("/api/booking", bookingRoute);
 app.use("/api/cart", cartRoute);
 app.use("/api/mail", mailerRoute);
+app.use("/api/installer", installerRoute);
 
 app.listen(PORT, () => {
   console.log("Currently in PORT " + PORT);
