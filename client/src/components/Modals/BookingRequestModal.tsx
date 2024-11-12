@@ -59,6 +59,8 @@ const BookingRequestModal = (props: Props) => {
     setInstallerModal(true);
   };
 
+  const handleBookingDone = () => {};
+
   const handleDeclineBooking = (id: number, email: string) => {
     Swal.fire({
       title: "Decline Booking?",
@@ -101,6 +103,9 @@ const BookingRequestModal = (props: Props) => {
         }}
         bookingId={id}
         email={email}
+        fName={fName}
+        lName={lName}
+        date={date}
       />
       <ModalContainer width="70rem" height="50rem">
         <div className="absolute top-5 right-5 border-none rounded-full hover:bg-grey p-2">
@@ -136,7 +141,9 @@ const BookingRequestModal = (props: Props) => {
               <p className="text-[25px] text-orangePrimary font-semibold">
                 {model}
               </p>
-              <p>{status}</p>
+              <p className={`${status == "APPROVED" ? "text-blue-500" : ""}`}>
+                {status}
+              </p>
               <p>Booked Date: {date}</p>
 
               <div>

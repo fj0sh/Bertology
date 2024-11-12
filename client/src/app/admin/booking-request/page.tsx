@@ -108,7 +108,7 @@ const BookingRequest = () => {
         description={rowData?.data?.additionalDetails}
         isOpen={isRequestShow}
         serviceTypes={serviceType}
-        statsu={rowData?.data?.status}
+        status={rowData?.data?.status}
         onClose={() => setIsRequestShow(false)}
       />
 
