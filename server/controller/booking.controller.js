@@ -47,6 +47,15 @@ exports.getBookedServices = (req, res) => {
           servicePrice: results.servicePrice,
           serviceDuration: results.serviceDuration,
         },
+        installer: {
+          id: results.installerId,
+          firstName: results.installerFirstName,
+          lastName: results.installerLastName,
+          address: results.installerAddress,
+          phoneNumber: results.installerPhoneNumber,
+          email: results.installerEmail,
+          image: results.installerImage,
+        },
         // test: results,
       },
     }));

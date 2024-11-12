@@ -73,8 +73,42 @@ const BookingRequest = () => {
     );
   };
 
+  const statusColumn = (rowData: any) => {
+    let statusColor = "";
+
+    switch (rowData.data.status) {
+      case "PENDING":
+        statusColor = "bg-yellow-500";
+        break;
+      case "DECLINED":
+        statusColor = "bg-red-600";
+        break;
+      case "DONE":
+        statusColor = "bg-green-500";
+        break;
+      case "APPROVED":
+        statusColor = "bg-blue-500";
+        break;
+      default:
+        statusColor = "bg-gray-500";
+        break;
+    }
+
+    return (
+      <span
+        className={`${statusColor} font-semibold text-white py-1 px-3 rounded-[25px]`}
+      >
+        {rowData.data.status}
+      </span>
+    );
+  };
+
   const customerColumn = (rowData: any) => {
     return `${rowData.data.firstName} ${rowData.data.lastName}`;
+  };
+
+  const installerColumn = (rowData: any) => {
+    return `${rowData.data.installer.firstName} ${rowData.data.installer.lastName}`;
   };
 
   const formattedDateBody = (rowData: any) => {
@@ -116,10 +150,11 @@ const BookingRequest = () => {
         value={allBookings}
         paginator
         rows={12}
-        size="medium"
+        size="small"
+        showGridlines
         pt={{
-          table: { className: "" },
-          bodyRow: { className: "border border-black" },
+          table: { className: "text-[14px]" },
+          bodyRow: { className: "border border-slate-300" },
           thead: { className: "bg-orangePrimary text-white" },
         }}
       >
@@ -131,7 +166,8 @@ const BookingRequest = () => {
         <Column header="Customer" body={customerColumn} />
         <Column field="data.carModel" header="Car Model" sortable />
         <Column field="data.mode" header="Service Mode" sortable />
-        <Column field="data.status" header="Status" sortable />
+        <Column header="Status" body={statusColumn} sortable />
+        <Column header="Installer" body={installerColumn} />
         <Column
           header="Actions"
           body={(rowData, { rowIndex }) => viewColumn(rowData, rowIndex)}

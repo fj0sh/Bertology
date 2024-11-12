@@ -73,10 +73,7 @@ const BookingRequestModal = (props: Props) => {
       cancelButtonText: "No",
     }).then((res) => {
       if (res.isConfirmed) {
-        Swal.fire({
-          title: "Booking Declined",
-          icon: "success",
-        });
+        Swal.fire({ title: "Booking Declined", icon: "success" });
 
         sendMail(
           email,
@@ -141,8 +138,23 @@ const BookingRequestModal = (props: Props) => {
               <p className="text-[25px] text-orangePrimary font-semibold">
                 {model}
               </p>
-              <p className={`${status == "APPROVED" ? "text-blue-500" : ""}`}>
-                {status}
+              <p>
+                Status:{" "}
+                <span
+                  className={`${
+                    status === "APPROVED"
+                      ? "text-blue-500"
+                      : status === "DECLINED"
+                      ? "text-red-600"
+                      : status === "PENDING"
+                      ? "text-yellow-300"
+                      : status === "DONE"
+                      ? "text-green-500"
+                      : ""
+                  } text-[18px] font-semibold`}
+                >
+                  {status}
+                </span>
               </p>
               <p>Booked Date: {date}</p>
 
