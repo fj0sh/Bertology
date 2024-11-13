@@ -13,7 +13,9 @@ export const DonutChart = () => {
     const fetchBookingData = async () => {
       try {
         const res = await instance.get("/booking/status");
+        console.log(res.data);
         const counts = res.data.map((status: any) => status.count);
+        console.log(counts);
         setChartData(counts);
       } catch (error) {
         console.log(error);

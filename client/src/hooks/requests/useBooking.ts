@@ -9,6 +9,7 @@ const useBooking = () => {
     undefined
   );
   const [dataByStatus, setDataByStatus] = useState();
+  const [dataByDate, setDataByDate] = useState([]);
 
   const bookService = async (
     firstName: string,
@@ -132,6 +133,24 @@ const useBooking = () => {
     }
   };
 
+  const setBookingAsDone = async (id: number) => {
+    try {
+      const res = await instance.patch(`/booking/done/${id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getBookingByDate = async (date: string) => {
+    try {
+      const res = await instance.post("/booking/date", { date });
+      setDataByDate(res.data);
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return {
     bookService,
     getServiceById,
@@ -142,8 +161,11 @@ const useBooking = () => {
     getSelectedTypes,
     deleteBooking,
     getBookingByStatus,
+    getBookingByDate,
+    setBookingAsDone,
     data,
     dataByStatus,
+    dataByDate,
     allBookings,
     serviceType,
   };
