@@ -31,7 +31,7 @@ export const DonutChart = () => {
     datasets: [
       {
         label: "My First Dataset",
-        data: chartData,
+        data: chartData.length <= 0 ? ["1", "1", "1", "1"] : chartData,
         backgroundColor: ["#FFC857", "#3772FF", "#F22B29", "#32E875"],
         hoverOffset: 4,
         borderWidth: 2,

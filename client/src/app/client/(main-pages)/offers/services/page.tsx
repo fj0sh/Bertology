@@ -202,9 +202,11 @@ const Booking = () => {
   };
 
   useEffect(() => {
-    let test = 0;
-    selectedService.map((result: any) => (test += result.servicePrice));
-    setDownPayment(Math.ceil(test * 0.3));
+    let baseDownPayment = 0;
+    selectedService.map(
+      (result: any) => (baseDownPayment += result.servicePrice)
+    );
+    setDownPayment(Math.ceil(baseDownPayment * 0.3));
   }, [selectedService]);
 
   if (isSubmitting) {

@@ -42,7 +42,8 @@ const AdminDashboard = () => {
 
       <div className="flex flex-col gap-8 border rounded-md h-full border-white p-5">
         <div className="text-white font-semibold">
-          {dataByDate.length} booking on the date of {date}
+          <p>{date}</p>
+          <p>Bookings: {dataByDate.length}</p>
         </div>
         <div>
           <DataTable value={dataByDate}>
