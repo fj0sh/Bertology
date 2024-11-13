@@ -133,6 +133,16 @@ exports.deleteBooking = (req, res) => {
   });
 };
 
+exports.setBookingAsDone = (req, res) => {
+  bookingModel.setBookingAsDone(req.params.id, (err, results) => {
+    if (err) {
+      return res.status(400).send(err);
+    }
+    console.log(results);
+    return res.status(200).send(results);
+  });
+};
+
 exports.getStatusCount = (req, res) => {
   bookingModel.getStatusCount((err, results) => {
     if (err) {
@@ -147,5 +157,13 @@ exports.getMonthlySales = (req, res) => {
     if (err) return res.status(400).send(err);
 
     return res.status(200).send(results);
+  });
+};
+
+exports.getBookingsByDate = (req, res) => {
+  bookingModel.getBookingByDate(req.body.date, (err, result) => {
+    if (err) return res.status(400).send(err);
+
+    return res.status(200).send(result);
   });
 };

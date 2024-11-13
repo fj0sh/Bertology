@@ -72,7 +72,7 @@ const LandingPage = () => {
           onClose={() => setIsForgotPassOpen(false)}
         />
         {/* ============================================HERO SECTION =======================================================================*/}
-        <div className="flex h-full w-full bg-opacity-85">
+        <div className="flex h-full w-full bg-opacity-85 ">
           <div className="w-full h-full flex justify-center items-center p-10">
             <Image
               src={"/images/landing-image.png"}

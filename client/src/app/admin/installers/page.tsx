@@ -11,7 +11,7 @@ const Installers = () => {
   const { data } = useInstallers();
 
   const nameField = (rowData: any) => {
-    return `${rowData.firstName} ${rowData.lastName}`;
+    return `${rowData.installerFirstName} ${rowData.installerLastName}`;
   };
 
   const handleViewClick = (rowData: any, rowIndex: number) => {
@@ -58,8 +58,7 @@ const Installers = () => {
 
       <DataTable value={data} paginator rows={10}>
         <Column header={"Name"} body={nameField} />
-        <Column header={"PhoneNumber"} field="phoneNumber" />
-        <Column header={"Status"} field="status" />
+        <Column header={"PhoneNumber"} field="installerPhoneNumber" />
         <Column
           header={"Action"}
           body={(rowData, { rowIndex }) => viewColumn(rowData, rowIndex)}
