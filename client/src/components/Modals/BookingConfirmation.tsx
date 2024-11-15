@@ -8,10 +8,11 @@ interface Props {
   isOpen?: boolean;
   onClose?: () => void;
   verifyOTP?: () => void;
+  setUserOTP: (otp: string) => void; // Add setUserOTP prop type
 }
 
 const BookingConfirmation = (props: Props) => {
-  const { isOpen, onClose, verifyOTP } = props;
+  const { isOpen, onClose, verifyOTP, setUserOTP } = props;
 
   if (!isOpen) return null;
 
@@ -26,10 +27,13 @@ const BookingConfirmation = (props: Props) => {
       <div className="flex flex-col gap-3 items-center">
         <p className="text-[22px] font-semibold">Enter Your OTP</p>
         <p className="text-[18px]">
-          Please check the OTP has been sent to your Email
+          Please check the OTP that has been sent to your Email
         </p>
         <div>
-          <InputOrange placeholder="XXXXXX" />
+          <InputOrange
+            placeholder="XXXXXX"
+            onChange={(e) => setUserOTP(e.target.value)} // Update userOTP in parent
+          />
         </div>
         <Button title="Verify" onClick={verifyOTP}></Button>
       </div>

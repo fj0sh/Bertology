@@ -32,5 +32,5 @@ exports.getAvailableInstallerForTheDay = (date, callback) => {
 };
 
 exports.getInstallerById = (id, callback) => {
-  conn.query("SELECT * FROM installers WHERE id =?", id, callback);
+  conn.query("SELECT * FROM installers WHERE installerId =?", id, callback);
 };

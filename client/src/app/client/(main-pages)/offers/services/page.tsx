@@ -34,8 +34,10 @@ const Booking = () => {
   const [selectedService, setSelectedService] = useState([]);
   const [bookedSlot, setBookedSlot] = useState([]);
   const [serviceBooked, setServiceBooked] = useState("");
-
   const [formData, setFormData] = useState<BookingType | null>(null);
+  const [generatedOTP, setGeneratedOTP] = useState(0);
+  const [userOTP, setUserOTP] = useState("");
+
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [paymentProof, setPaymentProof] = useState("");
   const [serviceType, setServiceType] = useState();
@@ -122,46 +124,56 @@ const Booking = () => {
     setShowDropdown(false); // Hide the dropdown after selection
   };
 
-  const OTP = Math.floor(Math.random() * (999999 - 100000) + 100000);
-
-  const onSubmit = async (data: BookingType) => {
-    setIsSubmitting(true);
-
+  const onSubmit = (data: BookingType) => {
     if (!selectedBookingDate || !selectedTimeSlot) {
       setIsSubmitting(false);
       noDateSelected();
     } else {
-      const bookingResponse = await bookService(
-        data.firstName,
-        data.lastName,
-        data.email,
-        parseInt(data.number),
-        municipality!,
-        barangay.toString(),
-        data.landmark!,
-        selectedModel,
-        data.details,
-        paymentProof,
-        `${
-          formatDateForSQL(selectedBookingDate).split(" ")[0]
-        } ${selectedTimeSlot}`,
-        serviceMode,
-        data.street
-      );
-
-      const insertId = bookingResponse.insertId;
-
-      selectedService.map((res: any) => selectTypes(insertId, res.id));
-
+      setFormData(data);
+      const OTP = Math.floor(Math.random() * (999999 - 100000) + 100000);
+      setGeneratedOTP(OTP);
       sendMail(
         data.email,
         `<p>Your OTP is ${OTP}</p>`,
         `${data.firstName} ${data.lastName}`
       );
+      cookies.set("OTP", OTP, { maxAge: 60 * 5 });
+      setShowConfirmation(true);
+    }
+  };
 
-      setIsSubmitting(false);
-      successfulBooking();
+  const OTPVerification = () => {
+    const otp = parseInt(cookies.get("OTP"));
+    if (parseInt(userOTP) === otp) {
+      setShowConfirmation(false);
       reset();
+      successfulBooking();
+
+      if (formData) {
+        bookService(
+          formData.firstName,
+          formData.lastName,
+          formData.email,
+          parseInt(formData.number),
+          municipality!,
+          barangay.toString(),
+          formData.landmark!,
+          selectedModel,
+          formData.details,
+          paymentProof,
+          `${
+            formatDateForSQL(selectedBookingDate).split(" ")[0]
+          } ${selectedTimeSlot}`,
+          serviceMode,
+          formData.street
+        );
+      }
+    } else {
+      Swal.fire({
+        title: "Error",
+        text: "Invalid OTP",
+        icon: "error",
+      });
     }
   };
 
@@ -221,9 +233,10 @@ const Booking = () => {
     <>
       <div className="transition-all duration-1000 ease-in-out">
         <BookingConfirmation
-          onClose={() => setShowConfirmation(false)}
           isOpen={showConfirmation}
-          verifyOTP={() => {}}
+          onClose={() => setShowConfirmation(false)}
+          verifyOTP={OTPVerification}
+          setUserOTP={setUserOTP} // Pass the setUserOTP function
         />
       </div>
       <div className="w-full h-full flex justify-center p-10 gap-x-[10rem]">
@@ -385,7 +398,7 @@ const Booking = () => {
 
             <div className="flex gap-8 w-full ">
               <div className="flex flex-col gap-1">
-                <p className="text-[18px] ">Select Service:</p>
+                <p className="text-[18px]">Select Service:</p>
                 {services && (
                   <MultiSelect
                     value={selectedService}
@@ -397,9 +410,18 @@ const Booking = () => {
                     placeholder="Select a Service..."
                     maxSelectedLabels={3}
                     className="w-full md:w-20rem"
+                    itemTemplate={(option) => (
+                      <div className="flex justify-between">
+                        <span>{option.serviceName}</span> -
+                        <span className="ml-2 text-gray-500">
+                          ₱{option.servicePrice}
+                        </span>
+                      </div>
+                    )}
                   />
                 )}
               </div>
+
               <div className=" flex flex-col gap-1">
                 <p className="text-[18px]"> Down Payment:</p>
                 <div className="text-[20px] text-orangeRed justify-self-center">

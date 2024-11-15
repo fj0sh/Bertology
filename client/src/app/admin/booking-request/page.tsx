@@ -108,7 +108,15 @@ const BookingRequest = () => {
   };
 
   const installerColumn = (rowData: any) => {
-    return `${rowData.data.installer.firstName} ${rowData.data.installer.lastName}`;
+    console.log(rowData);
+
+    if (rowData.data.installer.firstName && rowData.data.installer.lastName) {
+      return `${rowData.data.installer.firstName} ${rowData.data.installer.lastName}`;
+    } else {
+      return (
+        <p className="text-red-500 font-semibold">No Assigned Installer</p>
+      );
+    }
   };
 
   const formattedDateBody = (rowData: any) => {
@@ -162,7 +170,7 @@ const BookingRequest = () => {
           field="data.bookedDate"
           header="Booked Date"
           body={formattedDateBody}
-        />
+        />   
         <Column header="Customer" body={customerColumn} />
         <Column field="data.carModel" header="Car Model" sortable />
         <Column field="data.mode" header="Service Mode" sortable />

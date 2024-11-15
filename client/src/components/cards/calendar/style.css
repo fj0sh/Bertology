@@ -1,6 +1,6 @@
 .custom-calendar .p-datepicker-calendar .p-disabled {
-  background-color: #cccccc !important; /* Gray background */
-  color: black !important; /* Gray text color */
+  background-color: #ed4337 !important; /* Gray background */
+  color: rgb(255, 255, 255) !important; /* Gray text color */
   border-radius: 10px;
 }
 

@@ -27,7 +27,14 @@ const AdminDashboard = () => {
     return `${rowData.firstName} ${rowData.lastName}`;
   };
   const installerColumn = (rowData: any) => {
-    return `${rowData.installerFirstName} ${rowData.installerLastName}`;
+    console.log(rowData);
+    if (rowData.installerFirstName && rowData.installerLastName) {
+      return `${rowData.installerFirstName} ${rowData.installerLastName}`;
+    } else {
+      return (
+        <p className="text-red-500 font-semibold">No Assigned Installer</p>
+      );
+    }
   };
 
   return (
@@ -40,7 +47,7 @@ const AdminDashboard = () => {
         <DonutChart />
       </div>
 
-      <div className="flex flex-col gap-8 border rounded-md h-full border-white p-5">
+      <div className="flex flex-col gap-8 border rounded-md h-full p-5">
         <div className="text-white font-semibold">
           <p>{date}</p>
           <p>Bookings: {dataByDate.length}</p>

@@ -40,7 +40,7 @@ exports.bookService = (bookingInformation, callback) => {
 
 exports.getBookedServices = (callback) => {
   conn.query(
-    "SELECT * FROM booking b JOIN installers i ON b.installerId = i.installerId ",
+    "SELECT * FROM booking b LEFT JOIN installers i ON b.installerId = i.installerId ",
     callback
   );
 };
@@ -51,7 +51,7 @@ exports.getBookingByStatus = (status, callback) => {
 
 exports.getBookingByDate = (date, callback) => {
   conn.query(
-    "SELECT * FROM booking b JOIN installers i ON b.installerId = i.installerId   WHERE LEFT(bookedDate, 10) = ?",
+    "SELECT * FROM booking b LEFT JOIN installers i ON b.installerId = i.installerId   WHERE LEFT(bookedDate, 10) = ?",
     [date],
     callback
   );

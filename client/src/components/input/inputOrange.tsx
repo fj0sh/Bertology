@@ -5,7 +5,7 @@ interface Props {
   value?: string | number;
   height?: string;
   label?: string;
-  type?: "text" | "number";
+  type?: "text" | "number" | "password";
   placeholder?: string;
 }
 

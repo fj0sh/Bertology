@@ -50,6 +50,7 @@ const AssignInstallerModal = (props: ModalProps) => {
           icon: "success",
         });
         acceptBooking(id);
+        console.log(`${installerId} ${bookingId}`);
         assignInstaller(installerId, bookingId);
         sendMail(
           email,
@@ -60,6 +61,8 @@ const AssignInstallerModal = (props: ModalProps) => {
       }
     });
   };
+
+  console.log(data);
 
   if (!isOpen) return null;
 
@@ -83,20 +86,21 @@ const AssignInstallerModal = (props: ModalProps) => {
               {installerData[0] && (
                 <div className="flex flex-col items-center">
                   <img
-                    src={installerData[0]?.image}
+                    src={installerData[0]?.installerImage}
                     alt="InstallerImage.jpg"
                     className="w-[45%] h-[45%]"
                   />
                   <p>
-                    {installerData[0].firstName} {installerData[0].lastName}
+                    {installerData[0].installerFirstName}{" "}
+                    {installerData[0].installerLastName}
                   </p>
-                  <p>{installerData[0].phoneNumber}</p>
-                  <p>{installerData[0].address}</p>
+                  <p>{installerData[0].installerPhoneNumber}</p>
+                  <p>{installerData[0].installerAddress}</p>
                   <Button
                     title="Assign"
                     onClick={() =>
                       handleAcceptBooking(
-                        installerData[0].id!,
+                        installerData[0].installerId!,
                         bookingId,
                         email!
                       )
@@ -109,17 +113,23 @@ const AssignInstallerModal = (props: ModalProps) => {
 
           <div className="w-[50%] flex p-10">
             <div className="flex flex-col gap-3 p-3 border border-orangePrimary rounded-lg w-full h-[90%] overflow-y-auto">
-              {data?.map((res: InstallerType, index) => (
-                <button
-                  onClick={() => showInstaller(res.id)}
-                  key={index}
-                  className="border border-orangePrimary p-3 rounded-md"
-                >
-                  <p>
-                    {res.firstName} {res.lastName}
-                  </p>
-                </button>
-              ))}
+              {data.length == 0 ? (
+                <div className="text-white">
+                  No Installer Available Please Add an Installer.
+                </div>
+              ) : (
+                data?.map((res: InstallerType, index) => (
+                  <button
+                    onClick={() => showInstaller(res.installerId)}
+                    key={index}
+                    className="border border-orangePrimary p-3 rounded-md"
+                  >
+                    <p>
+                      {res.installerFirstName} {res.installerLastName}
+                    </p>
+                  </button>
+                ))
+              )}
             </div>
           </div>
         </div>
