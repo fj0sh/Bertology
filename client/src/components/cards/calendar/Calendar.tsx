@@ -5,10 +5,11 @@ import "./style.css";
 
 interface Props {
   selectedDate?: (date: string) => void;
+  setDisable?: boolean;
 }
 
 const PrimeCalendar = (props: Props) => {
-  const { selectedDate } = props;
+  const { selectedDate, setDisable = true } = props;
 
   const [bookedDates, setBookedDates] = useState<Date[]>([]);
   const [currentSelectedDate, setCurrentSelectedDate] = useState<Date | null>(
@@ -55,9 +56,9 @@ const PrimeCalendar = (props: Props) => {
         value={currentSelectedDate}
         className="custom-calendar w-full h-full"
         inline
-        disabledDates={bookedDates}
+        disabledDates={setDisable ? bookedDates : []}
         onChange={handleDateChange}
-        minDate={today}
+        minDate={setDisable ? today : undefined}
         pt={{
           yearTitle: { className: "px-4" },
           header: { className: "bg-orangeRed text-white" },

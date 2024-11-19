@@ -1,21 +1,27 @@
 "use client";
 import AddInstallerModal from "@/components/Modals/AddInstallerModal";
+import InstallerModal from "@/components/Modals/InstallerModal";
 import useInstallers from "@/hooks/requests/useInstallers";
+import { InstallerType } from "@/lib/util/schema";
+import { useQuery } from "@tanstack/react-query";
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Installers = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [viewInstaller, setViewInstaller] = useState(false);
+  const [rowData, setRowData] = useState<InstallerType>();
 
-  const { data } = useInstallers();
+  const { data, tanstackData, refetch } = useInstallers();
 
   const nameField = (rowData: any) => {
     return `${rowData.installerFirstName} ${rowData.installerLastName}`;
   };
 
   const handleViewClick = (rowData: any, rowIndex: number) => {
-    console.log(`View installer ${rowIndex + 1}:`, rowData);
+    setRowData(rowData);
+    setViewInstaller(true);
   };
 
   const handleDeleteBooking = (rowData: any) => {
@@ -48,6 +54,17 @@ const Installers = () => {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
       />
+      <InstallerModal
+        isOpen={viewInstaller}
+        onClose={() => setViewInstaller(false)}
+        firstname={rowData?.installerFirstName}
+        lastname={rowData?.installerLastName}
+        image={rowData?.installerImage}
+        address={rowData?.installerAddress}
+        email={rowData?.installerEmail}
+        experience={rowData?.installerExperience}
+        phoneNumber={rowData?.installerPhoneNumber}
+      />
 
       <button
         className="bg-orangePrimary text-white py-2 px-3 rounded-md w-[10rem]"
@@ -56,12 +73,22 @@ const Installers = () => {
         Add Installer
       </button>
 
-      <DataTable value={data} paginator rows={10}>
-        <Column header={"Name"} body={nameField} />
-        <Column header={"PhoneNumber"} field="installerPhoneNumber" />
+      <DataTable value={tanstackData} paginator rows={10}>
+        <Column
+          header="ID"
+          body={(rowData, options) => options.rowIndex + 1}
+          className="border w-[2rem]"
+        ></Column>
+        <Column header={"Name"} body={nameField} className="border" />
+        <Column
+          header={"PhoneNumber"}
+          field="installerPhoneNumber"
+          className="border"
+        />
         <Column
           header={"Action"}
           body={(rowData, { rowIndex }) => viewColumn(rowData, rowIndex)}
+          className="border"
         />
       </DataTable>
     </div>

@@ -5,12 +5,19 @@ exports.getInstallers = (callback) => {
 };
 
 exports.addInstaller = (installerInformation, callback) => {
-  const { firstName, lastName, address, phoneNumber, email, image } =
-    installerInformation;
+  const {
+    firstName,
+    lastName,
+    address,
+    phoneNumber,
+    email,
+    image,
+    experience,
+  } = installerInformation;
 
   conn.query(
-    "INSERT INTO installers (firstName, lastName, address, phoneNumber, email, image) VALUES (?, ?, ?, ?, ?, ?) ",
-    [firstName, lastName, address, phoneNumber, email, image],
+    "INSERT INTO installers (installerFirstName, installerLastName, installerAddress, installerPhoneNumber, installerEmail, installerImage, installerExperience) VALUES (?, ?, ?, ?, ?, ?,?) ",
+    [firstName, lastName, address, phoneNumber, email, image, experience],
     callback
   );
 };
@@ -33,4 +40,39 @@ exports.getAvailableInstallerForTheDay = (date, callback) => {
 
 exports.getInstallerById = (id, callback) => {
   conn.query("SELECT * FROM installers WHERE installerId =?", id, callback);
+};
+
+exports.editInstaller = (installerId, updatedInformation, callback) => {
+  const {
+    firstName,
+    lastName,
+    address,
+    phoneNumber,
+    email,
+    image,
+    experience,
+  } = updatedInformation;
+
+  conn.query(
+    `UPDATE installers 
+     SET installerFirstName = ?, 
+         installerLastName = ?, 
+         installerAddress = ?, 
+         installerPhoneNumber = ?, 
+         installerEmail = ?, 
+         installerImage = ?, 
+         installerExperience = ? 
+     WHERE installerId = ?`,
+    [
+      firstName,
+      lastName,
+      address,
+      phoneNumber,
+      email,
+      image,
+      experience,
+      installerId,
+    ],
+    callback
+  );
 };

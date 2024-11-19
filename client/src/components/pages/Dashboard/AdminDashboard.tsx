@@ -1,13 +1,10 @@
 "use client";
-import React, { useRef, useState } from "react";
-import DashboardCard from "@/components/cards/DashboardCard";
-import { useUser } from "@/providers/UserProvider";
+import React, { useState } from "react";
 import PrimeCalendar from "@/components/cards/calendar/Calendar";
 import LineGraph from "@/components/graphs/Line";
 import { DonutChart } from "@/components/graphs/Donut";
 import { formatDateForSQL } from "@/lib/function/dateFormatter";
 import useBooking from "@/hooks/requests/useBooking";
-import { BookingType } from "@/constants/Booking";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 
@@ -39,7 +36,7 @@ const AdminDashboard = () => {
 
   return (
     <div className="grid grid-cols-2 h-full w-full gap-3 ">
-      <div className="flex justify-center items-center p-6 rounded-md h-[24.5rem] w-full">
+      <div className="flex justify-center items-center p-6 rounded-md h-[24.5rem] w-full ">
         <LineGraph />
       </div>
 
@@ -47,21 +44,25 @@ const AdminDashboard = () => {
         <DonutChart />
       </div>
 
-      <div className="flex flex-col gap-8 border rounded-md h-full p-5">
-        <div className="text-white font-semibold">
-          <p>{date}</p>
-          <p>Bookings: {dataByDate.length}</p>
+      <div className="flex flex-col gap-8 rounded-md h-full p-5">
+        <div className="text-white font-semibold flex flex-col gap-3">
+          <p>Date: {date}</p>
+          <p>Booking/s: {dataByDate.length}</p>
         </div>
         <div>
           <DataTable value={dataByDate}>
-            <Column header={"Name"} body={nameColumn} />
-            <Column header={"Installer"} body={installerColumn} />
-            <Column header={"Status"} field="status" />
+            <Column header={"Name"} body={nameColumn} className="border" />
+            <Column
+              header={"Installer"}
+              body={installerColumn}
+              className="border"
+            />
+            <Column header={"Status"} field="status" className="border" />
           </DataTable>
         </div>
       </div>
       <div className=" h-full px-20">
-        <PrimeCalendar selectedDate={handleDateChange} />
+        <PrimeCalendar selectedDate={handleDateChange} setDisable={false} />
       </div>
     </div>
   );

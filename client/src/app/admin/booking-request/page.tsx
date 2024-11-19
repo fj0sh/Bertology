@@ -8,7 +8,6 @@ import {
   formatDateNormal,
   formatDateToWords,
 } from "@/lib/function/dateFormatter";
-import { FilterMatchMode } from "primereact/api";
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
 import React, { useEffect, useState } from "react";
@@ -157,7 +156,7 @@ const BookingRequest = () => {
       <DataTable
         value={allBookings}
         paginator
-        rows={12}
+        rows={9}
         size="small"
         showGridlines
         pt={{
@@ -170,7 +169,7 @@ const BookingRequest = () => {
           field="data.bookedDate"
           header="Booked Date"
           body={formattedDateBody}
-        />   
+        />
         <Column header="Customer" body={customerColumn} />
         <Column field="data.carModel" header="Car Model" sortable />
         <Column field="data.mode" header="Service Mode" sortable />

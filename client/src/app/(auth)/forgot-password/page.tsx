@@ -2,21 +2,31 @@
 import Button from "@/components/button/OrangeButton";
 import InputOrange from "@/components/input/inputOrange";
 import useMailer from "@/hooks/mailer/useMailer";
+import useAuth from "@/hooks/requests/useAuth";
+import { useUser } from "@/providers/UserProvider";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
+import Cookie from "universal-cookie";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
-  const [otp, setOtp] = useState("");
+  const [otp, setOtp] = useState(0);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [otpPin, setOtpPin] = useState(0);
+
   const [step, setStep] = useState(1); // Step 1: Email Entry, Step 2: OTP Entry, Step 3: Set Password
   const [emailError, setEmailError] = useState("");
   const [otpError, setOtpError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
   const { sendMail } = useMailer();
+  const { userData, getUserByEmail, changePassword } = useAuth();
+  const router = useRouter();
+
+  const cookies = new Cookie();
 
   const emailSent = () => {
     Swal.fire({
@@ -26,37 +36,72 @@ const ForgotPassword = () => {
     });
   };
 
-  const handleEmailSubmit = (e: React.SyntheticEvent) => {
+  const OTPSuccess = () => {
+    Swal.fire({
+      title: "OTP Success!",
+      text: "Please fill out the necessary fields to change your password.",
+      icon: "success",
+    });
+  };
+
+  const changePassSuccess = () => {
+    Swal.fire({
+      title: "Password Reset Successful!",
+      text: "Your password has been updated. Please log in with your new password.",
+      icon: "success",
+      timer: 2500,
+    }).then(() => {
+      router.push("/login");
+    });
+  };
+
+  const handleEmailSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (email) {
-      emailSent();
-      sendMail(email, "OTP", ""); // Replace "" with any additional payload if needed
-      setStep(2); // Move to OTP Step
+      const user = await getUserByEmail(email); // Await the result
+      if (user) {
+        const rand = Math.floor(100000 + Math.random() * 900000);
+        setOtpPin(rand);
+        cookies.set("auth", rand);
+        sendMail(email, `${rand}`, ""); // Replace "" with any additional payload if needed
+        emailSent();
+        setStep(2); // Move to OTP Step
+      } else {
+        setEmailError("This Email is not Registered");
+      }
     } else {
       setEmailError("Please enter your email address.");
     }
   };
 
-  const handleOtpSubmit = (e: React.SyntheticEvent) => {
+  const handleOtpSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const cookieOtp = cookies.get("auth");
     if (otp) {
-      setStep(3); // Move to Set Password Step
+      if (cookieOtp != otp) {
+        console.log(cookieOtp);
+        setOtpError("Invalid OTP. Please try again.");
+      } else {
+        OTPSuccess();
+        setOtpError("");
+        setStep(3);
+      }
     } else {
       setOtpError("Please enter the OTP sent to your email.");
     }
   };
 
-  const handlePasswordSubmit = (e: React.SyntheticEvent) => {
+  const handlePasswordSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(userData);
     if (password && confirmPassword) {
       if (password === confirmPassword) {
-        Swal.fire({
-          title: "Password Reset Successful!",
-          text: "Your password has been updated. You can now log in with your new password.",
-          icon: "success",
-        });
-        // Redirect to login page
-        window.location.href = "/login";
+        if (userData?.id) {
+          changePassword(password, userData.id);
+          setPassword("");
+          setConfirmPassword("");
+          changePassSuccess();
+        }
       } else {
         setPasswordError("Passwords do not match. Please try again.");
       }
@@ -94,15 +139,26 @@ const ForgotPassword = () => {
         <p className="text-[28px] font-bold text-orangePrimary tracking-wide">
           Forgot Password
         </p>
-        <p className="text-sm text-white/70">
-          {step === 1
-            ? "Enter your email to receive the OTP."
-            : step === 2
-            ? "Enter the OTP sent to your email."
-            : "Set a new password for your account."}
-        </p>
+        <div className="text-sm text-white/70">
+          {step === 1 ? (
+            <>
+              <p>
+                Enter your email, and we{"'"}ll send you an OTP to reset your
+                password.
+              </p>
+              <br />
+              <p>
+                The email you entered must be the one registered with your
+                account or the one you use to log in
+              </p>
+            </>
+          ) : step === 2 ? (
+            "Enter the OTP sent to your email."
+          ) : (
+            "Set a new password for your account."
+          )}
+        </div>
 
-        {/* Step 1: Email Input */}
         {step === 1 && (
           <div className="w-full flex flex-col gap-4">
             <InputOrange
@@ -115,7 +171,6 @@ const ForgotPassword = () => {
           </div>
         )}
 
-        {/* Step 2: OTP Input */}
         {step === 2 && (
           <div className="w-full flex flex-col gap-4">
             <InputOrange
@@ -126,7 +181,6 @@ const ForgotPassword = () => {
           </div>
         )}
 
-        {/* Step 3: Set Password */}
         {step === 3 && (
           <div className="w-full flex flex-col gap-4">
             <InputOrange
@@ -145,7 +199,6 @@ const ForgotPassword = () => {
           </div>
         )}
 
-        {/* Submit Button */}
         <Button
           title={
             step === 1
@@ -158,9 +211,7 @@ const ForgotPassword = () => {
           className="bg-orangePrimary hover:bg-orangeRed text-black font-semibold rounded-md px-6 py-2"
         />
 
-        {/* Back to Login */}
         <p className="text-sm text-white/70 mt-4">
-          Remembered your password?{" "}
           <a
             href="/login"
             className="text-orangePrimary hover:text-orangeRed underline"

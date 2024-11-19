@@ -1,19 +1,29 @@
 "use client";
 import Button from "@/components/button/OrangeButton";
 import InputOrange from "@/components/input/inputOrange";
+import useAuth from "@/hooks/requests/useAuth";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
-  const handleLogin = (e: React.SyntheticEvent) => {
+  const { loginUser } = useAuth();
+
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    console.log(email);
-    console.log(password);
+    const result = await loginUser(email, password);
+    if (result) {
+      // router.push("/admin/dashboard");
+      // setEmail("");
+      // setPassword("");
+    } else {
+      console.log(result);
+    }
   };
 
   return (
@@ -22,7 +32,6 @@ const Login = () => {
         onSubmit={handleLogin}
         className="p-10 flex flex-col gap-6 items-center w-[90%] max-w-md bg-background bg-opacity-95 rounded-lg"
       >
-        {/* Logo */}
         <div className="w-32 h-32">
           <Image
             src="/images/Bertology_logo.png"
@@ -42,10 +51,12 @@ const Login = () => {
         {/* Input Fields */}
         <div className="w-full flex flex-col gap-4">
           <InputOrange
+            value={email}
             label="Email:"
             onChange={(e) => setEmail(e.target.value)}
           />
           <InputOrange
+            value={password}
             label="Password:"
             type="password"
             onChange={(e) => setPassword(e.target.value)}

@@ -53,7 +53,40 @@ const LineGraph = () => {
     getMonthlySales();
   }, []);
 
-  const options = {};
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true, // Show the legend
+        labels: {
+          color: "white", // Change legend text color to white
+        },
+      },
+      tooltip: {
+        enabled: true,
+        titleColor: "white", // Tooltip title text color
+        bodyColor: "white", // Tooltip body text color
+      },
+    },
+    scales: {
+      x: {
+        grid: {
+          color: "#2b2b2b", // Change x-axis gridlines color
+        },
+        ticks: {
+          color: "white", // Change x-axis labels (months) text color to white
+        },
+      },
+      y: {
+        grid: {
+          color: "#2b2b2b", // Change y-axis gridlines color
+        },
+        ticks: {
+          color: "white", // Change y-axis labels (sales) text color to white
+        },
+      },
+    },
+  };
 
   const data = {
     labels: [

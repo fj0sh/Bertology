@@ -14,11 +14,11 @@ interface ModalProps {
   isOpen: boolean;
   onClose?: () => void;
 }
-const AddInstallerModal = (props: ModalProps) => {
-  const { isOpen, onClose } = props;
-  const [installerImage, setInstallerImage] = useState("");
 
-  const { addInstaller } = useInstallers();
+const AddInstallerModal = ({ isOpen, onClose }: ModalProps) => {
+  const [installerImage, setInstallerImage] = useState<string>("");
+
+  const { getInstallers, addInstaller, refetch } = useInstallers();
 
   const {
     register,
@@ -28,15 +28,24 @@ const AddInstallerModal = (props: ModalProps) => {
   } = useForm<InstallerType>({ resolver: zodResolver(InstallerSchema) });
 
   const onSubmit = async (data: InstallerType) => {
-    console.log(installerImage);
-    addInstaller(
-      data.firstName,
-      data.lastName,
-      data.address,
-      data.phoneNumber,
-      data.email,
-      installerImage
-    );
+    console.log("Installer Image: ", installerImage);
+    try {
+      await addInstaller(
+        data.installerFirstName,
+        data.installerLastName,
+        data.installerAddress,
+        data.installerPhoneNumber,
+        data.installerEmail,
+        installerImage,
+        data.installerExperience
+      );
+
+      if (onClose) onClose();
+      refetch();
+      reset();
+    } catch (error) {
+      console.error("Error adding installer: ", error);
+    }
   };
 
   if (!isOpen) return null;
@@ -52,7 +61,7 @@ const AddInstallerModal = (props: ModalProps) => {
       <div className="flex gap-10 w-full justify-center">
         <div className="flex flex-col gap-5 font-semibold text-[18px] text-orangePrimary items-center">
           <p>Upload Your Picture Here</p>
-          <div className="border border-orangeRed rounded-lg h-[50%] ">
+          <div className="border border-orangeRed rounded-lg h-[50%]">
             <ImageUpload
               value={installerImage}
               onChange={(value) => setInstallerImage(value)}
@@ -66,47 +75,70 @@ const AddInstallerModal = (props: ModalProps) => {
           >
             <div className="flex gap-8">
               <div className="w-full">
-                <InputOrange label="First Name:" {...register("firstName")} />
-                {errors.firstName && (
+                <InputOrange
+                  label="First Name:"
+                  {...register("installerFirstName")}
+                />
+                {errors.installerFirstName && (
                   <p className="text-red-500 text-[13px]">
-                    {`${errors.firstName.message}`}
+                    {`${errors.installerFirstName.message}`}
                   </p>
                 )}
               </div>
 
               <div className="w-full">
-                <InputOrange label="Last Name:" {...register("lastName")} />
-                {errors.lastName && (
+                <InputOrange
+                  label="Last Name:"
+                  {...register("installerLastName")}
+                />
+                {errors.installerLastName && (
                   <p className="text-red-500 text-[13px]">
-                    {`${errors.lastName.message}`}
+                    {`${errors.installerLastName.message}`}
                   </p>
                 )}
               </div>
             </div>
 
             <div>
-              <InputOrange label="Address:" {...register("address")} />
-              {errors.address && (
+              <InputOrange label="Address:" {...register("installerAddress")} />
+              {errors.installerAddress && (
                 <p className="text-red-500 text-[13px]">
-                  {`${errors.address.message}`}
+                  {`${errors.installerAddress.message}`}
                 </p>
               )}
             </div>
 
             <div>
-              <InputOrange label="Email(Optional):" {...register("email")} />
-              {errors.email && (
+              <InputOrange
+                label="Email (Optional):"
+                {...register("installerEmail")}
+              />
+              {errors.installerEmail && (
                 <p className="text-red-500 text-[13px]">
-                  {`${errors.email.message}`}
+                  {`${errors.installerEmail.message}`}
                 </p>
               )}
             </div>
 
             <div>
-              <InputOrange label="Phone Number:" {...register("phoneNumber")} />
-              {errors.phoneNumber && (
+              <InputOrange
+                label="Phone Number:"
+                {...register("installerPhoneNumber")}
+              />
+              {errors.installerPhoneNumber && (
                 <p className="text-red-500 text-[13px]">
-                  {`${errors.phoneNumber.message}`}
+                  {`${errors.installerPhoneNumber.message}`}
+                </p>
+              )}
+            </div>
+            <div>
+              <InputOrange
+                label="Experience:"
+                {...register("installerExperience")}
+              />
+              {errors.installerExperience && (
+                <p className="text-red-500 text-[13px]">
+                  {`${errors.installerExperience.message}`}
                 </p>
               )}
             </div>

@@ -7,14 +7,16 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { UserType } from "@/constants/Users";
 import Cookies from "js-cookie";
 import jwt from "jsonwebtoken";
+import { decrypter } from "@/lib/function/encrypter/encrypter";
 
 interface User {
-  id: "number";
-  username: "string";
-  role: "string";
+  id: number;
+  username: string;
+  role: string;
+  token: string;
+  user: User;
 }
 
 interface UserProviderProps {
@@ -39,19 +41,18 @@ const useUser = () => {
 const UserProvider = (props: UserProviderProps) => {
   const { children } = props;
   const [user, setUser] = useState<User | null>(null);
-  const [isLogged, setIsLogged] = useState(false);
 
-  const tokenValue = Cookies.get("token");
+  const tokenValue = Cookies.get("jwt_auth");
+
+  console.log(tokenValue);
 
   useEffect(() => {
     if (tokenValue) {
-      const decoded = jwt.decode(tokenValue) as User | null;
-      if (decoded) {
-        setUser(decoded);
-        setIsLogged(true);
-      }
+      const data = JSON.parse(decrypter(tokenValue));
+      console.log(data);
+      setUser(data);
     }
-  }, [tokenValue]);
+  }, []);
 
   return (
     <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>

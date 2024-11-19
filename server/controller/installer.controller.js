@@ -45,3 +45,12 @@ exports.getInstallerById = (req, res) => {
     return res.status(200).send(result);
   });
 };
+
+exports.editInstaller = (req, res) => {
+  installerModel.editInstaller(req.params.id, req.body, (err, result) => {
+    if (err) {
+      return res.status(400).send(err);
+    }
+    return res.status(200).send(result);
+  });
+};

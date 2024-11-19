@@ -26,6 +26,7 @@ export const InstallerSchema = z.object({
     .max(11, "Invalid Phone Number"),
   installerAddress: z.string().min(1, "Address is Required"),
   installerImage: z.string().optional(),
+  installerExperience: z.string().min(1, "Experiences is Required"),
 });
 
 export type InstallerType = z.infer<typeof InstallerSchema>;

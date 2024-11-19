@@ -1,5 +1,7 @@
 import { BookingResponse } from "@/constants/Booking";
 import instance from "@/lib/util/axios-instance";
+import { useUser } from "@/providers/UserProvider";
+import { headers } from "next/headers";
 import React, { useEffect, useState } from "react";
 
 const useBooking = () => {
@@ -10,6 +12,8 @@ const useBooking = () => {
   );
   const [dataByStatus, setDataByStatus] = useState();
   const [dataByDate, setDataByDate] = useState([]);
+
+  const { user } = useUser();
 
   const bookService = async (
     firstName: string,

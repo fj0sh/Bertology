@@ -1,6 +1,6 @@
 const CryptoJS = require("crypto-js");
 
-const authKey = process.env.NEXT_PUBLIC_EXTERNAL_AUTH_KEY;
+const authKey = process.env.NEXT_PUBLIC_SECRET;
 
 const encrypter = (text: any) => {
   const cipherText = CryptoJS.AES.encrypt(text, authKey).toString();

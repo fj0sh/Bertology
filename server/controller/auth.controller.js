@@ -9,21 +9,6 @@ const authModel = require("../model/auth.model");
 
 const jwtSecret = process.env.JWT_SECRET;
 
-exports.registerUser = [
-  registerValidator(),
-  validate,
-  (req, res) => {
-    authModel.registerUser(req.body, (err, result) => {
-      console.log(req.body);
-      if (err) {
-        console.error("Error in insertUser:", err.message);
-        return res.status(500).send("Internal Server Error");
-      }
-      res.status(201).send(result);
-    });
-  },
-];
-
 exports.getUserById = (req, res) => {
   authModel.getUserById(req.params.id, (err, result) => {
     if (err) {
@@ -69,5 +54,31 @@ exports.loginUser = (req, res) => {
         role: result[0].role,
       },
     });
+  });
+};
+
+exports.getUserByEmail = (req, res) => {
+  authModel.getUserByEmail(req.body.email, (err, result) => {
+    if (err) {
+      return res.status(400).send(err);
+    }
+
+    if (result.length === 0) {
+      return res
+        .status(404)
+        .send({ error: false, message: "Email is not registered" });
+    } else {
+      return res.status(200).send(result);
+    }
+  });
+};
+
+exports.changePassword = (req, res) => {
+  authModel.changePassword(req.body.password, req.body.id, (err, result) => {
+    if (err) {
+      return res.status(400).send(err);
+    }
+
+    return res.status(200).send(result);
   });
 };
