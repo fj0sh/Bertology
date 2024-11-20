@@ -13,7 +13,7 @@ const Installers = () => {
   const [viewInstaller, setViewInstaller] = useState(false);
   const [rowData, setRowData] = useState<InstallerType>();
 
-  const { data, tanstackData, refetch } = useInstallers();
+  const { tanstackData } = useInstallers();
 
   const nameField = (rowData: any) => {
     return `${rowData.installerFirstName} ${rowData.installerLastName}`;
@@ -37,7 +37,6 @@ const Installers = () => {
         >
           View
         </button>
-
         <button
           onClick={() => handleDeleteBooking(rowData)}
           className="px-2 py-1 bg-red-500 text-white rounded"

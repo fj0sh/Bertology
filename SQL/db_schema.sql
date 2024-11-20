@@ -29,25 +29,9 @@ CREATE TABLE `booked_service` (
   KEY `service_fk` (`serviceId`),
   CONSTRAINT `booking_fk` FOREIGN KEY (`bookingId`) REFERENCES `booking` (`id`) ON DELETE CASCADE,
   CONSTRAINT `service_fk` FOREIGN KEY (`serviceId`) REFERENCES `services` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `booked_service` */
-
-insert  into `booked_service`(`id`,`serviceId`,`bookingId`) values 
-(93,10,276),
-(98,10,280),
-(99,12,280),
-(100,11,280),
-(101,10,281),
-(102,11,281),
-(103,12,281),
-(104,10,282),
-(105,11,282),
-(106,12,282),
-(107,10,283),
-(108,11,283),
-(109,10,287),
-(110,11,287);
 
 /*Table structure for table `booking` */
 
@@ -72,18 +56,10 @@ CREATE TABLE `booking` (
   `installerId` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `installer_fk` (`installerId`),
-  CONSTRAINT `installer_fk` FOREIGN KEY (`installerId`) REFERENCES `installers` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=288 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `installer_fk` FOREIGN KEY (`installerId`) REFERENCES `installers` (`installerId`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=338 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `booking` */
-
-insert  into `booking`(`id`,`firstName`,`lastName`,`email`,`contactNumber`,`municipality`,`barangay`,`landmark`,`carModel`,`additionalDetails`,`proofOfPayment`,`bookedDate`,`status`,`mode`,`street`,`installerId`) values 
-(276,'Jaira','Gallo','jairagallo@gmail.com','12312312312',NULL,'',NULL,'Audi Quattro','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tortor risus, venenatis ut lobortis et, gravida sed dolor. Nunc in convallis sem, eget bibendum arcu. Pellentesque quis ipsum nec nibh viverra tempor. Integer laoreet porta sem, quis rutrum odio vulputate suscipit. Curabitur consequat eleifend tellus, sit amet laoreet felis sodales quis. Nam hendrerit velit sed purus volutpat fringilla. Nunc commodo sapien at nisl efficitur, eu semper nisi ultrices.','https://res.cloudinary.com/dgxlqujte/image/upload/v1730980339/ghxashgn0tcpqbe8lstq.jpg','2024-11-09 7:00-8:00','DECLINED','ONSITE',NULL,10),
-(280,'Dexter','Lab','Dex@gmail.com','12312312312','ALEGRIA','GUADALUPE','Narra tree','Alfa Romeo GTV-6','test','https://res.cloudinary.com/dgxlqujte/image/upload/v1730980710/m111dx3s7yticvzoc63w.jpg','2024-11-16 4:00-7:00','APPROVED','HOMESERVICE',NULL,1),
-(281,'Numb','Skull','Numb@gmail.com','12312312312','ALEGRIA','GUADALUPE','','Alfa Romeo GTV-6','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tortor risus, venenatis ut lobortis et, gravida sed dolor. Nunc in convallis sem, eget bibendum arcu. Pellentesque quis ipsum nec nibh viverra tempor. Integer laoreet porta sem, quis rutrum odio vulputate suscipit. Curabitur consequat eleifend tellus, sit amet laoreet felis sodales quis. Nam hendrerit velit sed purus volutpat fringilla. Nunc commodo sapien at nisl efficitur, eu semper nisi ultrices.','https://res.cloudinary.com/dgxlqujte/image/upload/v1730980710/m111dx3s7yticvzoc63w.jpg','2024-11-16 7:00-10:00','APPROVED','HOMESERVICE',NULL,3),
-(282,'Chester','Benington','Chester@gmail.com','12312312312','ALEGRIA','GUADALUPE','punks not dead','Alfa Romeo GTV-6','PUNKS NOT DEAD','https://res.cloudinary.com/dgxlqujte/image/upload/v1730980710/m111dx3s7yticvzoc63w.jpg','2024-11-29 4:00-7:00','DONE','HOMESERVICE',NULL,12),
-(283,'Francis','Cutamora','francisjoshuacutamora@gmail.com','12312312312','ALCANTARA','CABADIANGAN','Petron Gas Station','Buick Electra','Lorem ','https://res.cloudinary.com/dgxlqujte/image/upload/v1730981525/maibgducqdv0upgjq7b3.jpg','2024-11-22 4:00-7:00','APPROVED','HOMESERVICE',NULL,3),
-(287,'Francis','Cutamora','francisjoshuacutamora@gmail.com','12312312314','ALCANTARA','CABADIANGAN','Petron Gas Station','Ferrari Testarossa','test','https://res.cloudinary.com/dgxlqujte/image/upload/v1731065034/fg6jv3hhqeol2gmrtoqj.jpg','2024-11-20 1:00-4:00','APPROVED','HOMESERVICE','6315, Sardines Street',1);
 
 /*Table structure for table `cart` */
 
@@ -136,29 +112,31 @@ insert  into `draft`(`id`,`test`) values
 DROP TABLE IF EXISTS `installers`;
 
 CREATE TABLE `installers` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `firstName` varchar(63) DEFAULT NULL,
-  `lastName` varchar(63) DEFAULT NULL,
-  `address` varchar(127) DEFAULT NULL,
-  `phoneNumber` int DEFAULT NULL,
-  `email` varchar(127) DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
+  `installerId` int NOT NULL AUTO_INCREMENT,
+  `installerFirstName` varchar(63) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `installerLastName` varchar(63) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `installerAddress` varchar(127) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `installerPhoneNumber` varchar(11) DEFAULT NULL,
+  `installerEmail` varchar(127) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `installerImage` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `createdAt` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `installerExperience` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`installerId`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `installers` */
 
-insert  into `installers`(`id`,`firstName`,`lastName`,`address`,`phoneNumber`,`email`,`image`,`createdAt`) values 
-(1,'Alberto','Pizza','O-Block',1231231231,'albertopizza@gmail.com',NULL,NULL),
-(2,'Aqua','Flask','Mariana, trench',1231231231,'aquaflask@gmail.com',NULL,NULL),
-(3,'Fruit','Ninja','Tokyo, japan',1231231231,'fruit@ninja.com',NULL,NULL),
-(4,'System','Unit','Mother, Board',1231231231,'pc@gmail.com',NULL,NULL),
-(9,'test','test','test',1231231231,'test','test',NULL),
-(10,'Test','Test','Test',1231231231,'Test',NULL,'2024-11-11 13:34:45'),
-(11,'Test','Test','Test',1231231231,'Test',NULL,'2024-11-11 13:35:55'),
-(12,'Test','Test','Test',1231231231,'Test',NULL,'2024-11-11 13:36:32'),
-(13,'Test','Test','Test',1231231231,'Test','https://res.cloudinary.com/dgxlqujte/image/upload/v1731303270/ojnnxaamk0gwospb4ycl.jpg','2024-11-11 13:38:18');
+insert  into `installers`(`installerId`,`installerFirstName`,`installerLastName`,`installerAddress`,`installerPhoneNumber`,`installerEmail`,`installerImage`,`createdAt`,`installerExperience`) values 
+(15,'Jhon','Doe','Test','966889105','jhondoe@gmail.com',NULL,'2024-11-14 09:59:56',NULL),
+(16,'The','Mechanic','Test','1234567891','mechanic@gmail.com',NULL,'2024-11-19 14:10:59',NULL),
+(17,'Jane','Smith','123 New Address','9876543210','jane.smith@example.com','https://example.com/image.jpg','2024-11-19 14:11:30','5 years of experience'),
+(20,'Jhon','Warhammer','earth 40k','1231231231','Test@gmail.com','https://res.cloudinary.com/dgxlqujte/image/upload/v1732001073/iiagu6h5zmn21qzvttgq.jpg','2024-11-19 15:32:20','400 years serving the Imperium of Man'),
+(26,'asdfas','dfasd','fasdfasd','12312312312','fasdfasdfas','','2024-11-19 19:32:23','vcvbcvb'),
+(27,'dfvsdfg','sdfgsd','fgsdfgsd','12312312312','fgsdfgsdfg','','2024-11-19 19:33:25','fgdsfgsfdg'),
+(28,'asdsdf','sdfgsdfg','sdfgsdf','12312312312','gsdfgsdfg','','2024-11-19 19:34:30','sdfgsdfggf'),
+(29,'test','test','test','12312313121','Test@gmail.com','','2024-11-19 19:43:43','test'),
+(30,'Yeah','Yeah','Yeah','12312312312','YEsh','','2024-11-19 19:44:04','YEsh'),
+(31,'Sorsogon','Luxury Hotel','Sorsogon Vulcanizing Shop','12312312312','Bastos@gmail.com','https://res.cloudinary.com/dgxlqujte/image/upload/v1732063433/xlnoqbxxkkhelrnlmshu.jpg','2024-11-20 08:44:39','Sorsogon shoppee pay express');
 
 /*Table structure for table `payment` */
 
@@ -226,29 +204,30 @@ CREATE TABLE `services` (
   `serviceName` varchar(63) DEFAULT NULL,
   `servicePrice` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `services` */
 
 insert  into `services`(`id`,`serviceName`,`servicePrice`) values 
-(10,'LED installation',1000),
-(11,'Horn Installation',1200),
-(12,'Central Locking',1200),
-(13,'Car Sound Setup',2000),
-(14,'DashCam',1500),
-(15,'Stereo',10000),
-(16,'Speaker',2000),
-(17,'SubWoofer',1000),
-(18,'Turbo Timer',500),
-(19,'Keyless Entry Installation',1500),
-(20,'Spoiler',1500),
-(21,'Rain Visor',800),
-(22,'Skirt',700),
-(23,'Sound System Troubleshoot',800),
-(24,'Door Lock Problems',1000),
-(25,'Parking Sensor',1000),
-(26,'DRL Installation',2000),
-(27,'Bulbs Installation',500);
+(28,'Car Alarm Installation',3500),
+(29,'Central Locking',2500),
+(30,'Basic Sound Setup',15000),
+(31,'Stereo Nakamichi',7500),
+(32,'Speaker Nakamichi',4500),
+(33,'Dashcam',4500),
+(34,'Subwoofer Kinetic',7500),
+(35,'Horn PIAA',2500),
+(36,'Turbo Timer Installation',1000),
+(37,'Keyless Entry Installation',2500),
+(38,'LED Light Installation',1000),
+(39,'Spoiler',1000),
+(40,'Rain Visor',1000),
+(41,'Skirt',1000),
+(42,'Sound System and Alarm TroubleShoot',1000),
+(43,'Car Door Lock Problems',1000),
+(44,'Parking Sensor 4 Eye',2500),
+(45,'DRL Installation',1000),
+(46,'Bulb Installation',1000);
 
 /*Table structure for table `time_slot` */
 
@@ -299,16 +278,17 @@ CREATE TABLE `users` (
   `dateCreated` datetime DEFAULT CURRENT_TIMESTAMP,
   `status` enum('ACTIVE') DEFAULT 'ACTIVE',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `users` */
 
 insert  into `users`(`id`,`firstname`,`lastname`,`phoneNumber`,`emailAddress`,`password`,`username`,`role`,`dateCreated`,`status`) values 
-(15,'Mike','Oxlong','096969669','mike@gmail.com','mikeOxlong','Mike','ADMIN','2024-07-29 09:18:52','ACTIVE'),
+(15,'Mike','Oxlong','096969669','mike@gmail.com','password','Mike','ADMIN','2024-07-29 09:18:52','ACTIVE'),
 (16,'Moe','Lester','09696969669','moe@gmail.com','moeLester','Moe','CUSTOMER','2024-07-29 09:18:52','ACTIVE'),
 (17,'Joe','Mama','0969696966','joe@gmail.com','joeMama','Joe','CUSTOMER','2024-07-29 09:18:52','ACTIVE'),
 (18,'Fae','Dofilia','9669991051','Fae@gmail.com','FaeDo','FaeDo','CUSTOMER','2024-07-29 09:24:25','ACTIVE'),
-(19,'Test','test','9668891051','Test@gmail.com',NULL,'Test','CUSTOMER','2024-07-29 09:44:43','ACTIVE');
+(19,'Test','test','9668891051','Test@gmail.com',NULL,'Test','CUSTOMER','2024-07-29 09:44:43','ACTIVE'),
+(20,'Francis','Cutamora','1231231231','francisjoshuacutamora@gmail.com','cutamora','francis','ADMIN','2024-11-19 09:34:35','ACTIVE');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
