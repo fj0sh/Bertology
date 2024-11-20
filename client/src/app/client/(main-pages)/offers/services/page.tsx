@@ -142,7 +142,7 @@ const Booking = () => {
     }
   };
 
-  const OTPVerification = () => {
+  const OTPVerification = async () => {
     const otp = parseInt(cookies.get("OTP"));
     if (parseInt(userOTP) === otp) {
       setShowConfirmation(false);
@@ -150,7 +150,7 @@ const Booking = () => {
       successfulBooking();
 
       if (formData) {
-        bookService(
+        const bookingResponse = await bookService(
           formData.firstName,
           formData.lastName,
           formData.email,
@@ -167,6 +167,9 @@ const Booking = () => {
           serviceMode,
           formData.street
         );
+
+        const insertId = bookingResponse.insertId;
+        selectedService.map((res: any) => selectTypes(insertId, res.id));
       }
     } else {
       Swal.fire({
@@ -186,7 +189,6 @@ const Booking = () => {
   }, [selectedService]);
 
   const handleDate = (date: string) => {
-    console.log(date);
     getDateInformation(formatDateForSQL(date).split(" ")[0]);
     setSelectedBookingDate(date);
   };
@@ -366,7 +368,7 @@ const Booking = () => {
                     </div>
                   </div>
 
-                  <div className="flex gap-8 w-full justify-around">
+                  <d className="flex gap-8 w-full justify-around">
                     <div className="mt-4 w-full">
                       <InputOrange
                         label="Nearest Landmark:"
@@ -389,9 +391,9 @@ const Booking = () => {
                         </p>
                       )}
                     </div>
-                  </div>
+                  </d   iv>
                 </>
-              ) : (
+              ) : (  
                 <div></div>
               )}
             </div>
@@ -411,11 +413,18 @@ const Booking = () => {
                     maxSelectedLabels={3}
                     className="w-full md:w-20rem"
                     itemTemplate={(option) => (
-                      <div className="flex justify-between">
-                        <span>{option.serviceName}</span> -
-                        <span className="ml-2 text-gray-500">
-                          ₱{option.servicePrice}
-                        </span>
+                      <div className="relative group flex flex-col justify-between p-2 hover:bg-gray-100 rounded-md transition w-full">
+                        <div className="flex justify-between items-center">
+                          <span>{option.serviceName}</span> -
+                          <span className="ml-2 text-gray-500">
+                            ₱{option.servicePrice}
+                          </span>
+                        </div>
+
+                        <div className="max-h-0 overflow-hidden text-sm text-gray-600 mt-1 transition-all duration-300 group-hover:max-h-[100px]">
+                          {option.serviceDescription ||
+                            "No description available."}
+                        </div>
                       </div>
                     )}
                   />

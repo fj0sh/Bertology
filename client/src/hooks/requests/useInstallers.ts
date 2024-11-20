@@ -99,6 +99,15 @@ const useInstallers = () => {
     }
   };
 
+  const deleteInstaller = async (id: number) => {
+    try {
+      await instance.delete(`/installer/${id}`);
+      refetch();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getInstallers();
   }, []);
@@ -107,11 +116,13 @@ const useInstallers = () => {
     installerData,
     data,
     tanstackData,
+
     addInstaller,
     getInstallerById,
     assignInstaller,
     editInstaller,
     getInstallers,
+    deleteInstaller,
     refetch,
   };
 };

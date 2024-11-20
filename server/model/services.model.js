@@ -17,8 +17,18 @@ exports.getFullyBookedDates = (callback) => {
 
 exports.getDateInformation = (date, callback) => {
   conn.query(
-    "SELECT bookedDate FROM booking WHERE LEFT(bookedDate, 10) = ?;",
+    "SELECT bookedDate FROM booking WHERE LEFT(bookedDate, 10) = ?",
     [date],
+    callback
+  );
+};
+
+exports.addService = (serviceData, callback) => {
+  const { serviceName, servicePrice } = serviceData;
+
+  conn.query(
+    "INSERT INTO services (serviceName, servicePrice) values (?, ?)",
+    [serviceName, servicePrice],
     callback
   );
 };

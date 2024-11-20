@@ -13,7 +13,7 @@ const Installers = () => {
   const [viewInstaller, setViewInstaller] = useState(false);
   const [rowData, setRowData] = useState<InstallerType>();
 
-  const { tanstackData } = useInstallers();
+  const { tanstackData, deleteInstaller } = useInstallers();
 
   const nameField = (rowData: any) => {
     return `${rowData.installerFirstName} ${rowData.installerLastName}`;
@@ -24,8 +24,8 @@ const Installers = () => {
     setViewInstaller(true);
   };
 
-  const handleDeleteBooking = (rowData: any) => {
-    console.log(`Delete installer:`, rowData);
+  const handleDeleteInstaller = (rowData: any) => {
+    deleteInstaller(rowData.installerId);
   };
 
   const viewColumn = (rowData: any, rowIndex: number) => {
@@ -38,7 +38,7 @@ const Installers = () => {
           View
         </button>
         <button
-          onClick={() => handleDeleteBooking(rowData)}
+          onClick={() => handleDeleteInstaller(rowData)}
           className="px-2 py-1 bg-red-500 text-white rounded"
         >
           Delete

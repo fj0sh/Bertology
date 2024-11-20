@@ -76,3 +76,7 @@ exports.editInstaller = (installerId, updatedInformation, callback) => {
     callback
   );
 };
+
+exports.deleteInstaller = (id, callback) => {
+  conn.query("DELETE FROM installers WHERE installerId = ?", id, callback);
+};

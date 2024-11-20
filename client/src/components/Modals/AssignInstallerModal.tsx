@@ -23,7 +23,7 @@ const AssignInstallerModal = (props: ModalProps) => {
   const { data, installerData, assignInstaller, getInstallerById } =
     useInstallers();
 
-  const { acceptBooking } = useBooking();
+  const { acceptBooking, refetch } = useBooking();
   const { sendMail } = useMailer();
 
   const showInstaller = (id: number) => {
@@ -57,6 +57,7 @@ const AssignInstallerModal = (props: ModalProps) => {
           `Your Booking for the ${date} has been accepted`,
           `${fName} ${lName}`
         );
+        refetch();
         onClose();
       }
     });

@@ -52,7 +52,7 @@ const BookingRequestModal = (props: Props) => {
   const [imageLarger, setIsImageLarger] = useState(false);
   const [showInstallerModal, setInstallerModal] = useState(false);
 
-  const { declineBooking, setBookingAsDone } = useBooking();
+  const { declineBooking, setBookingAsDone, refetch } = useBooking();
   const { sendMail } = useMailer();
 
   const handleAcceptBooking = () => {
@@ -83,6 +83,7 @@ const BookingRequestModal = (props: Props) => {
           `${fName} ${lName}`
         );
         declineBooking(id);
+        refetch();
       }
     });
   };

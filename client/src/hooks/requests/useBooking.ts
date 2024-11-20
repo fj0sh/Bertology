@@ -1,6 +1,7 @@
 import { BookingResponse } from "@/constants/Booking";
 import instance from "@/lib/util/axios-instance";
 import { useUser } from "@/providers/UserProvider";
+import { useQuery } from "@tanstack/react-query";
 import { headers } from "next/headers";
 import React, { useEffect, useState } from "react";
 
@@ -14,6 +15,21 @@ const useBooking = () => {
   const [dataByDate, setDataByDate] = useState([]);
 
   const { user } = useUser();
+
+  const getAllBookings = async () => {
+    try {
+      const res = await instance.get(`/booking/bookings`);
+      setAllBookings(res.data);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const { data: tanstackData, refetch } = useQuery({
+    queryKey: ["bookings"],
+    queryFn: getAllBookings,
+  });
 
   const bookService = async (
     firstName: string,
@@ -66,15 +82,6 @@ const useBooking = () => {
     }
   };
 
-  const getAllBookings = async () => {
-    try {
-      const res = await instance.get(`/booking/bookings`);
-      setAllBookings(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const selectTypes = async (bookingId: number, serviceId: number) => {
     try {
       const res = await instance.post("booking/selectTypes", {
@@ -100,6 +107,7 @@ const useBooking = () => {
   const declineBooking = async (id: number) => {
     try {
       const res = instance.patch(`/booking/decline/${id}`);
+      refetch();
       console.log(res);
     } catch (error) {
       console.log(error);
@@ -131,6 +139,7 @@ const useBooking = () => {
   const deleteBooking = async (id: number) => {
     try {
       const res = await instance.delete(`/booking/${id}`);
+      refetch();
       console.log(res);
     } catch (error) {
       console.log(error);
@@ -139,7 +148,8 @@ const useBooking = () => {
 
   const setBookingAsDone = async (id: number) => {
     try {
-      const res = await instance.patch(`/booking/done/${id}`);
+      await instance.patch(`/booking/done/${id}`);
+      refetch();
     } catch (error) {
       console.log(error);
     }
@@ -167,11 +177,13 @@ const useBooking = () => {
     getBookingByStatus,
     getBookingByDate,
     setBookingAsDone,
+    refetch,
     data,
     dataByStatus,
     dataByDate,
     allBookings,
     serviceType,
+    tanstackData,
   };
 };
 

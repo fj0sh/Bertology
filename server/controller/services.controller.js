@@ -38,3 +38,12 @@ exports.getDateInfo = (req, res) => {
     return res.status(200).send(result);
   });
 };
+
+exports.addService = (req, res) => {
+  serviceModel.addService(req.body, (err, result) => {
+    if (err) {
+      return res.status(400).send(err);
+    }
+    return res.status(201).send(result);
+  });
+};

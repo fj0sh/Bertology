@@ -54,3 +54,12 @@ exports.editInstaller = (req, res) => {
     return res.status(200).send(result);
   });
 };
+
+exports.deleteInstaller = (req, res) => {
+  installerModel.deleteInstaller(req.params.id, (err, result) => {
+    if (err) {
+      return res.status(400).send(err);
+    }
+    return res.status(200).send(result);
+  });
+};

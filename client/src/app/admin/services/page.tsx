@@ -1,8 +1,6 @@
 "use client";
 
-import Button from "@/components/button/OrangeButton";
 import useServices from "@/hooks/requests/useServices";
-import { useUser } from "@/providers/UserProvider";
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
 import React from "react";
@@ -44,7 +42,7 @@ const ServiceHistory = () => {
           <Column
             header="ID"
             body={(rowData, options) => options.rowIndex + 1}
-            className="border w-[3rem]"
+            className="border w-[3rem] text-center"
           ></Column>
           <Column
             header="Service Name"

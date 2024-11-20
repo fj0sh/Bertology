@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { InstallerSchema, InstallerType } from "@/lib/util/schema";
 import InputOrange from "../input/inputOrange";
 import Button from "../button/OrangeButton";
+import Swal from "sweetalert2";
 
 interface ModalProps {
   isOpen: boolean;
@@ -18,7 +19,7 @@ interface ModalProps {
 const AddInstallerModal = ({ isOpen, onClose }: ModalProps) => {
   const [installerImage, setInstallerImage] = useState<string>("");
 
-  const { getInstallers, addInstaller, refetch } = useInstallers();
+  const { addInstaller, refetch } = useInstallers();
 
   const {
     register,
@@ -26,6 +27,14 @@ const AddInstallerModal = ({ isOpen, onClose }: ModalProps) => {
     reset,
     formState: { errors },
   } = useForm<InstallerType>({ resolver: zodResolver(InstallerSchema) });
+
+  const addSuccess = () => {
+    Swal.fire({
+      title: "Installer Added",
+      text: "Installer Added Successfully.",
+      icon: "success",
+    });
+  };
 
   const onSubmit = async (data: InstallerType) => {
     console.log("Installer Image: ", installerImage);
@@ -41,6 +50,7 @@ const AddInstallerModal = ({ isOpen, onClose }: ModalProps) => {
       );
 
       if (onClose) onClose();
+      addSuccess();
       refetch();
       reset();
     } catch (error) {

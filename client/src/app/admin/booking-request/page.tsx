@@ -1,6 +1,4 @@
 "use client";
-import BookingRequestCard from "@/components/cards/BookingRequestCard";
-import AssignInstallerModal from "@/components/Modals/AssignInstallerModal";
 import BookingRequestModal from "@/components/Modals/BookingRequestModal";
 import { BookingResponse, BookingType } from "@/constants/Booking";
 import useBooking from "@/hooks/requests/useBooking";
@@ -10,6 +8,7 @@ import {
 } from "@/lib/function/dateFormatter";
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
+import { Skeleton } from "primereact/skeleton";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
@@ -21,6 +20,8 @@ const BookingRequest = () => {
     getAllBookings,
     getSelectedTypes,
     deleteBooking,
+    refetch,
+    tanstackData,
     allBookings,
     serviceType,
   } = useBooking();
@@ -153,15 +154,17 @@ const BookingRequest = () => {
         onClose={() => setIsRequestShow(false)}
       />
 
+      {/* <Skeleton width="20rem" height="10rem" color="white" /> */}
+
       <DataTable
-        value={allBookings}
+        value={tanstackData}
         paginator
         rows={9}
         size="small"
         showGridlines
         pt={{
-          table: { className: "text-[14px]" },
-          bodyRow: { className: "border border-slate-300" },
+          table: { className: "text-[14px] " },
+          bodyRow: { className: "border border-slate-300 " },
           thead: { className: "bg-orangePrimary text-white" },
         }}
       >

@@ -3,12 +3,12 @@ const router = express.Router();
 const bookingController = require("../controller/booking.controller");
 const authenticateUser = require("../middlewares/authenticateUser/authenticateUser");
 
-router.use(authenticateUser);
-
+router.post("/date", bookingController.getBookingsByDate);
 router.post("/", bookingController.bookService);
 router.post("/selectTypes", bookingController.selectServiceType);
+router.use(authenticateUser);
+
 router.post("/status", bookingController.getBookedServiceByStatus);
-router.post("/date", bookingController.getBookingsByDate);
 router.get("/bookings", bookingController.getBookedServices);
 router.get("/bookings/:id", bookingController.getSelectedTypes);
 router.get("/status", bookingController.getStatusCount);
