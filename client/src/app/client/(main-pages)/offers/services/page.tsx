@@ -51,10 +51,12 @@ const Booking = () => {
   const [selectedModel, setSelectedModel] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isModelShow, setIsModelShow] = useState(true);
 
   const {
     register,
     handleSubmit,
+    watch,
     reset,
     formState: { errors },
   } = useForm<BookingType>({ resolver: zodResolver(BookingSchema) });
@@ -62,8 +64,18 @@ const Booking = () => {
   const { data, bookService, selectTypes } = useBooking();
   const { services, dateInfo, getDateInformation } = useServices();
   const { sendMail } = useMailer();
+  const customModel = watch("model");
 
   const cookies = new Cookies();
+
+  useEffect(() => {
+    if (customModel) {
+      setSelectedModel("");
+      setIsModelShow(false);
+    } else {
+      setIsModelShow(true); // Restore "Car Model" input if Custom Model is cleared
+    }
+  }, [customModel]);
 
   useEffect(() => {
     const allModels: string[] = [];
@@ -158,7 +170,7 @@ const Booking = () => {
           municipality!,
           barangay.toString(),
           formData.landmark!,
-          selectedModel,
+          selectedModel !== "" ? selectedModel : formData.model || "",
           formData.details,
           paymentProof,
           `${
@@ -398,8 +410,8 @@ const Booking = () => {
               )}
             </div>
 
-            <div className="flex gap-8 w-full ">
-              <div className="flex flex-col gap-1">
+            <div className="flex w-full gap-8 ">
+              <div className="flex flex-col gap-1 w-[50%]">
                 <p className="text-[18px]">Select Service:</p>
                 {services && (
                   <MultiSelect
@@ -411,7 +423,7 @@ const Booking = () => {
                     display="chip"
                     placeholder="Select a Service..."
                     maxSelectedLabels={3}
-                    className="w-full md:w-20rem"
+                    className="custom-checkbox w-full md:w-20rem "
                     itemTemplate={(option) => (
                       <div className="relative group flex flex-col justify-between p-2 hover:bg-gray-100 rounded-md transition w-full">
                         <div className="flex justify-between items-center">
@@ -431,8 +443,8 @@ const Booking = () => {
                 )}
               </div>
 
-              <div className=" flex flex-col gap-1">
-                <p className="text-[18px]"> Down Payment:</p>
+              <div className=" flex flex-col gap-1 w-[50%]">
+                <p className="text-[18px] w-full"> Down Payment:</p>
                 <div className="text-[20px] text-orangeRed justify-self-center">
                   {downPayment ? (
                     <p> ₱ {downPayment} </p>
@@ -443,36 +455,61 @@ const Booking = () => {
               </div>
             </div>
 
-            <div className="">
-              <p className="text-[18px]">Car Model:</p>
-              <div className="relative">
-                <div className="text-black h-full">
-                  <input
-                    type="text"
-                    value={selectedModel}
-                    className="bg-background rounded-md border text-white border-orangeRed h-full focus:outline-none p-[8px] text-[16px]"
-                    onChange={handleModelChange}
-                  />
-                </div>
+            <div className="flex w-full gap-8 *:w-full">
+              <div className="flex flex-col gap-2">
+                <p className="text-[18px]">Car Model:</p>
+                <div className="relative">
+                  <div className="text-black h-full">
+                    <input
+                      disabled={isModelShow ? false : true}
+                      placeholder="Please Select A Model"
+                      type="text"
+                      value={selectedModel}
+                      className={`bg-background rounded-md border text-white h-full focus:outline-none p-[8px] text-[16px] ${
+                        isModelShow
+                          ? "border-orangeRed "
+                          : "border-orangeRed bg-[#EBEBE4]"
+                      }`}
+                      onChange={handleModelChange}
+                    />
+                  </div>
 
-                {showDropdown && selectedModel !== "" && (
-                  <div className="text-black absolute bg-white top-14 p-3 overflow-y-auto h-fit max-h-[10rem] w-fit truncate shadow-md z-10 rounded-sm border-none text-justify flex flex-col">
-                    {filteredModels.length === 0 ? (
-                      <p>No Result</p>
-                    ) : (
-                      filteredModels.map((result, index) => (
-                        <button
-                          type="button"
-                          key={index}
-                          className="text-left"
-                          onClick={() => handleModelSelect(result)}
-                        >
-                          {result}
-                        </button>
-                      ))
+                  {showDropdown && selectedModel !== "" && (
+                    <div className="text-black absolute bg-white top-14 p-3 overflow-y-auto h-fit max-h-[10rem] w-fit truncate shadow-md z-10 rounded-sm border-none text-justify flex flex-col">
+                      {filteredModels.length === 0 ? (
+                        <p>No Result</p>
+                      ) : (
+                        filteredModels.map((result, index) => (
+                          <button
+                            type="button"
+                            key={index}
+                            className="text-left"
+                            onClick={() => handleModelSelect(result)}
+                          >
+                            {result}
+                          </button>
+                        ))
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div>
+                <div>
+                  <div className="w-[80%]">
+                    <InputOrange
+                      disabled={selectedModel ? true : false}
+                      label="Other/Specific Model:"
+                      {...register("model")}
+                    />
+                    {errors.model && (
+                      <p className="text-red-500 text-[13px]">
+                        {`${errors.model.message}`}
+                      </p>
                     )}
                   </div>
-                )}
+                </div>
               </div>
             </div>
 

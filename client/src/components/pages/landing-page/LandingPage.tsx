@@ -72,7 +72,7 @@ const LandingPage = () => {
           onClose={() => setIsForgotPassOpen(false)}
         />
         {/* HERO SECTION */}
-        <div className="flex flex-col lg:flex-row h-full w-full bg-opacity-85">
+        <div className="flex flex-col lg:flex-row h-[100vh] w-full bg-opacity-85 ">
           <div className="w-full lg:w-1/2 h-full flex justify-center items-center p-6 lg:p-10">
             <Image
               src={"/images/landing-image.png"}
@@ -110,31 +110,31 @@ const LandingPage = () => {
                 We give the right service and good quality products!
               </p>
               <div className="bg-zinc-900 flex flex-col lg:flex-row items-center w-full h-full justify-center gap-4 lg:gap-10 text-[20px] lg:text-[30px] px-6 lg:px-20 py-6 lg:py-8 rounded-lg">
-                <ul className="flex flex-col gap-2">
+                <ul className="flex flex-col gap-2 *:flex">
                   <li>
-                    <TfiCheckBox className="mr-2 lg:mr-4 text-orangePrimary" />{" "}
+                    <TfiCheckBox className="mr-2 lg:mr-4 text-orangePrimary" />
                     Free Installation
                   </li>
                   <li>
-                    <TfiCheckBox className="mr-2 lg:mr-4 text-orangePrimary" />{" "}
+                    <TfiCheckBox className="mr-2 lg:mr-4 text-orangePrimary" />
                     Home Service
                   </li>
                   <li>
-                    <TfiCheckBox className="mr-2 lg:mr-4 text-orangePrimary" />{" "}
+                    <TfiCheckBox className="mr-2 lg:mr-4 text-orangePrimary" />
                     Expert Technician
                   </li>
                 </ul>
-                <ul className="flex flex-col gap-2">
+                <ul className="flex flex-col gap-2 *:flex">
                   <li>
-                    <TfiCheckBox className="mr-2 lg:mr-4 text-orangePrimary" />{" "}
+                    <TfiCheckBox className="mr-2 lg:mr-4 text-orangePrimary" />
                     Safe and Guaranteed
                   </li>
                   <li>
-                    <TfiCheckBox className="mr-2 lg:mr-4 text-orangePrimary" />{" "}
+                    <TfiCheckBox className="mr-2 lg:mr-4 text-orangePrimary" />
                     Years of Experience
                   </li>
                   <li>
-                    <TfiCheckBox className="mr-2 lg:mr-4 text-orangePrimary" />{" "}
+                    <TfiCheckBox className="mr-2 lg:mr-4 text-orangePrimary" />
                     Fast Transactions
                   </li>
                 </ul>
