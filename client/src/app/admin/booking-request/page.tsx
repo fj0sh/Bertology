@@ -163,8 +163,8 @@ const BookingRequest = () => {
         size="small"
         showGridlines
         pt={{
-          table: { className: "text-[14px] " },
-          bodyRow: { className: "border border-slate-300 " },
+          table: { className: "text-[14px] bg-background" },
+          bodyRow: { className: "border border-slate-300" },
           thead: { className: "bg-orangePrimary text-white" },
         }}
       >

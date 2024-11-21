@@ -42,7 +42,7 @@ const AboutUs = () => {
             WHAT WE <span className="text-orangePrimary"> OFFER </span>
           </p>
         </div>
-        <div className="flex flex-col gap-6 p-3 px-[20rem]">
+        <div className="flex flex-col gap-6 p-3 px-[12rem]">
           <OffersCard
             image={"/images/service-images/image1.jpg"}
             title="Free Installation"

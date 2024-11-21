@@ -368,7 +368,7 @@ const Booking = () => {
                     </div>
                   </div>
 
-                  <d className="flex gap-8 w-full justify-around">
+                  <div className="flex gap-8 w-full justify-around">
                     <div className="mt-4 w-full">
                       <InputOrange
                         label="Nearest Landmark:"
@@ -391,9 +391,9 @@ const Booking = () => {
                         </p>
                       )}
                     </div>
-                  </d   iv>
+                  </div>
                 </>
-              ) : (  
+              ) : (
                 <div></div>
               )}
             </div>
