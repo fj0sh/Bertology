@@ -3,10 +3,10 @@ import AddInstallerModal from "@/components/Modals/AddInstallerModal";
 import InstallerModal from "@/components/Modals/InstallerModal";
 import useInstallers from "@/hooks/requests/useInstallers";
 import { InstallerType } from "@/lib/util/schema";
-import { useQuery } from "@tanstack/react-query";
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import "@/style/tables.css";
 
 const Installers = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -72,22 +72,28 @@ const Installers = () => {
         Add Installer
       </button>
 
-      <DataTable value={tanstackData} paginator rows={10}>
+      <DataTable
+        value={tanstackData}
+        paginator
+        rows={10}
+        tableClassName="custom-table"
+        paginatorClassName="custom-paginator"
+      >
         <Column
           header="ID"
           body={(rowData, options) => options.rowIndex + 1}
-          className="border w-[2rem]"
+          className=" w-[2rem]"
         ></Column>
-        <Column header={"Name"} body={nameField} className="border" />
+        <Column header={"Name"} body={nameField} className="" />
         <Column
           header={"PhoneNumber"}
           field="installerPhoneNumber"
-          className="border"
+          className=""
         />
         <Column
           header={"Action"}
           body={(rowData, { rowIndex }) => viewColumn(rowData, rowIndex)}
-          className="border"
+          className=""
         />
       </DataTable>
     </div>

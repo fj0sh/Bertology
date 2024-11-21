@@ -1,10 +1,14 @@
+"use client";
 import ImagePreviewCard from "@/components/cards/ImagePreviewCard";
 import React from "react";
 import BrandBalls from "@/components/cards/BrandBalls";
-import LinkButton from "@/components/button/OrangeLinkButton";
 import Image from "next/image";
+import useServices from "@/hooks/requests/useServices";
+import { ServiceType } from "@/constants/Service";
 
 const Services = () => {
+  const { services } = useServices();
+
   return (
     <div className="bg-black text-white">
       <div className="flex justify-center items-center h-screen ">
@@ -40,66 +44,16 @@ const Services = () => {
       </div>
       <div className="h-full flex flex-col items-center gap-6 p-20">
         <div className="grid grid-cols-4 gap-[5rem] border-none justify-items-center">
-          <ImagePreviewCard
-            image="/images/service-images/image1.jpg"
-            serviceName="Test Service"
-            price="1000"
-          />
-          <ImagePreviewCard
-            image="/images/service-images/image1.jpg"
-            serviceName="Test Service"
-            price="1000"
-          />
-          <ImagePreviewCard
-            image="/images/service-images/image1.jpg"
-            serviceName="Test Service"
-            price="1000"
-          />
-          <ImagePreviewCard
-            image="/images/service-images/image1.jpg"
-            serviceName="Test Service"
-            price="1000"
-          />
-          <ImagePreviewCard
-            image="/images/service-images/image1.jpg"
-            serviceName="Test Service"
-            price="1000"
-          />
-          <ImagePreviewCard
-            image="/images/service-images/image1.jpg"
-            serviceName="Test Service"
-            price="1000"
-          />
-          <ImagePreviewCard
-            image="/images/service-images/image1.jpg"
-            serviceName="Test Service"
-            price="1000"
-          />
-          <ImagePreviewCard
-            image="/images/service-images/image1.jpg"
-            serviceName="Test Service"
-            price="1000"
-          />
-          <ImagePreviewCard
-            image="/images/service-images/image1.jpg"
-            serviceName="Test Service"
-            price="1000"
-          />
-          <ImagePreviewCard
-            image="/images/service-images/image1.jpg"
-            serviceName="Test Service"
-            price="1000"
-          />
-          <ImagePreviewCard
-            image="/images/service-images/image1.jpg"
-            serviceName="Test Service"
-            price="1000"
-          />
-          <ImagePreviewCard
-            image="/images/service-images/image1.jpg"
-            serviceName="Test Service"
-            price="1000"
-          />
+          {services?.map((serviceData: ServiceType) => (
+            <div key={serviceData.id}>
+              <ImagePreviewCard
+                image="/images/service-images/image1.jpg"
+                serviceName="Test Service"
+                price="1000"
+                descrption="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam maximus lorem nec orci consequat, at aliquam neque volutpat. Integer ultricies,"
+              />
+            </div>
+          ))}
         </div>
       </div>
     </div>

@@ -21,7 +21,7 @@ const InputOrange = React.forwardRef<HTMLInputElement, Props>(
             ref={ref}
             type={type}
             placeholder={placeholder}
-            className="border text-white p-2 border-orangeRed bg-background w-full rounded-lg focus:outline-none"
+            className="border text-white p-2 border-orangeRed bg-background w-full rounded-lg focus:border-white"
             style={{ height }}
             value={value}
             {...props}

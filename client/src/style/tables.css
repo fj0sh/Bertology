@@ -10,3 +10,33 @@ td {
   padding: 10px;
   text-align: center;
 }
+
+.custom-table {
+  background-color: black;
+}
+
+.custom-table .p-datatable-thead > tr > th {
+  background-color: #1a1a1a; /* Darker header */
+  color: white;
+}
+
+.custom-table .p-datatable-tbody > tr {
+  background-color: #1a1a1a; /* Darker header */
+  border: white;
+  color: white;
+}
+
+.custom-table .p-datatable-bodyRow {
+  border-top: white;
+}
+
+.custom-paginator {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  border-top: 2px solid #333;
+}

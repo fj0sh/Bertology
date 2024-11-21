@@ -161,7 +161,8 @@ const BookingRequest = () => {
         paginator
         rows={9}
         size="small"
-        showGridlines
+        tableClassName="custom-table"
+        paginatorClassName="custom-paginator"
         pt={{
           table: { className: "text-[14px] bg-background" },
           bodyRow: { className: "border border-slate-300" },

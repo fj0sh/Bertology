@@ -242,15 +242,15 @@ const Booking = () => {
         />
       </div>
       <div className="w-full h-full flex justify-center p-10 gap-x-[10rem]">
-        <div className="w-full h-full items-end flex flex-col gap-8 ">
-          <div className="flex w-[80%] px-10 items-center justify-center">
-            <PrimeCalendar selectedDate={handleDate} />
-          </div>
+        <div className="w-full h-full items-end flex flex-col gap-8 mt-[5rem]">
           <div className="text-white self-center flex items-center gap-2">
             <p className="font-bold text-[18px]">Selected Date:</p>
             {selectedBookingDate
-              ? `${formatDateNormal(selectedBookingDate)} ${selectedTimeSlot}`
+              ? `${formatDateNormal(selectedBookingDate)} (${selectedTimeSlot})`
               : "Please Select a Date"}
+          </div>
+          <div className="flex w-[80%] px-10 items-center justify-center">
+            <PrimeCalendar selectedDate={handleDate} />
           </div>
           <div className="self-end">
             <p className="text-white font-semibold text-[20px]">Time Slots:</p>

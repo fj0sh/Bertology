@@ -39,12 +39,14 @@ const TimeCard = ({
     "1:00-4:00",
     "4:00-7:00",
   ];
+
   const timeSlotForSingle = [
     "7:00-8:00",
     "8:00-9:00",
     "9:00-10:00",
     "10:00-11:00",
   ];
+
   // const timeSlots = ["7:00-10:00", "10:00-1:00", "1:00-4:00", "4:00-7:00"];
 
   const [timeType, setTimeType] = useState<string[]>([]);
