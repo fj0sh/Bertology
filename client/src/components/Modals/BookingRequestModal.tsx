@@ -57,10 +57,16 @@ const BookingRequestModal = (props: Props) => {
 
   const handleAcceptBooking = () => {
     setInstallerModal(true);
+    if (onClose) {
+      onClose();
+    }
   };
 
   const handleBookingDone = (id: number) => {
     setBookingAsDone(id);
+    if (onClose) {
+      onClose();
+    }
   };
 
   const handleDeclineBooking = (id: number, email: string) => {
@@ -83,6 +89,9 @@ const BookingRequestModal = (props: Props) => {
           `${fName} ${lName}`
         );
         declineBooking(id);
+        if (onClose) {
+          onClose(); // Safely invoke onClose
+        }
         refetch();
       }
     });
@@ -175,29 +184,32 @@ const BookingRequestModal = (props: Props) => {
               </div>
             </div>
           </div>
-          <div className="flex gap-4 self-end">
-            {status === "APPROVED" ? (
+
+          {status !== "DONE" && (
+            <div className="flex gap-4 self-end">
+              {status === "APPROVED" ? (
+                <button
+                  className="bg-green-500 text-[18px] rounded-sm py-1 px-2"
+                  onClick={() => handleBookingDone(id)}
+                >
+                  Set As Done
+                </button>
+              ) : (
+                <button
+                  className="bg-green-500 text-[18px] rounded-sm py-1 px-2"
+                  onClick={() => handleAcceptBooking()}
+                >
+                  Accept
+                </button>
+              )}
               <button
-                className="bg-green-500 text-[18px] rounded-sm py-1 px-2"
-                onClick={() => handleBookingDone(id)}
+                className="bg-red-500 text-[18px] rounded-sm py-1 px-2"
+                onClick={(e) => email && handleDeclineBooking(id, email)}
               >
-                Set As Done
+                Decline
               </button>
-            ) : (
-              <button
-                className="bg-green-500 text-[18px] rounded-sm py-1 px-2"
-                onClick={() => handleAcceptBooking()}
-              >
-                Accept
-              </button>
-            )}
-            <button
-              className="bg-red-500 text-[18px] rounded-sm py-1 px-2"
-              onClick={(e) => email && handleDeclineBooking(id, email)}
-            >
-              Decline
-            </button>
-          </div>
+            </div>
+          )}
         </div>
       </ModalContainer>
 

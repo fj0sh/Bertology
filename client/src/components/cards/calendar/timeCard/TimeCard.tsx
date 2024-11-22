@@ -11,15 +11,23 @@ interface SchedProps {
   slot: string;
   onSelect: (slot: string) => void;
   isBooked: boolean; // Add isBooked to indicate if the slot is booked
+  isSelected: boolean; // Add isSelected to indicate if the slot is selected for booking
 }
 
-const SchedCard = ({ slot, onSelect, isBooked }: SchedProps) => {
+const SchedCard = ({
+  slot,
+  onSelect,
+  isBooked,
+  isSelected,
+}: SchedProps & { isSelected: boolean }) => {
   return (
     <div
       onClick={!isBooked ? () => onSelect(slot) : undefined} // Disable click if booked
       className={`w-full h-fit text-center text-[18px] font-semibold rounded-md p-2 border-2 ${
         isBooked
           ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+          : isSelected
+          ? "bg-orange-500 text-white"
           : "border-orangePrimary text-white cursor-pointer hover:bg-orange-500"
       }`}
     >
@@ -34,7 +42,7 @@ const TimeCard = ({
   bookedSlots,
 }: TimeCardProps) => {
   const timeSlotsForMultiple = [
-    "7:00-10:00",
+    "8:00-10:00",
     "10:00-1:00",
     "1:00-4:00",
     "4:00-7:00",
@@ -47,9 +55,8 @@ const TimeCard = ({
     "10:00-11:00",
   ];
 
-  // const timeSlots = ["7:00-10:00", "10:00-1:00", "1:00-4:00", "4:00-7:00"];
-
   const [timeType, setTimeType] = useState<string[]>([]);
+  const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
 
   useEffect(() => {
     if (serviceBooked === "MULTIPLE") {
@@ -59,19 +66,27 @@ const TimeCard = ({
     }
   }, [serviceBooked]);
 
+  const countOccurrences = (slot: string): number => {
+    return bookedSlots.filter((bookedSlot) => bookedSlot === slot).length;
+  };
+
+  const handleSelect = (slot: string) => {
+    setSelectedSlot(slot);
+    handleTimeSelect(slot);
+  };
+
   return (
-    <>
-      <div className="p-5 grid grid-cols-4 gap-3">
-        {timeType.map((slot) => (
-          <SchedCard
-            key={slot}
-            slot={slot}
-            onSelect={handleTimeSelect}
-            isBooked={bookedSlots.includes(slot)} // Check if slot is booked
-          />
-        ))}
-      </div>
-    </>
+    <div className="p-5 grid grid-cols-4 gap-3">
+      {timeType.map((slot) => (
+        <SchedCard
+          key={slot}
+          slot={slot}
+          onSelect={handleSelect}
+          isBooked={countOccurrences(slot) >= 2} // Disable if the slot appears twice or more
+          isSelected={slot === selectedSlot} // Highlight the selected slot
+        />
+      ))}
+    </div>
   );
 };
 

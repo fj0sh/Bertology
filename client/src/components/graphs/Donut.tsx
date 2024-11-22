@@ -24,7 +24,7 @@ export const DonutChart = () => {
 
     fetchBookingData();
   }, []);
-
+  
   const options = { cutout: 90 };
   const data = {
     labels: ["PENDING", "APPROVED", "DECLINED", "DONE"],

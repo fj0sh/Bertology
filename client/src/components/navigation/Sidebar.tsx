@@ -5,6 +5,7 @@ import React from "react";
 import Link from "next/link";
 import { BsPersonFillGear } from "react-icons/bs";
 import { HiMiniWrenchScrewdriver } from "react-icons/hi2";
+import { PiUserSoundBold } from "react-icons/pi";
 import { IoCalendar } from "react-icons/io5";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import { usePathname } from "next/navigation";
@@ -41,6 +42,11 @@ const navLinks = [
     icons: <HiMiniWrenchScrewdriver size={30} />,
     title: "Services",
     href: "/admin/services",
+  },
+  {
+    icons: <PiUserSoundBold size={30} />,
+    title: "Inquiries",
+    href: "/admin/inquiries",
   },
 ];
 

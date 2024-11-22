@@ -31,3 +31,15 @@ export const InstallerSchema = z.object({
 });
 
 export type InstallerType = z.infer<typeof InstallerSchema>;
+
+export const InquirySchema = z.object({
+  firstName: z.string().min(1, "First Name is Required"),
+  lastName: z.string().min(1, "Last Name is Required"),
+  email: z
+    .string()
+    .min(1, "Email is Required")
+    .email("Please enter a valid email address"),
+  message: z.string().min(1, "Message is Required"),
+});
+
+export type InquiryType = z.infer<typeof InquirySchema>;
