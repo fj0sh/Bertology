@@ -7,6 +7,7 @@ import { formatDateForSQL } from "@/lib/function/dateFormatter";
 import useBooking from "@/hooks/requests/useBooking";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
+import "@/style/tables.css";
 
 const AdminDashboard = () => {
   const { dataByDate, getBookingByDate } = useBooking();
@@ -50,14 +51,14 @@ const AdminDashboard = () => {
           <p>Booking/s: {dataByDate.length}</p>
         </div>
         <div>
-          <DataTable value={dataByDate}>
-            <Column header={"Name"} body={nameColumn} className="border" />
+          <DataTable tableClassName="custom-table" value={dataByDate}>
+            <Column header={"Name"} body={nameColumn} className="" />
+            <Column header={"Installer"} body={installerColumn} className="" />
             <Column
-              header={"Installer"}
-              body={installerColumn}
-              className="border"
+              header={"Status"}
+              field="status"
+              className="text-[#FFFFFF]"
             />
-            <Column header={"Status"} field="status" className="border" />
           </DataTable>
         </div>
       </div>

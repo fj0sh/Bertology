@@ -2,13 +2,8 @@ table {
   width: 100%;
 }
 
-thead {
-  text-align: center;
-}
-
 td {
   padding: 10px;
-  text-align: center;
 }
 
 .custom-table {
@@ -24,6 +19,13 @@ td {
   background-color: #1a1a1a; /* Darker header */
   border: #dadada;
   color: #dadada;
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+  background-color: #f96c2f; /* Light gray background for header */
+  color: white; /* Darker text color for better contrast */
+  font-family: "Poppins", sans-serif;
+  text-align: center;
 }
 
 .custom-table .p-datatable-bodyRow {

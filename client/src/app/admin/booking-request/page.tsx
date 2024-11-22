@@ -77,19 +77,19 @@ const BookingRequest = () => {
 
     switch (rowData.data.status) {
       case "PENDING":
-        statusColor = "bg-yellow-500";
+        statusColor = "bg-yellow-500 text-[#FFFFFF]";
         break;
       case "DECLINED":
-        statusColor = "bg-red-600";
+        statusColor = "bg-red-600 text-[#FFFFFF]";
         break;
       case "DONE":
-        statusColor = "bg-green-500";
+        statusColor = "bg-green-500 text-[#FFFFFF]";
         break;
       case "APPROVED":
-        statusColor = "bg-blue-500";
+        statusColor = "bg-blue-500 text-[#FFFFFF]";
         break;
       default:
-        statusColor = "bg-gray-500";
+        statusColor = "bg-gray-500 text-[#FFFFFF]";
         break;
     }
 
@@ -160,13 +160,15 @@ const BookingRequest = () => {
         </button>
       </div>
       <BookingRequestModal
-        id={rowData?.data?.id}
+        id={rowData?.data?.id ? rowData?.data?.id : 0}
         date={rowData?.data?.bookedDate}
         fName={rowData?.data?.firstName}
         lName={rowData?.data?.lastName}
         email={rowData?.data?.email}
         phoneNumber={rowData?.data?.contactNumber}
-        proof={rowData?.data?.proofOfPayment}
+        proof={
+          rowData?.data?.proofOfPayment ? rowData?.data?.proofOfPayment : ""
+        }
         mode={rowData?.data?.mode}
         location={`${rowData?.data?.barangay}, ${rowData?.data?.municipality}`}
         model={rowData?.data?.carModel}

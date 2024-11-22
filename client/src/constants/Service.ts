@@ -4,6 +4,7 @@ interface ServiceType {
   serviceDescription: string;
   duration: number;
   image: string;
+  servicePrice: number;
 }
 
 export type { ServiceType };

@@ -28,11 +28,13 @@ export const InstallerSchema = z.object({
   installerAddress: z.string().min(1, "Address is Required"),
   installerImage: z.string().optional(),
   installerExperience: z.string().min(1, "Experiences is Required"),
+  installerStatus: z.string().optional(),
 });
 
 export type InstallerType = z.infer<typeof InstallerSchema>;
 
 export const InquirySchema = z.object({
+  id: z.number().optional(),
   firstName: z.string().min(1, "First Name is Required"),
   lastName: z.string().min(1, "Last Name is Required"),
   email: z

@@ -13,3 +13,11 @@ exports.addInquiry = (inquryData, callback) => {
     callback
   );
 };
+
+exports.resolveInquiry = (id, callback) => {
+  conn.query(
+    "UPDATE inquiries SET status = 'RESOLVED' WHERE id = ?",
+    [id],
+    callback
+  );
+};

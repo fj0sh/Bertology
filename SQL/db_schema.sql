@@ -33,18 +33,6 @@ CREATE TABLE `booked_service` (
 
 /*Data for the table `booked_service` */
 
-insert  into `booked_service`(`id`,`serviceId`,`bookingId`) values 
-(113,28,340),
-(114,30,340),
-(115,29,340),
-(116,28,341),
-(117,29,341),
-(118,28,342),
-(119,29,342),
-(120,28,343),
-(121,29,343),
-(122,28,344);
-
 /*Table structure for table `booking` */
 
 DROP TABLE IF EXISTS `booking`;
@@ -73,13 +61,6 @@ CREATE TABLE `booking` (
 
 /*Data for the table `booking` */
 
-insert  into `booking`(`id`,`firstName`,`lastName`,`email`,`contactNumber`,`municipality`,`barangay`,`landmark`,`carModel`,`additionalDetails`,`proofOfPayment`,`bookedDate`,`status`,`mode`,`street`,`installerId`) values 
-(340,'Francis','Cutamora','francisjoshuacutamora@gmail.com','12312312312',NULL,'',NULL,'Ferrari Testarossa','Test','https://res.cloudinary.com/dgxlqujte/image/upload/v1732065942/x6h5xlkklujtjgcmtipt.jpg','2024-11-28 9:00-10:00','DONE','ONSITE',NULL,31),
-(341,'test','test','francisjoshuacutamora@gmail.com','12312312312',NULL,'',NULL,'Ferrari Testarossa','test','https://res.cloudinary.com/dgxlqujte/image/upload/v1732082650/scibp5ahduxraqsivk9s.jpg','2024-11-27 4:00-7:00','DECLINED','ONSITE',NULL,NULL),
-(342,'jernol','Abayon','jerlon@gmail.com','12312312312',NULL,'',NULL,'Ferrari Testarossa','test','https://res.cloudinary.com/dgxlqujte/image/upload/v1732082650/scibp5ahduxraqsivk9s.jpg','2024-11-26 4:00-7:00','DONE','ONSITE',NULL,20),
-(343,'Teset','Test','francisjoshuacutamora@gmail.com','12312312312',NULL,'',NULL,'Ferrari Testarossa','test','https://res.cloudinary.com/dgxlqujte/image/upload/v1732082650/scibp5ahduxraqsivk9s.jpg','2024-11-27 1:00-4:00','PENDING','ONSITE',NULL,NULL),
-(344,'Test','Test','francisjoshuacutamora@gmail.com','12312312312',NULL,'',NULL,'Tesla X','Test','https://res.cloudinary.com/dgxlqujte/image/upload/v1732170651/hnsg8jhyvlmtmhwxgn22.jpg','2024-11-22 10:00-11:00','DECLINED','ONSITE',NULL,NULL);
-
 /*Table structure for table `inquiries` */
 
 DROP TABLE IF EXISTS `inquiries`;
@@ -91,19 +72,16 @@ CREATE TABLE `inquiries` (
   `email` varchar(63) DEFAULT NULL,
   `message` varchar(255) DEFAULT NULL,
   `createAt` datetime DEFAULT CURRENT_TIMESTAMP,
+  `status` enum('PENDING','RESOLVED') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'PENDING',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `inquiries` */
 
-insert  into `inquiries`(`id`,`firstName`,`lastName`,`email`,`message`,`createAt`) values 
-(1,NULL,NULL,NULL,NULL,'2024-11-22 11:36:58'),
-(2,'Test','Test','Test@gmail.com','Test inquiry','2024-11-22 13:19:50'),
-(3,'Renato','Dulog','renrendulog@gmail.com','Naa moy Ice Dri Sir?','2024-11-22 13:22:02'),
-(4,'james','tamioc','Test@gmail.com','AISUdhoihaoisbfasdbfojnsdfan','2024-11-22 14:27:04'),
-(5,'Test','Test','test@gmail.com','Test','2024-11-22 14:35:31'),
-(6,'test','test','test@gmail.com','Test','2024-11-22 14:35:55'),
-(7,'Test','Test','test@gmail.com','Test','2024-11-22 14:36:41');
+insert  into `inquiries`(`id`,`firstName`,`lastName`,`email`,`message`,`createAt`,`status`) values 
+(8,'Monkey','King','wukong@gmail.com','why car not work, no cloud service for cloud vehicle??','2024-11-22 23:14:54','RESOLVED'),
+(9,'Francis','Cutamora','francisjoshuacutamora@gmail.com','Hello! Id like to ask if u have an available tractor?','2024-11-23 02:31:14','PENDING'),
+(10,'Francis','Cutamora','francisjoshuacutamora@gmail.com','tEST','2024-11-23 02:44:22','RESOLVED');
 
 /*Table structure for table `installers` */
 
@@ -121,17 +99,12 @@ CREATE TABLE `installers` (
   `installerExperience` varchar(255) DEFAULT NULL,
   `installerStatus` enum('ACTIVE','INACTIVE') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'ACTIVE',
   PRIMARY KEY (`installerId`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `installers` */
 
 insert  into `installers`(`installerId`,`installerFirstName`,`installerLastName`,`installerAddress`,`installerPhoneNumber`,`installerEmail`,`installerImage`,`createdAt`,`installerExperience`,`installerStatus`) values 
-(15,'Jhon','Doe','Test','966889105','jhondoe@gmail.com',NULL,'2024-11-14 09:59:56',NULL,'ACTIVE'),
-(16,'The','Mechanic','Test','1234567891','mechanic@gmail.com',NULL,'2024-11-19 14:10:59',NULL,'ACTIVE'),
-(20,'Jhon','Warhammer','earth 40k','1231231231','Test@gmail.com','https://res.cloudinary.com/dgxlqujte/image/upload/v1732001073/iiagu6h5zmn21qzvttgq.jpg','2024-11-19 15:32:20','400 years serving the Imperium of Man','ACTIVE'),
-(31,'Sorsogon','Luxury Hotel','Sorsogon Vulcanizing Shop','12312312312','Bastos@gmail.com','https://res.cloudinary.com/dgxlqujte/image/upload/v1732063433/xlnoqbxxkkhelrnlmshu.jpg','2024-11-20 08:44:39','Sorsogon shoppee pay express','ACTIVE'),
-(32,'Jhon','Warhammer2k','earth 40k','12312312312','Jhon@gmail.com','https://res.cloudinary.com/dgxlqujte/image/upload/v1732084065/p1civ9qfb90v48a3wfte.jpg','2024-11-20 14:27:47','4000 years serving the Imperium of Man','ACTIVE'),
-(34,'Caloy','Installer','test','12312312312','Test@gmail.com','https://res.cloudinary.com/dgxlqujte/image/upload/v1732191130/kzyqxwqggnqcajf4ughp.jpg','2024-11-21 20:12:12','test','ACTIVE');
+(36,'Kai','Sotto','Goat street','09668891051','kaiju@pba.edu.ph','https://res.cloudinary.com/dgxlqujte/image/upload/v1732288943/qhc1lnwqznm495juqqdp.jpg','2024-11-22 23:23:58','3 time NBA world champion, Top 3 Miss Universe 2005, Best in Math Grade 6, TESDA welding Certificate, Most kind grade 1','ACTIVE');
 
 /*Table structure for table `services` */
 
@@ -149,26 +122,26 @@ CREATE TABLE `services` (
 /*Data for the table `services` */
 
 insert  into `services`(`id`,`serviceName`,`servicePrice`,`serviceImage`,`serviceDescription`) values 
-(28,'Car Alarm Installation',3500,NULL,NULL),
-(29,'Central Locking',2500,NULL,NULL),
-(30,'Basic Sound Setup',15000,NULL,NULL),
-(31,'Stereo Nakamichi',7500,NULL,NULL),
-(32,'Speaker Nakamichi',4500,NULL,NULL),
-(33,'Dashcam',4500,NULL,NULL),
-(34,'Subwoofer Kinetic',7500,NULL,NULL),
-(35,'Horn PIAA',2500,NULL,NULL),
-(36,'Turbo Timer Installation',1000,NULL,NULL),
-(37,'Keyless Entry Installation',2500,NULL,NULL),
-(38,'LED Light Installation',1000,NULL,NULL),
-(39,'Spoiler',1000,NULL,NULL),
-(40,'Rain Visor',1000,NULL,NULL),
-(41,'Skirt',1000,NULL,NULL),
-(42,'Sound System and Alarm TroubleShoot',1000,NULL,NULL),
-(43,'Car Door Lock Problems',1000,NULL,NULL),
-(44,'Parking Sensor 4 Eye',2500,NULL,NULL),
-(45,'DRL Installation',1000,NULL,NULL),
-(46,'Bulb Installation',1000,NULL,NULL),
-(47,'Test For Add service EndPoint',10000,NULL,NULL);
+(28,'Car Alarm Installation',3500,NULL,'Advanced security systems designed to prevent theft with motion detection, shock sensors, and remote control features.'),
+(29,'Central Locking',2500,NULL,'Complete central locking kits for all car models. Includes actuators, control modules, and remotes.'),
+(30,'Basic Sound Setup',15000,NULL,'Entry-level sound systems that include stereos, speakers, and subwoofers for enhanced audio quality.'),
+(31,'Stereo Nakamichi',7500,NULL,' High-performance Nakamichi stereos featuring Bluetooth, USB, and AUX connectivity.'),
+(32,'Speaker Nakamichi',4500,NULL,'Premium Nakamichi speakers for crisp sound clarity and deep bass. Available in various sizes to fit different vehicles.'),
+(33,'Dashcam',4500,NULL,'Brand new QYC dashcams with front and rear recording, HD resolution, and night vision.'),
+(34,'Subwoofer Kinetic',7500,NULL,'(NULHigh-quality Kinetic subwoofers for powerful bass performance. Available in compact and full-sized models.L)'),
+(35,'Horn PIAA',2500,NULL,'Brand new PIAA horns known for their loud and durable design. Perfect for all-weather conditions.'),
+(36,'Turbo Timer Installation',1000,NULL,'Protect your turbocharged engine with a turbo timer. Offered as an installation service with customer-provided brand-new timers.'),
+(37,'Keyless Entry Installation',2500,NULL,'State-of-the-art keyless entry systems for enhanced security and convenience. Includes remotes and wiring kits.'),
+(38,'LED Light Installation',1000,NULL,'High-performance LED lighting kits for headlights, taillights, and interior lights. Offers superior brightness and energy efficiency.'),
+(39,'Spoiler',1000,NULL,'Aerodynamic spoilers in various designs and finishes. Perfectly fits most car models.'),
+(40,'Rain Visor',1000,NULL,'Durable rain visors for car windows. Designed to withstand harsh weather and provide comfort during rains.'),
+(41,'Skirt',1000,NULL,'Stylish side skirts for added aesthetics and improved aerodynamics.'),
+(42,'Sound System and Alarm TroubleShoot',1000,NULL,'Diagnose and fix issues with car sound systems or alarms. Resolves wiring faults, connectivity issues, and system malfunctions effectively.'),
+(43,'Car Door Lock Problems',1000,NULL,'Resolve mechanical or electronic door lock problems. Includes repairs for manual locks, central locking systems, or keyless entry setups.'),
+(44,'Parking Sensor 4 Eye',2500,NULL,'Brand new 4-eye parking sensors for improved safety while reversing. Includes control unit and sensors.'),
+(45,'DRL Installation',1000,NULL,'Stylish DRLs for enhanced daytime visibility and a modern look.'),
+(46,'Bulb Installation',1000,NULL,'High-quality bulbs for headlights, fog lights, and interior use. Available in LED, halogen, and HID options.'),
+(47,'Test For Add service EndPoint',10000,NULL,'Test');
 
 /*Table structure for table `users` */
 

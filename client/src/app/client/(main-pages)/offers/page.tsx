@@ -7,7 +7,7 @@ import useServices from "@/hooks/requests/useServices";
 import { ServiceType } from "@/constants/Service";
 
 const Services = () => {
-  const { services } = useServices();
+  const { tanstackData } = useServices();
 
   return (
     <div className="bg-black text-white">
@@ -44,13 +44,13 @@ const Services = () => {
       </div>
       <div className="h-full flex flex-col items-center gap-6 p-20">
         <div className="grid grid-cols-4 gap-[5rem] border-none justify-items-center">
-          {services?.map((serviceData: ServiceType) => (
+          {tanstackData?.map((serviceData: ServiceType) => (
             <div key={serviceData.id}>
               <ImagePreviewCard
-                image="/images/service-images/image1.jpg"
-                serviceName="Test Service"
-                price="1000"
-                descrption="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam maximus lorem nec orci consequat, at aliquam neque volutpat. Integer ultricies,"
+                image={serviceData.image}
+                serviceName={serviceData.serviceName}
+                price={serviceData.servicePrice}
+                descrption={serviceData.serviceDescription}
               />
             </div>
           ))}

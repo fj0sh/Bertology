@@ -3,11 +3,13 @@
 import useServices from "@/hooks/requests/useServices";
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
-import React from "react";
+import React, { useState } from "react";
 import "@/style/tables.css";
+import AddServiceModal from "@/components/Modals/AddServiceModal";
 
 const ServiceHistory = () => {
-  const { services } = useServices();
+  const { tanstackData } = useServices();
+  const [showAddModal, setShowAddModal] = useState(false);
 
   const actionColumn = () => {
     return (
@@ -25,18 +27,24 @@ const ServiceHistory = () => {
 
   return (
     <div className="flex flex-col gap-8 w-full">
-      <button className="bg-orangePrimary text-white py-2 px-3 rounded-md w-[10rem]">
+      <AddServiceModal
+        isOpen={showAddModal}
+        onClose={() => setShowAddModal(false)}
+      />
+      <button
+        className="bg-orangePrimary text-white py-2 px-3 rounded-md w-[10rem]"
+        onClick={() => setShowAddModal(true)}
+      >
         Add New Service
       </button>
       <div className="w-full px-[10rem]">
         <DataTable
           size="small"
-          value={services}
+          value={tanstackData}
           paginator
-          rows={12}
+          rows={10}
           paginatorClassName="custom-paginator"
           tableClassName="custom-table"
-          pt={{}}
         >
           <Column
             header="ID"
@@ -51,6 +59,15 @@ const ServiceHistory = () => {
           <Column
             header="Service Price"
             field="servicePrice"
+            className=""
+          ></Column>
+          <Column
+            header=" Description"
+            body={(rowData) => (
+              <div className="truncate w-[15rem] text-ellipsis overflow-hidden">
+                {rowData.serviceDescription}
+              </div>
+            )}
             className=""
           ></Column>
           <Column header="Action" body={actionColumn} className=""></Column>

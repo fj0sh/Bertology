@@ -57,9 +57,6 @@ const BookingRequestModal = (props: Props) => {
 
   const handleAcceptBooking = () => {
     setInstallerModal(true);
-    if (onClose) {
-      onClose();
-    }
   };
 
   const handleBookingDone = (id: number) => {

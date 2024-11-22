@@ -7,6 +7,7 @@ import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
 import React, { useState } from "react";
 import "@/style/tables.css";
+import Swal from "sweetalert2";
 
 const Installers = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,7 +26,20 @@ const Installers = () => {
   };
 
   const handleDeleteInstaller = (rowData: any) => {
-    deleteInstaller(rowData.installerId);
+    Swal.fire({
+      title: "Delete Installer?",
+      text: "You are about to delete this installer.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Delete",
+      cancelButtonText: "Cancel",
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+    }).then((res) => {
+      if (res.isConfirmed) {
+        deleteInstaller(rowData.installerId);
+      }
+    });
   };
 
   const viewColumn = (rowData: any, rowIndex: number) => {
@@ -63,6 +77,7 @@ const Installers = () => {
         email={rowData?.installerEmail}
         experience={rowData?.installerExperience}
         phoneNumber={rowData?.installerPhoneNumber}
+        status={rowData?.installerStatus}
       />
 
       <button
@@ -90,6 +105,8 @@ const Installers = () => {
           field="installerPhoneNumber"
           className=""
         />
+        <Column header={"Status"} field="installerStatus" className="" />
+
         <Column
           header={"Action"}
           body={(rowData, { rowIndex }) => viewColumn(rowData, rowIndex)}

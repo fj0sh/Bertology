@@ -38,11 +38,20 @@ const useInquiry = () => {
     }
   };
 
+  const resolveInquiry = async (id: number) => {
+    try {
+      await instance.patch(`/inquiries/${id}`);
+      refetch();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getInquiries();
   }, []);
 
-  return { addInquiry, tanstackData };
+  return { addInquiry, tanstackData, resolveInquiry };
 };
 
 export default useInquiry;
