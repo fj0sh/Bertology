@@ -24,11 +24,23 @@ exports.getDateInformation = (date, callback) => {
 };
 
 exports.addService = (serviceData, callback) => {
-  const { serviceName, servicePrice } = serviceData;
+  const { serviceName, servicePrice, serviceImage, serviceDescription } =
+    serviceData;
 
   conn.query(
-    "INSERT INTO services (serviceName, servicePrice) values (?, ?)",
-    [serviceName, servicePrice],
+    "INSERT INTO services (serviceName, servicePrice, serviceImage, serviceDescription) values (?, ?, ?, ?)",
+    [serviceName, servicePrice, serviceImage, serviceDescription],
+    callback
+  );
+};
+
+exports.editService = (id, serviceData, callback) => {
+  const { serviceName, servicePrice, serviceImage, serviceDescription } =
+    serviceData;
+
+  conn.query(
+    "UPDATE services SET serviceName = ?, servicePrice = ?, serviceImage = ?, serviceDescription = ? WHERE id = ?",
+    [serviceName, servicePrice, serviceImage, serviceDescription, id],
     callback
   );
 };

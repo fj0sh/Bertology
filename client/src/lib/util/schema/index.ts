@@ -45,3 +45,13 @@ export const InquirySchema = z.object({
 });
 
 export type InquiryType = z.infer<typeof InquirySchema>;
+
+export const ServiceSchema = z.object({
+  id: z.number().optional(),
+  serviceName: z.string().min(1, "Service Name in Required"),
+  servicePrice: z.string().min(1, "Price in Required"),
+  // serviceImage: z.number().min(1, "Image in Required"),
+  serviceDescription: z.string().min(1, "Description in Required"),
+});
+
+export type ServiceType = z.infer<typeof ServiceSchema>;

@@ -5,7 +5,6 @@ import useBooking from "@/hooks/requests/useBooking";
 import { formatDateToWords } from "@/lib/function/dateFormatter";
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
-import { Skeleton } from "primereact/skeleton";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import "@/style/tables.css";
@@ -19,9 +18,7 @@ const BookingRequest = () => {
     getAllBookings,
     getSelectedTypes,
     deleteBooking,
-    refetch,
     tanstackData,
-    allBookings,
     serviceType,
   } = useBooking();
 
@@ -132,8 +129,8 @@ const BookingRequest = () => {
 
   return (
     <div className="flex flex-col gap-4 px-10">
-      <p className="text-[22px] text-orangePrimary font-semibold">
-        BOOKING REQUESTS
+      <p className="text-orangeRed font-semibold text-[25px]">
+        Booking Requests
       </p>
       <div className="flex text-white gap-6 font-semibold">
         <button
@@ -178,8 +175,6 @@ const BookingRequest = () => {
         status={rowData?.data?.status}
         onClose={() => setIsRequestShow(false)}
       />
-
-      {/* <Skeleton width="20rem" height="10rem" color="white" /> */}
 
       {tableView === "ALLBOOKINGS" ? (
         <DataTable

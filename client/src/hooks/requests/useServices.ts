@@ -23,10 +23,17 @@ const useServices = () => {
     queryFn: getServices, // The function that will fetch the data
   });
 
-  const addServices = async (serviceName: string, servicePrice: number) => {
+  const addServices = async (
+    serviceName: string,
+    servicePrice: number,
+    serviceImage: string,
+    serviceDescription: string
+  ) => {
     const body = {
       serviceName: serviceName,
       servicePrice: servicePrice,
+      serviceImage: serviceImage,
+      serviceDescription: serviceDescription,
     };
 
     try {
@@ -45,7 +52,34 @@ const useServices = () => {
     }
   };
 
-  return { tanstackData, dateInfo, getDateInformation, addServices };
+  const editService = async (
+    id: number,
+    name: string,
+    price: number,
+    image: string,
+    description: string
+  ) => {
+    const body = {
+      serviceName: name,
+      servicePrice: price,
+      serviceImage: image,
+      serviceDescription: description,
+    };
+
+    try {
+      await instance.patch(`/services/${id}`, body);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return {
+    tanstackData,
+    dateInfo,
+    getDateInformation,
+    addServices,
+    editService,
+  };
 };
 
 export default useServices;

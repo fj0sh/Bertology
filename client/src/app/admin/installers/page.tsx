@@ -79,9 +79,11 @@ const Installers = () => {
         phoneNumber={rowData?.installerPhoneNumber}
         status={rowData?.installerStatus}
       />
-
+      <p className="text-orangeRed font-semibold text-[25px]">
+        Manage Your Technicians
+      </p>
       <button
-        className="bg-orangePrimary text-white py-2 px-3 rounded-md w-[10rem]"
+        className="bg-orangePrimary text-white py-2 px-3 rounded-md w-[10rem] self-end"
         onClick={() => setIsModalOpen(true)}
       >
         Add Installer
