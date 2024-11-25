@@ -14,6 +14,7 @@ const ServiceHistory = () => {
   const [showAddModal, setShowAddModal] = useState(false);
   const [showViewModal, setShowViewModal] = useState(false);
   const [rowData, setRowData] = useState<ServiceType>();
+  const [searchQuery, setSearchQuery] = useState("");
 
   const viewServices = (rowData: any) => {
     console.log(rowData);
@@ -38,8 +39,18 @@ const ServiceHistory = () => {
     );
   };
 
+  // Search functionality
+  const filteredData = tanstackData?.filter((service: ServiceType) => {
+    return (
+      service.serviceName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      service.serviceDescription
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase())
+    );
+  });
+
   return (
-    <div className="flex flex-col gap-8 w-full">
+    <div className="flex flex-col gap-7 w-full">
       <AddServiceModal
         isOpen={showAddModal}
         onClose={() => setShowAddModal(false)}
@@ -60,16 +71,29 @@ const ServiceHistory = () => {
       <p className="text-orangeRed font-semibold text-[25px]">
         Manage your Services
       </p>
-      <button
-        className="bg-orangePrimary text-white py-2 px-3 rounded-md w-[10rem] self-end"
-        onClick={() => setShowAddModal(true)}
-      >
-        Add New Service
-      </button>
-      <div className="w-full px-[10rem]">
+      <div className="flex items-center justify-between ">
+        <div className="flex items-center justify-center">
+          <input
+            type="text"
+            placeholder="Search Services..."
+            className="px-4 py-2 rounded-md border border-gray-300"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
+
+        <button
+          className="bg-orangePrimary text-white py-2 px-3 rounded-md w-[10rem] self-end"
+          onClick={() => setShowAddModal(true)}
+        >
+          Add New Service
+        </button>
+      </div>
+
+      <div className="w-full">
         <DataTable
           size="small"
-          value={tanstackData}
+          value={filteredData}
           paginator
           rows={10}
           paginatorClassName="custom-paginator"
@@ -78,32 +102,19 @@ const ServiceHistory = () => {
           <Column
             header="ID"
             body={(rowData, options) => options.rowIndex + 1}
-            className="w-[3rem] text-center "
-          ></Column>
+            className="w-[3rem] text-center"
+          />
+          <Column header="Service Name" field="serviceName" />
+          <Column header="Service Price" field="servicePrice" />
           <Column
-            header="Service Name"
-            field="serviceName"
-            className=""
-          ></Column>
-          <Column
-            header="Service Price"
-            field="servicePrice"
-            className=""
-          ></Column>
-          <Column
-            header=" Description"
+            header="Description"
             body={(rowData) => (
               <div className="truncate w-[15rem] text-ellipsis overflow-hidden">
                 {rowData.serviceDescription}
               </div>
             )}
-            className=""
-          ></Column>
-          <Column
-            header="Action"
-            body={(rowData) => actionColumn(rowData)}
-            className=""
-          ></Column>
+          />
+          <Column header="Action" body={(rowData) => actionColumn(rowData)} />
         </DataTable>
       </div>
     </div>

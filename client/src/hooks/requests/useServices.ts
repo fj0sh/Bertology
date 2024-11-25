@@ -68,6 +68,15 @@ const useServices = () => {
 
     try {
       await instance.patch(`/services/${id}`, body);
+      refetch();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteService = async (id: number) => {
+    try {
+      await instance.delete(`/services/${id}`);
     } catch (error) {
       console.log(error);
     }
@@ -79,6 +88,7 @@ const useServices = () => {
     getDateInformation,
     addServices,
     editService,
+    deleteService,
   };
 };
 

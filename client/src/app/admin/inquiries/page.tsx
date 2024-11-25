@@ -41,7 +41,7 @@ const Inquiry = () => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col gap-4">
       {rowData && (
         <InquiryModal
           isOpen={isModalOpen}
@@ -53,6 +53,9 @@ const Inquiry = () => {
         />
       )}
 
+      <p className="text-orangeRed font-semibold text-[25px]">
+        Manage Your Inquiries
+      </p>
       <div className="text-white flex gap-4 font-semibold text-[20px] mb-8">
         <button
           onClick={() => setTableView("PENDING")}

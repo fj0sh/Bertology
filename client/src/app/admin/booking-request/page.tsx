@@ -32,6 +32,8 @@ const BookingRequest = () => {
     setRowData(data);
   };
 
+  console.log(tanstackData);
+
   const handleDeleteBooking = (data: any) => {
     Swal.fire({
       title: "Delete Booking?",
@@ -146,7 +148,7 @@ const BookingRequest = () => {
         </button>
         <button
           className={`${
-            tableView !== "ALLBOOKINGS" &&
+            tableView === "BOOKINGHISTORY" &&
             "text-orangeRed underline underline-offset-8 "
           }`}
           onClick={() => {
@@ -154,6 +156,17 @@ const BookingRequest = () => {
           }}
         >
           Booking History
+        </button>
+        <button
+          className={`${
+            tableView === "TODAYSBOOKINGS" &&
+            "text-orangeRed underline underline-offset-8 "
+          }`}
+          onClick={() => {
+            setTableView("TODAYSBOOKINGS");
+          }}
+        >
+          Todays Bookings
         </button>
       </div>
       <BookingRequestModal
@@ -176,69 +189,49 @@ const BookingRequest = () => {
         onClose={() => setIsRequestShow(false)}
       />
 
-      {tableView === "ALLBOOKINGS" ? (
-        <DataTable
-          value={tanstackData?.filter((res: any) => {
-            return res.data.status !== "DONE";
-          })}
-          paginator
-          rows={9}
-          size="small"
-          tableClassName="custom-table"
-          paginatorClassName="custom-paginator"
-          pt={{
-            table: { className: "text-[14px] " },
-            bodyRow: { className: "border border-slate-300 " },
-            headerRow: { className: "text-orangeRed" },
-          }}
-        >
-          <Column
-            field="data.bookedDate"
-            header="Booked Date"
-            body={formattedDateBody}
-          />
-          <Column header="Customer" body={customerColumn} />
-          <Column field="data.carModel" header="Car Model" sortable />
-          <Column field="data.mode" header="Service Mode" sortable />
-          <Column header="Status" body={statusColumn} sortable />
-          <Column header="Installer" body={installerColumn} />
-          <Column
-            header="Actions"
-            body={(rowData, { rowIndex }) => viewColumn(rowData, rowIndex)}
-          />
-        </DataTable>
-      ) : (
-        <DataTable
-          value={tanstackData?.filter((res: any) => {
-            return res.data.status === "DONE";
-          })}
-          paginator
-          rows={9}
-          size="small"
-          tableClassName="custom-table"
-          paginatorClassName="custom-paginator"
-          pt={{
-            table: { className: "text-[14px] " },
-            bodyRow: { className: "border border-slate-300 " },
-            thead: { className: "bg-orangePrimary text-white" },
-          }}
-        >
-          <Column
-            field="data.bookedDate"
-            header="Booked Date"
-            body={formattedDateBody}
-          />
-          <Column header="Customer" body={customerColumn} />
-          <Column field="data.carModel" header="Car Model" sortable />
-          <Column field="data.mode" header="Service Mode" sortable />
-          <Column header="Status" body={statusColumn} sortable />
-          <Column header="Installer" body={installerColumn} />
-          <Column
-            header="Actions"
-            body={(rowData, { rowIndex }) => viewColumn(rowData, rowIndex)}
-          />
-        </DataTable>
-      )}
+      <DataTable
+        value={
+          tableView === "BOOKINGHISTORY"
+            ? tanstackData?.filter((res: any) => {
+                return (
+                  res.data.status === "DONE" || res.data.status === "DECLINED"
+                );
+              })
+            : tableView === "TODAYSBOOKINGS"
+            ? tanstackData?.filter((res: any) => {
+                return (
+                  res.data.bookedDate.split(" ")[0] ===
+                  new Date().toISOString().split("T")[0]
+                );
+              })
+            : tanstackData // Default case
+        }
+        paginator
+        rows={9}
+        size="small"
+        tableClassName="custom-table"
+        paginatorClassName="custom-paginator"
+        pt={{
+          table: { className: "text-[14px] " },
+          bodyRow: { className: "border border-slate-300 " },
+          thead: { className: "bg-orangePrimary text-white" },
+        }}
+      >
+        <Column
+          field="data.bookedDate"
+          header="Booked Date"
+          body={formattedDateBody}
+        />
+        <Column header="Customer" body={customerColumn} />
+        <Column field="data.carModel" header="Car Model" sortable />
+        <Column field="data.mode" header="Service Mode" sortable />
+        <Column header="Status" body={statusColumn} sortable />
+        <Column header="Installer" body={installerColumn} />
+        <Column
+          header="Actions"
+          body={(rowData, { rowIndex }) => viewColumn(rowData, rowIndex)}
+        />
+      </DataTable>
     </div>
   );
 };

@@ -24,14 +24,14 @@ export const DonutChart = () => {
 
     fetchBookingData();
   }, []);
-  
+
   const options = { cutout: 90 };
   const data = {
     labels: ["PENDING", "APPROVED", "DECLINED", "DONE"],
     datasets: [
       {
         label: "My First Dataset",
-        data: chartData.length <= 0 ? ["1", "1", "1", "1"] : chartData,
+        data: chartData.length <= 0 ? [1, 1, 1, 1] : chartData,
         backgroundColor: ["#FFC857", "#3772FF", "#F22B29", "#32E875"],
         hoverOffset: 4,
         borderWidth: 2,

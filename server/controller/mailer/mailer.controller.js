@@ -30,8 +30,8 @@ exports.sendMail = async (req, res) => {
         address: "lemonjuzz360@gmail.com",
       },
       to: recepient,
-      subject: "Bertology OTP",
-      text: " OTP",
+      subject: "Bertology",
+      text: "TEST",
       html: layout,
     });
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ModalContainer from "./modalContainer/ModalContainer";
 import { IoMdClose } from "react-icons/io";
 import useInstallers from "@/hooks/requests/useInstallers";
@@ -95,7 +95,7 @@ const AssignInstallerModal = (props: ModalProps) => {
                     quality={100}
                     sizes="100%"
                     width={0}
-                    height={0}  
+                    height={0}
                     style={{ width: "45%", height: "45%" }}
                     className="border-none rounded-sm"
                   />
@@ -126,24 +126,29 @@ const AssignInstallerModal = (props: ModalProps) => {
               Installers
             </p>
             <div className="flex flex-col gap-3 p-3 border border-orangePrimary rounded-lg w-full h-fit overflow-y-auto">
-              {data.length == 0 ? (
+              {data.length === 0 ? (
                 <div className="text-white">
                   No Installer Available Please Add an Installer.
                 </div>
               ) : (
-                data?.map((res: InstallerType, index) => (
-                  <button
-                    onClick={() =>
-                      showInstaller(res.installerId ? res.installerId : 0)
-                    }
-                    key={index}
-                    className="border border-orangePrimary p-3 rounded-md"
-                  >
-                    <p>
-                      {res.installerFirstName} {res.installerLastName}
-                    </p>
-                  </button>
-                ))
+                // Filter active installers
+                data
+                  ?.filter(
+                    (res: InstallerType) => res.installerStatus === "ACTIVE"
+                  )
+                  .map((res: InstallerType) => (
+                    <button     
+                      onClick={() =>
+                        showInstaller(res.installerId ? res.installerId : 0)
+                      }
+                      key={res.installerId}
+                      className="border border-orangePrimary p-3 rounded-md"
+                    >
+                      <p>
+                        {res.installerFirstName} {res.installerLastName}
+                      </p>
+                    </button>
+                  ))
               )}
             </div>
           </div>

@@ -24,7 +24,7 @@ const navLinks = [
   },
   {
     icons: <BsPersonFillGear size={30} />,
-    title: "Installers",
+    title: "Technicians",
     href: "/admin/installers",
   },
   // {

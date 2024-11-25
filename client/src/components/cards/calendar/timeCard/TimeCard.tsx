@@ -25,7 +25,7 @@ const SchedCard = ({
       onClick={!isBooked ? () => onSelect(slot) : undefined} // Disable click if booked
       className={`w-full h-fit text-center text-[18px] font-semibold rounded-md p-2 border-2 ${
         isBooked
-          ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+          ? "bg-gray-300 text-gray-500 cursor-not-allowed border-orangePrimary"
           : isSelected
           ? "bg-orange-500 text-white"
           : "border-orangePrimary text-white cursor-pointer hover:bg-orange-500"

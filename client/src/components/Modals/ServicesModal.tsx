@@ -33,6 +33,7 @@ const ServicesModal = (props: ModalProps) => {
     setEditedName(name);
     setEditedPrice(price);
     setEditedDescription(description);
+    setImageValue(imageValue);
   }, [name, price, description]);
 
   const handleEdit = async () => {
@@ -135,7 +136,7 @@ const ServicesModal = (props: ModalProps) => {
           )}
           <button
             className="px-6 py-2 bg-gray-500 hover:bg-gray-600 text-white font-bold rounded-md"
-            onClick={onClose}
+            onClick={() => (isEditing ? setIsEditing(false) : onClose)}
           >
             Cancel
           </button>
