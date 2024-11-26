@@ -3,8 +3,8 @@ import { ClipLoader } from "react-spinners";
 
 const Loading = () => {
   return (
-    <div className="w-full h-screen flex justify-center items-center">
-      <div className="animate-spin h-[10rem] w-[10rem] text-orangePrimary"></div>
+    <div className="w-full h-[80vh] flex justify-center items-center">
+      <ClipLoader color="#FF661F" size={80} />
     </div>
   );
 };

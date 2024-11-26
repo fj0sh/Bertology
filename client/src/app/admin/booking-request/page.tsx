@@ -1,28 +1,24 @@
 "use client";
 import BookingRequestModal from "@/components/Modals/BookingRequestModal";
-import { BookingResponse, BookingType } from "@/constants/Booking";
+import { BookingResponse } from "@/constants/Booking";
 import useBooking from "@/hooks/requests/useBooking";
-import {
-  formatDateNormal,
-  formatDateToWords,
-} from "@/lib/function/dateFormatter";
+import { formatDateToWords } from "@/lib/function/dateFormatter";
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
-import { Skeleton } from "primereact/skeleton";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import "@/style/tables.css";
 
 const BookingRequest = () => {
   const [isRequestShow, setIsRequestShow] = useState(false);
   const [rowData, setRowData] = useState<BookingResponse>();
+  const [tableView, setTableView] = useState("ALLBOOKINGS");
 
   const {
     getAllBookings,
     getSelectedTypes,
     deleteBooking,
-    refetch,
     tanstackData,
-    allBookings,
     serviceType,
   } = useBooking();
 
@@ -35,6 +31,8 @@ const BookingRequest = () => {
     setIsRequestShow(true);
     setRowData(data);
   };
+
+  console.log(tanstackData);
 
   const handleDeleteBooking = (data: any) => {
     Swal.fire({
@@ -78,19 +76,19 @@ const BookingRequest = () => {
 
     switch (rowData.data.status) {
       case "PENDING":
-        statusColor = "bg-yellow-500";
+        statusColor = "bg-yellow-500 text-[#FFFFFF]";
         break;
       case "DECLINED":
-        statusColor = "bg-red-600";
+        statusColor = "bg-red-600 text-[#FFFFFF]";
         break;
       case "DONE":
-        statusColor = "bg-green-500";
+        statusColor = "bg-green-500 text-[#FFFFFF]";
         break;
       case "APPROVED":
-        statusColor = "bg-blue-500";
+        statusColor = "bg-blue-500 text-[#FFFFFF]";
         break;
       default:
-        statusColor = "bg-gray-500";
+        statusColor = "bg-gray-500 text-[#FFFFFF]";
         break;
     }
 
@@ -133,17 +131,54 @@ const BookingRequest = () => {
 
   return (
     <div className="flex flex-col gap-4 px-10">
-      <p className="text-[22px] text-orangePrimary font-semibold">
-        BOOKING REQUESTS
+      <p className="text-orangeRed font-semibold text-[25px]">
+        Booking Requests
       </p>
+      <div className="flex text-white gap-6 font-semibold">
+        <button
+          className={`${
+            tableView === "ALLBOOKINGS" &&
+            "text-orangeRed underline underline-offset-8 "
+          }`}
+          onClick={() => {
+            setTableView("ALLBOOKINGS");
+          }}
+        >
+          All Bookings
+        </button>
+        <button
+          className={`${
+            tableView === "BOOKINGHISTORY" &&
+            "text-orangeRed underline underline-offset-8 "
+          }`}
+          onClick={() => {
+            setTableView("BOOKINGHISTORY");
+          }}
+        >
+          Booking History
+        </button>
+        <button
+          className={`${
+            tableView === "TODAYSBOOKINGS" &&
+            "text-orangeRed underline underline-offset-8 "
+          }`}
+          onClick={() => {
+            setTableView("TODAYSBOOKINGS");
+          }}
+        >
+          Todays Bookings
+        </button>
+      </div>
       <BookingRequestModal
-        id={rowData?.data?.id}
+        id={rowData?.data?.id ? rowData?.data?.id : 0}
         date={rowData?.data?.bookedDate}
         fName={rowData?.data?.firstName}
         lName={rowData?.data?.lastName}
         email={rowData?.data?.email}
         phoneNumber={rowData?.data?.contactNumber}
-        proof={rowData?.data?.proofOfPayment}
+        proof={
+          rowData?.data?.proofOfPayment ? rowData?.data?.proofOfPayment : ""
+        }
         mode={rowData?.data?.mode}
         location={`${rowData?.data?.barangay}, ${rowData?.data?.municipality}`}
         model={rowData?.data?.carModel}
@@ -154,10 +189,23 @@ const BookingRequest = () => {
         onClose={() => setIsRequestShow(false)}
       />
 
-      {/* <Skeleton width="20rem" height="10rem" color="white" /> */}
-
       <DataTable
-        value={tanstackData}
+        value={
+          tableView === "BOOKINGHISTORY"
+            ? tanstackData?.filter((res: any) => {
+                return (
+                  res.data.status === "DONE" || res.data.status === "DECLINED"
+                );
+              })
+            : tableView === "TODAYSBOOKINGS"
+            ? tanstackData?.filter((res: any) => {
+                return (
+                  res.data.bookedDate.split(" ")[0] ===
+                  new Date().toISOString().split("T")[0]
+                );
+              })
+            : tanstackData // Default case
+        }
         paginator
         rows={9}
         size="small"

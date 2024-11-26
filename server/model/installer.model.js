@@ -51,6 +51,7 @@ exports.editInstaller = (installerId, updatedInformation, callback) => {
     email,
     image,
     experience,
+    status,
   } = updatedInformation;
 
   conn.query(
@@ -61,7 +62,8 @@ exports.editInstaller = (installerId, updatedInformation, callback) => {
          installerPhoneNumber = ?, 
          installerEmail = ?, 
          installerImage = ?, 
-         installerExperience = ? 
+         installerExperience = ?,
+         installerStatus = ?
      WHERE installerId = ?`,
     [
       firstName,
@@ -71,6 +73,7 @@ exports.editInstaller = (installerId, updatedInformation, callback) => {
       email,
       image,
       experience,
+      status,
       installerId,
     ],
     callback

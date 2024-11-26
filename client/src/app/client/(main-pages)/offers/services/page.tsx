@@ -62,7 +62,7 @@ const Booking = () => {
   } = useForm<BookingType>({ resolver: zodResolver(BookingSchema) });
 
   const { data, bookService, selectTypes } = useBooking();
-  const { services, dateInfo, getDateInformation } = useServices();
+  const { tanstackData, dateInfo, getDateInformation } = useServices();
   const { sendMail } = useMailer();
   const customModel = watch("model");
 
@@ -413,11 +413,11 @@ const Booking = () => {
             <div className="flex w-full gap-8 ">
               <div className="flex flex-col gap-1 w-[50%]">
                 <p className="text-[18px]">Select Service:</p>
-                {services && (
+                {tanstackData && (
                   <MultiSelect
                     value={selectedService}
                     onChange={(e) => setSelectedService(e.value)}
-                    options={services}
+                    options={tanstackData}
                     selectionLimit={5}
                     optionLabel="serviceName"
                     display="chip"
@@ -425,7 +425,7 @@ const Booking = () => {
                     maxSelectedLabels={3}
                     className="custom-checkbox w-full md:w-20rem "
                     itemTemplate={(option) => (
-                      <div className="relative group flex flex-col justify-between p-2 hover:bg-gray-100 rounded-md transition w-full">
+                      <div className="relative group flex flex-col justify-between h-full p-2 hover:bg-gray-100 rounded-md transition w-full max-w-[20rem]">
                         <div className="flex justify-between items-center">
                           <span>{option.serviceName}</span> -
                           <span className="ml-2 text-gray-500">
@@ -433,9 +433,11 @@ const Booking = () => {
                           </span>
                         </div>
 
-                        <div className="max-h-0 overflow-hidden text-sm text-gray-600 mt-1 transition-all duration-300 group-hover:max-h-[100px]">
-                          {option.serviceDescription ||
-                            "No description available."}
+                        <div className="max-h-0 overflow-hidden text-sm text-gray-600 mt-1 transition-all duration-300 group-hover:max-h-[100px] w-full">
+                          <p className="break-words whitespace-normal">
+                            {option.serviceDescription ||
+                              "No description available."}
+                          </p>
                         </div>
                       </div>
                     )}

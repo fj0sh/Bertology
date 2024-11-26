@@ -122,3 +122,10 @@ exports.getMonthlySales = (callback) => {
     callback
   );
 };
+
+exports.markMissedBookings = (callback) => {
+  conn.query(
+    "UPDATE booking SET status = 'MISSED' WHERE DATE(bookedDate) < CURDATE() AND status = 'PENDING';",
+    callback
+  );
+};

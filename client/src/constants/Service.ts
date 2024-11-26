@@ -3,7 +3,8 @@ interface ServiceType {
   serviceName: string;
   serviceDescription: string;
   duration: number;
-  image: string;
+  serviceImage: string;
+  servicePrice: number;
 }
 
 export type { ServiceType };

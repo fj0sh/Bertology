@@ -6,7 +6,7 @@ const authenticateUser = require("../middlewares/authenticateUser/authenticateUs
 router.post("/date", bookingController.getBookingsByDate);
 router.post("/", bookingController.bookService);
 router.post("/selectTypes", bookingController.selectServiceType);
-router.use(authenticateUser);
+// router.use(authenticateUser);
 
 router.post("/status", bookingController.getBookedServiceByStatus);
 router.get("/bookings", bookingController.getBookedServices);

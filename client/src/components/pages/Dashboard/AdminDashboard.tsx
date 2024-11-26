@@ -7,6 +7,7 @@ import { formatDateForSQL } from "@/lib/function/dateFormatter";
 import useBooking from "@/hooks/requests/useBooking";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
+import "@/style/tables.css";
 
 const AdminDashboard = () => {
   const { dataByDate, getBookingByDate } = useBooking();
@@ -23,8 +24,8 @@ const AdminDashboard = () => {
   const nameColumn = (rowData: any) => {
     return `${rowData.firstName} ${rowData.lastName}`;
   };
+
   const installerColumn = (rowData: any) => {
-    console.log(rowData);
     if (rowData.installerFirstName && rowData.installerLastName) {
       return `${rowData.installerFirstName} ${rowData.installerLastName}`;
     } else {
@@ -35,34 +36,35 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="grid grid-cols-2 h-full w-full gap-3 ">
-      <div className="flex justify-center items-center p-6 rounded-md h-[24.5rem] w-full ">
-        <LineGraph />
-      </div>
-
-      <div className=" flex justify-center items-center p-6 rounded-md h-[24.5rem] w-full">
-        <DonutChart />
-      </div>
-
-      <div className="flex flex-col gap-8 rounded-md h-full p-5">
-        <div className="text-white font-semibold flex flex-col gap-3">
-          <p>Date: {date}</p>
-          <p>Booking/s: {dataByDate.length}</p>
+    <div className="flex flex-col w-full gap-8">
+      {/* Top Section: LineGraph and DonutChart */}
+      <div className="flex flex-wrap gap-6 w-full">
+        <div className="flex-1 flex justify-center items-center p-6 rounded-md shadow-md h-[20rem]">
+          <LineGraph />
         </div>
-        <div>
-          <DataTable value={dataByDate}>
-            <Column header={"Name"} body={nameColumn} className="border" />
-            <Column
-              header={"Installer"}
-              body={installerColumn}
-              className="border"
-            />
-            <Column header={"Status"} field="status" className="border" />
-          </DataTable>
+        <div className="flex-1 flex flex-col gap-4 justify-center items-center p-6 rounded-md shadow-md h-[20rem]">
+          <DonutChart />
         </div>
       </div>
-      <div className=" h-full px-20">
-        <PrimeCalendar selectedDate={handleDateChange} setDisable={false} />
+
+      {/* Bottom Section: DataTable and Calendar */}
+      <div className="flex flex-wrap gap-6">
+        <div className="flex-1 flex flex-col gap-6 rounded-md  shadow-md">
+          <div className="text-white font-semibold p-4">
+            <p>Date: {date}</p>
+            <p>Booking/s: {dataByDate.length}</p>
+          </div>
+          <div className="px-4">
+            <DataTable tableClassName="custom-table" value={dataByDate}>
+              <Column header="Name" body={nameColumn} />
+              <Column header="Installer" body={installerColumn} />
+              <Column header="Status" field="status" className="text-white" />
+            </DataTable>
+          </div>
+        </div>
+        <div className="flex flex-col justify-center items-center  p-6 rounded-md shadow-md">
+          <PrimeCalendar selectedDate={handleDateChange} setDisable={false} />
+        </div>
       </div>
     </div>
   );

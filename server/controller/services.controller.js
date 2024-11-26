@@ -47,3 +47,12 @@ exports.addService = (req, res) => {
     return res.status(201).send(result);
   });
 };
+
+exports.editService = (req, res) => {
+  serviceModel.editService(req.params.id, req.body, (err, result) => {
+    if (err) {
+      return res.status(400).send(err);
+    }
+    return res.status(200).send(result);
+  });
+};

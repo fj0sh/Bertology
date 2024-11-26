@@ -1,15 +1,23 @@
-import React, { useState } from "react";
+import React, { ReactHTMLElement, useEffect, useState } from "react";
 import ModalContainer from "./modalContainer/ModalContainer";
 import { IoMdClose } from "react-icons/io";
 import Image from "next/image";
 import InputOrange from "../input/inputOrange";
 import ImageUpload from "../input/ImageUpload";
 import useInstallers from "@/hooks/requests/useInstallers";
+import { FaHouseChimney } from "react-icons/fa6";
+import { FaPhoneAlt } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import { useForm } from "react-hook-form";
+import { InstallerSchema, InstallerType } from "@/lib/util/schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { set } from "zod";
 
 interface ModalProps {
   isOpen: boolean;
   onClose?: () => void;
 
+  id: number;
   image?: string;
   firstname?: string;
   lastname?: string;
@@ -17,12 +25,14 @@ interface ModalProps {
   phoneNumber?: string;
   email?: string;
   experience?: string;
+  status?: string;
 }
 
 const InstallerModal = (props: ModalProps) => {
   const {
     isOpen,
     onClose,
+    id,
     image,
     firstname,
     lastname,
@@ -30,112 +40,217 @@ const InstallerModal = (props: ModalProps) => {
     phoneNumber,
     email,
     experience,
+    status,
   } = props;
 
+  const [formData, setFormData] = useState<InstallerType>();
   const [isEditting, setIsEditting] = useState(false);
-  const [updatedImage, setUpdatedImage] = useState(image);
-  const [updatedFirstName, setUpdatedFirstName] = useState(firstname);
-  const [updatedLastName, setUpdatedLastName] = useState(lastname);
-  const [updatedAddress, setUpdatedAddress] = useState(address);
-  const [updatedPhoneNumber, setUpdatedPhoneNumber] = useState(phoneNumber);
-  const [updatedEmail, setUpdatedEmail] = useState(email);
-  const [updatedExperience, setUpdatedExperience] = useState(experience);
+
+  const [newFirstname, setNewFirstname] = useState(firstname);
+  const [newLastname, setNewLastname] = useState(lastname);
+  const [newAddress, setNewAddress] = useState(address);
+  const [newEmail, setNewEmail] = useState(email);
+  const [newNumber, setNewNumber] = useState(phoneNumber);
+  const [newExperience, setNewExperience] = useState(experience);
+  const [newStatus, setNewStatus] = useState(status);
+  const [newImage, setNewImage] = useState("");
 
   const { editInstaller } = useInstallers();
 
-  const handleEdit = () => {};
+  useEffect(() => {
+    setNewFirstname(firstname);
+    setNewLastname(lastname);
+    setNewAddress(address);
+    setNewEmail(email);
+    setNewNumber(phoneNumber);
+    setNewExperience(experience);
+    setNewImage(newImage);
+  }, [address, email, experience, firstname, lastname, newImage, phoneNumber]);
+
+  const saveEdit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      editInstaller(
+        id,
+        newFirstname,
+        newLastname,
+        newAddress,
+        newNumber,
+        newEmail,
+        newImage,
+        newExperience,
+        newStatus
+      );
+      setIsEditting(false);
+      onClose?.();
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  };
 
   if (!isOpen) return null;
 
   return (
-    <ModalContainer height="45rem" width="65rem">
+    <ModalContainer height="45rem" width="45rem">
       <div className="absolute top-5 right-5 border-none rounded-full hover:bg-grey p-2">
         <IoMdClose
           className="text-white text-[30px] cursor-pointer"
           onClick={onClose}
         />
       </div>
-      <div className="flex w-full h-full">
-        <button onClick={() => setIsEditting((prev) => !prev)}>Edit</button>
-        <div className="w-[50%] h-full">
-          {/* {isEditting ? (
-            <ImageUpload
-              value={updatedImage}
-              onChange={(value) => setUpdatedImage(value)}
-            />
-          ) : (
-            <Image
-              src={updatedImage ? updatedImage : "/images/empty-image.png"}
-              alt="Bertology Logo"
-              width={0}
-              height={0}
-              sizes="100%"
-              style={{ width: "100%", height: "100%" }}
-            />
-          )} */}
-        </div>
-        <div className="w-[50%] h-full">
-          <div className="flex gap-3">
+      <div className="flex flex-col w-full h-full p-10">
+        <form className="w-full flex gap-4" onSubmit={(e) => saveEdit(e)}>
+          <div className="flex flex-col gap-4">
+            <div>
+              <div className="w-[200px] h-[200px] rounded-full m-auto flex items-center justify-center overflow-hidden">
+                {isEditting ? (
+                  <div className="w-full h-full border border-orangePrimary rounded-md flex items-center justify-center">
+                    <ImageUpload
+                      value={newImage}
+                      onChange={(value) => setNewImage(value)}
+                    />
+                  </div>
+                ) : (
+                  <Image
+                    src={image ? image : "/images/empty-profile.jpg"}
+                    alt="Profile Picture"
+                    width={200}
+                    height={200}
+                    className="object-cover"
+                  />
+                )}
+              </div>
+            </div>
+
             {isEditting ? (
-              <InputOrange
-                value={updatedFirstName ?? firstname}
-                onChange={(e) => setUpdatedFirstName(e.target.value)}
-              />
+              <div className="flex w-fit gap-4">
+                <button
+                  className="bg-orange-500 text-white px-4 py-2 rounded"
+                  type="submit"
+                >
+                  Save
+                </button>
+                <button
+                  className="bg-gray-500 text-white px-4 py-2 rounded"
+                  type="button"
+                  onClick={() => setIsEditting(false)}
+                >
+                  Cancel
+                </button>
+              </div>
             ) : (
-              <p>{firstname}</p>
-            )}
-            {isEditting ? (
-              <InputOrange
-                value={updatedLastName ?? lastname}
-                onChange={(e) => setUpdatedLastName(e.target.value)}
-              />
-            ) : (
-              <p>{lastname}</p>
+              <button
+                type="button"
+                onClick={() => setIsEditting(true)}
+                className="bg-orange-500 text-white px-4 py-2 rounded"
+              >
+                Edit
+              </button>
             )}
           </div>
-          {isEditting ? (
-            <InputOrange
-              value={updatedAddress ?? address}
-              onChange={(e) => setUpdatedAddress(e.target.value)}
-            />
-          ) : (
-            <p>{address}</p>
-          )}
-          {isEditting ? (
-            <InputOrange
-              value={updatedPhoneNumber ?? phoneNumber}
-              onChange={(e) => setUpdatedPhoneNumber(e.target.value)}
-            />
-          ) : (
-            <p>{phoneNumber}</p>
-          )}
-          {isEditting ? (
-            <InputOrange
-              value={updatedEmail ?? email}
-              onChange={(e) => setUpdatedEmail(e.target.value)}
-            />
-          ) : (
-            <p>{email}</p>
-          )}
-          {isEditting ? (
-            <InputOrange
-              value={updatedExperience ?? experience}
-              onChange={(e) => setUpdatedExperience(e.target.value)}
-            />
-          ) : (
-            <p>{experience}</p>
-          )}
+          <div className="mx-auto">
+            <div className="flex gap-3 font-semibold text-[25px] items-center">
+              {isEditting ? (
+                <InputOrange
+                  onChange={(e) => setNewFirstname(e.target.value)}
+                  value={newFirstname}
+                />
+              ) : (
+                <p>{firstname}</p>
+              )}
+              {isEditting ? (
+                <InputOrange
+                  onChange={(e) => setNewLastname(e.target.value)}
+                  value={newLastname}
+                />
+              ) : (
+                <p>{lastname}</p>
+              )}
+            </div>
+            <p className="text-orangeRed text-center mt-3">
+              Bertology Technician
+            </p>
+            <div className="text-center mt-3 flex gap-3 justify-center items-center">
+              Status:
+              {isEditting ? (
+                <select
+                  className="border border-gray-300 rounded-md mt-1 text-center text-white bg-background"
+                  value={newStatus}
+                  onChange={(e) => setNewStatus(e.target.value)} // Replace setStatus with your handler
+                >
+                  <option value="ACTIVE" className="text-green-500">
+                    Active
+                  </option>
+                  <option value="INACTIVE" className="text-red-500">
+                    Inactive
+                  </option>
+                </select>
+              ) : (
+                <span className="font-semibold">{status}</span>
+              )}
+            </div>
+          </div>
+        </form>
 
-          {isEditting && (
-            <button
-              onClick={() => {
-                setIsEditting(false);
-              }}
-              className="bg-orange-500 text-white px-4 py-2 rounded"
-            >
-              Save Edit
-            </button>
-          )}
+        <div className="w-full h-full flex gap-4">
+          <div className="w-full flex flex-col gap-4 border-r mt-16 text-[18px] pr-8">
+            <div className="flex items-center gap-3">
+              <FaHouseChimney size={30} />
+              {isEditting ? (
+                <InputOrange
+                  onChange={(e) => setNewAddress(e.target.value)}
+                  value={newAddress}
+                />
+              ) : (
+                <p>{address}</p>
+              )}
+            </div>
+
+            <div className="flex items-center gap-3">
+              <FaPhoneAlt size={30} />
+              {isEditting ? (
+                <InputOrange
+                  onChange={(e) => setNewNumber(e.target.value)}
+                  value={newNumber}
+                />
+              ) : (
+                <p>{phoneNumber}</p>
+              )}
+            </div>
+
+            <div className="flex items-center gap-3">
+              <MdEmail size={30} />
+              {isEditting ? (
+                <InputOrange
+                  onChange={(e) => setNewEmail(e.target.value)}
+                  value={newEmail}
+                />
+              ) : (
+                <p>{email}</p>
+              )}
+            </div>
+          </div>
+
+          <div className="w-full h-full">
+            <div className="flex flex-col gap-4 items-center p-6 h-full w-full">
+              <p className="font-semibold text-[25px] text-orangeRed">
+                Experience
+              </p>
+              <div className="w-full h-full">
+                {isEditting ? (
+                  <textarea
+                    className="w-full h-full p-2 rounded md border border-orangePrimary bg-background text-[18px] text-justify indent-5"
+                    onChange={(e) => setNewExperience(e.target.value)}
+                    value={newExperience}
+                  />
+                ) : (
+                  <p className="indent-5 text-[18px] text-justify">
+                    {experience}
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </ModalContainer>

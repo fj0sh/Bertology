@@ -42,7 +42,7 @@ const useInstallers = () => {
     };
 
     try {
-      const res = await instance.post("/installer/", body);
+      await instance.post("/installer/", body);
       getInstallers();
     } catch (error) {
       console.log(error);
@@ -79,7 +79,8 @@ const useInstallers = () => {
     phoneNumber: string,
     email: string,
     image: string,
-    experience: string
+    experience: string,
+    status: string
   ) => {
     const body = {
       firstName: firstName,
@@ -89,10 +90,12 @@ const useInstallers = () => {
       email: email,
       image: image,
       experience: experience,
+      status: status,
     };
 
     try {
       const res = await instance.patch(`/installer/edit/${id}`, body);
+      refetch();
       console.log(res.data);
     } catch (error) {
       console.log(error);

@@ -4,7 +4,7 @@ import React from "react";
 interface Props {
   image: string;
   serviceName: string;
-  price: string;
+  price: number;
   descrption: string;
 }
 
@@ -17,7 +17,7 @@ const ImagePreviewCard = (props: Props) => {
         <div className="group-hover:h-[100%] group-hover:w-[50%] ">
           <Image
             className="rounded-md"
-            src={image}
+            src={image ? image : "/images/service-images/image1.jpg"}
             alt="roadblock"
             width={0}
             height={0}
@@ -30,7 +30,7 @@ const ImagePreviewCard = (props: Props) => {
           <p>Price: {`₱ ${price}`}</p>
         </div>
       </div>
-      <div className="group-hover:flex hidden">{descrption}</div>
+      <div className="group-hover:flex hidden text-justify">{descrption}</div>
     </div>
   );
 };

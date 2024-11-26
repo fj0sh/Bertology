@@ -3,17 +3,33 @@
 import useServices from "@/hooks/requests/useServices";
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
-import React from "react";
+import React, { useState } from "react";
 import "@/style/tables.css";
+import AddServiceModal from "@/components/Modals/AddServiceModal";
+import ServicesModal from "@/components/Modals/ServicesModal";
+import { ServiceType } from "@/constants/Service";
 
 const ServiceHistory = () => {
-  const { services } = useServices();
+  const { tanstackData } = useServices();
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showViewModal, setShowViewModal] = useState(false);
+  const [rowData, setRowData] = useState<ServiceType>();
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const actionColumn = () => {
+  const viewServices = (rowData: any) => {
+    console.log(rowData);
+    setShowViewModal(true);
+    setRowData(rowData);
+  };
+
+  const actionColumn = (rowData: any) => {
     return (
       <div className="flex gap-2 w-full items-center justify-center">
-        <button className="text-white py-1 px-2 text-[18px] bg-blue-500 rounded-md">
-          Edit
+        <button
+          className="text-white py-1 px-2 text-[18px] bg-blue-500 rounded-md"
+          onClick={() => viewServices(rowData)}
+        >
+          View
         </button>
 
         <button className="text-white py-1 px-2 text-[18px] bg-rose-500 rounded-md">
@@ -23,37 +39,82 @@ const ServiceHistory = () => {
     );
   };
 
+  // Search functionality
+  const filteredData = tanstackData?.filter((service: ServiceType) => {
+    return (
+      service.serviceName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      service.serviceDescription
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase())
+    );
+  });
+
   return (
-    <div className="flex flex-col gap-8 w-full">
-      <button className="bg-orangePrimary text-white py-2 px-3 rounded-md w-[10rem]">
-        Add New Service
-      </button>
-      <div className="w-full px-[10rem]">
+    <div className="flex flex-col gap-7 w-full">
+      <AddServiceModal
+        isOpen={showAddModal}
+        onClose={() => setShowAddModal(false)}
+      />
+
+      {rowData && (
+        <ServicesModal
+          id={rowData.id}
+          isOpen={showViewModal}
+          onClose={() => setShowViewModal(false)}
+          name={rowData?.serviceName}
+          price={rowData?.servicePrice}
+          image={rowData?.serviceImage}
+          description={rowData?.serviceDescription}
+        />
+      )}
+
+      <p className="text-orangeRed font-semibold text-[25px]">
+        Manage your Services
+      </p>
+      <div className="flex items-center justify-between ">
+        <div className="flex items-center justify-center">
+          <input
+            type="text"
+            placeholder="Search Services..."
+            className="px-4 py-2 rounded-md border border-gray-300"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
+
+        <button
+          className="bg-orangePrimary text-white py-2 px-3 rounded-md w-[10rem] self-end"
+          onClick={() => setShowAddModal(true)}
+        >
+          Add New Service
+        </button>
+      </div>
+
+      <div className="w-full">
         <DataTable
           size="small"
-          value={services}
+          value={filteredData}
           paginator
-          rows={12}
+          rows={10}
           paginatorClassName="custom-paginator"
           tableClassName="custom-table"
-          pt={{}}
         >
           <Column
             header="ID"
             body={(rowData, options) => options.rowIndex + 1}
-            className="w-[3rem] text-center "
-          ></Column>
+            className="w-[3rem] text-center"
+          />
+          <Column header="Service Name" field="serviceName" />
+          <Column header="Service Price" field="servicePrice" />
           <Column
-            header="Service Name"
-            field="serviceName"
-            className=""
-          ></Column>
-          <Column
-            header="Service Price"
-            field="servicePrice"
-            className=""
-          ></Column>
-          <Column header="Action" body={actionColumn} className=""></Column>
+            header="Description"
+            body={(rowData) => (
+              <div className="truncate w-[15rem] text-ellipsis overflow-hidden">
+                {rowData.serviceDescription}
+              </div>
+            )}
+          />
+          <Column header="Action" body={(rowData) => actionColumn(rowData)} />
         </DataTable>
       </div>
     </div>

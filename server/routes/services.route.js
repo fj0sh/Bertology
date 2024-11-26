@@ -8,5 +8,6 @@ router.get("/booked-dates", serviceController.getFullyBookedDates);
 router.get("/:id", serviceController.getServiceById);
 router.post("/date-info", serviceController.getDateInfo);
 router.post("/", serviceController.addService);
+router.patch("/:id", serviceController.editService);
 
 module.exports = router;
