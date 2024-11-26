@@ -7,11 +7,12 @@ interface Props {
   label?: string;
   type?: "text" | "number" | "password";
   placeholder?: string;
+  disabled?: boolean;
 }
 
 const InputOrange = React.forwardRef<HTMLInputElement, Props>(
   (props: Props, ref) => {
-    const { height, label, value, type, placeholder } = props;
+    const { height, label, value, type, placeholder, disabled } = props;
 
     return (
       <>
@@ -20,8 +21,11 @@ const InputOrange = React.forwardRef<HTMLInputElement, Props>(
           <input
             ref={ref}
             type={type}
+            disabled={disabled}
             placeholder={placeholder}
-            className="border text-white p-2 border-orangeRed bg-background w-full rounded-lg focus:border-white"
+            className={`border text-white p-2 border-orangeRed bg-background w-full rounded-lg focus:border-white ${
+              disabled ? "border-orangeRed bg-[#EBEBE4]" : "border-orangeRed "
+            }`}
             style={{ height }}
             value={value}
             {...props}

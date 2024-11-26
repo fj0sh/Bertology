@@ -71,9 +71,9 @@ const LandingPage = () => {
           isOpen={isForgotPassOpen}
           onClose={() => setIsForgotPassOpen(false)}
         />
-        {/* ============================================HERO SECTION =======================================================================*/}
-        <div className="flex h-full w-full bg-opacity-85 ">
-          <div className="w-full h-full flex justify-center items-center p-10">
+        {/* HERO SECTION */}
+        <div className="flex flex-col lg:flex-row h-[100vh] w-full bg-opacity-85 ">
+          <div className="w-full lg:w-1/2 h-full flex justify-center items-center p-6 lg:p-10">
             <Image
               src={"/images/landing-image.png"}
               height={1000}
@@ -116,6 +116,7 @@ const LandingPage = () => {
             </div>
           </div>
         </div>
+<<<<<<< HEAD
         {/* ============================================BOOK NOW SECTION =======================================================================*/}
         <div className="relative w-full h-full p-[3rem] flex gap-10 text-white px-[10rem]">
           <div className="w-[80%] h-full">
@@ -152,6 +153,42 @@ const LandingPage = () => {
                   </li>
                   <li>
                     <TfiCheckBox className="mr-4 text-orangePrimary" />
+=======
+
+        {/* BOOK NOW SECTION */}
+        <div className="relative w-full h-full p-6 lg:p-[3rem] flex flex-col lg:flex-row gap-6 lg:gap-10 text-white px-4 lg:px-[10rem]">
+          <div className="w-full lg:w-[80%] h-full">
+            <div className="flex flex-col justify-center items-center gap-6 lg:gap-10 h-full">
+              <p className="text-[28px] lg:text-[45px] text-center font-semibold">
+                We give the right service and good quality products!
+              </p>
+              <div className="bg-zinc-900 flex flex-col lg:flex-row items-center w-full h-full justify-center gap-4 lg:gap-10 text-[20px] lg:text-[30px] px-6 lg:px-20 py-6 lg:py-8 rounded-lg">
+                <ul className="flex flex-col gap-2 *:flex">
+                  <li>
+                    <TfiCheckBox className="mr-2 lg:mr-4 text-orangePrimary" />
+                    Free Installation
+                  </li>
+                  <li>
+                    <TfiCheckBox className="mr-2 lg:mr-4 text-orangePrimary" />
+                    Home Service
+                  </li>
+                  <li>
+                    <TfiCheckBox className="mr-2 lg:mr-4 text-orangePrimary" />
+                    Expert Technician
+                  </li>
+                </ul>
+                <ul className="flex flex-col gap-2 *:flex">
+                  <li>
+                    <TfiCheckBox className="mr-2 lg:mr-4 text-orangePrimary" />
+                    Safe and Guaranteed
+                  </li>
+                  <li>
+                    <TfiCheckBox className="mr-2 lg:mr-4 text-orangePrimary" />
+                    Years of Experience
+                  </li>
+                  <li>
+                    <TfiCheckBox className="mr-2 lg:mr-4 text-orangePrimary" />
+>>>>>>> 03cb6bf7d0273e40f43f889c4343247253cbcf18
                     Fast Transactions
                   </li>
                 </ul>

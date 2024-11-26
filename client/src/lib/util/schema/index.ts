@@ -11,6 +11,7 @@ export const BookingSchema = z.object({
   details: z.string().min(1, "Details is Required"),
   landmark: z.string().optional(),
   street: z.string().optional(),
+  model: z.string().optional(),
 });
 
 export type BookingType = z.infer<typeof BookingSchema>;
