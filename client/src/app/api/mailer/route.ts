@@ -2,12 +2,11 @@ import instance from "@/lib/util/axios-instance";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
-  const { recepient, message, username } = await req.json();
-
-  console.log(recepient);
+  const { title, recepient, message, username } = await req.json();
 
   try {
     const res = await instance.post("/mail/sendMail", {
+      title,
       recepient,
       message,
       username,

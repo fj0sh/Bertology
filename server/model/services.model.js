@@ -44,3 +44,7 @@ exports.editService = (id, serviceData, callback) => {
     callback
   );
 };
+
+exports.deleteService = (id, callback) => {
+  conn.query("DELETE FROM services WHERE id =?", id, callback);
+};

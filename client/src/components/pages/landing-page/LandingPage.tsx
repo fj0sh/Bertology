@@ -2,19 +2,18 @@
 import ForgotPasswordModal from "@/components/Modals/ForgotPasswordModal";
 import LoginModal from "@/components/Modals/LoginModal";
 import RegisterModal from "@/components/Modals/RegisterModal";
-import Button from "@/components/button/OrangeButton";
 import BrandBalls from "@/components/cards/BrandBalls";
 import PrimeCalendar from "@/components/cards/calendar/Calendar";
 import ImageCarousel from "@/components/cards/carousel/ImageCarousel";
 import Navbar from "@/components/navigation/navbar";
 import { ProductType } from "@/constants/Products";
 import useProducts from "@/hooks/requests/useProducts";
-import useServices from "@/hooks/requests/useServices";
 import Image from "next/image";
 import Link from "next/link";
 import { TfiCheckBox } from "react-icons/tfi";
 
 import React, { useState } from "react";
+import ServicesSummary from "@/components/cards/ServicesSummary";
 
 const LandingPage = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
@@ -23,7 +22,6 @@ const LandingPage = () => {
     useState<boolean>(false);
 
   const { products } = useProducts<ProductType[]>("/products");
-  const { services } = useServices();
 
   const serviceImagesSet = [
     { image: "/images/service-images/image1.jpg" },
@@ -54,7 +52,7 @@ const LandingPage = () => {
 
   return (
     <>
-      <div className="bg-background mt-16">
+      <div className="bg-background">
         <Navbar />
         <LoginModal
           isOpen={isLoginModalOpen}
@@ -71,31 +69,46 @@ const LandingPage = () => {
           isOpen={isForgotPassOpen}
           onClose={() => setIsForgotPassOpen(false)}
         />
-        {/* HERO SECTION */}
-        <div className="flex flex-col lg:flex-row h-[100vh] w-full bg-opacity-85 ">
-          <div className="w-full lg:w-1/2 h-full flex justify-center items-center p-6 lg:p-10">
+        <div className="relative flex flex-col lg:flex-row h-[100vh] w-full bg-opacity-85">
+          {/* Background Image */}
+          <Image
+            src="/images/homeBG.jpg"
+            layout="fill"
+            objectFit="cover"
+            quality={100}
+            alt="background"
+            className="z-10"
+          />
+
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+
+          {/* Foreground Content */}
+          <div className="w-full lg:w-1/2 h-[90%] flex justify-center items-center p-10  z-20">
             <Image
-              src={"/images/landing-image.png"}
+              src="/images/landing-image2.png"
               height={1000}
               width={2000}
               quality={100}
-              className="w-full h-full object-cover"
+              className="w-full h-full"
               alt="landing-image.png"
             />
           </div>
-          <div className="w-full lg:w-1/2 h-full flex flex-col items-center justify-center gap-6 lg:gap-10 p-6 lg:p-[5rem]">
-            <h1 className="text-[40px] lg:text-[65px] font-bold text-white text-center w-full lg:w-[40rem]">
-              Innovating for <br /> Effortless
-              <span className="text-orangePrimary"> Planning</span>
-              <br /> and Resource <br />
+          <div className="w-full lg:w-1/2 h-full flex flex-col items-start justify-center gap-6 lg:gap-10 p-6 lg:p-[5rem] z-20">
+            <h1 className="text-[35px] lg:text-[50px] font-bold text-white text-left w-full lg:w-[40rem]">
+              <span className="text-orangePrimary">Innovating</span> for
+              Effortless
+              <br />
+              <span className="text-orangePrimary"> Planning</span> and Resource{" "}
+              <br />
               <span className="text-orangePrimary"> Optimization</span>
             </h1>
-            <p className="text-white w-full lg:w-[35rem] text-center text-[18px] lg:text-[25px]">
-              Book now to experience our convenient and hustle-free services.
+            <p className="text-white w-full lg:w-[35rem] text-left text-[18px] lg:text-[25px]">
+              Book now to experience our convenient and hustle free services.
             </p>
             <Link
-              href={"/client/offers/services"}
-              className="text-background bg-orangeRed py-2 px-4 lg:px-6 text-[20px] lg:text-[30px] rounded-sm font-semibold"
+              href="/client/offers/services"
+              className="text-background bg-orangeRed py-2 px-[4rem] text-[20px] lg:text-[30px] rounded-sm font-semibold"
             >
               Book Now
             </Link>
@@ -105,11 +118,15 @@ const LandingPage = () => {
         {/* BOOK NOW SECTION */}
         <div className="relative w-full h-full p-6 lg:p-[3rem] flex flex-col lg:flex-row gap-6 lg:gap-10 text-white px-4 lg:px-[10rem]">
           <div className="w-full lg:w-[80%] h-full">
-            <div className="flex flex-col justify-center items-center gap-6 lg:gap-10 h-full">
-              <p className="text-[28px] lg:text-[45px] text-center font-semibold">
-                We give the right service and good quality products!
+            <div className="flex flex-col justify-center items-start gap-4 h-full">
+              {/* <p className="text-orangeRed font-bold text-[25px] ">
+                Why choose us.
+              </p> */}
+              <p className="text-[28px] lg:text-[45px] text-left font-semibold">
+                Why People Choose Our <br /> Services?
               </p>
-              <div className="bg-zinc-900 flex flex-col lg:flex-row items-center w-full h-full justify-center gap-4 lg:gap-10 text-[20px] lg:text-[30px] px-6 lg:px-20 py-6 lg:py-8 rounded-lg">
+
+              <div className="border border-orangeRed flex flex-col lg:flex-row items-center w-full h-full justify-center gap-4 lg:gap-10 text-[20px] lg:text-[30px] px-6 lg:px-20 py-6 lg:py-8 rounded-lg">
                 <ul className="flex flex-col gap-2 *:flex">
                   <li>
                     <TfiCheckBox className="mr-2 lg:mr-4 text-orangePrimary" />
@@ -177,10 +194,18 @@ const LandingPage = () => {
               </div>
             </div>
             <div className="h-full w-full gap-3 flex flex-col justify-center items-center">
+              <div className="self-end">
+                {/* <p className="text-right font-bold text-orangeRed text-[25px]">
+                  Installations
+                </p> */}
+                <p className=" text-right text-[45px] font-semibold">
+                  What are Our Available <br /> Installations and Services?
+                </p>
+              </div>
               <ImageCarousel images={servicesImage} />
               <Link
                 href={"/client/offers"}
-                className="text-orangePrimary self-end text-[16px] lg:text-[20px] underline"
+                className="text-orangePrimary self-end text-[16px] lg:text-[20px] underline "
               >
                 See More
               </Link>
@@ -189,6 +214,10 @@ const LandingPage = () => {
         </div>
 
         {/* BOOKING SECTION */}
+        <div className="w-full px-[20rem] py-10 my-[5rem]">
+          <ServicesSummary />
+        </div>
+
         <div className="relative h-full px-4 lg:px-48 gap-8 flex flex-col lg:flex-row">
           <div className="w-full flex justify-center">
             <PrimeCalendar />

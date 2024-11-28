@@ -8,6 +8,8 @@ import { decl } from "postcss";
 import useMailer from "@/hooks/mailer/useMailer";
 import Swal from "sweetalert2";
 import AssignInstallerModal from "./AssignInstallerModal";
+import { errorToast } from "../toast";
+import DeclineModal from "./DeclineModal";
 
 interface Props {
   isOpen?: boolean;
@@ -51,6 +53,7 @@ const BookingRequestModal = (props: Props) => {
 
   const [imageLarger, setIsImageLarger] = useState(false);
   const [showInstallerModal, setInstallerModal] = useState(false);
+  const [showDeclineModal, setDeclineModal] = useState(false);
 
   const { declineBooking, setBookingAsDone, refetch } = useBooking();
   const { sendMail } = useMailer();
@@ -66,32 +69,43 @@ const BookingRequestModal = (props: Props) => {
     }
   };
 
-  const handleDeclineBooking = (id: number, email: string) => {
-    Swal.fire({
-      title: "Decline Booking?",
-      text: "You are about to Decline this booking.",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes",
-      cancelButtonText: "No",
-    }).then((res) => {
-      if (res.isConfirmed) {
-        Swal.fire({ title: "Booking Declined", icon: "success" });
+  const handleServiceTotal = () => {
+    let total = 0;
 
-        sendMail(
-          email,
-          "Im sorry but your booking has been declined",
-          `${fName} ${lName}`
-        );
-        declineBooking(id);
-        if (onClose) {
-          onClose(); // Safely invoke onClose
-        }
-        refetch();
-      }
-    });
+    serviceTypes.map((res: any) => (total += res.servicePrice));
+    return total;
+  };
+
+  // const handleDeclineBooking = (id: number, email: string) => {
+  //   Swal.fire({
+  //     title: "Decline Booking?",
+  //     text: "You are about to Decline this booking.",
+  //     icon: "warning",
+  //     showCancelButton: true,
+  //     confirmButtonColor: "#3085d6",
+  //     cancelButtonColor: "#d33",
+  //     confirmButtonText: "Yes",
+  //     cancelButtonText: "No",
+  //   }).then((res) => {
+  //     if (res.isConfirmed) {
+  //       errorToast("Booking Declined");
+
+  //       sendMail(
+  //         email,
+  //         "Im sorry but your booking has been declined",
+  //         `${fName} ${lName}`
+  //       );
+  //       declineBooking(id);
+  //       if (onClose) {
+  //         onClose();
+  //       }
+  //       refetch();
+  //     }
+  //   });
+  // };
+
+  const handleDeclineBooking = () => {
+    setDeclineModal(true);
   };
 
   const handleImageClick = () => {
@@ -106,6 +120,7 @@ const BookingRequestModal = (props: Props) => {
         isOpen={showInstallerModal}
         onClose={() => {
           setInstallerModal(false);
+          onClose?.();
         }}
         bookingId={id}
         email={email}
@@ -113,7 +128,18 @@ const BookingRequestModal = (props: Props) => {
         lName={lName}
         date={date}
       />
-      <ModalContainer width="70rem" height="50rem">
+
+      <ModalContainer width="70rem" height="50rem" z="999">
+        <DeclineModal
+          bookingId={id}
+          email={email}
+          name={`${fName} ${lName}`}
+          isOpen={showDeclineModal}
+          onClose={() => {
+            setDeclineModal(false);
+            onClose?.();
+          }}
+        />
         <div className="absolute top-5 right-5 border-none rounded-full hover:bg-grey p-2">
           <IoMdClose
             className="text-white text-[30px] cursor-pointer"
@@ -171,8 +197,14 @@ const BookingRequestModal = (props: Props) => {
                 <p className="text-[18px] font-semibold">Selected Services:</p>
                 <div className="flex flex-col ml-[7rem]">
                   {serviceTypes.map((res: any) => (
-                    <div key={res.id}>{res.serviceName}</div>
+                    <div key={res.id}>
+                      {res.serviceName} - {res.servicePrice}
+                    </div>
                   ))}
+                </div>
+                <div className="flex gap-2">
+                  <span>Total:</span>
+                  {`₱ ${handleServiceTotal()}`}
                 </div>
               </div>
               <div className="flex flex-col gap-2">
@@ -182,8 +214,8 @@ const BookingRequestModal = (props: Props) => {
             </div>
           </div>
 
-          {status !== "DONE" && (
-            <div className="flex gap-4 self-end">
+          {status !== "DONE" && status !== "DECLINED" && (
+            <div className="flex gap-4 self-end  text-black font-semibold ">
               {status === "APPROVED" ? (
                 <button
                   className="bg-green-500 text-[18px] rounded-sm py-1 px-2"
@@ -201,7 +233,7 @@ const BookingRequestModal = (props: Props) => {
               )}
               <button
                 className="bg-red-500 text-[18px] rounded-sm py-1 px-2"
-                onClick={(e) => email && handleDeclineBooking(id, email)}
+                onClick={(e) => email && handleDeclineBooking()}
               >
                 Decline
               </button>

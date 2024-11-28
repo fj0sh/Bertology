@@ -33,8 +33,8 @@ const ServicesModal = (props: ModalProps) => {
     setEditedName(name);
     setEditedPrice(price);
     setEditedDescription(description);
-    setImageValue(imageValue);
-  }, [name, price, description]);
+    setImageValue(image);
+  }, [name, price, description, image]);
 
   const handleEdit = async () => {
     try {

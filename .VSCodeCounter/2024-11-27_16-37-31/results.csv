@@ -1,0 +1,180 @@
+"filename", "language", "TypeScript JSX", "Markdown", "CSS", "JSON with Comments", "TypeScript", "JSON", "JavaScript", "Properties", "MS SQL", "XML", "comment", "blank", "total"
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\SQL\db_schema.sql", "MS SQL", 0, 0, 0, 0, 0, 0, 0, 0, 140, 0, 17, 36, 193
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\.env", "Properties", 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 2, 7
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\.eslintrc.json", "JSON with Comments", 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 1, 4
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\README.md", "Markdown", 0, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 37
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\components.json", "JSON", 0, 0, 0, 0, 0, 17, 0, 0, 0, 0, 0, 0, 17
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\next.config.mjs", "JavaScript", 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 1, 2, 9
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\package-lock.json", "JSON", 0, 0, 0, 0, 0, 6591, 0, 0, 0, 0, 0, 1, 6592
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\package.json", "JSON", 0, 0, 0, 0, 0, 67, 0, 0, 0, 0, 0, 1, 68
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\postcss.config.mjs", "JavaScript", 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 1, 2, 9
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\public\images\about.svg", "XML", 0, 0, 0, 0, 0, 0, 0, 0, 0, 19, 0, 1, 20
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\public\images\aboutv2.svg", "XML", 0, 0, 0, 0, 0, 0, 0, 0, 0, 19, 0, 1, 20
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\(auth)\forgot-password\page.tsx", "TypeScript JSX", 208, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 19, 229
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\(auth)\login\page.tsx", "TypeScript JSX", 72, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 9, 87
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\admin\admin-profile\page.tsx", "TypeScript JSX", 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 8
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\admin\booking-request\page.tsx", "TypeScript JSX", 225, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 19, 245
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\admin\dashboard\page.tsx", "TypeScript JSX", 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 9
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\admin\inquiries\page.tsx", "TypeScript JSX", 109, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 117
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\admin\installers\page.tsx", "TypeScript JSX", 171, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 12, 186
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\admin\layout.tsx", "TypeScript JSX", 34, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 37
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\admin\orders\page.tsx", "TypeScript JSX", 41, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 46
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\admin\products\[productId]\page.tsx", "TypeScript JSX", 138, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 146
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\admin\products\add-products\page.tsx", "TypeScript JSX", 89, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 98
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\admin\products\page.tsx", "TypeScript JSX", 65, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 70
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\admin\services\page.tsx", "TypeScript JSX", 111, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 13, 125
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\admin\users\[userId]\page.tsx", "TypeScript JSX", 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 8
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\admin\users\page.tsx", "TypeScript JSX", 46, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 51
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\api\auth\[...nextauth]\option.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\api\auth\[...nextauth]\route.ts", "TypeScript", 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 3, 7
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\api\mailer\route.ts", "TypeScript", 0, 0, 0, 0, 17, 0, 0, 0, 0, 0, 0, 3, 20
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\client\(main-pages)\about-us\page.tsx", "TypeScript JSX", 78, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 6, 87
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\client\(main-pages)\layout.tsx", "TypeScript JSX", 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 23
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\client\(main-pages)\offers\loading.tsx", "TypeScript JSX", 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 12
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\client\(main-pages)\offers\page.tsx", "TypeScript JSX", 44, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 5, 64
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\client\(main-pages)\offers\products\[productId]\page.tsx", "TypeScript JSX", 106, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 114
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\client\(main-pages)\offers\products\[productId]\place-order\page.tsx", "TypeScript JSX", 44, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 49
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\client\(main-pages)\offers\products\page.tsx", "TypeScript JSX", 36, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 40
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\client\(main-pages)\offers\services\page.tsx", "TypeScript JSX", 564, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 52, 617
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\client\(personal)\cart\page.tsx", "TypeScript JSX", 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 13
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\client\(personal)\layout.tsx", "TypeScript JSX", 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 21
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\client\(personal)\orders\page.tsx", "TypeScript JSX", 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 8
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\client\(personal)\profile\page.tsx", "TypeScript JSX", 28, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 34
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\globals.css", "CSS", 0, 0, 25, 0, 0, 0, 0, 0, 0, 0, 0, 7, 32
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\layout.tsx", "TypeScript JSX", 36, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 40
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\loading.tsx", "TypeScript JSX", 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 13
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\middleware.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\page.tsx", "TypeScript JSX", 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 14
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\app\test\page.tsx", "TypeScript JSX", 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 8
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\Logo\index.tsx", "TypeScript JSX", 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 16
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\Modals\AddInstallerModal.tsx", "TypeScript JSX", 149, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 164
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\Modals\AddServiceModal.tsx", "TypeScript JSX", 74, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 82
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\Modals\AssignInstallerModal.tsx", "TypeScript JSX", 169, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 179
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\Modals\BookingConfirmation.tsx", "TypeScript JSX", 39, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 45
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\Modals\BookingRequestModal.tsx", "TypeScript JSX", 216, 0, 0, 0, 0, 0, 0, 0, 0, 0, 26, 24, 266
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\Modals\DeclineModal.tsx", "TypeScript JSX", 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 73
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\Modals\ForgotPasswordModal.tsx", "TypeScript JSX", 33, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 39
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\Modals\InquiryModal.tsx", "TypeScript JSX", 72, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 80
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\Modals\InstallerModal.tsx", "TypeScript JSX", 244, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 17, 261
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\Modals\LoginModal.tsx", "TypeScript JSX", 143, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 157
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\Modals\LogoutModal.tsx", "TypeScript JSX", 39, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 46
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\Modals\OtpModal.tsx", "TypeScript JSX", 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 15
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\Modals\RegisterModal.tsx", "TypeScript JSX", 169, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 181
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\Modals\ServicesModal.tsx", "TypeScript JSX", 133, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 14, 150
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\Modals\TermsModal.tsx", "TypeScript JSX", 72, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 76
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\Modals\modalContainer\ModalContainer.tsx", "TypeScript JSX", 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 29
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\avatar\index.tsx", "TypeScript JSX", 35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 41
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\button\OrangeButton.tsx", "TypeScript JSX", 28, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 32
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\button\OrangeLinkButton.tsx", "TypeScript JSX", 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 23
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\cards\AboutUsInfoCard.tsx", "TypeScript JSX", 119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 126
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\cards\BookingRequestCard.tsx", "TypeScript JSX", 93, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 101
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\cards\BrandBalls.tsx", "TypeScript JSX", 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 18
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\cards\CartCard.tsx", "TypeScript JSX", 38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 43
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\cards\DashboardCard.tsx", "TypeScript JSX", 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 22
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\cards\ImagePreviewCard.tsx", "TypeScript JSX", 34, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 39
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\cards\OffersCard.tsx", "TypeScript JSX", 80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 91
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\cards\OrderPreviewCard.tsx", "TypeScript JSX", 38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 43
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\cards\ProductPreview.tsx", "TypeScript JSX", 39, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 44
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\cards\ServicePreviewCard.tsx", "TypeScript JSX", 39, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 44
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\cards\ServicesSummary.tsx", "TypeScript JSX", 67, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 72
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\cards\calendar\Calendar.tsx", "TypeScript JSX", 59, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 73
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\cards\calendar\style.css", "CSS", 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 4, 19
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\cards\calendar\timeCard\TimeCard.tsx", "TypeScript JSX", 82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 94
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\cards\carousel\ImageCarousel.tsx", "TypeScript JSX", 75, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 83
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\graphs\Donut.tsx", "TypeScript JSX", 38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 46
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\graphs\Line.tsx", "TypeScript JSX", 110, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 13, 126
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\index.ts", "TypeScript", 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 2, 6
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\input\DropDown.tsx", "TypeScript JSX", 82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 88
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\input\DropDownMulti.tsx", "TypeScript JSX", 114, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 8, 123
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\input\ImageUpload.tsx", "TypeScript JSX", 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 65
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\input\SearchBar.tsx", "TypeScript JSX", 51, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 58
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\input\inputOrange.tsx", "TypeScript JSX", 36, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 42
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\input\reactPickers.tsx", "TypeScript JSX", 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 25
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\navigation\Footer.tsx", "TypeScript JSX", 43, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 48
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\navigation\Loader.tsx", "TypeScript JSX", 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 9
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\navigation\Sidebar.tsx", "TypeScript JSX", 75, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 7, 93
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\navigation\navbar.tsx", "TypeScript JSX", 56, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 7, 67
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\pages\Dashboard\AdminDashboard.tsx", "TypeScript JSX", 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 72
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\pages\cart\Cart.tsx", "TypeScript JSX", 39, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 46
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\pages\landing-page\LandingPage.tsx", "TypeScript JSX", 221, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 18, 246
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\toast\index.tsx", "TypeScript JSX", 29, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 33
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\ui\breadcrumb.tsx", "TypeScript JSX", 105, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 116
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\ui\button.tsx", "TypeScript JSX", 51, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 57
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\ui\card.tsx", "TypeScript JSX", 75, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 84
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\ui\carousel.tsx", "TypeScript JSX", 232, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 31, 263
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\components\ui\dropdown-menu.tsx", "TypeScript JSX", 182, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19, 201
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\constants\Booking.ts", "TypeScript", 0, 0, 0, 0, 28, 0, 0, 0, 0, 0, 0, 4, 32
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\constants\CarModel.ts", "TypeScript", 0, 0, 0, 0, 1437, 0, 0, 0, 0, 0, 0, 2, 1439
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\constants\Cart.ts", "TypeScript", 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 3, 10
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\constants\Cebuprovinces.ts", "TypeScript", 0, 0, 0, 0, 1422, 0, 0, 0, 0, 0, 0, 2, 1424
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\constants\Product-types.ts", "TypeScript", 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 2, 7
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\constants\Products.ts", "TypeScript", 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 3, 14
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\constants\Service.ts", "TypeScript", 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 0, 2, 11
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\constants\Users.ts", "TypeScript", 0, 0, 0, 0, 22, 0, 0, 0, 0, 0, 0, 4, 26
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\hooks\fetcher\graphDatas\donutGraph.ts", "TypeScript", 0, 0, 0, 0, 26, 0, 0, 0, 0, 0, 0, 4, 30
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\hooks\fetcher\graphDatas\lineGraph.ts", "TypeScript", 0, 0, 0, 0, 34, 0, 0, 0, 0, 0, 0, 2, 36
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\hooks\fetcher\useFetchData.ts", "TypeScript", 0, 0, 0, 0, 26, 0, 0, 0, 0, 0, 0, 6, 32
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\hooks\mailer\useMailer.ts", "TypeScript", 0, 0, 0, 0, 24, 0, 0, 0, 0, 0, 0, 4, 28
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\hooks\requests\useAuth.ts", "TypeScript", 0, 0, 0, 0, 51, 0, 0, 0, 0, 0, 0, 14, 65
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\hooks\requests\useBooking.ts", "TypeScript", 0, 0, 0, 0, 182, 0, 0, 0, 0, 0, 0, 21, 203
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\hooks\requests\useInquiry.ts", "TypeScript", 0, 0, 0, 0, 50, 0, 0, 0, 0, 0, 0, 8, 58
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\hooks\requests\useInstallers.ts", "TypeScript", 0, 0, 0, 0, 119, 0, 0, 0, 0, 0, 0, 15, 134
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\hooks\requests\useProducts.ts", "TypeScript", 0, 0, 0, 0, 57, 0, 0, 0, 0, 0, 0, 10, 67
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\hooks\requests\useSendMail.ts", "TypeScript", 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0, 5, 30
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\hooks\requests\useServices.ts", "TypeScript", 0, 0, 0, 0, 83, 0, 0, 0, 0, 0, 1, 12, 96
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\lib\function\currencyFormatter.ts", "TypeScript", 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 1, 6
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\lib\function\dateFormatter.ts", "TypeScript", 0, 0, 0, 0, 19, 0, 0, 0, 0, 0, 3, 7, 29
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\lib\function\encrypter\encrypter.ts", "TypeScript", 0, 0, 0, 0, 13, 0, 0, 0, 0, 0, 0, 6, 19
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\lib\util\auth.ts", "TypeScript", 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 2, 13
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\lib\util\axios-instance.ts", "TypeScript", 0, 0, 0, 0, 34, 0, 0, 0, 0, 0, 4, 9, 47
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\lib\util\schema\index.ts", "TypeScript", 0, 0, 0, 0, 48, 0, 0, 0, 0, 0, 1, 9, 58
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\lib\utils.ts", "TypeScript", 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 2, 7
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\providers\UserProvider.tsx", "TypeScript JSX", 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 63
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\providers\logoutProvider.tsx", "TypeScript JSX", 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 39
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\providers\queryProvider.tsx", "TypeScript JSX", 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 14
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\style\emailLayout.css", "CSS", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\src\style\tables.css", "CSS", 0, 0, 37, 0, 0, 0, 0, 0, 0, 0, 0, 8, 45
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\tailwind.config.ts", "TypeScript", 0, 0, 0, 0, 27, 0, 0, 0, 0, 0, 0, 3, 30
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\client\tsconfig.json", "JSON with Comments", 0, 0, 0, 26, 0, 0, 0, 0, 0, 0, 0, 1, 27
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\package-lock.json", "JSON", 0, 0, 0, 0, 0, 225, 0, 0, 0, 0, 0, 1, 226
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\package.json", "JSON", 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 1, 8
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\.env", "Properties", 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 2, 9
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\config\db-config.js", "JavaScript", 0, 0, 0, 0, 0, 0, 13, 0, 0, 0, 0, 4, 17
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\controller\auth.controller.js", "JavaScript", 0, 0, 0, 0, 0, 0, 72, 0, 0, 0, 0, 13, 85
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\controller\booking.controller.js", "JavaScript", 0, 0, 0, 0, 0, 0, 152, 0, 0, 0, 1, 25, 178
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\controller\cart.controller.js", "JavaScript", 0, 0, 0, 0, 0, 0, 48, 0, 0, 0, 1, 7, 56
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\controller\inquiries.controller.js", "JavaScript", 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 5, 30
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\controller\installer.controller.js", "JavaScript", 0, 0, 0, 0, 0, 0, 57, 0, 0, 0, 0, 9, 66
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\controller\mailer\mailer.controller.js", "JavaScript", 0, 0, 0, 0, 0, 0, 37, 0, 0, 0, 0, 8, 45
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\controller\products.controller.js", "JavaScript", 0, 0, 0, 0, 0, 0, 51, 0, 0, 0, 0, 9, 60
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\controller\services.controller.js", "JavaScript", 0, 0, 0, 0, 0, 0, 51, 0, 0, 0, 0, 8, 59
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\controller\test.controller.js", "JavaScript", 0, 0, 0, 0, 0, 0, 49, 0, 0, 0, 0, 7, 56
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\controller\users.controller.js", "JavaScript", 0, 0, 0, 0, 0, 0, 19, 0, 0, 0, 0, 4, 23
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\index.js", "JavaScript", 0, 0, 0, 0, 0, 0, 33, 0, 0, 0, 1, 7, 41
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\jobs\booking.js", "JavaScript", 0, 0, 0, 0, 0, 0, 17, 0, 0, 0, 1, 3, 21
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\lib\emailLayout\emailLayout.js", "JavaScript", 0, 0, 0, 0, 0, 0, 68, 0, 0, 0, 0, 6, 74
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\lib\lib.js", "JavaScript", 0, 0, 0, 0, 0, 0, 16, 0, 0, 0, 0, 4, 20
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\middlewares\authenticateUser\authenticateUser.js", "JavaScript", 0, 0, 0, 0, 0, 0, 17, 0, 0, 0, 0, 6, 23
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\middlewares\validators\authValidator.js", "JavaScript", 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 5, 25
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\model\auth.model.js", "JavaScript", 0, 0, 0, 0, 0, 0, 30, 0, 0, 0, 0, 8, 38
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\model\booking.model.js", "JavaScript", 0, 0, 0, 0, 0, 0, 125, 0, 0, 0, 0, 17, 142
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\model\cart.model.js", "JavaScript", 0, 0, 0, 0, 0, 0, 22, 0, 0, 0, 0, 4, 26
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\model\inquiries.model.js", "JavaScript", 0, 0, 0, 0, 0, 0, 19, 0, 0, 0, 0, 5, 24
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\model\installer.model.js", "JavaScript", 0, 0, 0, 0, 0, 0, 76, 0, 0, 0, 0, 10, 86
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\model\products.model.js", "JavaScript", 0, 0, 0, 0, 0, 0, 42, 0, 0, 0, 0, 9, 51
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\model\services.model.js", "JavaScript", 0, 0, 0, 0, 0, 0, 38, 0, 0, 0, 0, 9, 47
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\model\test.model.js", "JavaScript", 0, 0, 0, 0, 0, 0, 16, 0, 0, 0, 0, 5, 21
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\model\users.model.js", "JavaScript", 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 3, 10
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\package-lock.json", "JSON", 0, 0, 0, 0, 0, 1977, 0, 0, 0, 0, 0, 1, 1978
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\package.json", "JSON", 0, 0, 0, 0, 0, 27, 0, 0, 0, 0, 0, 1, 28
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\routes\auth.route.js", "JavaScript", 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 3, 11
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\routes\booking.route.js", "JavaScript", 0, 0, 0, 0, 0, 0, 18, 0, 0, 0, 1, 4, 23
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\routes\cart.route.js", "JavaScript", 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 3, 10
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\routes\inquiries.route.js", "JavaScript", 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 3, 10
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\routes\installer.route.js", "JavaScript", 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 3, 13
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\routes\mailer\mailer.route.js", "JavaScript", 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 4, 9
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\routes\products.route.js", "JavaScript", 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 3, 12
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\routes\services.route.js", "JavaScript", 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 3, 14
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\routes\test.route.js", "JavaScript", 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 3, 12
+"c:\Users\CUTA2024011\Documents\Cutamora\CAPSTONE\capstone_project\server\routes\users.router.js", "JavaScript", 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 3, 10
+"Total", "-", 6667, 23, 77, 29, 3805, 8911, 1223, 12, 140, 38, 122, 1228, 22275

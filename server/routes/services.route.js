@@ -9,5 +9,6 @@ router.get("/:id", serviceController.getServiceById);
 router.post("/date-info", serviceController.getDateInfo);
 router.post("/", serviceController.addService);
 router.patch("/:id", serviceController.editService);
+router.delete("/:id", serviceController.deleteService);
 
 module.exports = router;

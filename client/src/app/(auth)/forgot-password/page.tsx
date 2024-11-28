@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import Cookie from "universal-cookie";
+import "../../globals.css";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -63,7 +64,7 @@ const ForgotPassword = () => {
         const rand = Math.floor(100000 + Math.random() * 900000);
         setOtpPin(rand);
         cookies.set("auth", rand);
-        sendMail(email, `${rand}`, ""); // Replace "" with any additional payload if needed
+        sendMail("Bertology OTP", email, `${rand}`, ""); // Replace "" with any additional payload if needed
         emailSent();
         setStep(2); // Move to OTP Step
       } else {

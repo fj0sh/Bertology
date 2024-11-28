@@ -8,6 +8,10 @@ import Swal from "sweetalert2";
 import useBooking from "@/hooks/requests/useBooking";
 import useMailer from "@/hooks/mailer/useMailer";
 import Image from "next/image";
+import { MdEmail } from "react-icons/md";
+import { FaHouseChimney } from "react-icons/fa6";
+import { FaPhoneAlt } from "react-icons/fa";
+import { succesToast } from "../toast";
 
 interface ModalProps {
   isOpen: boolean;
@@ -46,18 +50,16 @@ const AssignInstallerModal = (props: ModalProps) => {
       confirmButtonText: "Accept",
     }).then((res) => {
       if (res.isConfirmed) {
-        Swal.fire({
-          title: "Booking Accepted",
-          icon: "success",
-        });
         acceptBooking(id);
         console.log(`${installerId} ${bookingId}`);
         assignInstaller(installerId, bookingId);
         sendMail(
+          "Booking has been accepted",
           email,
           `Your Booking for the ${date} has been accepted`,
           `${fName} ${lName}`
         );
+        succesToast("Booking Accepted!");
         refetch();
         onClose();
       }
@@ -78,13 +80,8 @@ const AssignInstallerModal = (props: ModalProps) => {
         <div className="flex w-full h-full p-10">
           <div className="flex flex-col gap-6 w-[50%]">
             <div>
-              <p className="text-[20px] text-orangePrimary font-semibold">
-                PLEASE ASSIGN AN INSTALLER
-              </p>
-            </div>
-            <div>
               {installerData[0] && (
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center gap-3">
                   <Image
                     src={
                       installerData[0]?.installerImage
@@ -97,25 +94,36 @@ const AssignInstallerModal = (props: ModalProps) => {
                     width={0}
                     height={0}
                     style={{ width: "45%", height: "45%" }}
-                    className="border-none rounded-sm"
+                    className="rounded-full border border-orangeRed"
                   />
-                  <p>
-                    {installerData[0].installerFirstName}{" "}
-                    {installerData[0].installerLastName}
-                  </p>
-                  <p>{installerData[0].installerPhoneNumber}</p>
-                  <p>{installerData[0].installerAddress}</p>
-                  <p>{installerData[0].installerExperience}</p>
-                  <Button
-                    title="Assign"
-                    onClick={() =>
-                      handleAcceptBooking(
-                        installerData[0].installerId!,
-                        bookingId,
-                        email!
-                      )
-                    }
-                  />
+                  <div>
+                    <p className="font-semibold text-[25px]">
+                      {installerData[0].installerFirstName}{" "}
+                      {installerData[0].installerLastName}
+                    </p>
+                  </div>
+                  <div className="flex flex-col gap-3  items-left text-[15px] mx-auto w-full">
+                    <div className="flex gap-3 items-center">
+                      <FaPhoneAlt size={30} color="orangeRed" />
+                      {installerData[0].installerPhoneNumber}
+                    </div>
+                    <div className="flex gap-3 items-center">
+                      <FaHouseChimney size={30} color="orangeRed" />
+                      {installerData[0].installerAddress}
+                    </div>
+                    <div className="flex gap-3 items-center">
+                      <MdEmail size={30} color="orangeRed" />
+                      {installerData[0].installerEmail}
+                    </div>
+                    <div className="">
+                      <p className="text-center font-semibold text-[20px] text-orangeRed">
+                        Experience
+                      </p>
+                      <p className="indent-5 text-[15px] text-justify">
+                        {installerData[0].installerExperience}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               )}
             </div>
@@ -125,19 +133,18 @@ const AssignInstallerModal = (props: ModalProps) => {
             <p className="text-[25px] font-semibold text-orangeRed">
               Installers
             </p>
-            <div className="flex flex-col gap-3 p-3 border border-orangePrimary rounded-lg w-full h-fit overflow-y-auto">
+            <div className="flex flex-col gap-3 p-3 border border-orangePrimary rounded-lg w-full h-full overflow-y-auto">
               {data.length === 0 ? (
                 <div className="text-white">
                   No Installer Available Please Add an Installer.
                 </div>
               ) : (
-                // Filter active installers
                 data
                   ?.filter(
                     (res: InstallerType) => res.installerStatus === "ACTIVE"
                   )
                   .map((res: InstallerType) => (
-                    <button     
+                    <button
                       onClick={() =>
                         showInstaller(res.installerId ? res.installerId : 0)
                       }
@@ -151,6 +158,16 @@ const AssignInstallerModal = (props: ModalProps) => {
                   ))
               )}
             </div>
+            <Button
+              title="Assign"
+              onClick={() =>
+                handleAcceptBooking(
+                  installerData[0].installerId!,
+                  bookingId,
+                  email!
+                )
+              }
+            />
           </div>
         </div>
       </ModalContainer>

@@ -8,6 +8,8 @@ import "@/style/tables.css";
 import AddServiceModal from "@/components/Modals/AddServiceModal";
 import ServicesModal from "@/components/Modals/ServicesModal";
 import { ServiceType } from "@/constants/Service";
+import { succesToast } from "@/components/toast";
+import Swal from "sweetalert2";
 
 const ServiceHistory = () => {
   const { tanstackData } = useServices();
@@ -22,6 +24,27 @@ const ServiceHistory = () => {
     setRowData(rowData);
   };
 
+  const { deleteService } = useServices();
+
+  const confirmDelete = (rowData: any) => {
+    Swal.fire({
+      title: "Delete Service?",
+      text: "You are about to delete this service. This data will never be recovered.",
+      icon: "warning",
+      showCancelButton: true,
+    }).then((res) => {
+      if (res.isConfirmed) {
+        deleteService(rowData.id);
+        succesToast("Service deleted");
+      }
+    });
+  };
+
+  const handleDeleteService = (rowData: any) => {
+    console.log(rowData);
+    confirmDelete(rowData);
+  };
+
   const actionColumn = (rowData: any) => {
     return (
       <div className="flex gap-2 w-full items-center justify-center">
@@ -32,7 +55,12 @@ const ServiceHistory = () => {
           View
         </button>
 
-        <button className="text-white py-1 px-2 text-[18px] bg-rose-500 rounded-md">
+        <button
+          className="text-white py-1 px-2 text-[18px] bg-rose-500 rounded-md"
+          onClick={() => {
+            handleDeleteService(rowData);
+          }}
+        >
           Delete
         </button>
       </div>

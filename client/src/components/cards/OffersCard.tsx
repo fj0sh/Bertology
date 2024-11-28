@@ -49,7 +49,7 @@ const OffersCard = (props: Props) => {
                 className="rounded-lg"
               />
             </div>
-            <div className="h-full w-full flex justify-center items-center text-left">
+            <div className="h-full w-full flex justify-center items-center text-left text-[20px]">
               {description}
             </div>
           </div>
@@ -67,7 +67,7 @@ const OffersCard = (props: Props) => {
       </div>
       <div>
         <div className="flex w-full h-[20rem] rounded-lg">
-          <div className="h-full w-full flex justify-center items-center text-left">
+          <div className="h-full w-full flex justify-center items-center text-left text-[20px]">
             {description}
           </div>
           <div className="h-full w-[40%] flex justify-center items-center">

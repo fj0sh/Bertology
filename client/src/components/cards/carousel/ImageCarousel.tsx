@@ -49,7 +49,10 @@ const ImageCarousel = (props: Props) => {
           >
             <div className="flex justify-center">
               <Card>
-                <CardContent className="flex h-[17rem] aspect-square items-center justify-center p-1 border-none">
+                <CardContent
+                  className="flex h-[17rem] aspect-square items-center justify-center p-1 border-none 
+      transition-all duration-300 hover:h-[19rem] hover:shadow-lg"
+                >
                   <Image
                     src={image || "/images/empty-image.png"}
                     alt="roadblock"
@@ -60,7 +63,9 @@ const ImageCarousel = (props: Props) => {
                       width: "100%",
                       height: "100%",
                       borderRadius: "10px",
+                      transition: "transform 0.3s ease-in-out",
                     }}
+                    className="hover:scale-105"
                   />
                 </CardContent>
               </Card>

@@ -32,12 +32,10 @@ const BookingRequest = () => {
     setRowData(data);
   };
 
-  console.log(tanstackData);
-
   const handleDeleteBooking = (data: any) => {
     Swal.fire({
       title: "Delete Booking?",
-      text: "You are about to delete this booking.",
+      text: "You are about to delete this booking. This data will never be recovered.",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -197,14 +195,18 @@ const BookingRequest = () => {
                   res.data.status === "DONE" || res.data.status === "DECLINED"
                 );
               })
-            : tableView === "TODAYSBOOKINGS"
+            : tableView === "TODAYSBOOKINGS" 
             ? tanstackData?.filter((res: any) => {
                 return (
                   res.data.bookedDate.split(" ")[0] ===
                   new Date().toISOString().split("T")[0]
                 );
               })
-            : tanstackData // Default case
+            : tanstackData?.filter((res: any) => {
+                return (
+                  res.data.status !== "DONE" && res.data.status !== "DECLINED"
+                );
+              })
         }
         paginator
         rows={9}
@@ -216,8 +218,11 @@ const BookingRequest = () => {
           bodyRow: { className: "border border-slate-300 " },
           thead: { className: "bg-orangePrimary text-white" },
         }}
+        sortField="data.bookedDate"
+        sortOrder={1}
       >
         <Column
+          // sortable
           field="data.bookedDate"
           header="Booked Date"
           body={formattedDateBody}

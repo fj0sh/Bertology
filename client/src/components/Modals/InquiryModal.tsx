@@ -23,11 +23,11 @@ const InquiryModal = (props: ModalProps) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    sendMail(email, reply, name);
+    sendMail("Response to your Inquiry", email, reply, name);
     resolveInquiry(id);
   };
 
-  if (!isOpen) return null; 
+  if (!isOpen) return null;
 
   return (
     <ModalContainer width="60rem" height="45rem">

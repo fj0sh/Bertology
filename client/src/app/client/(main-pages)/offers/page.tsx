@@ -10,8 +10,8 @@ const Services = () => {
   const { tanstackData } = useServices();
 
   return (
-    <div className="bg-black text-white">
-      <div className="flex justify-center items-center h-screen ">
+    <div className="bg-background text-white">
+      {/* <div className="flex justify-center items-center h-screen ">
         <div>
           <Image
             src={"/images/ClientCarIMG.png"}
@@ -25,23 +25,8 @@ const Services = () => {
           <span className="text-orangeRed"> Quality</span> and{" "}
           <span className="text-orangeRed"> Valuable</span> Service
         </p>
-      </div>
+      </div> */}
 
-      <div className=" px-16">
-        <div className="items-center relative w-full flex flex-col">
-          <hr className="w-full top-[50%] absolute border-orangePrimary border-t-[3px]" />
-          <p className=" text-[30px] z-10 w-fit bg-black p-2 px-8">
-            <span className="text-orangePrimary">TRUSTED</span> BRANDS
-          </p>
-        </div>
-        <div className="h-[20rem] flex justify-center items-center gap-[2rem] ">
-          <BrandBalls />
-          <BrandBalls />
-          <BrandBalls />
-          <BrandBalls />
-          <BrandBalls />
-        </div>
-      </div>
       <div className="h-full flex flex-col items-center gap-6 p-20">
         <div className="grid grid-cols-4 gap-[5rem] border-none justify-items-center">
           {tanstackData?.map((serviceData: ServiceType) => (
@@ -54,6 +39,21 @@ const Services = () => {
               />
             </div>
           ))}
+        </div>
+      </div>
+      <div className=" px-16">
+        <div className="items-center relative w-full flex flex-col">
+          <hr className="w-full top-[50%] absolute border-orangePrimary border-t-[3px]" />
+          <p className=" text-[30px] z-10 w-fit bg-background p-2 px-8">
+            <span className="text-orangePrimary">TRUSTED</span> BRANDS
+          </p>
+        </div>
+        <div className="h-[20rem] flex justify-center items-center gap-[2rem] ">
+          <BrandBalls />
+          <BrandBalls />
+          <BrandBalls />
+          <BrandBalls />
+          <BrandBalls />
         </div>
       </div>
     </div>

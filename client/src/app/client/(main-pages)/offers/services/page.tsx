@@ -145,6 +145,7 @@ const Booking = () => {
       const OTP = Math.floor(Math.random() * (999999 - 100000) + 100000);
       setGeneratedOTP(OTP);
       sendMail(
+        "Bertology Booking OTP",
         data.email,
         `<p>Your OTP is ${OTP}</p>`,
         `${data.firstName} ${data.lastName}`
@@ -245,7 +246,7 @@ const Booking = () => {
 
   return (
     <>
-      <div className="transition-all duration-1000 ease-in-out">
+      <div className="transition-all duration-1000 ease-in-out mt-10">
         <BookingConfirmation
           isOpen={showConfirmation}
           onClose={() => setShowConfirmation(false)}

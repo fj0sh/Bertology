@@ -15,13 +15,13 @@ const transporter = nodemailer.createTransport({
 });
 
 exports.sendMail = async (req, res) => {
-  const { recepient, message, username } = req.body;
+  const { title, recepient, message, username } = req.body;
 
   if (!recepient) {
     return res.status(400).json({ message: "Recipient email is required." });
   }
 
-  const layout = emailLayout(message, recepient, username);
+  const layout = emailLayout(title, message, recepient, username);
 
   try {
     const info = await transporter.sendMail({
@@ -36,7 +36,7 @@ exports.sendMail = async (req, res) => {
     });
 
     console.log("Email sent: %s", info.messageId);
-    res.status(200).json({ message: "Email sent" });
+    res.status(200).json({ message: "Email sent", body: req.body });
   } catch (error) {
     console.error("Error sending email:", error);
     res.status(500).json({ message: "Error sending email" });

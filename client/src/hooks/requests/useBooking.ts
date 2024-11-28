@@ -2,8 +2,7 @@ import { BookingResponse } from "@/constants/Booking";
 import instance from "@/lib/util/axios-instance";
 import { useUser } from "@/providers/UserProvider";
 import { useQuery } from "@tanstack/react-query";
-import { headers } from "next/headers";
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 
 const useBooking = () => {
   const [data, setData] = useState<any | undefined>(undefined);
@@ -165,6 +164,18 @@ const useBooking = () => {
     }
   };
 
+  const declineBookingReason = async (bookingId: number, reason: string) => {
+    try {
+      await instance.post("/booking/declineReason", {
+        bookingId,
+        reason,
+      });
+      refetch();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return {
     bookService,
     getServiceById,
@@ -177,6 +188,7 @@ const useBooking = () => {
     getBookingByStatus,
     getBookingByDate,
     setBookingAsDone,
+    declineBookingReason,
     refetch,
     data,
     dataByStatus,

@@ -37,7 +37,6 @@ const AdminDashboard = () => {
 
   return (
     <div className="flex flex-col w-full gap-8">
-      {/* Top Section: LineGraph and DonutChart */}
       <div className="flex flex-wrap gap-6 w-full">
         <div className="flex-1 flex justify-center items-center p-6 rounded-md shadow-md h-[20rem]">
           <LineGraph />
@@ -47,7 +46,6 @@ const AdminDashboard = () => {
         </div>
       </div>
 
-      {/* Bottom Section: DataTable and Calendar */}
       <div className="flex flex-wrap gap-6">
         <div className="flex-1 flex flex-col gap-6 rounded-md  shadow-md">
           <div className="text-white font-semibold p-4">
