@@ -10,6 +10,7 @@ import { IoCalendar } from "react-icons/io5";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import { usePathname } from "next/navigation";
 import { useLogoutContext } from "@/providers/logoutProvider";
+import Image from "next/image";
 
 const navLinks = [
   {
@@ -58,7 +59,14 @@ const Sidebar = () => {
   return (
     <>
       <div className="flex flex-col fixed w-[15rem] h-screen text-white bg-black gap-20 p-6">
-        <div className="mt-[15px] ">Logo</div>
+        <div className="mt-[15px]">
+          <Image
+            src={"/images/transp_logov2.png"}
+            alt={"Logo"}
+            width={200}
+            height={100}
+          ></Image>
+        </div>
         <div className="flex flex-col gap-10 flex-grow">
           {navLinks.map((links) => {
             const isActive = pathname.startsWith(links.href);

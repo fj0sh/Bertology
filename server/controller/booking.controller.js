@@ -175,3 +175,14 @@ exports.declineBookingReason = (req, res) => {
     return res.status(200).send(result);
   });
 };
+
+exports.reassignInstaller = (req, res) => {
+  bookingModel.reassignInstaller(
+    req.body.bookingId,
+    req.body.installerId,
+    (err, result) => {
+      if (err) return res.status(400).send(err);
+      return res.status(200).send(result);
+    }
+  );
+};

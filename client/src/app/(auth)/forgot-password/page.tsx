@@ -10,6 +10,7 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 import Cookie from "universal-cookie";
 import "../../globals.css";
+import { Password } from "primereact/password";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -85,6 +86,7 @@ const ForgotPassword = () => {
       } else {
         OTPSuccess();
         setOtpError("");
+        cookies.remove("auth");
         setStep(3);
       }
     } else {
@@ -184,16 +186,36 @@ const ForgotPassword = () => {
 
         {step === 3 && (
           <div className="w-full flex flex-col gap-4">
-            <InputOrange
-              label="New Password:"
-              type="password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <InputOrange
-              label="Confirm Password:"
-              type="password"
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
+            <div className="flex flex-col gap-2">
+              <p className="text-[18px]">New Password:</p>
+              <Password
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                toggleMask
+                feedback={false}
+                unstyled
+                className="w-full"
+                pt={{
+                  root: { className: "border border-orangeRed  rounded-sm" },
+                  input: { className: "bg-background  p-2 w-full" },
+                }}
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <p className="text-[18px]">Confirm Password:</p>
+              <Password
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                toggleMask
+                feedback={false}
+                unstyled
+                className="w-full"
+                pt={{
+                  root: { className: "border border-orangeRed  rounded-sm" },
+                  input: { className: "bg-background  p-2 w-full " },
+                }}
+              />
+            </div>
             {passwordError && (
               <p className="text-red-600 text-[12px]">{passwordError}</p>
             )}
@@ -211,15 +233,16 @@ const ForgotPassword = () => {
           type="submit"
           className="bg-orangePrimary hover:bg-orangeRed text-black font-semibold rounded-md px-6 py-2"
         />
-
-        <p className="text-sm text-white/70 mt-4">
-          <a
-            href="/login"
-            className="text-orangePrimary hover:text-orangeRed underline"
-          >
-            Log in
-          </a>
-        </p>
+        {step === 1 && (
+          <p className="text-sm text-white/70 mt-4">
+            <a
+              href="/login"
+              className="text-orangePrimary hover:text-orangeRed underline"
+            >
+              Log in
+            </a>
+          </p>
+        )}
       </form>
     </div>
   );

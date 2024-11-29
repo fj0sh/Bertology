@@ -15,6 +15,7 @@ const Navbar = () => {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "/client/about-us" },
+    { name: "Contact Us", href: "/client/about-us#contactUs" },
     { name: "Services", href: "/client/offers" },
     // { name: "Offers", href: "/client/offers" },
     // { name: <IoMdCart size={25} />, href: "/client/cart" },
@@ -26,7 +27,13 @@ const Navbar = () => {
       <div className="flex-1 flex items-center justify-between">
         <div className="flex-shrink-0">
           <a href="/" className="text-white text-[30px] font-bold">
-            <p>Logo</p>
+            <Image
+              src={"/images/transp_logov2.png"}
+              alt="LOGO"
+              width={200}
+              height={200}
+              className="absolute top-0 left-0"
+            ></Image>
           </a>
         </div>
 
@@ -48,7 +55,7 @@ const Navbar = () => {
                         isActive
                           ? " font-bold underline underline-offset-8 decoration-orangeRed decoration-2"
                           : "text-white"
-                      } text-[16px]`}
+                      } text-[16px] hover:text-orangeRed hover:text-[18px] transition-all`}
                     >
                       {x.name}
                     </Link>

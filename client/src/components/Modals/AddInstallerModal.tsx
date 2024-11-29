@@ -37,7 +37,6 @@ const AddInstallerModal = ({ isOpen, onClose }: ModalProps) => {
   };
 
   const onSubmit = async (data: InstallerType) => {
-    console.log("Installer Image: ", installerImage);
     try {
       await addInstaller(
         data.installerFirstName,

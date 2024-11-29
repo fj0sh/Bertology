@@ -18,5 +18,6 @@ router.patch("/decline/:id", bookingController.declineBooking);
 router.patch("/done/:id", bookingController.setBookingAsDone);
 router.delete("/:id", bookingController.deleteBooking);
 router.post("/declineReason", bookingController.declineBookingReason);
+router.patch("/reassign", bookingController.reassignInstaller);
 
 module.exports = router;

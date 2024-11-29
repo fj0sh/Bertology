@@ -48,7 +48,7 @@ const AdminDashboard = () => {
 
       <div className="flex flex-wrap gap-6">
         <div className="flex-1 flex flex-col gap-6 rounded-md  shadow-md">
-          <div className="text-white font-semibold p-4">
+          <div className="text-white font-semibold p-4 flex flex-col gap-4">
             <p>Date: {date}</p>
             <p>Booking/s: {dataByDate.length}</p>
           </div>
@@ -69,3 +69,4 @@ const AdminDashboard = () => {
 };
 
 export default AdminDashboard;
+  

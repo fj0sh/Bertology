@@ -19,9 +19,9 @@ const Login = () => {
     e.preventDefault();
     const result = await loginUser(email, password);
     if (result) {
-      // router.push("/admin/dashboard");
-      // setEmail("");
-      // setPassword("");
+      router.push("/admin/dashboard");
+      setEmail("");
+      setPassword("");
     } else {
       console.log(result);
     }

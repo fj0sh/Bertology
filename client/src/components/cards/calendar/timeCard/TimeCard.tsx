@@ -41,6 +41,8 @@ const TimeCard = ({
   handleTimeSelect,
   bookedSlots,
 }: TimeCardProps) => {
+  //3-5
+  //3-hours services
   const timeSlotsForMultiple = [
     "8:00-10:00",
     "10:00-1:00",
@@ -48,11 +50,17 @@ const TimeCard = ({
     "4:00-7:00",
   ];
 
+  //1-2
+  //1 hour services
   const timeSlotForSingle = [
-    "7:00-8:00",
     "8:00-9:00",
     "9:00-10:00",
     "10:00-11:00",
+    "11:00-12:00",
+    "1:00-2:00",
+    "2:00-3:00",
+    "3:00-4:00",
+    "4:00-5:00",
   ];
 
   const [timeType, setTimeType] = useState<string[]>([]);
@@ -82,8 +90,8 @@ const TimeCard = ({
           key={slot}
           slot={slot}
           onSelect={handleSelect}
-          isBooked={countOccurrences(slot) >= 2} // Disable if the slot appears twice or more
-          isSelected={slot === selectedSlot} // Highlight the selected slot
+          isBooked={countOccurrences(slot) >= 2}
+          isSelected={slot === selectedSlot}
         />
       ))}
     </div>

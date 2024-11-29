@@ -5,18 +5,17 @@ import Button from "../button/OrangeButton";
 import { IoMdClose } from "react-icons/io";
 import { useLogoutContext } from "@/providers/logoutProvider";
 import ModalContainer from "./modalContainer/ModalContainer";
-import Cookie from "js-cookie";
 import { useRouter } from "next/navigation";
-
-interface Props {}
+import Cookie from "universal-cookie";
 
 const LogoutModal = () => {
   const { isOpen, setIsOpen } = useLogoutContext();
   const router = useRouter();
+  const cookies = new Cookie();
 
   const handleLogout = () => {
-    Cookie.remove("token");
-    router.push("/");
+    cookies.remove("jwt_auth");
+    router.push("/login");
     setIsOpen(false);
   };
 

@@ -63,7 +63,7 @@ const useBooking = () => {
 
     try {
       const res = await instance.post(`/booking/`, body);
-
+      refetch();
       console.log(res.data);
       return res.data;
     } catch (error) {
@@ -176,6 +176,18 @@ const useBooking = () => {
     }
   };
 
+  const reassignInstaller = async (bookingId: number, installerId: number) => {
+    try {
+      await instance.patch("/booking/reassign", {
+        bookingId,
+        installerId,
+      });
+      refetch();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return {
     bookService,
     getServiceById,
@@ -189,6 +201,7 @@ const useBooking = () => {
     getBookingByDate,
     setBookingAsDone,
     declineBookingReason,
+    reassignInstaller,
     refetch,
     data,
     dataByStatus,

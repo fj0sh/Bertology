@@ -145,3 +145,11 @@ exports.getDeclineReasonById = (bookingId, callback) => {
     "SELECT * FROM booking b JOIN decline_reason d d.bookingId = b.id "
   );
 };
+
+exports.reassignInstaller = (bookingId, installerId, callback) => {
+  conn.query(
+    "UPDATE booking SET installerId = ? WHERE id = ?",
+    [bookingId, installerId],
+    callback
+  );
+};

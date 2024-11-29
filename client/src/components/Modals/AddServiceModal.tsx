@@ -8,6 +8,7 @@ import { ServiceType } from "@/constants/Service";
 import InputOrange from "../input/inputOrange";
 import ImageUpload from "../input/ImageUpload";
 import useServices from "@/hooks/requests/useServices";
+import { succesToast } from "../toast";
 
 interface ModalProps {
   isOpen: boolean;
@@ -33,6 +34,7 @@ const AddServiceModal = (props: ModalProps) => {
       newImage ? newImage : "",
       data.serviceDescription
     );
+    succesToast("Service added successfully");
     setNewImage("");
     reset();
     onClose?.();

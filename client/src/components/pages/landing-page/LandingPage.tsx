@@ -108,7 +108,8 @@ const LandingPage = () => {
             </p>
             <Link
               href="/client/offers/services"
-              className="text-background bg-orangeRed py-2 px-[4rem] text-[20px] lg:text-[30px] rounded-sm font-semibold"
+              className="text-background bg-orangeRed py-2 px-[4rem] text-[20px] lg:text-[30px] rounded-sm font-semibold transition-all 
+             hover:bg-orange-600 hover:scale-105 hover:shadow-lg"
             >
               Book Now
             </Link>
@@ -127,11 +128,7 @@ const LandingPage = () => {
               </p>
 
               <div className="border border-orangeRed flex flex-col lg:flex-row items-center w-full h-full justify-center gap-4 lg:gap-10 text-[20px] lg:text-[30px] px-6 lg:px-20 py-6 lg:py-8 rounded-lg">
-                <ul className="flex flex-col gap-2 *:flex">
-                  <li>
-                    <TfiCheckBox className="mr-2 lg:mr-4 text-orangePrimary" />
-                    Free Installation
-                  </li>
+                <ul className="flex flex-col gap-4 *:flex">
                   <li>
                     <TfiCheckBox className="mr-2 lg:mr-4 text-orangePrimary" />
                     Home Service
@@ -141,7 +138,7 @@ const LandingPage = () => {
                     Expert Technician
                   </li>
                 </ul>
-                <ul className="flex flex-col gap-2 *:flex">
+                <ul className="flex flex-col gap-4 *:flex">
                   <li>
                     <TfiCheckBox className="mr-2 lg:mr-4 text-orangePrimary" />
                     Safe and Guaranteed
@@ -150,11 +147,13 @@ const LandingPage = () => {
                     <TfiCheckBox className="mr-2 lg:mr-4 text-orangePrimary" />
                     Years of Experience
                   </li>
+                </ul>
+                {/* <ul>
                   <li>
                     <TfiCheckBox className="mr-2 lg:mr-4 text-orangePrimary" />
                     Fast Transactions
                   </li>
-                </ul>
+                </ul> */}
               </div>
             </div>
           </div>
@@ -188,7 +187,7 @@ const LandingPage = () => {
                 alt="installation-image"
               />
               <div className="bg-black bg-opacity-50 w-full h-full absolute top-0 left-0 flex items-center justify-center">
-                <p className="text-[40px] lg:text-[70px] text-white font-semibold text-center">
+                <p className="text-[40px] lg:text-[70px]  font-semibold text-center text-orangeRed">
                   Installation
                 </p>
               </div>
@@ -218,7 +217,7 @@ const LandingPage = () => {
           <ServicesSummary />
         </div>
 
-        <div className="relative h-full px-4 lg:px-48 gap-8 flex flex-col lg:flex-row">
+        <div className="relative h-full px-4 lg:px-48 gap-8 flex flex-col lg:flex-row my-[10rem]">
           <div className="w-full flex justify-center">
             <PrimeCalendar />
           </div>
@@ -228,7 +227,8 @@ const LandingPage = () => {
             </p>
             <Link
               href={"/client/offers/services"}
-              className="text-background bg-orangeRed py-2 px-4 lg:px-6 text-[20px] lg:text-[25px] rounded-sm font-semibold"
+              className="text-background bg-orangeRed py-2 px-4 lg:px-6 text-[20px] lg:text-[25px] rounded-sm font-semibold 
+             transition-all duration-300 ease-in-out hover:bg-orange-600 hover:scale-105 hover:shadow-lg"
             >
               Book A Service
             </Link>
@@ -236,7 +236,7 @@ const LandingPage = () => {
         </div>
 
         {/* BRANDS SECTION */}
-        <div className="w-full text-white flex flex-col gap-6 lg:gap-10 py-[4rem] lg:py-[10rem] px-6 lg:px-[18rem] justify-center items-center">
+        {/* <div className="w-full text-white flex flex-col gap-6 lg:gap-10 py-[4rem] lg:py-[10rem] px-6 lg:px-[18rem] justify-center items-center">
           <p className="uppercase text-[24px] lg:text-[30px] font-semibold">
             our <span className="text-orangeRed"> trusted </span>brands
           </p>
@@ -248,7 +248,7 @@ const LandingPage = () => {
             <BrandBalls />
             <BrandBalls />
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

@@ -49,15 +49,6 @@ exports.emailLayout = (title, message, recipient, username) => {
     </p>
   </div>
 
-  <div
-    style="
-    font-size: 14px; 
-    color: #999999; 
-    font-weight: bold; 
-    margin-top: 10px;"
-  >
-    ${recipient}
-  </div>
 
   <footer
     style="
@@ -67,7 +58,16 @@ exports.emailLayout = (title, message, recipient, username) => {
   >
     Thank you for choosing our service.
   </footer>
-</div>;
+</div>
 
     `;
 };
+// <div
+//   style="
+//   font-size: 14px;
+//   color: #999999;
+//   font-weight: bold;
+//   margin-top: 10px;"
+// >
+//   ${recipient}
+// </div>

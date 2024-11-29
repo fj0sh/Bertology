@@ -159,8 +159,14 @@ const Booking = () => {
     const otp = parseInt(cookies.get("OTP"));
     if (parseInt(userOTP) === otp) {
       setShowConfirmation(false);
-      reset();
+      setSelectedTimeSlot("");
+      setPaymentProof("");
+      setMunicipality("");
+      setBarangay("");
+      setSelectedModel("");
+      setServiceMode("");
       successfulBooking();
+      reset();
 
       if (formData) {
         const bookingResponse = await bookService(
@@ -194,7 +200,7 @@ const Booking = () => {
   };
 
   useEffect(() => {
-    if (selectedService.length > 1) {
+    if (selectedService.length > 2) {
       setServiceBooked("MULTIPLE");
     } else {
       setServiceBooked("SINGLE");
@@ -419,7 +425,7 @@ const Booking = () => {
                     value={selectedService}
                     onChange={(e) => setSelectedService(e.value)}
                     options={tanstackData}
-                    selectionLimit={5}
+                    selectionLimit={4}
                     optionLabel="serviceName"
                     display="chip"
                     placeholder="Select a Service..."

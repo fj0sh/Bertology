@@ -21,9 +21,19 @@ interface ModalProps {
   date?: string;
   lName?: string;
   fName?: string;
+  isReassigning?: boolean;
 }
 const AssignInstallerModal = (props: ModalProps) => {
-  const { isOpen, onClose, bookingId, date, email, fName, lName } = props;
+  const {
+    isOpen,
+    onClose,
+    bookingId,
+    date,
+    email,
+    fName,
+    lName,
+    isReassigning,
+  } = props;
 
   const { data, installerData, assignInstaller, getInstallerById } =
     useInstallers();
@@ -41,8 +51,12 @@ const AssignInstallerModal = (props: ModalProps) => {
     email: string
   ) => {
     Swal.fire({
-      title: "Accept Booking?",
-      text: "You are about to accept this booking.",
+      title: ` ${!isReassigning ? "Accept Booking?" : "Reassign Technician"}  `,
+      text: ` ${
+        !isReassigning
+          ? "Are you sure you want to accept this booking?"
+          : "Are you sure you want to reassign a technician?"
+      }  `,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -53,13 +67,24 @@ const AssignInstallerModal = (props: ModalProps) => {
         acceptBooking(id);
         console.log(`${installerId} ${bookingId}`);
         assignInstaller(installerId, bookingId);
-        sendMail(
-          "Booking has been accepted",
-          email,
-          `Your Booking for the ${date} has been accepted`,
-          `${fName} ${lName}`
-        );
-        succesToast("Booking Accepted!");
+
+        if (isReassigning) {
+          succesToast("Technician Reassigned!");
+          sendMail(
+            "Technician has been reassigned",
+            email,
+            `Technician has been reassigned to your booking for the ${date}`,
+            `${fName} ${lName}`
+          );
+        } else {
+          succesToast("Booking Accepted!");
+          sendMail(
+            "Booking has been accepted",
+            email,
+            `Your Booking for the ${date} has been accepted`,
+            `${fName} ${lName}`
+          );
+        }
         refetch();
         onClose();
       }
@@ -131,7 +156,7 @@ const AssignInstallerModal = (props: ModalProps) => {
 
           <div className="w-[50%] flex flex-col gap-6 items-center p-10">
             <p className="text-[25px] font-semibold text-orangeRed">
-              Installers
+              Technicians
             </p>
             <div className="flex flex-col gap-3 p-3 border border-orangePrimary rounded-lg w-full h-full overflow-y-auto">
               {data.length === 0 ? (

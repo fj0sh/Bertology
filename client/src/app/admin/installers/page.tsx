@@ -8,6 +8,7 @@ import { DataTable } from "primereact/datatable";
 import React, { useState, useEffect } from "react";
 import "@/style/tables.css";
 import Swal from "sweetalert2";
+import { succesToast } from "@/components/toast";
 
 const Installers = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -47,8 +48,8 @@ const Installers = () => {
 
   const handleDeleteInstaller = (rowData: any) => {
     Swal.fire({
-      title: "Delete Installer?",
-      text: "You are about to delete this installer.",
+      title: "Delete Technician?",
+      text: "You are about to delete this Technician.",
       icon: "warning",
       showCancelButton: true,
       confirmButtonText: "Delete",
@@ -57,6 +58,7 @@ const Installers = () => {
       cancelButtonColor: "#3085d6",
     }).then((res) => {
       if (res.isConfirmed) {
+        succesToast("Installer Deleted Successfully");
         deleteInstaller(rowData.installerId);
       }
     });

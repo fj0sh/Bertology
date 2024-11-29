@@ -41,18 +41,29 @@ const useUser = () => {
 const UserProvider = (props: UserProviderProps) => {
   const { children } = props;
   const [user, setUser] = useState<User | null>(null);
+  const [tokenValue, setTokenValue] = useState<string | null>(null);
 
-  const tokenValue = Cookies.get("jwt_auth");
+  useEffect(() => {
+    const updateTokenValue = () => {
+      const newToken = Cookies.get("jwt_auth");
+      setTokenValue(newToken || null);
+    };
 
-  console.log(tokenValue);
+    updateTokenValue();
+
+    const interval = setInterval(updateTokenValue, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     if (tokenValue) {
       const data = JSON.parse(decrypter(tokenValue));
-      console.log(data);
       setUser(data);
+    } else {
+      setUser(null);
     }
-  }, []);
+  }, [tokenValue]);
 
   return (
     <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>

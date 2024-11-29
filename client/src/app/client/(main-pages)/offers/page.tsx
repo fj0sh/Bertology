@@ -10,7 +10,7 @@ const Services = () => {
   const { tanstackData } = useServices();
 
   return (
-    <div className="bg-background text-white">
+    <div className="bg-background text-white mt-[10rem]">
       {/* <div className="flex justify-center items-center h-screen ">
         <div>
           <Image
@@ -32,7 +32,7 @@ const Services = () => {
           {tanstackData?.map((serviceData: ServiceType) => (
             <div key={serviceData.id}>
               <ImagePreviewCard
-                image={serviceData.image}
+                image={serviceData.serviceImage}
                 serviceName={serviceData.serviceName}
                 price={serviceData.servicePrice}
                 descrption={serviceData.serviceDescription}

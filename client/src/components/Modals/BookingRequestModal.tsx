@@ -8,7 +8,7 @@ import { decl } from "postcss";
 import useMailer from "@/hooks/mailer/useMailer";
 import Swal from "sweetalert2";
 import AssignInstallerModal from "./AssignInstallerModal";
-import { errorToast } from "../toast";
+import { errorToast, succesToast } from "../toast";
 import DeclineModal from "./DeclineModal";
 
 interface Props {
@@ -54,6 +54,7 @@ const BookingRequestModal = (props: Props) => {
   const [imageLarger, setIsImageLarger] = useState(false);
   const [showInstallerModal, setInstallerModal] = useState(false);
   const [showDeclineModal, setDeclineModal] = useState(false);
+  const [isReassigning, setIsReassigning] = useState(false);
 
   const { declineBooking, setBookingAsDone, refetch } = useBooking();
   const { sendMail } = useMailer();
@@ -63,10 +64,30 @@ const BookingRequestModal = (props: Props) => {
   };
 
   const handleBookingDone = (id: number) => {
-    setBookingAsDone(id);
-    if (onClose) {
-      onClose();
-    }
+    Swal.fire({
+      title: "Set This Booking as Done?",
+      text: "This Booking will be marked as done.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+    }).then((res) => {
+      if (res.isConfirmed) {
+        setBookingAsDone(id);
+        setIsReassigning(false);
+        succesToast("Booking has been Completed");
+        if (onClose) {
+          onClose();
+        }
+      }
+    });
+  };
+
+  const handleReassign = () => {
+    setIsReassigning(true);
+    setInstallerModal(true);
   };
 
   const handleServiceTotal = () => {
@@ -127,10 +148,12 @@ const BookingRequestModal = (props: Props) => {
         fName={fName}
         lName={lName}
         date={date}
+        isReassigning={isReassigning}
       />
 
       <ModalContainer width="70rem" height="50rem" z="999">
         <DeclineModal
+          date={date}
           bookingId={id}
           email={email}
           name={`${fName} ${lName}`}
@@ -231,12 +254,22 @@ const BookingRequestModal = (props: Props) => {
                   Accept
                 </button>
               )}
-              <button
-                className="bg-red-500 text-[18px] rounded-sm py-1 px-2"
-                onClick={(e) => email && handleDeclineBooking()}
-              >
-                Decline
-              </button>
+              {status === "APPROVED" || status === "DONE" ? null : (
+                <button
+                  className="bg-red-500 text-[18px] rounded-sm py-1 px-2"
+                  onClick={(e) => email && handleDeclineBooking()}
+                >
+                  Decline
+                </button>
+              )}
+              {status === "APPROVED" && (
+                <button
+                  className=" bg-blue-500 text-[18px] rounded-sm py-1 px-2"
+                  onClick={(e) => email && handleReassign()}
+                >
+                  Reassign Installer
+                </button>
+              )}
             </div>
           )}
         </div>

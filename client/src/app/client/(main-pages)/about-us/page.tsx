@@ -8,9 +8,9 @@ const AboutUs = () => {
     <div className="bg-background mt-16">
       {/* -----------------------------------MAIN------------------------------------------------------ */}
 
-      <div className="realtive h-screen text-white flex justify-end">
+      <div className="realtive h-[95vh] text-white flex justify-end">
         <Image
-          src="/images/aboutv4.svg"
+          src="/images/aboutv5.svg"
           layout="fill"
           objectFit="cover"
           quality={100}
@@ -36,15 +36,15 @@ const AboutUs = () => {
       </div>
 
       {/* -----------------------------------PROPRIETOR CARDS------------------------------------------------------ */}
-      <div className="w-full h-full flex mb-[10rem]">
-        <div className="w-full h-full py-10 flex items-center justify-end">
+      <div className="w-full h-full flex mb-[10rem] justify-center">
+        <div className="w-[60%] h-full py-10 flex items-center justify-end">
           <Image
             src={"/images/owner.svg"}
             alt="Owner"
             sizes={"100%"}
             width={0}
             height={0}
-            style={{ width: "50%", height: "50%" }}
+            style={{ width: "60%", height: "60%" }}
           />
         </div>
         <div className="w-full h-full text-white text-[20px] flex flex-col gap-4 justify-center items-center my-auto">
@@ -92,7 +92,8 @@ const AboutUs = () => {
           <OffersCard
             image={"/images/service-images/image5.jpg"}
             title="3-Months Warranty"
-            description="Wahhhh"
+            description="
+Bertology offers a 3-month warranty from the date of purchase or service completion, ensuring customer satisfaction and trust, provided customers present the receipt or warranty card as proof."
           />
           <OffersCard
             image={"/images/service-images/image6.jpg"}
@@ -103,7 +104,10 @@ const AboutUs = () => {
         </div>
       </div>
       {/* -----------------------------------CONTACT/ADDITIONAL INFO------------------------------------------------------ */}
-      <div className="flex justify-center items-center w-full h-[70vh] ">
+      <div
+        className="flex justify-center items-center w-full h-[70vh] "
+        id="contactUs"
+      >
         <AboutUsInfoCard />
       </div>
     </div>

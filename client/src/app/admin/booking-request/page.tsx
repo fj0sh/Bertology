@@ -8,6 +8,7 @@ import { DataTable } from "primereact/datatable";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import "@/style/tables.css";
+import { succesToast } from "@/components/toast";
 
 const BookingRequest = () => {
   const [isRequestShow, setIsRequestShow] = useState(false);
@@ -44,6 +45,7 @@ const BookingRequest = () => {
       cancelButtonText: "No",
     }).then((res) => {
       if (res.isConfirmed) {
+        succesToast("Booking deleted successfully");
         deleteBooking(data.data.id);
       }
     });
@@ -195,7 +197,7 @@ const BookingRequest = () => {
                   res.data.status === "DONE" || res.data.status === "DECLINED"
                 );
               })
-            : tableView === "TODAYSBOOKINGS" 
+            : tableView === "TODAYSBOOKINGS"
             ? tanstackData?.filter((res: any) => {
                 return (
                   res.data.bookedDate.split(" ")[0] ===
