@@ -64,25 +64,25 @@ const LineGraph = () => {
       },
       tooltip: {
         enabled: true,
-        titleColor: "white", // Tooltip title text color
-        bodyColor: "white", // Tooltip body text color
+        titleColor: "white",
+        bodyColor: "white",
       },
     },
     scales: {
       x: {
         grid: {
-          color: "#2b2b2b", // Change x-axis gridlines color
+          color: "#2b2b2b",
         },
         ticks: {
-          color: "white", // Change x-axis labels (months) text color to white
+          color: "white",
         },
       },
       y: {
         grid: {
-          color: "#2b2b2b", // Change y-axis gridlines color
+          color: "#2b2b2b",
         },
         ticks: {
-          color: "white", // Change y-axis labels (sales) text color to white
+          color: "white",
         },
       },
     },
@@ -115,6 +115,7 @@ const LineGraph = () => {
         hoverBorderWidth: 2,
         pointRadius: 5,
         pointBackgroundColor: "#F96C2F",
+        // tension: 0.5,
       },
     ],
   };

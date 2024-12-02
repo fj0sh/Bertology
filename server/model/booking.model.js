@@ -142,7 +142,9 @@ exports.declineReason = (body, callback) => {
 
 exports.getDeclineReasonById = (bookingId, callback) => {
   conn.query(
-    "SELECT * FROM booking b JOIN decline_reason d d.bookingId = b.id "
+    "SELECT * FROM booking b JOIN decline_reason d d.bookingId = ?",
+    [bookingId],
+    callback
   );
 };
 

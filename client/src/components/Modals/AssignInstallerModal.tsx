@@ -73,7 +73,33 @@ const AssignInstallerModal = (props: ModalProps) => {
           sendMail(
             "Technician has been reassigned",
             email,
-            `Technician has been reassigned to your booking for the ${date}`,
+            `Technician has been reassigned to your booking for the ${date}  
+            <br/>
+            <div 
+            style= "
+            font-size: 20px; 
+            font-weight: bold; 
+            font-family: Arial, sans-serif; 
+            display: flex; 
+            flex-direction: column;
+            gap: 1rem;
+            ">
+              <p>
+                ${installerData[0].installerFirstName} ${installerData[0].installerLastName}
+              </p>
+
+              <div>
+                <p>
+                  Experience:
+                </p>
+                <p>
+                  ${installerData[0].installerExperience}
+                </p>
+              </div>
+
+            </div>
+            
+              `,
             `${fName} ${lName}`
           );
         } else {
@@ -81,7 +107,9 @@ const AssignInstallerModal = (props: ModalProps) => {
           sendMail(
             "Booking has been accepted",
             email,
-            `Your Booking for the ${date} has been accepted`,
+            `Your Booking for the ${date} has been accepted <br/>
+              ${installerData[0].installerFirstName}
+            `,
             `${fName} ${lName}`
           );
         }

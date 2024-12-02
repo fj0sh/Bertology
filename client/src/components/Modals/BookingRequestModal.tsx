@@ -153,9 +153,9 @@ const BookingRequestModal = (props: Props) => {
 
       <ModalContainer width="70rem" height="50rem" z="999">
         <DeclineModal
-          date={date}
+          date={date || ""}
           bookingId={id}
-          email={email}
+          email={email || ""}
           name={`${fName} ${lName}`}
           isOpen={showDeclineModal}
           onClose={() => {

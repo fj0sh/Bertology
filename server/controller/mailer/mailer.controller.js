@@ -31,7 +31,7 @@ exports.sendMail = async (req, res) => {
       },
       to: recepient,
       subject: "Bertology",
-      text: "TEST",
+      text: "BERTOLOGY",
       html: layout,
     });
 

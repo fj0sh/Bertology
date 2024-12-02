@@ -27,6 +27,7 @@ import useMailer from "@/hooks/mailer/useMailer";
 import Cookies from "universal-cookie";
 
 import { MultiSelect } from "primereact/multiselect";
+import TermsModal from "@/components/Modals/TermsModal";
 
 const Booking = () => {
   const [selectedBookingDate, setSelectedBookingDate] = useState("");
@@ -52,6 +53,7 @@ const Booking = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isModelShow, setIsModelShow] = useState(true);
+  const [termsAgreed, setTermsAgreed] = useState(true);
 
   const {
     register,
@@ -161,8 +163,8 @@ const Booking = () => {
       setShowConfirmation(false);
       setSelectedTimeSlot("");
       setPaymentProof("");
-      setMunicipality("");
-      setBarangay("");
+      setMunicipality(undefined);
+      setBarangay([]);
       setSelectedModel("");
       setServiceMode("");
       successfulBooking();
@@ -177,7 +179,8 @@ const Booking = () => {
           municipality!,
           barangay.toString(),
           formData.landmark!,
-          selectedModel !== "" ? selectedModel : formData.model || "",
+          formData.model || "",
+          // selectedModel !== "" ? selectedModel : formData.model || "",
           formData.details,
           paymentProof,
           `${
@@ -252,6 +255,7 @@ const Booking = () => {
 
   return (
     <>
+      <TermsModal isOpen={termsAgreed} onClose={() => setTermsAgreed(false)} />
       <div className="transition-all duration-1000 ease-in-out mt-10">
         <BookingConfirmation
           isOpen={showConfirmation}
@@ -282,6 +286,7 @@ const Booking = () => {
           </div>
         </div>
         <div className="w-full">
+          {/* --------------------------------------------------------------------------------------------------START BOOKING--------------------------------------------------------------------------------------------------------------------------------------------- */}
           <form
             className="w-full text-white bg-black rounded-[15px] p-8 flex flex-col gap-3"
             onSubmit={handleSubmit(onSubmit)}
@@ -465,7 +470,7 @@ const Booking = () => {
             </div>
 
             <div className="flex w-full gap-8 *:w-full">
-              <div className="flex flex-col gap-2">
+              {/* <div className="flex flex-col gap-2">
                 <p className="text-[18px]">Car Model:</p>
                 <div className="relative">
                   <div className="text-black h-full">
@@ -502,10 +507,10 @@ const Booking = () => {
                     </div>
                   )}
                 </div>
-              </div>
+              </div> */}
 
-              <div>
-                <div>
+              <div className="w-full">
+                <div className="w-1/2">
                   <div className="w-[80%]">
                     <InputOrange
                       disabled={selectedModel ? true : false}
@@ -534,6 +539,10 @@ const Booking = () => {
                 </p>
               )}
             </div>
+
+            {/* --------------------------------------------------------------------------------------------------END BOOKING--------------------------------------------------------------------------------------------------------------------------------------------- */}
+
+            {/* --------------------------------------------------------------------------------------------------PAYMENT START--------------------------------------------------------------------------------------------------------------------------------------------- */}
             <div className="flex justify-between gap-2">
               <div className="flex flex-col gap-2 w-full">
                 <p className="text-[15px]">Proof of Payment/Payment Receipt:</p>
@@ -573,6 +582,7 @@ const Booking = () => {
                 <p className="text-[12px]">Click to enlarge Image</p>
               </div>
             </div>
+            {/* --------------------------------------------------------------------------------------------------PAYMENT END--------------------------------------------------------------------------------------------------------------------------------------------- */}
             {imageLarger1 && (
               <div
                 className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center"

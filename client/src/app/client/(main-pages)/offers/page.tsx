@@ -24,7 +24,7 @@ const Services = () => {
           We assure to serve high
           <span className="text-orangeRed"> Quality</span> and{" "}
           <span className="text-orangeRed"> Valuable</span> Service
-        </p>
+        </p>  
       </div> */}
 
       <div className="h-full flex flex-col items-center gap-6 p-20">

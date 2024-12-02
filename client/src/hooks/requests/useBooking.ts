@@ -97,6 +97,7 @@ const useBooking = () => {
   const acceptBooking = async (id: number) => {
     try {
       const res = instance.patch(`/booking/accept/${id}`);
+      refetch();
       console.log(res);
     } catch (error) {
       console.log(error);

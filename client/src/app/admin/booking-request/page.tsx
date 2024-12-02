@@ -9,11 +9,13 @@ import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import "@/style/tables.css";
 import { succesToast } from "@/components/toast";
+import { Calendar } from "primereact/calendar";
 
 const BookingRequest = () => {
   const [isRequestShow, setIsRequestShow] = useState(false);
   const [rowData, setRowData] = useState<BookingResponse>();
   const [tableView, setTableView] = useState("ALLBOOKINGS");
+  const [dateFilter, setDateFilter] = useState<Date | null>(null);
 
   const {
     getAllBookings,
@@ -31,6 +33,19 @@ const BookingRequest = () => {
     getSelectedTypes(data.data.id);
     setIsRequestShow(true);
     setRowData(data);
+  };
+
+  const getFilteredData = () => {
+    if (!dateFilter) return tanstackData;
+
+    return tanstackData?.filter((res: any) => {
+      const bookedDate = new Date(res.data.bookedDate.split(" ")[0]);
+      return (
+        bookedDate.getFullYear() === dateFilter.getFullYear() &&
+        bookedDate.getMonth() === dateFilter.getMonth() &&
+        bookedDate.getDate() === dateFilter.getDate()
+      );
+    });
   };
 
   const handleDeleteBooking = (data: any) => {
@@ -134,40 +149,49 @@ const BookingRequest = () => {
       <p className="text-orangeRed font-semibold text-[25px]">
         Booking Requests
       </p>
-      <div className="flex text-white gap-6 font-semibold">
-        <button
-          className={`${
-            tableView === "ALLBOOKINGS" &&
-            "text-orangeRed underline underline-offset-8 "
-          }`}
-          onClick={() => {
-            setTableView("ALLBOOKINGS");
-          }}
-        >
-          All Bookings
-        </button>
-        <button
-          className={`${
-            tableView === "BOOKINGHISTORY" &&
-            "text-orangeRed underline underline-offset-8 "
-          }`}
-          onClick={() => {
-            setTableView("BOOKINGHISTORY");
-          }}
-        >
-          Booking History
-        </button>
-        <button
-          className={`${
-            tableView === "TODAYSBOOKINGS" &&
-            "text-orangeRed underline underline-offset-8 "
-          }`}
-          onClick={() => {
-            setTableView("TODAYSBOOKINGS");
-          }}
-        >
-          Todays Bookings
-        </button>
+      <div className="flex justify-between w-full">
+        <div className="flex text-white gap-6 font-semibold">
+          <button
+            className={`${
+              tableView === "ALLBOOKINGS" &&
+              "text-orangeRed underline underline-offset-8 "
+            }`}
+            onClick={() => {
+              setTableView("ALLBOOKINGS");
+            }}
+          >
+            All Bookings
+          </button>
+          <button
+            className={`${
+              tableView === "BOOKINGHISTORY" &&
+              "text-orangeRed underline underline-offset-8 "
+            }`}
+            onClick={() => {
+              setTableView("BOOKINGHISTORY");
+            }}
+          >
+            Booking History
+          </button>
+          <button
+            className={`${
+              tableView === "TODAYSBOOKINGS" &&
+              "text-orangeRed underline underline-offset-8 "
+            }`}
+            onClick={() => {
+              setTableView("TODAYSBOOKINGS");
+            }}
+          >
+            Todays Bookings
+          </button>
+        </div>
+        {/* <Calendar
+          value={dateFilter}
+          onChange={(e) => setDateFilter(e.value as Date)}
+          showIcon
+          showButtonBar
+          placeholder="Filter by date"
+        /> */}
       </div>
       <BookingRequestModal
         id={rowData?.data?.id ? rowData?.data?.id : 0}
@@ -188,23 +212,22 @@ const BookingRequest = () => {
         status={rowData?.data?.status}
         onClose={() => setIsRequestShow(false)}
       />
-
       <DataTable
         value={
           tableView === "BOOKINGHISTORY"
-            ? tanstackData?.filter((res: any) => {
+            ? getFilteredData()?.filter((res: any) => {
                 return (
                   res.data.status === "DONE" || res.data.status === "DECLINED"
                 );
               })
             : tableView === "TODAYSBOOKINGS"
-            ? tanstackData?.filter((res: any) => {
+            ? getFilteredData()?.filter((res: any) => {
                 return (
                   res.data.bookedDate.split(" ")[0] ===
                   new Date().toISOString().split("T")[0]
                 );
               })
-            : tanstackData?.filter((res: any) => {
+            : getFilteredData()?.filter((res: any) => {
                 return (
                   res.data.status !== "DONE" && res.data.status !== "DECLINED"
                 );

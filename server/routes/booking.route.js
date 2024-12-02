@@ -6,18 +6,21 @@ const authenticateUser = require("../middlewares/authenticateUser/authenticateUs
 router.post("/date", bookingController.getBookingsByDate);
 router.post("/", bookingController.bookService);
 router.post("/selectTypes", bookingController.selectServiceType);
+router.post("/declineReason", bookingController.declineBookingReason);
+router.post("/status", bookingController.getBookedServiceByStatus);
 // router.use(authenticateUser);
 
-router.post("/status", bookingController.getBookedServiceByStatus);
 router.get("/bookings", bookingController.getBookedServices);
 router.get("/bookings/:id", bookingController.getSelectedTypes);
 router.get("/status", bookingController.getStatusCount);
 router.get("/getMonthlySales", bookingController.getMonthlySales);
+router.get("/declined/:id", bookingController.getDeclineReasonById);
+
 router.patch("/accept/:id", bookingController.acceptBooking);
 router.patch("/decline/:id", bookingController.declineBooking);
 router.patch("/done/:id", bookingController.setBookingAsDone);
-router.delete("/:id", bookingController.deleteBooking);
-router.post("/declineReason", bookingController.declineBookingReason);
 router.patch("/reassign", bookingController.reassignInstaller);
+
+router.delete("/:id", bookingController.deleteBooking);
 
 module.exports = router;
