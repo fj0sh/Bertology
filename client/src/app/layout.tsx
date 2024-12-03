@@ -22,17 +22,15 @@ export default function RootLayout({
   return (
     <QueryProvider>
       <html lang="en">
-        <Suspense fallback={<Loading />}>
-          <PrimeReactProvider>
-            <body className="bg-background">
-              <ToastContainer />
-              {/* <ReactQueryDevtools /> */}
-              <UserProvider>
-                <div className="w-full h-full bg-background">{children}</div>
-              </UserProvider>
-            </body>
-          </PrimeReactProvider>
-        </Suspense>
+        <PrimeReactProvider>
+          <body className="bg-background">
+            <ToastContainer />
+            {/* <ReactQueryDevtools /> */}
+            <UserProvider>
+              <div className="w-full h-full bg-background">{children}</div>
+            </UserProvider>
+          </body>
+        </PrimeReactProvider>
       </html>
     </QueryProvider>
   );

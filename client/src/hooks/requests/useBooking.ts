@@ -2,7 +2,7 @@ import { BookingResponse } from "@/constants/Booking";
 import instance from "@/lib/util/axios-instance";
 import { useUser } from "@/providers/UserProvider";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const useBooking = () => {
   const [data, setData] = useState<any | undefined>(undefined);
@@ -12,6 +12,7 @@ const useBooking = () => {
   );
   const [dataByStatus, setDataByStatus] = useState();
   const [dataByDate, setDataByDate] = useState([]);
+  const [chartData, setChartData] = useState([]);
 
   const { user } = useUser();
 
@@ -188,6 +189,19 @@ const useBooking = () => {
       console.log(error);
     }
   };
+  useEffect(() => {
+    const fetchBookingData = async () => {
+      try {
+        const res = await instance.get("/booking/status");
+        const counts = res.data.map((status: any) => status.count);
+        setChartData(counts);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchBookingData();
+  }, []);
 
   return {
     bookService,
@@ -209,6 +223,7 @@ const useBooking = () => {
     dataByDate,
     allBookings,
     serviceType,
+    chartData,
     tanstackData,
   };
 };

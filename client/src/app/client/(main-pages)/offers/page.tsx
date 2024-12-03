@@ -9,36 +9,41 @@ import { ServiceType } from "@/constants/Service";
 const Services = () => {
   const { tanstackData } = useServices();
 
+  console.log(tanstackData);
+
   return (
     <div className="bg-background text-white mt-[10rem]">
-      {/* <div className="flex justify-center items-center h-screen ">
-        <div>
-          <Image
-            src={"/images/ClientCarIMG.png"}
-            height={600}
-            width={600}
-            alt="CarImage.png"
-          />
-        </div>
-        <p className="text-[50px] text-center w-[45rem] font-semibold mb-[10rem]">
-          We assure to serve high
-          <span className="text-orangeRed"> Quality</span> and{" "}
-          <span className="text-orangeRed"> Valuable</span> Service
-        </p>  
-      </div> */}
-
       <div className="h-full flex flex-col items-center gap-6 p-20">
-        <div className="grid grid-cols-4 gap-[5rem] border-none justify-items-center">
-          {tanstackData?.map((serviceData: ServiceType) => (
-            <div key={serviceData.id}>
-              <ImagePreviewCard
-                image={serviceData.serviceImage}
-                serviceName={serviceData.serviceName}
-                price={serviceData.servicePrice}
-                descrption={serviceData.serviceDescription}
-              />
-            </div>
-          ))}
+        <div className="grid grid-cols-3 gap-[5rem] border-none">
+          {tanstackData?.map((serviceData: ServiceType) => {
+            return (
+              <>
+                <div className="flex gap-3 w-full h-full border border-orangeRed p-2 rounded-md">
+                  <div className="w-[40%] p-2">
+                    <Image
+                      src={serviceData.serviceImage}
+                      alt="Service_Image.jpg"
+                      width={0}
+                      height={0}
+                      sizes="50%"
+                      style={{ width: "100%", height: "100%" }}
+                    />
+                  </div>
+                  <div className="w-[70%] flex flex-col gap-3">
+                    <div className="flex flex-col ">
+                      <p className="text-orangePrimary font-semibold text-[20px]">
+                        {serviceData.serviceName}
+                      </p>
+                      <p>Price: ₱ {serviceData.servicePrice}</p>
+                    </div>
+                    <div>
+                      <p>{serviceData.serviceDescription}</p>
+                    </div>
+                  </div>
+                </div>
+              </>
+            );
+          })}
         </div>
       </div>
       <div className=" px-16">

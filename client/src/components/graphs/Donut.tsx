@@ -3,25 +3,12 @@ import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, Tooltip, Legend, ArcElement } from "chart.js";
 import instance from "@/lib/util/axios-instance";
 import { useEffect, useState } from "react";
+import useBooking from "@/hooks/requests/useBooking";
 
 ChartJS.register(Tooltip, Legend, ArcElement);
 
 export const DonutChart = () => {
-  const [chartData, setChartData] = useState([]);
-
-  useEffect(() => {
-    const fetchBookingData = async () => {
-      try {
-        const res = await instance.get("/booking/status");
-        const counts = res.data.map((status: any) => status.count);
-        setChartData(counts);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchBookingData();
-  }, []);
+  const { chartData } = useBooking();
 
   const options = { cutout: 90 };
   const data = {

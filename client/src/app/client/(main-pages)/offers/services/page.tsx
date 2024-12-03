@@ -53,7 +53,8 @@ const Booking = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isModelShow, setIsModelShow] = useState(true);
-  const [termsAgreed, setTermsAgreed] = useState(true);
+  const [agreed, setAgreed] = useState(false);
+  const [agreeTerms, setAgreedTerms] = useState(false);
 
   const {
     register,
@@ -255,7 +256,7 @@ const Booking = () => {
 
   return (
     <>
-      <TermsModal isOpen={termsAgreed} onClose={() => setTermsAgreed(false)} />
+      <TermsModal isOpen={agreed} onClose={() => setAgreed(false)} />
       <div className="transition-all duration-1000 ease-in-out mt-10">
         <BookingConfirmation
           isOpen={showConfirmation}
@@ -470,45 +471,6 @@ const Booking = () => {
             </div>
 
             <div className="flex w-full gap-8 *:w-full">
-              {/* <div className="flex flex-col gap-2">
-                <p className="text-[18px]">Car Model:</p>
-                <div className="relative">
-                  <div className="text-black h-full">
-                    <input
-                      disabled={isModelShow ? false : true}
-                      placeholder="Please Select A Model"
-                      type="text"
-                      value={selectedModel}
-                      className={`bg-background rounded-md border text-white h-full focus:outline-none p-[8px] text-[16px] ${
-                        isModelShow
-                          ? "border-orangeRed "
-                          : "border-orangeRed bg-[#EBEBE4]"
-                      }`}
-                      onChange={handleModelChange}
-                    />
-                  </div>
-
-                  {showDropdown && selectedModel !== "" && (
-                    <div className="text-black absolute bg-white top-14 p-3 overflow-y-auto h-fit max-h-[10rem] w-fit truncate shadow-md z-10 rounded-sm border-none text-justify flex flex-col">
-                      {filteredModels.length === 0 ? (
-                        <p>No Result</p>
-                      ) : (
-                        filteredModels.map((result, index) => (
-                          <button
-                            type="button"
-                            key={index}
-                            className="text-left"
-                            onClick={() => handleModelSelect(result)}
-                          >
-                            {result}
-                          </button>
-                        ))
-                      )}
-                    </div>
-                  )}
-                </div>
-              </div> */}
-
               <div className="w-full">
                 <div className="w-1/2">
                   <div className="w-[80%]">
@@ -539,13 +501,12 @@ const Booking = () => {
                 </p>
               )}
             </div>
-
             {/* --------------------------------------------------------------------------------------------------END BOOKING--------------------------------------------------------------------------------------------------------------------------------------------- */}
 
             {/* --------------------------------------------------------------------------------------------------PAYMENT START--------------------------------------------------------------------------------------------------------------------------------------------- */}
             <div className="flex justify-between gap-2">
               <div className="flex flex-col gap-2 w-full">
-                <p className="text-[15px]">Proof of Payment/Payment Receipt:</p>
+                <p className="text-[15px]">Proof of Payment/ Receipt:</p>
                 <div className="h-[10rem] w-[10rem] border rounded-md border-orangeRed">
                   <ImageUpload
                     value={paymentProof}
@@ -616,12 +577,31 @@ const Booking = () => {
                 </div>
               </div>
             )}
+            <div className="flex gap-2 items-center">
+              <input
+                type="checkbox"
+                onClick={() => setAgreedTerms((prev) => !prev)}
+              />
+              <div className="flex gap-1">
+                I have read and agree to the{" "}
+                <button
+                  className="text-blue-600 underline"
+                  type="button"
+                  onClick={() => setAgreed(true)}
+                >
+                  terms and conditions
+                </button>
+              </div>
+            </div>
 
-            <Button
-              title="Submit"
+            <button
               type="submit"
-              // disabled={paymentProof ? false : true}
-            />
+              className={` text-white py-2 px-8 rounded-md w-fit text-[20px] ${
+                agreeTerms && paymentProof ? "bg-orangeRed" : " bg-asphalt"
+              }`}
+            >
+              Submit
+            </button>
           </form>
         </div>
       </div>

@@ -147,22 +147,20 @@ const TermsModal = (props: modalProps) => {
             Terms and Conditions.
           </p>
         </div>
-
-        <div className="flex justify-between">
+        <button
+          className={`p-2 text-white rounded-md bg-orangeRed`}
+          // disabled={!agreed}
+          onClick={onClose}
+        >
+          I Accept
+        </button>
+        {/* <div className="flex justify-between">
           <div className="flex gap-2 items-center">
             <input type="checkbox" onClick={() => setAgreed((prev) => !prev)} />
             <p>I have read and agree to the terms and conditions</p>
           </div>
-          <button
-            className={`p-2 text-white rounded-md ${
-              agreed ? "bg-orangeRed" : "bg-grey"
-            }`}
-            disabled={!agreed}
-            onClick={onClose}
-          >
-            Accept
-          </button>
-        </div>
+          
+        </div> */}
       </div>
     </ModalContainer>
   );
