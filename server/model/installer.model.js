@@ -83,3 +83,11 @@ exports.editInstaller = (installerId, updatedInformation, callback) => {
 exports.deleteInstaller = (id, callback) => {
   conn.query("DELETE FROM installers WHERE installerId = ?", id, callback);
 };
+
+exports.getInstallerBookings = (id, callback) => {
+  conn.query(
+    "SELECT b.id AS bookingId, b.bookedDate, b.status, b.carModel, b.mode, i.installerFirstName, i.installerLastName FROM booking b INNER JOIN installers i ON b.installerId = i.installerId WHERE i.installerId = 1",
+    id,
+    callback
+  );
+};

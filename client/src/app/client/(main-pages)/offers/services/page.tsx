@@ -107,7 +107,7 @@ const Booking = () => {
   useEffect(() => {
     if (municipality) {
       const barangays = Locations.CEBU.municipality_list[municipality] || [];
-      setBarangay(barangays?.barangay_list); // Update barangay list
+      setBarangay((barangays as any)?.barangay_list); // Update barangay list
     } else {
       setBarangay([]); // Reset barangay list if no municipality is selected
     }

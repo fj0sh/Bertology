@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 const useInstallers = () => {
   const [data, setData] = useState([]);
   const [installerData, setInstallerData] = useState<InstallerType[]>([]);
+  const [installerBookingData, setInstallerBookingData] = useState([]);
 
   const getInstallers = async () => {
     try {
@@ -111,6 +112,15 @@ const useInstallers = () => {
     }
   };
 
+  const getInstallerBooking = async (id: number) => {
+    try {
+      const res = await instance.get(`/installer/bookings/${id}`);
+      setInstallerBookingData(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getInstallers();
   }, []);
@@ -119,7 +129,9 @@ const useInstallers = () => {
     installerData,
     data,
     tanstackData,
+    installerBookingData,
 
+    getInstallerBooking,
     addInstaller,
     getInstallerById,
     assignInstaller,

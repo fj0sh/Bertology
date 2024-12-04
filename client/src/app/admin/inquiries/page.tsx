@@ -49,7 +49,7 @@ const Inquiry = () => {
           name={`${rowData?.firstName} ${rowData?.lastName}`}
           email={rowData?.email}
           message={rowData?.message}
-          status={rowData?.status}
+          status={rowData?.status!}
           id={rowData.id!}
         />
       )}

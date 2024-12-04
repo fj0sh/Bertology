@@ -12,12 +12,17 @@ import { ClipLoader } from "react-spinners";
 import { GrUserWorker } from "react-icons/gr";
 import { MdBookmarkAdded } from "react-icons/md";
 import { PiUserSoundBold } from "react-icons/pi";
+import useInstallers from "@/hooks/requests/useInstallers";
+import { InquiryType, InstallerType } from "@/lib/util/schema";
+import useInquiry from "@/hooks/requests/useInquiry";
 
 const AdminDashboard = () => {
   const { dataByDate, chartData, tanstackData, getBookingByDate } =
     useBooking();
+  const { tanstackData: installers } = useInstallers();
+  const { tanstackData: inquiries } = useInquiry();
 
-  console.log("total bookings", tanstackData.length());
+  console.log(inquiries);
 
   const currentDate = new Date();
   const [date, setDate] = useState(formatDateForSQL(currentDate).split(" ")[0]);
@@ -41,6 +46,45 @@ const AdminDashboard = () => {
       );
     }
   };
+  const statusColumn = (rowData: any) => {
+    let statusColor = "";
+
+    switch (rowData.status) {
+      case "PENDING":
+        statusColor = "bg-yellow-500 text-[#FFFFFF]";
+        break;
+      case "DECLINED":
+        statusColor = "bg-red-600 text-[#FFFFFF]";
+        break;
+      case "DONE":
+        statusColor = "bg-green-500 text-[#FFFFFF]";
+        break;
+      case "APPROVED":
+        statusColor = "bg-blue-500 text-[#FFFFFF]";
+        break;
+      default:
+        statusColor = "bg-gray-500 text-[#FFFFFF]";
+        break;
+    }
+
+    return (
+      <span
+        className={`${statusColor} font-semibold text-white py-1 px-3 rounded-[25px]`}
+      >
+        {rowData.status}
+      </span>
+    );
+  };
+
+  const totalBookings = tanstackData?.reduce((total: any) => total + 1, 0) || 0;
+  const activeInstallersCount =
+    installers?.filter(
+      (installer: InstallerType) => installer.installerStatus === "ACTIVE"
+    ).length || 0;
+  const newInquiries =
+    inquiries?.filter(
+      (inquiries: InquiryType) => inquiries.status === "PENDING"
+    ).length || 0;
 
   return (
     <div className="w-full h-[85vh] flex flex-col gap-4">
@@ -51,7 +95,9 @@ const AdminDashboard = () => {
               <GrUserWorker size={50} />
             </div>
             <div className="flex flex-col gap-2 justify-center items-center w-full text-white">
-              <p className="text-[20px] font-semibold">0</p>
+              <p className="text-[25px] font-semibold">
+                {activeInstallersCount}
+              </p>
               <p>ACTIVE INSTALLERS</p>
             </div>
           </div>
@@ -60,7 +106,7 @@ const AdminDashboard = () => {
               <MdBookmarkAdded size={50} />
             </div>
             <div className="flex flex-col gap-2 justify-center items-center w-full text-white">
-              <p className="text-[20px] font-semibold">0</p>
+              <p className="text-[25px] font-semibold">{totalBookings}</p>
               <p>TOTAL BOOKINGS</p>
             </div>
           </div>
@@ -69,7 +115,7 @@ const AdminDashboard = () => {
               <PiUserSoundBold size={50} />
             </div>
             <div className="flex flex-col gap-2 justify-center items-center w-full text-white">
-              <p className="text-[20px] font-semibold">0</p>
+              <p className="text-[25px] font-semibold">{newInquiries}</p>
               <p>NEW INQUIRIES</p>
             </div>
           </div>
@@ -115,7 +161,11 @@ const AdminDashboard = () => {
           <div className="w-full bg-ninjaBlack rounded-md">
             <DataTable tableClassName="custom-table" value={dataByDate}>
               <Column header="Name" body={nameColumn} />
-              <Column header="Status" field="status" className="text-white" />
+              <Column
+                header="Status"
+                body={statusColumn}
+                className="text-white"
+              />
               <Column
                 header="Car Model"
                 field="carModel"
@@ -134,7 +184,26 @@ const AdminDashboard = () => {
             </DataTable>
           </div>
         </div>
-        <div className="w-full bg-ninjaBlack rounded-md"></div>
+        <div className="w-[30%] text-white p-4 bg-ninjaBlack rounded-md">
+          <p className="font-semibold text-orangePrimary text-[20px] mb-4">
+            New Inquiries{" "}
+          </p>
+          <div className="flex flex-col gap-3">
+            {inquiries
+              ?.filter((inquiry: InquiryType) => inquiry.status === "PENDING")
+              .map((inquiry: InquiryType) => {
+                return (
+                  <div
+                    className="flex flex-col gap-2 max-w-[28rem] bg-asphalt p-2 shadow-lg rounded-md"
+                    key={inquiry.id}
+                  >
+                    <div>{inquiry.email}</div>
+                    <div className="indent-5 truncate">{inquiry.message}</div>
+                  </div>
+                );
+              })}
+          </div>
+        </div>
       </div>
     </div>
   );
