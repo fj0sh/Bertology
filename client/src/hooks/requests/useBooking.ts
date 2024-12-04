@@ -203,6 +203,10 @@ const useBooking = () => {
     fetchBookingData();
   }, []);
 
+  useEffect(() => {
+    getAllBookings();
+  }, []);
+
   return {
     bookService,
     getServiceById,

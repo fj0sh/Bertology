@@ -68,7 +68,16 @@ const InstallerModal = (props: ModalProps) => {
     setNewNumber(phoneNumber);
     setNewExperience(experience);
     setNewImage(image!);
-  }, [address, email, experience, firstname, lastname, newImage, phoneNumber]);
+  }, [
+    address,
+    email,
+    experience,
+    firstname,
+    image,
+    lastname,
+    newImage,
+    phoneNumber,
+  ]);
 
   const saveEdit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

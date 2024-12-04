@@ -18,19 +18,18 @@ const InstallerSchedule = (props: modalProps) => {
 
   const [filteredData, setFilteredData] = useState([]);
 
-  const filterInstallerSchedule = () => {
-    const filtered = installerBookingData.filter(
-      (result: BookingType) =>
-        result.status === "PENDING" || result.status === "APPROVED"
-    );
-    setFilteredData(filtered);
-  };
-
   useEffect(() => {
     getInstallerBooking(id);
-  }, []);
+  }, [getInstallerBooking, id]);
 
   useEffect(() => {
+    const filterInstallerSchedule = () => {
+      const filtered = installerBookingData.filter(
+        (result: BookingType) =>
+          result.status === "PENDING" || result.status === "APPROVED"
+      );
+      setFilteredData(filtered);
+    };
     if (installerBookingData?.length) {
       filterInstallerSchedule();
     }
