@@ -193,3 +193,10 @@ exports.reassignInstaller = (req, res) => {
     }
   );
 };
+
+exports.markMissedBooking = (req, res) => {
+  bookingModel.markMissedBooking((err, result) => {
+    if (err) return res.status(400).send(err);
+    return res.status(200).send(result);
+  });
+};
