@@ -8,6 +8,7 @@ import { ServiceType } from "@/constants/Service";
 import InputOrange from "../input/inputOrange";
 import ImageUpload from "../input/ImageUpload";
 import useServices from "@/hooks/requests/useServices";
+import { succesToast } from "../toast";
 
 interface ModalProps {
   isOpen: boolean;
@@ -30,11 +31,19 @@ const AddServiceModal = (props: ModalProps) => {
     addServices(
       data.serviceName,
       data.servicePrice,
-      newImage,
+      newImage ? newImage : "",
       data.serviceDescription
     );
-    setNewImage("  ");
+    succesToast("Service added successfully");
+    setNewImage("");
     reset();
+    onClose?.();
+  };
+
+  const resetOnClose = () => {
+    reset();
+    setNewImage("");
+    onClose?.();
   };
 
   if (!isOpen) return null;
@@ -44,7 +53,7 @@ const AddServiceModal = (props: ModalProps) => {
       <div className="absolute top-5 right-5 border-none rounded-full hover:bg-grey p-2">
         <IoMdClose
           className="text-white text-[30px] cursor-pointer"
-          onClick={onClose}
+          onClick={() => resetOnClose()}
         />
       </div>
       <div className="flex w-full h-full p-10 gap-10">

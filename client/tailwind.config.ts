@@ -20,7 +20,8 @@ const config: Config = {
         grey: "#252531",
         background: "#080808",
         orangeRed: "#FF661F",
-        
+        ninjaBlack: "#1a1a1a",
+        asphalt: "#333333",
       },
     },
   },

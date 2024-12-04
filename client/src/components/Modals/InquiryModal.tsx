@@ -4,6 +4,7 @@ import { IoMdClose } from "react-icons/io";
 import Button from "../button/OrangeButton";
 import useMailer from "@/hooks/mailer/useMailer";
 import useInquiry from "@/hooks/requests/useInquiry";
+import { succesToast } from "../toast";
 
 interface ModalProps {
   isOpen: boolean;
@@ -23,11 +24,13 @@ const InquiryModal = (props: ModalProps) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    sendMail(email, reply, name);
+    sendMail("Response to your Inquiry", email, reply, name);
     resolveInquiry(id);
+    succesToast(" Inquiry response has been sent");
+    onClose?.();
   };
 
-  if (!isOpen) return null; 
+  if (!isOpen) return null;
 
   return (
     <ModalContainer width="60rem" height="45rem">

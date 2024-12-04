@@ -1,8 +1,5 @@
-import React, { useState } from "react";
-import useFetchData from "../fetcher/useFetchData";
-import { ServiceType } from "@/constants/Service";
+import { useState } from "react";
 import instance from "@/lib/util/axios-instance";
-import { useUser } from "@/providers/UserProvider";
 import { useQuery } from "@tanstack/react-query";
 
 const useServices = () => {
@@ -38,6 +35,7 @@ const useServices = () => {
 
     try {
       await instance.post("/services", body);
+      refetch();
     } catch (error) {
       console.log(error);
     }
@@ -77,6 +75,7 @@ const useServices = () => {
   const deleteService = async (id: number) => {
     try {
       await instance.delete(`/services/${id}`);
+      refetch();
     } catch (error) {
       console.log(error);
     }

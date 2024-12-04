@@ -23,13 +23,9 @@ const PrimeCalendar = (props: Props) => {
           `${process.env.NEXT_PUBLIC_URL}/services/booked-dates`
         );
 
-        console.log(res.data);
-
         const disableDates = res.data.map((booked: any) => {
           return new Date(booked.bookingDate);
         });
-
-        console.log("Disabled Dates:", disableDates);
 
         setBookedDates(disableDates);
       } catch (error) {

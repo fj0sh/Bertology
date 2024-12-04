@@ -6,6 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import "../../globals.css";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -13,15 +15,24 @@ const Login = () => {
   const router = useRouter();
 
   const { loginUser } = useAuth();
+  const invalidCredentials = () => {
+    Swal.fire({
+      title: "Invalid Credentials",
+      text: "Please enter a valid email and password.",
+      icon: "error",
+    });
+  };
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const result = await loginUser(email, password);
-    if (result) {
-      // router.push("/admin/dashboard");
-      // setEmail("");
-      // setPassword("");
+    console.log(result);
+    if (result.status !== 404) {
+      router.push("/admin/dashboard");
+      setEmail("");
+      setPassword("");
     } else {
+      invalidCredentials();
       console.log(result);
     }
   };

@@ -7,6 +7,8 @@ import "primereact/resources/themes/lara-light-cyan/theme.css";
 import { UserProvider } from "@/providers/UserProvider";
 import { Suspense } from "react";
 import Loading from "./loading";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -20,16 +22,15 @@ export default function RootLayout({
   return (
     <QueryProvider>
       <html lang="en">
-        <Suspense fallback={<Loading />}>
-          <PrimeReactProvider>
-            <body className="bg-background">
-              <ReactQueryDevtools />
-              <UserProvider>
-                <div className="w-full h-full bg-background">{children}</div>
-              </UserProvider>
-            </body>
-          </PrimeReactProvider>
-        </Suspense>
+        <PrimeReactProvider>
+          <body className="bg-background">
+            <ToastContainer />
+            {/* <ReactQueryDevtools /> */}
+            <UserProvider>
+              <div className="w-full h-full bg-background">{children}</div>
+            </UserProvider>
+          </body>
+        </PrimeReactProvider>
       </html>
     </QueryProvider>
   );

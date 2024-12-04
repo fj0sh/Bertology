@@ -27,6 +27,7 @@ import useMailer from "@/hooks/mailer/useMailer";
 import Cookies from "universal-cookie";
 
 import { MultiSelect } from "primereact/multiselect";
+import TermsModal from "@/components/Modals/TermsModal";
 
 const Booking = () => {
   const [selectedBookingDate, setSelectedBookingDate] = useState("");
@@ -52,6 +53,8 @@ const Booking = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isModelShow, setIsModelShow] = useState(true);
+  const [agreed, setAgreed] = useState(false);
+  const [agreeTerms, setAgreedTerms] = useState(false);
 
   const {
     register,
@@ -145,6 +148,7 @@ const Booking = () => {
       const OTP = Math.floor(Math.random() * (999999 - 100000) + 100000);
       setGeneratedOTP(OTP);
       sendMail(
+        "Bertology Booking OTP",
         data.email,
         `<p>Your OTP is ${OTP}</p>`,
         `${data.firstName} ${data.lastName}`
@@ -158,8 +162,14 @@ const Booking = () => {
     const otp = parseInt(cookies.get("OTP"));
     if (parseInt(userOTP) === otp) {
       setShowConfirmation(false);
-      reset();
+      setSelectedTimeSlot("");
+      setPaymentProof("");
+      setMunicipality(undefined);
+      setBarangay([]);
+      setSelectedModel("");
+      setServiceMode("");
       successfulBooking();
+      reset();
 
       if (formData) {
         const bookingResponse = await bookService(
@@ -170,7 +180,8 @@ const Booking = () => {
           municipality!,
           barangay.toString(),
           formData.landmark!,
-          selectedModel !== "" ? selectedModel : formData.model || "",
+          formData.model || "",
+          // selectedModel !== "" ? selectedModel : formData.model || "",
           formData.details,
           paymentProof,
           `${
@@ -193,7 +204,7 @@ const Booking = () => {
   };
 
   useEffect(() => {
-    if (selectedService.length > 1) {
+    if (selectedService.length > 2) {
       setServiceBooked("MULTIPLE");
     } else {
       setServiceBooked("SINGLE");
@@ -245,7 +256,8 @@ const Booking = () => {
 
   return (
     <>
-      <div className="transition-all duration-1000 ease-in-out">
+      <TermsModal isOpen={agreed} onClose={() => setAgreed(false)} />
+      <div className="transition-all duration-1000 ease-in-out mt-10">
         <BookingConfirmation
           isOpen={showConfirmation}
           onClose={() => setShowConfirmation(false)}
@@ -275,6 +287,7 @@ const Booking = () => {
           </div>
         </div>
         <div className="w-full">
+          {/* --------------------------------------------------------------------------------------------------START BOOKING--------------------------------------------------------------------------------------------------------------------------------------------- */}
           <form
             className="w-full text-white bg-black rounded-[15px] p-8 flex flex-col gap-3"
             onSubmit={handleSubmit(onSubmit)}
@@ -418,7 +431,7 @@ const Booking = () => {
                     value={selectedService}
                     onChange={(e) => setSelectedService(e.value)}
                     options={tanstackData}
-                    selectionLimit={5}
+                    selectionLimit={4}
                     optionLabel="serviceName"
                     display="chip"
                     placeholder="Select a Service..."
@@ -458,47 +471,8 @@ const Booking = () => {
             </div>
 
             <div className="flex w-full gap-8 *:w-full">
-              <div className="flex flex-col gap-2">
-                <p className="text-[18px]">Car Model:</p>
-                <div className="relative">
-                  <div className="text-black h-full">
-                    <input
-                      disabled={isModelShow ? false : true}
-                      placeholder="Please Select A Model"
-                      type="text"
-                      value={selectedModel}
-                      className={`bg-background rounded-md border text-white h-full focus:outline-none p-[8px] text-[16px] ${
-                        isModelShow
-                          ? "border-orangeRed "
-                          : "border-orangeRed bg-[#EBEBE4]"
-                      }`}
-                      onChange={handleModelChange}
-                    />
-                  </div>
-
-                  {showDropdown && selectedModel !== "" && (
-                    <div className="text-black absolute bg-white top-14 p-3 overflow-y-auto h-fit max-h-[10rem] w-fit truncate shadow-md z-10 rounded-sm border-none text-justify flex flex-col">
-                      {filteredModels.length === 0 ? (
-                        <p>No Result</p>
-                      ) : (
-                        filteredModels.map((result, index) => (
-                          <button
-                            type="button"
-                            key={index}
-                            className="text-left"
-                            onClick={() => handleModelSelect(result)}
-                          >
-                            {result}
-                          </button>
-                        ))
-                      )}
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              <div>
-                <div>
+              <div className="w-full">
+                <div className="w-1/2">
                   <div className="w-[80%]">
                     <InputOrange
                       disabled={selectedModel ? true : false}
@@ -527,9 +501,12 @@ const Booking = () => {
                 </p>
               )}
             </div>
+            {/* --------------------------------------------------------------------------------------------------END BOOKING--------------------------------------------------------------------------------------------------------------------------------------------- */}
+
+            {/* --------------------------------------------------------------------------------------------------PAYMENT START--------------------------------------------------------------------------------------------------------------------------------------------- */}
             <div className="flex justify-between gap-2">
               <div className="flex flex-col gap-2 w-full">
-                <p className="text-[15px]">Proof of Payment/Payment Receipt:</p>
+                <p className="text-[15px]">Proof of Payment/ Receipt:</p>
                 <div className="h-[10rem] w-[10rem] border rounded-md border-orangeRed">
                   <ImageUpload
                     value={paymentProof}
@@ -566,6 +543,7 @@ const Booking = () => {
                 <p className="text-[12px]">Click to enlarge Image</p>
               </div>
             </div>
+            {/* --------------------------------------------------------------------------------------------------PAYMENT END--------------------------------------------------------------------------------------------------------------------------------------------- */}
             {imageLarger1 && (
               <div
                 className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center"
@@ -599,12 +577,31 @@ const Booking = () => {
                 </div>
               </div>
             )}
+            <div className="flex gap-2 items-center">
+              <input
+                type="checkbox"
+                onClick={() => setAgreedTerms((prev) => !prev)}
+              />
+              <div className="flex gap-1">
+                I have read and agree to the{" "}
+                <button
+                  className="text-blue-600 underline"
+                  type="button"
+                  onClick={() => setAgreed(true)}
+                >
+                  terms and conditions
+                </button>
+              </div>
+            </div>
 
-            <Button
-              title="Submit"
+            <button
               type="submit"
-              // disabled={paymentProof ? false : true}
-            />
+              className={` text-white py-2 px-8 rounded-md w-fit text-[20px] ${
+                agreeTerms && paymentProof ? "bg-orangeRed" : " bg-asphalt"
+              }`}
+            >
+              Submit
+            </button>
           </form>
         </div>
       </div>

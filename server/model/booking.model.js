@@ -129,3 +129,29 @@ exports.markMissedBookings = (callback) => {
     callback
   );
 };
+
+exports.declineReason = (body, callback) => {
+  const { bookingId, reason } = body;
+
+  conn.query(
+    "INSERT INTO decline_reason (bookingId, reason) VALUES (?, ?)",
+    [bookingId, reason],
+    callback
+  );
+};
+
+exports.getDeclineReasonById = (bookingId, callback) => {
+  conn.query(
+    "SELECT * FROM booking b JOIN decline_reason d d.bookingId = ?",
+    [bookingId],
+    callback
+  );
+};
+
+exports.reassignInstaller = (bookingId, installerId, callback) => {
+  conn.query(
+    "UPDATE booking SET installerId = ? WHERE id = ?",
+    [bookingId, installerId],
+    callback
+  );
+};

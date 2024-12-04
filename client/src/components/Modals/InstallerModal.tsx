@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 import { InstallerSchema, InstallerType } from "@/lib/util/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { set } from "zod";
+import { succesToast } from "../toast";
 
 interface ModalProps {
   isOpen: boolean;
@@ -64,7 +65,7 @@ const InstallerModal = (props: ModalProps) => {
     setNewEmail(email);
     setNewNumber(phoneNumber);
     setNewExperience(experience);
-    setNewImage(newImage);
+    setNewImage(image!);
   }, [address, email, experience, firstname, lastname, newImage, phoneNumber]);
 
   const saveEdit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -82,6 +83,7 @@ const InstallerModal = (props: ModalProps) => {
         newStatus
       );
       setIsEditting(false);
+      succesToast("Technician Edited successfully");
       onClose?.();
     } catch (error) {
       console.log("Error:", error);
@@ -193,7 +195,7 @@ const InstallerModal = (props: ModalProps) => {
         </form>
 
         <div className="w-full h-full flex gap-4">
-          <div className="w-full flex flex-col gap-4 border-r mt-16 text-[18px] pr-8">
+          <div className="w-[50%] flex flex-col gap-4 border-r mt-16 text-[18px] pr-8">
             <div className="flex items-center gap-3">
               <FaHouseChimney size={30} />
               {isEditting ? (
@@ -231,7 +233,7 @@ const InstallerModal = (props: ModalProps) => {
             </div>
           </div>
 
-          <div className="w-full h-full">
+          <div className="w-[50%] h-full">
             <div className="flex flex-col gap-4 items-center p-6 h-full w-full">
               <p className="font-semibold text-[25px] text-orangeRed">
                 Experience

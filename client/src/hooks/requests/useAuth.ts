@@ -1,6 +1,6 @@
 import instance from "@/lib/util/axios-instance";
 import Cookie from "universal-cookie";
-import { encrypter, decrypter } from "@/lib/function/encrypter/encrypter";
+import { encrypter } from "@/lib/function/encrypter/encrypter";
 import { useState } from "react";
 import { UserType } from "@/constants/Users";
 
@@ -22,11 +22,10 @@ const useAuth = () => {
         user: res.data.user,
       };
 
-      console.log(dataFormat);
-
-      const data = encrypter(JSON.stringify(dataFormat));
-
-      cookies.set("jwt_auth", data);
+      if (res) {
+        const data = encrypter(JSON.stringify(dataFormat));
+        cookies.set("jwt_auth", data);
+      }
 
       return res.data;
     } catch (error) {

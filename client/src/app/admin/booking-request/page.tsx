@@ -8,11 +8,14 @@ import { DataTable } from "primereact/datatable";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import "@/style/tables.css";
+import { succesToast } from "@/components/toast";
+import { Calendar } from "primereact/calendar";
 
 const BookingRequest = () => {
   const [isRequestShow, setIsRequestShow] = useState(false);
   const [rowData, setRowData] = useState<BookingResponse>();
   const [tableView, setTableView] = useState("ALLBOOKINGS");
+  const [dateFilter, setDateFilter] = useState<Date | null>(null);
 
   const {
     getAllBookings,
@@ -32,12 +35,23 @@ const BookingRequest = () => {
     setRowData(data);
   };
 
-  console.log(tanstackData);
+  const getFilteredData = () => {
+    if (!dateFilter) return tanstackData;
+
+    return tanstackData?.filter((res: any) => {
+      const bookedDate = new Date(res.data.bookedDate.split(" ")[0]);
+      return (
+        bookedDate.getFullYear() === dateFilter.getFullYear() &&
+        bookedDate.getMonth() === dateFilter.getMonth() &&
+        bookedDate.getDate() === dateFilter.getDate()
+      );
+    });
+  };
 
   const handleDeleteBooking = (data: any) => {
     Swal.fire({
       title: "Delete Booking?",
-      text: "You are about to delete this booking.",
+      text: "You are about to delete this booking. This data will never be recovered.",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -46,6 +60,7 @@ const BookingRequest = () => {
       cancelButtonText: "No",
     }).then((res) => {
       if (res.isConfirmed) {
+        succesToast("Booking deleted successfully");
         deleteBooking(data.data.id);
       }
     });
@@ -134,40 +149,49 @@ const BookingRequest = () => {
       <p className="text-orangeRed font-semibold text-[25px]">
         Booking Requests
       </p>
-      <div className="flex text-white gap-6 font-semibold">
-        <button
-          className={`${
-            tableView === "ALLBOOKINGS" &&
-            "text-orangeRed underline underline-offset-8 "
-          }`}
-          onClick={() => {
-            setTableView("ALLBOOKINGS");
-          }}
-        >
-          All Bookings
-        </button>
-        <button
-          className={`${
-            tableView === "BOOKINGHISTORY" &&
-            "text-orangeRed underline underline-offset-8 "
-          }`}
-          onClick={() => {
-            setTableView("BOOKINGHISTORY");
-          }}
-        >
-          Booking History
-        </button>
-        <button
-          className={`${
-            tableView === "TODAYSBOOKINGS" &&
-            "text-orangeRed underline underline-offset-8 "
-          }`}
-          onClick={() => {
-            setTableView("TODAYSBOOKINGS");
-          }}
-        >
-          Todays Bookings
-        </button>
+      <div className="flex justify-between w-full">
+        <div className="flex text-white gap-6 font-semibold">
+          <button
+            className={`${
+              tableView === "ALLBOOKINGS" &&
+              "text-orangeRed underline underline-offset-8 "
+            }`}
+            onClick={() => {
+              setTableView("ALLBOOKINGS");
+            }}
+          >
+            All Bookings
+          </button>
+          <button
+            className={`${
+              tableView === "BOOKINGHISTORY" &&
+              "text-orangeRed underline underline-offset-8 "
+            }`}
+            onClick={() => {
+              setTableView("BOOKINGHISTORY");
+            }}
+          >
+            Booking History
+          </button>
+          <button
+            className={`${
+              tableView === "TODAYSBOOKINGS" &&
+              "text-orangeRed underline underline-offset-8 "
+            }`}
+            onClick={() => {
+              setTableView("TODAYSBOOKINGS");
+            }}
+          >
+            Todays Bookings
+          </button>
+        </div>
+        {/* <Calendar
+          value={dateFilter}
+          onChange={(e) => setDateFilter(e.value as Date)}
+          showIcon
+          showButtonBar
+          placeholder="Filter by date"
+        /> */}
       </div>
       <BookingRequestModal
         id={rowData?.data?.id ? rowData?.data?.id : 0}
@@ -188,23 +212,26 @@ const BookingRequest = () => {
         status={rowData?.data?.status}
         onClose={() => setIsRequestShow(false)}
       />
-
       <DataTable
         value={
           tableView === "BOOKINGHISTORY"
-            ? tanstackData?.filter((res: any) => {
+            ? getFilteredData()?.filter((res: any) => {
                 return (
                   res.data.status === "DONE" || res.data.status === "DECLINED"
                 );
               })
             : tableView === "TODAYSBOOKINGS"
-            ? tanstackData?.filter((res: any) => {
+            ? getFilteredData()?.filter((res: any) => {
                 return (
                   res.data.bookedDate.split(" ")[0] ===
                   new Date().toISOString().split("T")[0]
                 );
               })
-            : tanstackData // Default case
+            : getFilteredData()?.filter((res: any) => {
+                return (
+                  res.data.status !== "DONE" && res.data.status !== "DECLINED"
+                );
+              })
         }
         paginator
         rows={9}
@@ -216,8 +243,11 @@ const BookingRequest = () => {
           bodyRow: { className: "border border-slate-300" },
           thead: { className: "bg-orangePrimary text-white" },
         }}
+        sortField="data.bookedDate"
+        sortOrder={1}
       >
         <Column
+          // sortable
           field="data.bookedDate"
           header="Booked Date"
           body={formattedDateBody}

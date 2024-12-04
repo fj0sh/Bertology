@@ -2,8 +2,7 @@ import { BookingResponse } from "@/constants/Booking";
 import instance from "@/lib/util/axios-instance";
 import { useUser } from "@/providers/UserProvider";
 import { useQuery } from "@tanstack/react-query";
-import { headers } from "next/headers";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const useBooking = () => {
   const [data, setData] = useState<any | undefined>(undefined);
@@ -13,6 +12,7 @@ const useBooking = () => {
   );
   const [dataByStatus, setDataByStatus] = useState();
   const [dataByDate, setDataByDate] = useState([]);
+  const [chartData, setChartData] = useState([]);
 
   const { user } = useUser();
 
@@ -64,7 +64,7 @@ const useBooking = () => {
 
     try {
       const res = await instance.post(`/booking/`, body);
-
+      refetch();
       console.log(res.data);
       return res.data;
     } catch (error) {
@@ -98,6 +98,7 @@ const useBooking = () => {
   const acceptBooking = async (id: number) => {
     try {
       const res = instance.patch(`/booking/accept/${id}`);
+      refetch();
       console.log(res);
     } catch (error) {
       console.log(error);
@@ -165,6 +166,43 @@ const useBooking = () => {
     }
   };
 
+  const declineBookingReason = async (bookingId: number, reason: string) => {
+    try {
+      await instance.post("/booking/declineReason", {
+        bookingId,
+        reason,
+      });
+      refetch();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const reassignInstaller = async (bookingId: number, installerId: number) => {
+    try {
+      await instance.patch("/booking/reassign", {
+        bookingId,
+        installerId,
+      });
+      refetch();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    const fetchBookingData = async () => {
+      try {
+        const res = await instance.get("/booking/status");
+        const counts = res.data.map((status: any) => status.count);
+        setChartData(counts);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchBookingData();
+  }, []);
+
   return {
     bookService,
     getServiceById,
@@ -177,12 +215,15 @@ const useBooking = () => {
     getBookingByStatus,
     getBookingByDate,
     setBookingAsDone,
+    declineBookingReason,
+    reassignInstaller,
     refetch,
     data,
     dataByStatus,
     dataByDate,
     allBookings,
     serviceType,
+    chartData,
     tanstackData,
   };
 };

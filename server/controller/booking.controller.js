@@ -167,3 +167,29 @@ exports.getBookingsByDate = (req, res) => {
     return res.status(200).send(result);
   });
 };
+
+exports.declineBookingReason = (req, res) => {
+  bookingModel.declineReason(req.body, (err, result) => {
+    if (err) return res.status(400).send(err);
+
+    return res.status(200).send(result);
+  });
+};
+
+exports.getDeclineReasonById = (req, res) => {
+  bookingModel.getDeclineReasonById(req.params.id, (err, result) => {
+    if (err) return res.status(400).send(err);
+    return res.status(200).send(result);
+  });
+};
+
+exports.reassignInstaller = (req, res) => {
+  bookingModel.reassignInstaller(
+    req.body.bookingId,
+    req.body.installerId,
+    (err, result) => {
+      if (err) return res.status(400).send(err);
+      return res.status(200).send(result);
+    }
+  );
+};
