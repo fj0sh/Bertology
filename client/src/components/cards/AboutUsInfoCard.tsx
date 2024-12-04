@@ -118,6 +118,9 @@ const AboutUsInfoCard = () => {
           </form>
         </div>
       </div>
+
+      {/* Empty Section */}
+      <div className="w-full md:w-1/3"></div>
     </div>
   );
 };
