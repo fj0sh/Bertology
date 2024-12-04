@@ -31,7 +31,7 @@ const Inquiry = () => {
     return (
       <div>
         <button
-          className="p-button p-button-primary"
+          className="px-2 py-1 bg-blue-500 text-white rounded"
           onClick={() => handleViewClick(rowData)}
         >
           View
@@ -49,6 +49,7 @@ const Inquiry = () => {
           name={`${rowData?.firstName} ${rowData?.lastName}`}
           email={rowData?.email}
           message={rowData?.message}
+          status={rowData?.status}
           id={rowData.id!}
         />
       )}

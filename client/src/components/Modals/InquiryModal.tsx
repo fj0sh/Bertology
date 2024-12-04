@@ -13,10 +13,11 @@ interface ModalProps {
   name: string;
   email: string;
   message: string;
+  status: string;
 }
 
 const InquiryModal = (props: ModalProps) => {
-  const { onClose, isOpen, name, email, message, id } = props;
+  const { onClose, isOpen, name, email, message, id, status } = props;
 
   const { sendMail } = useMailer();
   const { resolveInquiry } = useInquiry();
@@ -58,22 +59,26 @@ const InquiryModal = (props: ModalProps) => {
             <p className="text-md indent-5 text-justify">{message}</p>
           </div>
         </div>
-        <form
-          className="w-1/2 flex flex-col pl-5 gap-5"
-          onSubmit={handleSubmit}
-        >
-          <h2 className="text-lg font-semibold text-orangeRed">
-            Reply to Inquiry
-          </h2>
-          <textarea
-            className="text-white rounded border border-orangeRed bg-background w-full h-[200px] p-3 resize-none focus:outline-none focus:ring-2 focus:ring-orangeRed"
-            placeholder="Write your reply here..."
-            onChange={(e) => setReply(e.target.value)}
-          ></textarea>
-          <div className="self-end">
-            <Button title="Submit" type="submit" />
-          </div>
-        </form>
+        {status !== "PENDING" ? (
+          <></>
+        ) : (
+          <form
+            className="w-1/2 flex flex-col pl-5 gap-5"
+            onSubmit={handleSubmit}
+          >
+            <h2 className="text-lg font-semibold text-orangeRed">
+              Reply to Inquiry
+            </h2>
+            <textarea
+              className="text-white rounded border border-orangeRed bg-background w-full h-[200px] p-3 resize-none focus:outline-none focus:ring-2 focus:ring-orangeRed"
+              placeholder="Write your reply here..."
+              onChange={(e) => setReply(e.target.value)}
+            ></textarea>
+            <div className="self-end">
+              <Button title="Submit" type="submit" />
+            </div>
+          </form>
+        )}
       </div>
     </ModalContainer>
   );

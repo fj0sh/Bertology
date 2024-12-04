@@ -17,7 +17,7 @@ exports.getFullyBookedDates = (callback) => {
 
 exports.getDateInformation = (date, callback) => {
   conn.query(
-    "SELECT bookedDate FROM booking WHERE LEFT(bookedDate, 10) = ?",
+    "SELECT bookedDate FROM booking WHERE LEFT(bookedDate, 10) = ? AND status = 'APPROVED'",
     [date],
     callback
   );

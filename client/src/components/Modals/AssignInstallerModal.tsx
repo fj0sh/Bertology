@@ -40,9 +40,13 @@ const AssignInstallerModal = (props: ModalProps) => {
 
   const { acceptBooking, refetch } = useBooking();
   const { sendMail } = useMailer();
+  const [selectedInstaller, setSelectedInstaller] = useState<number | null>(
+    null
+  );
 
   const showInstaller = (id: number) => {
     getInstallerById(id);
+    setSelectedInstaller(id);
   };
 
   const handleAcceptBooking = (
@@ -132,8 +136,8 @@ const AssignInstallerModal = (props: ModalProps) => {
         </div>
         <div className="flex w-full h-full p-10">
           <div className="flex flex-col gap-6 w-[50%]">
-            <div>
-              {installerData[0] && (
+            <div className="w-full h-full">
+              {installerData[0] ? (
                 <div className="flex flex-col items-center gap-3">
                   <Image
                     src={
@@ -178,6 +182,10 @@ const AssignInstallerModal = (props: ModalProps) => {
                     </div>
                   </div>
                 </div>
+              ) : (
+                <div className="h-full w-full flex justify-center items-center">
+                  Please Select an Installer.
+                </div>
               )}
             </div>
           </div>
@@ -211,8 +219,12 @@ const AssignInstallerModal = (props: ModalProps) => {
                   ))
               )}
             </div>
-            <Button
-              title="Assign"
+
+            <button
+              disabled={selectedInstaller ? false : true}
+              className={`text-[20px] text-white px-4 py-2 rounded-md ${
+                selectedInstaller ? "bg-orangeRed" : "bg-asphalt"
+              }`}
               onClick={() =>
                 handleAcceptBooking(
                   installerData[0].installerId!,
@@ -220,7 +232,9 @@ const AssignInstallerModal = (props: ModalProps) => {
                   email!
                 )
               }
-            />
+            >
+              Assign
+            </button>
           </div>
         </div>
       </ModalContainer>

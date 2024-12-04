@@ -9,7 +9,7 @@ const transporter = nodemailer.createTransport({
   port: 465,
   secure: true, // Use SSL
   auth: {
-    user: "lemonjuzz360@gmail.com", // Your Gmail account
+    user: process.env.MAILER_EMAIL, // Your Gmail account
     pass: process.env.MAILER_PASS, // App password
   },
 });
@@ -27,7 +27,7 @@ exports.sendMail = async (req, res) => {
     const info = await transporter.sendMail({
       from: {
         name: "Bertology",
-        address: "lemonjuzz360@gmail.com",
+        address: "noreply@bertology",
       },
       to: recepient,
       subject: "Bertology",

@@ -11,6 +11,7 @@ const conn = mysql.createConnection({
 conn.connect((error) => {
   if (error) console.log(error);
   console.log("Connected Successfully");
+  console.log("Date Time:", new Date().toISOString().split("T").join(" "));
 });
 
 module.exports = conn;

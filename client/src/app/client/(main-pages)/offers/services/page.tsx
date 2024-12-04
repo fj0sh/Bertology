@@ -28,6 +28,7 @@ import Cookies from "universal-cookie";
 
 import { MultiSelect } from "primereact/multiselect";
 import TermsModal from "@/components/Modals/TermsModal";
+import { useRouter } from "next/navigation";
 
 const Booking = () => {
   const [selectedBookingDate, setSelectedBookingDate] = useState("");
@@ -68,6 +69,7 @@ const Booking = () => {
   const { tanstackData, dateInfo, getDateInformation } = useServices();
   const { sendMail } = useMailer();
   const customModel = watch("model");
+  const router = useRouter();
 
   const cookies = new Cookies();
 
@@ -193,6 +195,7 @@ const Booking = () => {
 
         const insertId = bookingResponse.insertId;
         selectedService.map((res: any) => selectTypes(insertId, res.id));
+        router.refresh();
       }
     } else {
       Swal.fire({
@@ -596,6 +599,7 @@ const Booking = () => {
 
             <button
               type="submit"
+              disabled={agreeTerms && paymentProof ? false : true}
               className={` text-white py-2 px-8 rounded-md w-fit text-[20px] ${
                 agreeTerms && paymentProof ? "bg-orangeRed" : " bg-asphalt"
               }`}

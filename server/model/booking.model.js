@@ -112,7 +112,7 @@ exports.deleteBooking = (bookingId, callback) => {
 
 exports.getStatusCount = (callback) => {
   conn.query(
-    "SELECT status, COUNT(*) AS count FROM booking WHERE status IN ('PENDING', 'DECLINED', 'DONE', 'APPROVED') GROUP BY status",
+    "SELECT status, COUNT(*) AS count FROM booking WHERE status IN ('PENDING', 'DECLINED', 'DONE', 'APPROVED', 'MISSED') GROUP BY status",
     callback
   );
 };
@@ -125,7 +125,7 @@ exports.getMonthlySales = (callback) => {
 
 exports.markMissedBookings = (callback) => {
   conn.query(
-    "UPDATE booking SET status = 'MISSED' WHERE DATE(bookedDate) < CURDATE() AND status = 'PENDING';",
+    "UPDATE booking SET status = 'MISSED' WHERE LEFT(bookedDate, 10) < CURDATE() AND status = 'PENDING';",
     callback
   );
 };

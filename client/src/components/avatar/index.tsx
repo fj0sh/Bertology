@@ -9,7 +9,7 @@ const Avatar = () => {
 
   return (
     <div
-      className="relative flex items-center bg-gray-700 p-2 rounded-lg gap-3"
+      className="relative flex items-center p-2 rounded-lg gap-3"
       onMouseEnter={() => setIsDropdownOpen(true)}
       onMouseLeave={() => setIsDropdownOpen(false)}
     >

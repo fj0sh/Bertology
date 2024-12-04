@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-// cron();
+cron();
 
 app.use("/api/auth", authRoute);
 app.use("/api/test", testRoute);

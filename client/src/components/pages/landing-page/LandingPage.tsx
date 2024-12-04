@@ -94,39 +94,6 @@ const LandingPage = () => {
               alt="landing-image.png"
             ></Image>
           </div>
-<<<<<<< HEAD
-          <div className="w-full h-full flex flex-col items-center justify-center gap-10 p-[5rem]">
-            <div className="text-[65px] font-bold text-white text-center w-[40rem]">
-              Innovating for <br /> Effortless
-              <span className="text-orangePrimary"> Planning</span>
-              <br /> and Resource <br />
-              <span className="text-orangePrimary"> Optimization</span>
-            </div>
-            <div className="flex flex-col gap-10 items-center justify-center">
-              <p className="text-white w-[35rem] text-center h-full text-[25px]">
-                Book now to experience our convenient and hustle free services.
-              </p>
-              <Link
-                href={"/client/offers/services"}
-                className="text-background bg-orangeRed self-center py-2 px-6 text-[30px] rounded-sm font-semibold"
-              >
-                Book Now
-              </Link>
-
-              {/* <Button
-                title="Login"
-                fontSize="26px"
-                width="12rem"
-                onClick={() => setIsLoginModalOpen(true)}
-              />
-              <Button
-                title="Sign Up"
-                fontSize="26px"
-                width="12rem"
-                onClick={() => setIsRegisterModalOpen(true)}
-              /> */}
-            </div>
-=======
           <div className="w-full lg:w-1/2 h-full flex flex-col items-start justify-center gap-6 lg:gap-10 p-6 lg:p-[5rem] z-20">
             <h1 className="text-[35px] lg:text-[50px] font-bold text-white text-left w-full lg:w-[40rem]">
               <span className="text-orangePrimary">Innovating</span> for
@@ -146,47 +113,8 @@ const LandingPage = () => {
             >
               Book Now
             </Link>
->>>>>>> 342f09527df98eed55bf6cf9ed1e0aa2f47d7691
           </div>
         </div>
-<<<<<<< HEAD
-        {/* ============================================BOOK NOW SECTION =======================================================================*/}
-        <div className="relative w-full h-full p-[3rem] flex gap-10 text-white px-[10rem]">
-          <div className="w-[80%] h-full">
-            <div className="flex flex-col justify-center items-center gap-10 h-full">
-              <div className="w-[45rem]">
-                <p className="text-[45px] text-center font-semibold">
-                  We give the right service and good quality products!
-                </p>
-              </div>
-              <div className="bg-zinc-900 flex items-center w-full h-full justify-center gap-10 text-[30px] px-20 py-8 rounded-lg">
-                <ul className="*:flex *:mb-7 *:items-center ">
-                  <li>
-                    <TfiCheckBox className="mr-4 text-orangePrimary " />
-                    Free Installation
-                  </li>
-                  <li>
-                    <TfiCheckBox className="mr-4 text-orangePrimary" />
-                    Home Service
-                  </li>
-                  <li>
-                    <TfiCheckBox className="mr-4 text-orangePrimary" />
-                    Expert Technician
-                  </li>
-                </ul>
-
-                <ul className="*:flex *:mb-7 *:items-center">
-                  <li>
-                    <TfiCheckBox className="mr-4 text-orangePrimary" />
-                    Safe and Guaranteed
-                  </li>
-                  <li>
-                    <TfiCheckBox className="mr-4 text-orangePrimary" />
-                    Several Years of Experience
-                  </li>
-                  <li>
-                    <TfiCheckBox className="mr-4 text-orangePrimary" />
-=======
 
         {/* BOOK NOW SECTION */}
         <div className="relative w-full h-full p-6 lg:p-[3rem] flex flex-col lg:flex-row gap-6 lg:gap-10 text-white px-4 lg:px-[10rem]">
@@ -223,7 +151,6 @@ const LandingPage = () => {
                 {/* <ul>
                   <li>
                     <TfiCheckBox className="mr-2 lg:mr-4 text-orangePrimary" />
->>>>>>> 03cb6bf7d0273e40f43f889c4343247253cbcf18
                     Fast Transactions
                   </li>
                 </ul> */}
@@ -260,11 +187,7 @@ const LandingPage = () => {
                 alt="image.jpg"
               />
               <div className="bg-black bg-opacity-50 w-full h-full absolute top-0 left-0 flex items-center justify-center">
-<<<<<<< HEAD
-                <p className="text-[70px] text-white font-semibold text-center">
-=======
                 <p className="text-[40px] lg:text-[70px]  font-semibold text-center text-orangeRed">
->>>>>>> 342f09527df98eed55bf6cf9ed1e0aa2f47d7691
                   Installation
                 </p>
               </div>
@@ -281,11 +204,7 @@ const LandingPage = () => {
               <ImageCarousel images={servicesImage} />
               <Link
                 href={"/client/offers"}
-<<<<<<< HEAD
-                className="text-orangePrimary self-end text-[20px] underline"
-=======
                 className="text-orangePrimary self-end text-[16px] lg:text-[20px] underline "
->>>>>>> 342f09527df98eed55bf6cf9ed1e0aa2f47d7691
               >
                 See More
               </Link>
@@ -304,11 +223,6 @@ const LandingPage = () => {
             </Link>
           </div> */}
         </div>
-<<<<<<< HEAD
-        s
-        {/* ============================================BOOKING SECTION =======================================================================*/}
-        <div className="relative h-full px-48 gap-8 flex">
-=======
 
         {/* BOOKING SECTION */}
         <div className="w-full px-[20rem] py-10 my-[5rem]">
@@ -316,7 +230,6 @@ const LandingPage = () => {
         </div>
 
         <div className="relative h-full px-4 lg:px-48 gap-8 flex flex-col lg:flex-row my-[10rem]">
->>>>>>> 342f09527df98eed55bf6cf9ed1e0aa2f47d7691
           <div className="w-full flex justify-center">
             <PrimeCalendar />
           </div>
@@ -326,12 +239,8 @@ const LandingPage = () => {
             </p>
             <Link
               href={"/client/offers/services"}
-<<<<<<< HEAD
-              className="text-background bg-orangeRed self-center py-2 px-6 text-[25px] rounded-sm font-semibold"
-=======
               className="text-background bg-orangeRed py-2 px-4 lg:px-6 text-[20px] lg:text-[25px] rounded-sm font-semibold 
              transition-all duration-300 ease-in-out hover:bg-orange-600 hover:scale-105 hover:shadow-lg"
->>>>>>> 342f09527df98eed55bf6cf9ed1e0aa2f47d7691
             >
               Book A Service
             </Link>
@@ -339,22 +248,8 @@ const LandingPage = () => {
         </div>
       </div>
 
-<<<<<<< HEAD
-      <div className="w-full text-white flex flex-col gap-10 py-[10rem] px-[18rem] justify-center items-center">
-        <p className="uppercase text-[30px] font-semibold">
-          our <span className="text-orangeRed"> trusted </span>brands
-        </p>
-        <div className="flex justify-center gap-8 py-6 border-orangePrimary border-[2px] w-full rounded-md">
-          <BrandBalls />
-          <BrandBalls />
-          <BrandBalls />
-          <BrandBalls />
-          <BrandBalls />
-          <BrandBalls />
-        </div>
-=======
-        {/* BRANDS SECTION */}
-        {/* <div className="w-full text-white flex flex-col gap-6 lg:gap-10 py-[4rem] lg:py-[10rem] px-6 lg:px-[18rem] justify-center items-center">
+      {/* BRANDS SECTION */}
+      {/* <div className="w-full text-white flex flex-col gap-6 lg:gap-10 py-[4rem] lg:py-[10rem] px-6 lg:px-[18rem] justify-center items-center">
           <p className="uppercase text-[24px] lg:text-[30px] font-semibold">
             our <span className="text-orangeRed"> trusted </span>brands
           </p>
@@ -367,8 +262,6 @@ const LandingPage = () => {
             <BrandBalls />
           </div>
         </div> */}
->>>>>>> 342f09527df98eed55bf6cf9ed1e0aa2f47d7691
-      </div>
     </>
   );
 };
