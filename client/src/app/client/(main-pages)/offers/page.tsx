@@ -14,7 +14,7 @@ const Services = () => {
   return (
     <div className="bg-background text-white mt-[10rem]">
       <div className="h-full flex flex-col items-center gap-6 p-20">
-        <div className="grid grid-cols-3 gap-[5rem] border-none">
+        <div className="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 lg:gap-[4rem] md:gap-3 sm:gap-8 border-none">
           {tanstackData?.map((serviceData: ServiceType) => {
             return (
               <>

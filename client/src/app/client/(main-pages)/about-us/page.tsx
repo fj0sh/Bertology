@@ -17,7 +17,7 @@ const AboutUs = () => {
           alt="background"
           className="z-10"
         />
-        <div className="w-1/2 flex flex-col items-center gap-5 py-[15px] px-[10rem] z-30 text-[25px] pt-[5%]">
+        <div className="lg:w-1/2 flex flex-col items-center gap-5 py-[15px] lg:px[10rem] sm:px-[3rem] md:px[2rem]  z-30 text-[25px] lg:pt-[5%] md:pt-[10%] sm:pt-[20%] text-white">
           <p className="font-semibold text-[50px]">
             About <span className="text-orangeRed">Us</span>
           </p>
@@ -36,8 +36,8 @@ const AboutUs = () => {
       </div>
 
       {/* -----------------------------------PROPRIETOR CARDS------------------------------------------------------ */}
-      <div className="w-full h-full flex mb-[10rem] justify-center">
-        <div className="w-[60%] h-full py-10 flex items-center justify-end">
+      <div className="w-full h-full lg:flex mb-[10rem] justify-center">
+        <div className="lg:w-[60%] md:w-[100%] sm:w-[100%] sm:justify-center md:justify-center lg:justify-end h-full py-10 flex items-center justify-end ">
           <Image
             src={"/images/owner.svg"}
             alt="Owner"
@@ -71,7 +71,7 @@ const AboutUs = () => {
             WHAT WE <span className="text-orangePrimary"> OFFER </span>
           </p>
         </div>
-        <div className="flex flex-col gap-6 p-3 px-[12rem]">
+        <div className="flex flex-col gap-6 p-3 lg:px-[12rem] sm:px-[3rem] md:px-[2rem]">
           <OffersCard
             image={"/images/service-images/image2.jpg"}
             title="Check-Ups "

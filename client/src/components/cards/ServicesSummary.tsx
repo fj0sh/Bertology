@@ -55,12 +55,12 @@ const ServicesSummary = () => {
           <ServiceDetail
             icon={<BiCog size={60} />}
             title="Installation"
-            description="Technician installs the Multimedia System ensuring proper placement and connections without any wire cuts"
+            description="Technician installs the requested service ensuring proper placement and connections without any wire cuts"
           />
           <ServiceDetail
             icon={<MdOutlineDownloadDone size={60} />}
             title="Testing and Verification"
-            description="Technician verifies multimedia system installation: testing audio, video, connectivity, and interface for optimal performance and functionality"
+            description="Technician will test and verify the performance and functionality of the installations"
           />
         </div>
       </div>

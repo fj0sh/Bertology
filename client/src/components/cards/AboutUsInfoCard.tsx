@@ -46,7 +46,7 @@ const AboutUsInfoCard = () => {
           <div className=" w-[70%]  flex flex-col items-center justify-center gap-8 ">
             <div className="font-semibold text-[18px]">PAYMENT METHODS:</div>
             <div className="text-center">
-              <div className="flex justify-center gap-6">
+              <div className="flex justify-center gap-6"> 
                 <Image
                   src={"/images/gcash-logo.png"}
                   width={100}
