@@ -75,7 +75,11 @@ const InquiryModal = (props: ModalProps) => {
               onChange={(e) => setReply(e.target.value)}
             ></textarea>
             <div className="self-end">
-              <Button title="Submit" type="submit" />
+              <Button
+                title="Submit"
+                type="submit"
+                disabled={reply ? true : false}
+              />
             </div>
           </form>
         )}

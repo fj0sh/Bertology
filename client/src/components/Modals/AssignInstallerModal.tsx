@@ -35,8 +35,13 @@ const AssignInstallerModal = (props: ModalProps) => {
     isReassigning,
   } = props;
 
-  const { data, installerData, assignInstaller, getInstallerById } =
-    useInstallers();
+  const {
+    data,
+    installerData,
+    assignInstaller,
+    getInstallerById,
+    assignInstallerV2,
+  } = useInstallers();
 
   const { acceptBooking, refetch } = useBooking();
   const { sendMail } = useMailer();
@@ -44,9 +49,9 @@ const AssignInstallerModal = (props: ModalProps) => {
     null
   );
 
-  const showInstaller = (id: number) => {
-    getInstallerById(id);
-    setSelectedInstaller(id);
+  const showInstaller = async (id: number) => {
+    await getInstallerById(id);
+    await setSelectedInstaller(id);
   };
 
   const handleAcceptBooking = (
@@ -70,7 +75,7 @@ const AssignInstallerModal = (props: ModalProps) => {
       if (res.isConfirmed) {
         acceptBooking(id);
         console.log(`${installerId} ${bookingId}`);
-        assignInstaller(installerId, bookingId);
+        assignInstaller(installerId!, bookingId);
 
         if (isReassigning) {
           succesToast("Technician Reassigned!");

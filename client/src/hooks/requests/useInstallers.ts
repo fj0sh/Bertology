@@ -53,6 +53,7 @@ const useInstallers = () => {
   const getInstallerById = async (id: number) => {
     try {
       const res = await instance.get(`/installer/${id}`);
+      refetch();
       setInstallerData(res.data);
       return res.data;
     } catch (error) {
@@ -66,6 +67,24 @@ const useInstallers = () => {
         installerId: installerId,
         bookingId: bookingId,
       });
+      refetch();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const assignInstallerV2 = async (
+    installerId: number,
+    bookingId: number,
+    bookedDate: string
+  ) => {
+    try {
+      const res = await instance.patch("/installer/assign/v2", {
+        installerId: installerId,
+        bookingId: bookingId,
+        bookedDate: bookedDate,
+      });
+      refetch();
       console.log(res.data);
     } catch (error) {
       console.log(error);
@@ -131,6 +150,7 @@ const useInstallers = () => {
     tanstackData,
     installerBookingData,
 
+    assignInstallerV2,
     getInstallerBooking,
     addInstaller,
     getInstallerById,

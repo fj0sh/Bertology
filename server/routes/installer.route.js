@@ -7,6 +7,7 @@ router.get("/:id", installerController.getInstallerById);
 router.get("/bookings/:id", installerController.getInstallerBookings);
 router.post("/", installerController.addInstaller);
 router.patch("/assign", installerController.assignInstaller);
+router.patch("/assign/v2", installerController.assignInstallerV2);
 router.patch("/edit/:id", installerController.editInstaller);
 router.delete("/:id", installerController.deleteInstaller);
 

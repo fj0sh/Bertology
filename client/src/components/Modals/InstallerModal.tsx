@@ -20,7 +20,7 @@ interface ModalProps {
   onClose?: () => void;
 
   id: number;
-  image?: string;
+  image: string;
   firstname?: string;
   lastname?: string;
   address?: string;
@@ -67,19 +67,10 @@ const InstallerModal = (props: ModalProps) => {
     setNewEmail(email);
     setNewNumber(phoneNumber);
     setNewExperience(experience);
-    setNewImage(image!);
-  }, [
-    address,
-    email,
-    experience,
-    firstname,
-    image,
-    lastname,
-    newImage,
-    phoneNumber,
-  ]);
+    setNewImage(image);
+  }, [address, email, experience, firstname, image, lastname, phoneNumber]);
 
-  const saveEdit = (e: React.FormEvent<HTMLFormElement>) => {
+  const saveEdit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
       editInstaller(
@@ -118,7 +109,7 @@ const InstallerModal = (props: ModalProps) => {
           />{" "}
         </div>
         <div className="flex flex-col w-full h-full p-10">
-          <form className="w-full flex gap-4" onSubmit={(e) => saveEdit(e)}>
+          <div className="w-full flex gap-4">
             <div className="flex flex-col gap-4">
               <div>
                 <div className="w-[200px] h-[200px] rounded-full m-auto flex items-center justify-center overflow-hidden">
@@ -144,15 +135,16 @@ const InstallerModal = (props: ModalProps) => {
               {isEditting ? (
                 <div className="flex w-fit gap-4">
                   <button
-                    className="bg-orange-500 text-white px-4 py-2 rounded"
-                    type="submit"
+                    type="button" // This will trigger form submission only when "Save" is clicked
+                    className=" bg-orange-500 text-white px-4 py-2 rounded"
+                    onClick={(e) => saveEdit(e)}
                   >
                     Save
                   </button>
                   <button
                     className="bg-gray-500 text-white px-4 py-2 rounded"
-                    type="button"
-                    onClick={() => setIsEditting(false)}
+                    type="button" // Change to type="button" to prevent form submission
+                    onClick={() => setIsEditting((prev) => !prev)}
                   >
                     Cancel
                   </button>
@@ -160,14 +152,15 @@ const InstallerModal = (props: ModalProps) => {
               ) : (
                 <div className="flex flex-col gap-2 items-center">
                   <button
-                    type="button"
-                    onClick={() => setIsEditting(true)}
+                    type="button" // This will not submit the form
+                    onClick={() => setIsEditting((prev) => !prev)}
                     className="bg-orange-500 text-white  px-4 py-2 rounded"
                   >
                     Edit
                   </button>
+
                   <button
-                    type="button"
+                    type="button" // This will not submit the form
                     className="bg-orange-500 text-white px-4 py-2 rounded"
                     onClick={() => setShowSchedule(true)}
                   >
@@ -204,7 +197,7 @@ const InstallerModal = (props: ModalProps) => {
                   <select
                     className="border border-gray-300 rounded-md mt-1 text-center text-white bg-background"
                     value={newStatus}
-                    onChange={(e) => setNewStatus(e.target.value)} // Replace setStatus with your handler
+                    onChange={(e) => setNewStatus(e.target.value)}
                   >
                     <option value="ACTIVE" className="text-green-500">
                       Active
@@ -218,7 +211,7 @@ const InstallerModal = (props: ModalProps) => {
                 )}
               </div>
             </div>
-          </form>
+          </div>
 
           <div className="w-full h-full flex gap-4">
             <div className="w-[50%] flex flex-col gap-4 border-r mt-16 text-[18px] pr-8">

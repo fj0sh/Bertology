@@ -5,7 +5,6 @@ exports.getAllServices = (req, res) => {
     if (err) {
       console.log(err);
     }
-    console.log(result);
     return res.status(200).send(result);
   });
 };

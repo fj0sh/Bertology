@@ -189,6 +189,7 @@ const useBooking = () => {
       console.log(error);
     }
   };
+
   useEffect(() => {
     const fetchBookingData = async () => {
       try {

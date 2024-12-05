@@ -4,7 +4,7 @@ interface DropdownProps<T> {
   options: T[];
   onSelect: (option: T) => void;
   label?: string;
-  title: string;
+  title?: string;
   getOptionLabel: (option: T) => string;
   getOptionKey: (option: T) => string | number;
   disabled?: boolean;
@@ -23,6 +23,7 @@ const Dropdown = <T,>({
   const [selectedOption, setSelectedOption] = useState<T | null>(null);
 
   const handleSelect = (option: T) => {
+    console.log(options);
     setSelectedOption(option);
     onSelect(option);
     setIsOpen(false);
@@ -42,7 +43,7 @@ const Dropdown = <T,>({
           onClick={() => setIsOpen(!isOpen)}
           disabled={disabled}
         >
-          {title}:{" "}
+          {title}
           {selectedOption ? getOptionLabel(selectedOption) : "Select an option"}
           <svg
             className="ml-2 -mr-1 h-5 w-5"
@@ -67,7 +68,7 @@ const Dropdown = <T,>({
             aria-orientation="vertical"
             aria-labelledby="options-menu"
           >
-            {options.map((option) => (
+            {options?.map((option) => (
               <button
                 key={getOptionKey(option)} // Use a unique identifier for the key
                 onClick={() => handleSelect(option)}
