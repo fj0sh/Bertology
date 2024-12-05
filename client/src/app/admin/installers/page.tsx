@@ -96,7 +96,7 @@ const Installers = () => {
           id={rowData?.installerId || 0}
           firstname={rowData?.installerFirstName}
           lastname={rowData?.installerLastName}
-          image={rowData?.installerImage}
+          image={rowData?.installerImage || ""}
           address={rowData?.installerAddress}
           email={rowData?.installerEmail}
           experience={rowData?.installerExperience}
