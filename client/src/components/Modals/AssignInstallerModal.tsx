@@ -186,7 +186,7 @@ const AssignInstallerModal = (props: ModalProps) => {
                     style={{ width: "45%", height: "45%" }}
                     className="rounded-full border border-orangeRed"
                   />
-                  <div>
+                  <div className="flex flex-col justify-center">
                     <p className="font-semibold text-[25px]">
                       {installerData[0].installerFirstName}{" "}
                       {installerData[0].installerLastName}
@@ -194,7 +194,7 @@ const AssignInstallerModal = (props: ModalProps) => {
                     <button
                       type="button"
                       onClick={() => setShowSchedule(true)}
-                      className="text-orangePrimary underline"
+                      className="text-orangePrimary underline "
                     >
                       View Schedule
                     </button>

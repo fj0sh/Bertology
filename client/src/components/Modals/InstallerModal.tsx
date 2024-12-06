@@ -150,7 +150,7 @@ const InstallerModal = (props: ModalProps) => {
                   </button>
                 </div>
               ) : (
-                <div className="flex flex-col gap-2 items-center">
+                <div className="flex flex-col gap-2 items-center justify-center">
                   <button
                     type="button" // This will not submit the form
                     onClick={() => setIsEditting((prev) => !prev)}
@@ -161,7 +161,7 @@ const InstallerModal = (props: ModalProps) => {
 
                   <button
                     type="button" // This will not submit the form
-                    className="bg-orange-500 text-white px-4 py-2 rounded"
+                    className="bg-orange-500 text-white px-4 py-2 rounded "
                     onClick={() => setShowSchedule(true)}
                   >
                     View Schedule
