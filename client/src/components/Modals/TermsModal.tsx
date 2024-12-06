@@ -152,7 +152,7 @@ const TermsModal = (props: modalProps) => {
           // disabled={!agreed}
           onClick={onClose}
         >
-          I Accept
+          Continue
         </button>
         {/* <div className="flex justify-between">
           <div className="flex gap-2 items-center">

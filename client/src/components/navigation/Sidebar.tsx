@@ -7,7 +7,7 @@ import { BsPersonFillGear } from "react-icons/bs";
 import { HiMiniWrenchScrewdriver } from "react-icons/hi2";
 import { PiUserSoundBold } from "react-icons/pi";
 import { IoCalendar } from "react-icons/io5";
-import { RiLogoutBoxRLine } from "react-icons/ri";
+import { RiLogoutBoxRLine, RiSettings4Line } from "react-icons/ri";
 import { usePathname } from "next/navigation";
 import { useLogoutContext } from "@/providers/logoutProvider";
 import Image from "next/image";
@@ -48,6 +48,11 @@ const navLinks = [
     icons: <PiUserSoundBold size={30} />,
     title: "Inquiries",
     href: "/admin/inquiries",
+  },
+  {
+    icons: <RiSettings4Line size={30} />,
+    title: "Settings",
+    href: "/admin/settings",
   },
 ];
 

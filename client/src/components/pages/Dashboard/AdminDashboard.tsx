@@ -15,6 +15,7 @@ import { PiUserSoundBold } from "react-icons/pi";
 import useInstallers from "@/hooks/requests/useInstallers";
 import { InquiryType, InstallerType } from "@/lib/util/schema";
 import useInquiry from "@/hooks/requests/useInquiry";
+import Link from "next/link";
 
 const AdminDashboard = () => {
   const { dataByDate, chartData, tanstackData, getBookingByDate } =
@@ -158,7 +159,10 @@ const AdminDashboard = () => {
           <div className="w-[50%] bg-ninjaBlack rounded-md">
             <PrimeCalendar selectedDate={handleDateChange} setDisable={false} />
           </div>
-          <div className="w-full bg-ninjaBlack rounded-md">
+          <div className="w-full bg-ninjaBlack rounded-md flex flex-col h-full">
+            <p className="p-2 text-[15px] self-end text-orangePrimary underline">
+              See more
+            </p>
             <DataTable tableClassName="custom-table" value={dataByDate}>
               <Column header="Name" body={nameColumn} />
               <Column
@@ -185,9 +189,17 @@ const AdminDashboard = () => {
           </div>
         </div>
         <div className="w-[30%] text-white p-4 bg-ninjaBlack rounded-md">
-          <p className="font-semibold text-orangePrimary text-[20px] mb-4">
-            New Inquiries{" "}
-          </p>
+          <div className="w-full flex justify-between">
+            <p className="font-semibold text-orangePrimary text-[20px] mb-4">
+              New Inquiries{" "}
+            </p>
+            <Link
+              href={"/admin/inquiries"}
+              className="text-orangePrimary underline"
+            >
+              See More
+            </Link>
+          </div>
           <div className="flex flex-col gap-3">
             {inquiries
               ?.filter((inquiry: InquiryType) => inquiry.status === "PENDING")

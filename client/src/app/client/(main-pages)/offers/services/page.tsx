@@ -280,7 +280,7 @@ const Booking = () => {
           <div className="flex w-[80%] px-10 items-center justify-center">
             <PrimeCalendar selectedDate={handleDate} />
           </div>
-          <div className="self-end">
+          <div className="self-center pl-28">
             <p className="text-white font-semibold text-[20px]">Time Slots:</p>
 
             <TimeCard
@@ -543,7 +543,7 @@ const Booking = () => {
                   Proof of Payment/ Receipt:{" "}
                   <span className="text-red-600">*</span>
                 </p>
-                <div className="h-[10rem] w-[10rem] border rounded-md border-orangeRed">
+                <div className="h-[10rem] w-[10rem] border-2 border-opacity-60 border-dashed rounded-md border-orangeRed">
                   <ImageUpload
                     value={paymentProof}
                     onChange={(value) => setPaymentProof(value)}

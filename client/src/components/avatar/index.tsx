@@ -22,7 +22,7 @@ const Avatar = () => {
           <div className="border border-black-500 rounded-full bg-white p-4 w-[50px] h-[50px]"></div>
         </Link>
 
-        {isDropdownOpen && (
+        {/* {isDropdownOpen && (
           <div className="absolute top-full right-0 mt-2 w-40 bg-white rounded-lg shadow-lg z-10">
             <Link
               href="/admin/edit-profile"
@@ -31,7 +31,7 @@ const Avatar = () => {
               Edit Profile
             </Link>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );
