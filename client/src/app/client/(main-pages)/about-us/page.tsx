@@ -19,7 +19,7 @@ const AboutUs = () => {
         />
         <div className="lg:w-1/2 flex flex-col items-center gap-5 py-[15px] lg:px[10rem] sm:px-[3rem] md:px[2rem]  z-30 text-[25px] lg:pt-[5%] md:pt-[10%] sm:pt-[20%] text-white">
           <p className="font-semibold text-[50px]">
-            About <span className="text-orangeRed">Us</span>
+            About <span className="text-orangePrimary">Us</span>
           </p>
           <div className=" text-justify">
             <span className="text-orangePrimary font-semibold uppercase text-[30px]">
@@ -49,10 +49,10 @@ const AboutUs = () => {
         </div>
         <div className="w-full h-full text-white text-[20px] flex flex-col gap-4 justify-center items-center my-auto">
           <p className="text-center font-semibold text-[30px]">
-            The <span className="text-orangeRed"> Proprietor</span>
+            The <span className="text-orangePrimary"> Proprietor</span>
           </p>
           <p className="w-[70%]">
-            <span className="text-orangeRed">Nilbert Umaran</span>, the
+            <span className="text-orangePrimary">Nilbert Umaran</span>, the
             visionary founder of Bertology, serves as our esteemed Head
             Technician. His expertise and dedication have been instrumental in
             shaping. Bertology into a premier destination for automotive

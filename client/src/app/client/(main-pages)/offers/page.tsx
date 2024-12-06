@@ -18,7 +18,7 @@ const Services = () => {
           {tanstackData?.map((serviceData: ServiceType) => {
             return (
               <>
-                <div className="flex gap-3 w-full h-full border border-orangeRed p-2 rounded-md">
+                <div className="flex gap-3 w-full h-full border border-orangePrimary p-2 rounded-md">
                   <div className="w-[40%] p-2">
                     <Image
                       src={serviceData.serviceImage}
@@ -31,7 +31,7 @@ const Services = () => {
                   </div>
                   <div className="w-[70%] flex flex-col gap-3">
                     <div className="flex flex-col ">
-                      <p className="text-orangePrimary font-semibold text-[20px]">
+                      <p className="text-orange-400 font-semibold text-[20px]">
                         {serviceData.serviceName}
                       </p>
                       <p>Price: ₱ {serviceData.servicePrice}</p>
@@ -50,10 +50,10 @@ const Services = () => {
         <div className="items-center relative w-full flex flex-col">
           <hr className="w-full top-[50%] absolute border-orangePrimary border-t-[3px]" />
           <p className=" text-[30px] z-10 w-fit bg-background p-2 px-8">
-            <span className="text-orangePrimary">TRUSTED</span> BRANDS
+            <span className="text-orange-400">TRUSTED</span> BRANDS
           </p>
         </div>
-        <div className="h-[20rem] flex justify-center items-center gap-[2rem] ">
+        <div className="h-[20rem] lg:flex justify-center items-center gap-[2rem] ">
           <BrandBalls />
           <BrandBalls />
           <BrandBalls />

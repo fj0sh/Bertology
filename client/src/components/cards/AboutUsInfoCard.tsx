@@ -42,7 +42,7 @@ const AboutUsInfoCard = () => {
         <div className="absolute top-5 font-semibold bg-orangePrimary w-[15rem] border-none rounded-lg text-center p-2 text-black">
           CONTACT US
         </div>
-        <div className="flex border border-orangeRed  mt-10 rounded-lg p-10 w-full h-full ">
+        <div className="flex border border-orangePrimary  mt-10 rounded-lg p-10 w-full h-full ">
           <div className=" w-[70%]  flex flex-col items-center justify-center gap-8 ">
             <div className="font-semibold text-[18px]">PAYMENT METHODS:</div>
             <div className="text-center">
@@ -88,7 +88,7 @@ const AboutUsInfoCard = () => {
             onSubmit={handleSubmit(submitInquiry)}
           >
             <div className="flex flex-col gap-3">
-              <h2 className="text-[18px] font-semibold text-orangeRed">
+              <h2 className="text-[18px] font-semibold text-orangePrimary">
                 We’d Love to Hear From You!
               </h2>
               <p className="text-justify">
