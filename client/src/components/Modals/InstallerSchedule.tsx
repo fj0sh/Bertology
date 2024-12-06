@@ -5,6 +5,7 @@ import { IoMdClose } from "react-icons/io";
 import { DataTable } from "primereact/datatable";
 import { BookingType } from "@/constants/Booking";
 import { Column } from "primereact/column";
+import "@/style/tables.css";
 
 interface modalProps {
   isOpen: boolean;
@@ -77,7 +78,7 @@ const InstallerSchedule = (props: modalProps) => {
         />
       </div>
       <div className="p-10">
-        <DataTable value={filteredData}>
+        <DataTable tableClassName="custom-table" value={filteredData}>
           <Column field="bookedDate" header="Booking Date" />
           <Column field="mode" header="Mode" />
           <Column body={statusColumn} header="Status" />
