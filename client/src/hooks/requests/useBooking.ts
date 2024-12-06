@@ -84,7 +84,7 @@ const useBooking = () => {
 
   const selectTypes = async (bookingId: number, serviceId: number) => {
     try {
-      const res = await instance.post("booking/selectTypes", {
+      const res = await instance.post("/booking/selectTypes", {
         bookingId: bookingId,
         serviceId: serviceId,
       });

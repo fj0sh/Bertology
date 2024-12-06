@@ -22,7 +22,7 @@ const AdminDashboard = () => {
   const { tanstackData: installers } = useInstallers();
   const { tanstackData: inquiries } = useInquiry();
 
-  console.log(inquiries);
+  console.log(chartData);
 
   const currentDate = new Date();
   const [date, setDate] = useState(formatDateForSQL(currentDate).split(" ")[0]);
@@ -131,19 +131,19 @@ const AdminDashboard = () => {
               </div>
               <div className="flex gap-2 items-center">
                 <div className="rounded-full w-4 h-4 bg-[#FFC857]"></div>
-                <p>PENDING: {chartData[3]}</p>
+                <p>PENDING: {chartData[4]}</p>
               </div>
               <div className="flex gap-2 items-center">
                 <div className="rounded-full w-4 h-4 bg-[#3772FF]"></div>
-                <p>APPROVED: {chartData[4]}</p>
+                <p>APPROVED: {chartData[3]}</p>
               </div>
               <div className="flex gap-2  items-center">
                 <div className="rounded-full w-4 h-4 bg-[#F22B29]"></div>
-                <p>DECLINED: {chartData[2]}</p>
+                <p>DECLINED: {chartData[1]}</p>
               </div>
               <div className="flex gap-2 items-center">
                 <div className="rounded-full w-4 h-4 bg-[#6b7280]"></div>
-                <p>MISSED: {chartData[1]}</p>
+                <p>MISSED: {chartData[2]}</p>
               </div>
             </div>
           </div>
