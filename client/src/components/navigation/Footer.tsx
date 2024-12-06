@@ -51,6 +51,7 @@ const Footer = (props: Props) => {
           <div className="flex justify-center gap-6">
             <Link
               href={"https://www.facebook.com/BossbertologyInstaller032402"}
+              target="_blank"
             >
               <FaFacebookSquare
                 fontSize={"40px"}
@@ -58,7 +59,10 @@ const Footer = (props: Props) => {
               />
             </Link>
 
-            <Link href={"https://www.messenger.com/t/107835038134226"}>
+            <Link
+              href={"https://www.messenger.com/t/107835038134226"}
+              target="_blank"
+            >
               <FaFacebookMessenger
                 fontSize={"40px"}
                 className="hover:text-orangeRed transition-all"
