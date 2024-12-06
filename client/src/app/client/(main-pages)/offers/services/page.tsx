@@ -368,6 +368,7 @@ const Booking = () => {
 
               <div>
                 <InputOrange
+                  limit={11}
                   required={true}
                   label="Contact Number:"
                   {...register("number")}
