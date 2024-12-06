@@ -20,7 +20,8 @@ const InstallerSchedule = (props: modalProps) => {
 
   useEffect(() => {
     getInstallerBooking(id);
-  }, [getInstallerBooking, id]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   useEffect(() => {
     const filterInstallerSchedule = () => {

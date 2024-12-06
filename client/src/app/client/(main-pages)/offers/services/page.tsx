@@ -505,11 +505,11 @@ const Booking = () => {
             <div className="flex w-full gap-8 *:w-full">
               <div className="w-full">
                 <div className="w-1/2">
-                  <div className="w-[80%]">
+                  <div className="w-[95%]">
                     <InputOrange
                       required={true}
                       disabled={selectedModel ? true : false}
-                      label="Model:"
+                      label="Model(We don't accept Ford Models):"
                       {...register("model")}
                     />
                     {errors.model && (

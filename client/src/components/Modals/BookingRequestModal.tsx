@@ -267,7 +267,7 @@ const BookingRequestModal = (props: Props) => {
                   className=" bg-blue-500 text-[18px] rounded-sm py-1 px-2"
                   onClick={(e) => email && handleReassign()}
                 >
-                  Reassign Installer
+                  Reassign Technician
                 </button>
               )}
             </div>

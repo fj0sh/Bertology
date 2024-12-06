@@ -140,10 +140,6 @@ const useInstallers = () => {
     }
   };
 
-  useEffect(() => {
-    getInstallers();
-  }, []);
-
   return {
     installerData,
     data,
