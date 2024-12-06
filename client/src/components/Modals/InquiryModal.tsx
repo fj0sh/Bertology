@@ -78,7 +78,7 @@ const InquiryModal = (props: ModalProps) => {
               <Button
                 title="Submit"
                 type="submit"
-                disabled={reply ? true : false}
+                disabled={reply ? false : true}
               />
             </div>
           </form>
