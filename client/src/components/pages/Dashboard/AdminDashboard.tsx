@@ -160,9 +160,12 @@ const AdminDashboard = () => {
             <PrimeCalendar selectedDate={handleDateChange} setDisable={false} />
           </div>
           <div className="w-full bg-ninjaBlack rounded-md flex flex-col h-full">
-            <p className="p-2 text-[15px] self-end text-orangePrimary underline">
+            <Link
+              href={"./booking-request"}
+              className="p-2 text-[15px] self-end text-orangePrimary underline"
+            >
               See more
-            </p>
+            </Link>
             <DataTable tableClassName="custom-table" value={dataByDate}>
               <Column header="Name" body={nameColumn} />
               <Column
