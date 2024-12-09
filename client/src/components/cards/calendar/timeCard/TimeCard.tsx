@@ -84,7 +84,7 @@ const TimeCard = ({
   };
 
   return (
-    <div className="p-5 grid grid-cols-4 gap-3">
+    <div className="p-5 grid lg:grid-cols-4 sm:grid-cols-2 gap-3">
       {timeType.map((slot) => (
         <SchedCard
           key={slot}

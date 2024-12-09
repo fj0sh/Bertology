@@ -105,12 +105,12 @@ const AboutUsInfoCard = () => {
             <div className="w-full text-white flex flex-col gap-1">
               <p className="text-[18px]">Message:</p>
               <textarea
-                className="border border-orangeRed rounded-lg bg-background w-full h-full max-h-[115px] min-h-[80px] p-1"
+                className="border border-orangePrimary rounded-lg bg-background w-full h-full max-h-[115px] min-h-[80px] p-1"
                 {...register("message")}
               />
             </div>
             <button
-              className="bg-orangeRed self-end text-[18px] px-4 py-1 rounded-md"
+              className="bg-orangePrimary self-end text-[18px] px-4 py-1 rounded-md"
               type="submit"
             >
               Submit

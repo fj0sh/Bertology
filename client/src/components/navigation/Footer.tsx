@@ -9,7 +9,7 @@ type Props = {
 
 const Footer = (props: Props) => {
   return (
-    <div className="flex w-full bg-black *:p-5 text-[#FAF9F6] justify-center items-center z-[9999999999999999999999999]">
+    <div className="lg:flex w-full bg-black *:p-5 text-[#FAF9F6] justify-center items-center z-[9999999999999999999999999]">
       <div className="flex flex-col items-center w-[34%] gap-6 text-center">
         <Image
           src={"/images/transp_logov2.png"}

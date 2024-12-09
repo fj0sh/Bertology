@@ -23,8 +23,8 @@ const InputOrange = React.forwardRef<HTMLInputElement, Props>(
             type={type}
             disabled={disabled}
             placeholder={placeholder}
-            className={`border text-white p-2 border-orangeRed bg-background w-full rounded-lg focus:border-white ${
-              disabled ? "border-orangeRed bg-[#EBEBE4]" : "border-orangeRed "
+            className={`border text-white p-2 border-orangePrimary bg-background w-full rounded-lg focus:border-white ${
+              disabled ? "border-orangePrimary bg-[#EBEBE4]" : "border-orangePrimary "
             }`}
             style={{ height }}
             value={value}

@@ -268,7 +268,7 @@ const Booking = () => {
           setUserOTP={setUserOTP} // Pass the setUserOTP function
         />
       </div>
-      <div className="w-full h-full flex justify-center p-10 gap-x-[10rem]">
+      <div className="w-full h-full lg:flex justify-center p-10 gap-x-[10rem]">
         <div className="w-full h-full items-end flex flex-col gap-8 mt-[5rem]">
           <div className="text-white self-center flex items-center gap-2">
             <p className="font-bold text-[18px]">Selected Date:</p>
@@ -295,7 +295,7 @@ const Booking = () => {
             className="w-full text-white bg-black rounded-[15px] p-8 flex flex-col gap-3"
             onSubmit={handleSubmit(onSubmit)}
           >
-            <p className="text-[30px] font-semibold text-orangeRed">
+            <p className="text-[30px] font-semibold text-orangePrimary">
               Service Detail
             </p>
 
@@ -324,7 +324,7 @@ const Booking = () => {
               </div>
             </div>
 
-            <div className="flex w-full gap-8">
+            <div className="lg:flex w-full gap-8">
               <div className="w-full">
                 <InputOrange label="First Name:" {...register("firstName")} />
                 {errors.firstName && (
@@ -343,7 +343,7 @@ const Booking = () => {
               </div>
             </div>
 
-            <div className="flex w-full gap-8 *:w-full">
+            <div className="lg:flex w-full gap-8 *:w-full">
               <div>
                 <InputOrange label="Email:" {...register("email")} />
                 {errors.email && (
@@ -372,7 +372,7 @@ const Booking = () => {
             >
               {serviceMode === "homeService" ? (
                 <>
-                  <div className="flex gap-8 w-full justify-around">
+                  <div className="lg:flex gap-8 w-full justify-around">
                     <div className="p-1 flex flex-col gap-2 w-full">
                       <p className="text-[18px] self-start">Municipality:</p>
                       <Dropdown
@@ -396,7 +396,7 @@ const Booking = () => {
                     </div>
                   </div>
 
-                  <div className="flex gap-8 w-full justify-around">
+                  <div className="lg:flex gap-8 w-full justify-around">
                     <div className="mt-4 w-full">
                       <InputOrange
                         label="Nearest Landmark:"
@@ -426,7 +426,7 @@ const Booking = () => {
               )}
             </div>
 
-            <div className="flex w-full gap-8 ">
+            <div className="lg:flex w-full gap-8">
               <div className="flex flex-col gap-1 w-[50%]">
                 <p className="text-[18px]">Select Service:</p>
                 {tanstackData && (
