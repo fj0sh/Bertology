@@ -29,6 +29,7 @@ import Cookies from "universal-cookie";
 import { MultiSelect } from "primereact/multiselect";
 import TermsModal from "@/components/Modals/TermsModal";
 import { useRouter } from "next/navigation";
+import usePayment from "@/hooks/requests/usePayment";
 
 const Booking = () => {
   const [selectedBookingDate, setSelectedBookingDate] = useState("");
@@ -57,6 +58,7 @@ const Booking = () => {
   const [agreed, setAgreed] = useState(false);
   const [agreeTerms, setAgreedTerms] = useState(false);
   const [serviceError, setServiceError] = useState("");
+  const [barangayList, setBarangayList] = useState([]);
 
   const {
     register,
@@ -71,6 +73,8 @@ const Booking = () => {
   const { sendMail } = useMailer();
   const customModel = watch("model");
   const router = useRouter();
+
+  const { tanstackData: paymentData } = usePayment();
 
   const cookies = new Cookies();
 
@@ -108,9 +112,12 @@ const Booking = () => {
   useEffect(() => {
     if (municipality) {
       const barangays = Locations.CEBU.municipality_list[municipality] || [];
+      setBarangayList((barangays as any)?.barangay_list);
+      console.log((barangays as any)?.barangay_list);
       setBarangay((barangays as any)?.barangay_list); // Update barangay list
     }
-  }, [municipality, barangay]);
+  }, [municipality]);
+  console.log(barangay);
 
   const noDateSelected = () => {
     Swal.fire({
@@ -194,6 +201,7 @@ const Booking = () => {
           formData.street
         );
 
+        console.log(bookingResponse);
         const insertId = bookingResponse.insertId;
         selectedService.map((res: any) => selectTypes(insertId, res.id));
         router.refresh();
@@ -408,7 +416,7 @@ const Booking = () => {
                       </p>
                       <Dropdown
                         disabled={!municipality}
-                        options={barangay}
+                        options={barangayList}
                         onSelect={(selected) => setBarangay(selected)}
                         getOptionLabel={(types) => types}
                         getOptionKey={(types) => types}
@@ -554,7 +562,7 @@ const Booking = () => {
               <div className="flex flex-col h-full w-full items-center p-3 gap-5">
                 <p className="text-[18px]">Scan To Pay!</p>
                 <div className="flex w-full h-full gap-8 justify-center items-center">
-                  <Image
+                  {/* <Image
                     src={"/images/gcash-qr-test.png"}
                     height={100}
                     width={100}
@@ -563,18 +571,32 @@ const Booking = () => {
                     }`}
                     onClick={handleImageClick1}
                     alt="GCash QR Code"
-                  />
+                  /> */}
+                  {paymentData && (
+                    <>
+                      <Image
+                        src={paymentData[0].paymentImage || ""}
+                        height={100}
+                        width={100}
+                        className={`transition-transform duration-300 ease-in-out cursor-pointer ${
+                          imageLarger1 ? "scale-200" : ""
+                        }`}
+                        onClick={handleImageClick1}
+                        alt="GCash QR Code"
+                      />
 
-                  <Image
-                    src={"/images/maya-qr-test.png"}
-                    height={100}
-                    width={100}
-                    className={`transition-transform duration-300 ease-in-out cursor-pointer ${
-                      imageLarger2 ? "scale-200" : ""
-                    }`} // Tailwind classes for transition and scaling
-                    onClick={handleImageClick2}
-                    alt="Maya QR Code"
-                  />
+                      <Image
+                        src={"/images/maya-qr-test.png"}
+                        height={100}
+                        width={100}
+                        className={`transition-transform duration-300 ease-in-out cursor-pointer ${
+                          imageLarger2 ? "scale-200" : ""
+                        }`} // Tailwind classes for transition and scaling
+                        onClick={handleImageClick2}
+                        alt="Maya QR Code"
+                      />
+                    </>
+                  )}
                 </div>
                 <p className="text-[12px]">Click to enlarge Image</p>
               </div>

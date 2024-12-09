@@ -43,7 +43,7 @@ const AdminDashboard = () => {
       return `${rowData.installerFirstName} ${rowData.installerLastName}`;
     } else {
       return (
-        <p className="text-red-500 font-semibold">No Assigned Installer</p>
+        <p className="text-red-500 font-semibold">No Assigned Technician</p>
       );
     }
   };
@@ -99,7 +99,7 @@ const AdminDashboard = () => {
               <p className="text-[25px] font-semibold">
                 {activeInstallersCount}
               </p>
-              <p>ACTIVE INSTALLERS</p>
+              <p>ACTIVE TECHNICIANS</p>
             </div>
           </div>
           <div className="bg-ninjaBlack rounded-md">
@@ -128,11 +128,11 @@ const AdminDashboard = () => {
             <div className="flex flex-col items-start gap-3">
               <div className="flex gap-2 items-center">
                 <div className="rounded-full w-4 h-4 bg-[#32E875]"></div>
-                <p>DONE: {chartData[0]}</p>
+                <p>DONE: {chartData[2]}</p>
               </div>
               <div className="flex gap-2 items-center">
                 <div className="rounded-full w-4 h-4 bg-[#FFC857]"></div>
-                <p>PENDING: {chartData[4]}</p>
+                <p>PENDING: {chartData[0]}</p>
               </div>
               <div className="flex gap-2 items-center">
                 <div className="rounded-full w-4 h-4 bg-[#3772FF]"></div>
@@ -144,7 +144,7 @@ const AdminDashboard = () => {
               </div>
               <div className="flex gap-2 items-center">
                 <div className="rounded-full w-4 h-4 bg-[#6b7280]"></div>
-                <p>MISSED: {chartData[2]}</p>
+                <p>MISSED: {chartData[4]}</p>
               </div>
             </div>
           </div>

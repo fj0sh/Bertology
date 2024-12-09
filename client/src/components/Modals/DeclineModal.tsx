@@ -20,9 +20,21 @@ const DeclineModal = (props: Props) => {
 
   const [reason, setReason] = useState("");
   const [error, setError] = useState("");
+  const [attachment, setAttachment] = useState<string | null>(null);
 
   const { declineBookingReason, declineBooking } = useBooking();
   const { sendMail } = useMailer();
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setAttachment(reader.result as string); // Base64 string
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const handleDecline = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -38,8 +50,9 @@ const DeclineModal = (props: Props) => {
       sendMail(
         "Your Booking has Been Declined",
         email,
-        `Your Booking has for the date of ${date}  been declined <br/><br/> Reason: <br/> ${reason}`,
-        name
+        `Your Booking for the date of ${date} has been declined <br/><br/> Reason: <br/> ${reason}`,
+        name,
+        attachment || undefined
       );
       onClose();
       succesToast("Booking declined");
@@ -52,7 +65,7 @@ const DeclineModal = (props: Props) => {
   if (!isOpen) return null;
 
   return (
-    <ModalContainer z="9999" width="35rem" height="35rem">
+    <ModalContainer z="9999" width="35rem" height="40rem">
       <div className="absolute top-5 right-5 border-none rounded-full hover:bg-grey p-2">
         <IoMdClose
           className="text-white text-[30px] cursor-pointer"
@@ -60,8 +73,8 @@ const DeclineModal = (props: Props) => {
         />
       </div>
       <form className="flex flex-col gap-6 p-10" onSubmit={handleDecline}>
-        <p className="text-white text-[25px]">
-          Provide your reason for declining
+        <p className="text-white text-[20px]">
+          Provide your message to the Customer
         </p>
         <textarea
           className="bg-background resize-none border border-orangeRed rounded-lg w-full h-32 p-2 text-white"
@@ -72,6 +85,16 @@ const DeclineModal = (props: Props) => {
             if (error) setError(""); // Clear error on user input
           }}
         />
+        <div className="text-white">
+          <label htmlFor="fileInput">Attach an Image (optional):</label>
+          <input
+            id="fileInput"
+            type="file"
+            accept="image/*"
+            className="text-white"
+            onChange={handleFileUpload}
+          />
+        </div>
         {error && <p className="text-red-500 text-[18px]">{error}</p>}
         <div className="self-end">
           <Button title="Submit" type="submit" />

@@ -5,19 +5,20 @@ const useMailer = () => {
     title: string,
     recepient: string,
     message: string,
-    username: string
+    username: string,
+    attachment?: string // Optional attachment parameter
   ) => {
-    console.log(title);
     try {
       const res = await axios.post("/api/mailer", {
-        title: title,
-        recepient: recepient,
-        message: message,
-        username: username,
+        title,
+        recepient,
+        message,
+        username,
+        attachment,
       });
       console.log(res);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

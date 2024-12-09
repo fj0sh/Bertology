@@ -21,6 +21,7 @@ const BookingRequest = () => {
     useBooking();
 
   const handleViewClick = (data: any, index: number) => {
+    console.log(data);
     getSelectedTypes(data.data.id);
     setIsRequestShow(true);
     setRowData(data);
@@ -189,6 +190,8 @@ const BookingRequest = () => {
         lName={rowData?.data?.lastName}
         email={rowData?.data?.email}
         phoneNumber={rowData?.data?.contactNumber}
+        landmark={rowData?.data?.landmark || ""}
+        street={rowData?.data?.street || ""}
         proof={
           rowData?.data?.proofOfPayment ? rowData?.data?.proofOfPayment : ""
         }

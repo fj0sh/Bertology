@@ -35,3 +35,28 @@ exports.changePassword = (password, id, credentials) => {
     credentials
   );
 };
+
+exports.updateUser = (user, id, callback) => {
+  const {
+    firstName,
+    lastName,
+    phoneNumber,
+    emailAddress,
+    userName,
+    profilePicture,
+  } = user;
+
+  conn.query(
+    `UPDATE users SET firstName = ?, lastName = ?, phoneNumber = ?, emailAddress = ?, userName = ?, profilePicture = ?  WHERE id = ?`,
+    [
+      firstName,
+      lastName,
+      phoneNumber,
+      emailAddress,
+      userName,
+      profilePicture,
+      id,
+    ],
+    callback
+  );
+};

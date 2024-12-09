@@ -15,7 +15,7 @@ const transporter = nodemailer.createTransport({
 });
 
 exports.sendMail = async (req, res) => {
-  const { title, recepient, message, username } = req.body;
+  const { title, recepient, message, username, attachment } = req.body;
 
   if (!recepient) {
     return res.status(400).json({ message: "Recipient email is required." });
@@ -23,18 +23,29 @@ exports.sendMail = async (req, res) => {
 
   const layout = emailLayout(title, message, recepient, username);
 
-  try {
-    const info = await transporter.sendMail({
-      from: {
-        name: "Bertology",
-        address: "noreply@bertology",
-      },
-      to: recepient,
-      subject: "Bertology",
-      text: "BERTOLOGY",
-      html: layout,
-    });
+  const mailOptions = {
+    from: {
+      name: "Bertology",
+      address: "noreply@bertology",
+    },
+    to: recepient,
+    subject: "Bertology",
+    text: "BERTOLOGY",
 
+    html: layout,
+    attachments: [],
+  };
+
+  if (attachment) {
+    mailOptions.attachments.push({
+      filename: "attachment.png", // Change the filename based on your use case
+      content: attachment.split(",")[1], // Extract the Base64 data
+      encoding: "base64",
+    });
+  }
+
+  try {
+    const info = await transporter.sendMail(mailOptions);
     console.log("Email sent: %s", info.messageId);
     res.status(200).json({ message: "Email sent", body: req.body });
   } catch (error) {

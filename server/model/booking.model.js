@@ -112,7 +112,7 @@ exports.deleteBooking = (bookingId, callback) => {
 
 exports.getStatusCount = (callback) => {
   conn.query(
-    "SELECT status, COUNT(*) AS count FROM booking WHERE status IN ('PENDING', 'DECLINED', 'DONE', 'APPROVED', 'MISSED') GROUP BY status",
+    "WITH StatusList AS (SELECT 'PENDING' AS STATUS UNION ALL SELECT 'DECLINED' UNION ALL SELECT 'DONE' UNION ALL SELECT 'APPROVED' UNION ALL SELECT 'MISSED')SELECT sl.STATUS, COUNT(b.STATUS) AS COUNT FROM StatusList sl LEFT JOIN booking b ON sl.STATUS = b.STATUS GROUP BY sl.STATUS ORDER BY FIELD(sl.STATUS, 'PENDING', 'DECLINED', 'DONE', 'APPROVED', 'MISSED');",
     callback
   );
 };

@@ -41,6 +41,7 @@ exports.getBookedServices = (req, res) => {
         paymentType: results.payment_type,
         mode: results.mode,
         status: results.status,
+        street: results.street,
         service: {
           id: results.serviceId,
           serviceName: results.serviceName,

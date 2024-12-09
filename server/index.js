@@ -17,6 +17,7 @@ const cartRoute = require("./routes/cart.route");
 const installerRoute = require("./routes/installer.route");
 const mailerRoute = require("./routes/mailer/mailer.route");
 const inquiryRoute = require("./routes/inquiries.route");
+const paymentRoute = require("./routes/payments.route");
 
 console.log(process.env.MAILER_PASS);
 console.log(process.env.MAILER_EMAIL);
@@ -36,6 +37,7 @@ app.use("/api/cart", cartRoute);
 app.use("/api/mail", mailerRoute);
 app.use("/api/installer", installerRoute);
 app.use("/api/inquiries", inquiryRoute);
+app.use("/api/payments", paymentRoute);
 
 app.listen(PORT, () => {
   console.log("Currently in PORT " + PORT);
