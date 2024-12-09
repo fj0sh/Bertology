@@ -41,32 +41,31 @@ const TimeCard = ({
   handleTimeSelect,
   bookedSlots,
 }: TimeCardProps) => {
-  //3-5
-  //3-hours services
-  const timeSlotsForMultiple = [
-    "8:00-10:00",
-    "10:00-1:00",
-    "1:00-4:00",
-    "4:00-7:00",
-  ];
-
-  //1-2
-  //1 hour services
-  const timeSlotForSingle = [
-    "8:00-9:00",
-    "9:00-10:00",
-    "10:00-11:00",
-    "11:00-12:00",
-    "1:00-2:00",
-    "2:00-3:00",
-    "3:00-4:00",
-    "4:00-5:00",
-  ];
-
   const [timeType, setTimeType] = useState<string[]>([]);
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
 
   useEffect(() => {
+    //3-5
+    //3-hours services
+    const timeSlotsForMultiple = [
+      "8:00-10:00",
+      "10:00-1:00",
+      "1:00-4:00",
+      "4:00-7:00",
+    ];
+
+    //1-2
+    //1 hour services
+    const timeSlotForSingle = [
+      "8:00-9:00",
+      "9:00-10:00",
+      "10:00-11:00",
+      "11:00-12:00",
+      "1:00-2:00",
+      "2:00-3:00",
+      "3:00-4:00",
+      "4:00-5:00",
+    ];
     if (serviceBooked === "MULTIPLE") {
       setTimeType(timeSlotsForMultiple);
     } else {
@@ -84,7 +83,7 @@ const TimeCard = ({
   };
 
   return (
-    <div className="p-5 grid lg:grid-cols-4 sm:grid-cols-2 gap-3">
+    <div className="p-5 grid lg:grid-cols-4 sm:grid-cols-4 gap-3">
       {timeType.map((slot) => (
         <SchedCard
           key={slot}

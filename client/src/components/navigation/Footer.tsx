@@ -9,7 +9,7 @@ type Props = {
 
 const Footer = (props: Props) => {
   return (
-    <div className="lg:flex w-full bg-black *:p-5 text-[#FAF9F6] justify-center items-center z-[9999999999999999999999999]">
+    <div className="flex w-full bg-black *:p-5 text-[#FAF9F6] justify-center items-center z-[9999999999999999999999999]">
       <div className="flex flex-col items-center w-[34%] gap-6 text-center">
         <Image
           src={"/images/transp_logov2.png"}
@@ -51,6 +51,7 @@ const Footer = (props: Props) => {
           <div className="flex justify-center gap-6">
             <Link
               href={"https://www.facebook.com/BossbertologyInstaller032402"}
+              target="_blank"
             >
               <FaFacebookSquare
                 fontSize={"40px"}
@@ -58,7 +59,10 @@ const Footer = (props: Props) => {
               />
             </Link>
 
-            <Link href={"https://www.messenger.com/t/107835038134226"}>
+            <Link
+              href={"https://www.messenger.com/t/107835038134226"}
+              target="_blank"
+            >
               <FaFacebookMessenger
                 fontSize={"40px"}
                 className="hover:text-orangeRed transition-all"

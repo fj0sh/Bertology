@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 const useInstallers = () => {
   const [data, setData] = useState([]);
   const [installerData, setInstallerData] = useState<InstallerType[]>([]);
+  const [installerBookingData, setInstallerBookingData] = useState([]);
 
   const getInstallers = async () => {
     try {
@@ -52,6 +53,7 @@ const useInstallers = () => {
   const getInstallerById = async (id: number) => {
     try {
       const res = await instance.get(`/installer/${id}`);
+      refetch();
       setInstallerData(res.data);
       return res.data;
     } catch (error) {
@@ -65,6 +67,24 @@ const useInstallers = () => {
         installerId: installerId,
         bookingId: bookingId,
       });
+      refetch();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const assignInstallerV2 = async (
+    installerId: number,
+    bookingId: number,
+    bookedDate: string
+  ) => {
+    try {
+      const res = await instance.patch("/installer/assign/v2", {
+        installerId: installerId,
+        bookingId: bookingId,
+        bookedDate: bookedDate,
+      });
+      refetch();
       console.log(res.data);
     } catch (error) {
       console.log(error);
@@ -111,15 +131,23 @@ const useInstallers = () => {
     }
   };
 
-  useEffect(() => {
-    getInstallers();
-  }, []);
+  const getInstallerBooking = async (id: number) => {
+    try {
+      const res = await instance.get(`/installer/bookings/${id}`);
+      setInstallerBookingData(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return {
     installerData,
     data,
     tanstackData,
+    installerBookingData,
 
+    assignInstallerV2,
+    getInstallerBooking,
     addInstaller,
     getInstallerById,
     assignInstaller,

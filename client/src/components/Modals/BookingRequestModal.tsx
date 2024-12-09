@@ -236,41 +236,52 @@ const BookingRequestModal = (props: Props) => {
               </div>
             </div>
           </div>
-
-          {status !== "DONE" && status !== "DECLINED" && (
+          {status === "MISSED" ? (
             <div className="flex gap-4 self-end  text-black font-semibold ">
-              {status === "APPROVED" ? (
-                <button
-                  className="bg-green-500 text-[18px] rounded-sm py-1 px-2"
-                  onClick={() => handleBookingDone(id)}
-                >
-                  Set As Done
-                </button>
-              ) : (
-                <button
-                  className="bg-green-500 text-[18px] rounded-sm py-1 px-2"
-                  onClick={() => handleAcceptBooking()}
-                >
-                  Accept
-                </button>
-              )}
-              {status === "APPROVED" || status === "DONE" ? null : (
-                <button
-                  className="bg-red-500 text-[18px] rounded-sm py-1 px-2"
-                  onClick={(e) => email && handleDeclineBooking()}
-                >
-                  Decline
-                </button>
-              )}
-              {status === "APPROVED" && (
-                <button
-                  className=" bg-blue-500 text-[18px] rounded-sm py-1 px-2"
-                  onClick={(e) => email && handleReassign()}
-                >
-                  Reassign Installer
-                </button>
-              )}
+              <button
+                className=" bg-blue-500 text-[18px] rounded-sm py-1 px-2"
+                // onClick={(e) => email && handleReassign()}
+              >
+                Send message/ Refund
+              </button>
             </div>
+          ) : (
+            status !== "DONE" &&
+            status !== "DECLINED" && (
+              <div className="flex gap-4 self-end  text-black font-semibold ">
+                {status === "APPROVED" ? (
+                  <button
+                    className="bg-green-500 text-[18px] rounded-sm py-1 px-2"
+                    onClick={() => handleBookingDone(id)}
+                  >
+                    Set As Done
+                  </button>
+                ) : (
+                  <button
+                    className="bg-green-500 text-[18px] rounded-sm py-1 px-2"
+                    onClick={() => handleAcceptBooking()}
+                  >
+                    Accept
+                  </button>
+                )}
+                {status === "APPROVED" || status === "DONE" ? null : (
+                  <button
+                    className="bg-red-500 text-[18px] rounded-sm py-1 px-2"
+                    onClick={(e) => email && handleDeclineBooking()}
+                  >
+                    Decline
+                  </button>
+                )}
+                {status === "APPROVED" && (
+                  <button
+                    className=" bg-blue-500 text-[18px] rounded-sm py-1 px-2"
+                    onClick={(e) => email && handleReassign()}
+                  >
+                    Reassign Technician
+                  </button>
+                )}
+              </div>
+            )
           )}
         </div>
       </ModalContainer>

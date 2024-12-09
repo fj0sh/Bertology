@@ -12,9 +12,8 @@ MySQL - 8.0.36 : Database - brtgy_draft
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`brtgy_draft` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 
-USE `brtgy_draft`;
+USE `railway`;
 
 /*Table structure for table `booked_service` */
 
@@ -29,7 +28,7 @@ CREATE TABLE `booked_service` (
   KEY `service_fk` (`serviceId`),
   CONSTRAINT `booking_fk` FOREIGN KEY (`bookingId`) REFERENCES `booking` (`id`) ON DELETE CASCADE,
   CONSTRAINT `service_fk` FOREIGN KEY (`serviceId`) REFERENCES `services` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `booked_service` */
 
@@ -49,7 +48,8 @@ insert  into `booked_service`(`id`,`serviceId`,`bookingId`) values
 (15,1,10),
 (16,1,11),
 (17,1,12),
-(18,1,13);
+(18,1,13),
+(19,1,14);
 
 /*Table structure for table `booking` */
 
@@ -75,22 +75,23 @@ CREATE TABLE `booking` (
   PRIMARY KEY (`id`),
   KEY `installer_fk` (`installerId`),
   CONSTRAINT `installer_fk` FOREIGN KEY (`installerId`) REFERENCES `installers` (`installerId`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `booking` */
 
 insert  into `booking`(`id`,`firstName`,`lastName`,`email`,`contactNumber`,`municipality`,`barangay`,`landmark`,`carModel`,`additionalDetails`,`proofOfPayment`,`bookedDate`,`status`,`mode`,`street`,`installerId`) values 
 (1,'Jernol','Abayon','francisjoshuacutamora@gmail.com','12312312312',NULL,'',NULL,'Test','Test','https://res.cloudinary.com/dgxlqujte/image/upload/v1732788775/hllecjmacten1xv9hyia.jpg','2024-06-29 10:00-11:00','DONE','ONSITE',NULL,1),
-(2,'Jerlon','Abayon','francisjoshuacutamora@gmail.com','9668891051',NULL,'',NULL,'Test','Test','https://res.cloudinary.com/dgxlqujte/image/upload/v1732790666/wd0pqonpan95rvnerlhm.jpg','2024-11-28 10:00-11:00','DONE','ONSITE',NULL,2),
+(2,'Jerlon','Abayon','francisjoshuacutamora@gmail.com','9668891051',NULL,'',NULL,'Test','Test','https://res.cloudinary.com/dgxlqujte/image/upload/v1732790666/wd0pqonpan95rvnerlhm.jpg','2024-11-28 10:00-11:00','MISSED','ONSITE',NULL,2),
 (3,'Ritchell','Valendez','francisjoshuacutamora@gmail.com','9910245909',NULL,'',NULL,'Test','Test','https://res.cloudinary.com/dgxlqujte/image/upload/v1732793459/nqo1uit7yxh9nwrmbqcq.jpg','2024-1-29 10:00-11:00','DONE','ONSITE',NULL,2),
 (4,'Francis','Abayon','francisjoshuacutamora@gmail.com','9915488912',NULL,'',NULL,'Test','Test','https://res.cloudinary.com/dgxlqujte/image/upload/v1732793760/vy20qmw8ipnzafgzmvs1.jpg','2024-11-29 11:00-12:00','DECLINED','ONSITE',NULL,NULL),
 (5,'Jhu','Aringay','francisjoshuacutamora@gmail.com','9668891051',NULL,'',NULL,'Test','Test','https://res.cloudinary.com/dgxlqujte/image/upload/v1732793914/cxn19qc1yfzghz3b8g3s.jpg','2024-11-29 11:00-12:00','DECLINED','ONSITE',NULL,NULL),
-(6,'Ritchell','Valendez','francisjoshuacutamora@gmail.com','9788891512',NULL,'',NULL,'AMC Encore','Test','https://res.cloudinary.com/dgxlqujte/image/upload/v1732794501/fhj0elqem1ilo7vhdk4u.jpg','2024-11-28 9:00-10:00','APPROVED','ONSITE',NULL,2),
+(6,'Ritchell','Valendez','francisjoshuacutamora@gmail.com','9788891512',NULL,'',NULL,'AMC Encore','Test','https://res.cloudinary.com/dgxlqujte/image/upload/v1732794501/fhj0elqem1ilo7vhdk4u.jpg','2024-11-28 9:00-10:00','MISSED','ONSITE',NULL,2),
 (7,'Francis','Cutamora','francisjoshuacutamora@gmail.com','9548847591',NULL,'',NULL,'Test','Test','https://res.cloudinary.com/dgxlqujte/image/upload/v1732794855/butoc24qmsfpu9mevq1m.jpg','2024-12-17 9:00-10:00','PENDING','ONSITE',NULL,NULL),
-(10,'Francis','Cutamora','francisjoshuacutamora@gmail.com','23423423231',NULL,'',NULL,'Test','Test','https://res.cloudinary.com/dgxlqujte/image/upload/v1733108429/inrsjm3gzdvs2vuwifp9.jpg','2025-05-07 4:00-5:00','DONE','ONSITE',NULL,1),
+(10,'Francis','Cutamora','francisjoshuacutamora@gmail.com','23423423231',NULL,'',NULL,'Test','Test','https://res.cloudinary.com/dgxlqujte/image/upload/v1733108429/inrsjm3gzdvs2vuwifp9.jpg','2025-05-07 4:00-5:00','MISSED','ONSITE',NULL,1),
 (11,'Francis','Cutamora','francisjoshuacutamora@gmail.com','12312312312',NULL,'',NULL,'Test','Test','https://res.cloudinary.com/dgxlqujte/image/upload/v1733215388/tori6yphijhmu61o1hah.jpg','2024-12-11 8:00-9:00','PENDING','ONSITE',NULL,NULL),
-(12,'Francis','Cutamora','francisjoshuacutamora@gmail.com','12312312312',NULL,'',NULL,'Test','Test','https://res.cloudinary.com/dgxlqujte/image/upload/v1733215560/m5ukfftiwgcytng5vazc.jpg','2024-12-04 8:00-9:00','PENDING','ONSITE',NULL,NULL),
-(13,'Francis','Cutamora','francisjoshuacutamora@gmail.com','12312312312',NULL,'',NULL,'Test','Test','https://res.cloudinary.com/dgxlqujte/image/upload/v1733215653/cqxqqgghilxl0wfszvk0.jpg','2024-12-04 8:00-9:00','PENDING','ONSITE',NULL,NULL);
+(12,'Francis','Cutamora','francisjoshuacutamora@gmail.com','12312312312',NULL,'',NULL,'Test','Test','https://res.cloudinary.com/dgxlqujte/image/upload/v1733215560/m5ukfftiwgcytng5vazc.jpg','2024-12-04 8:00-9:00','DONE','ONSITE',NULL,1),
+(13,'Francis','Cutamora','francisjoshuacutamora@gmail.com','12312312312',NULL,'',NULL,'Test','Test','https://res.cloudinary.com/dgxlqujte/image/upload/v1733215653/cqxqqgghilxl0wfszvk0.jpg','2024-12-04 8:00-9:00','APPROVED','ONSITE',NULL,1),
+(14,'Francis','Cutamora','francisjoshuacutamora@gmail.com','12312312312',NULL,'',NULL,'Test','Tset','https://res.cloudinary.com/dgxlqujte/image/upload/v1733223332/onu5hedmiqml2yvw5cbf.jpg','2024-12-04 8:00-9:00','APPROVED','ONSITE',NULL,1);
 
 /*Table structure for table `decline_reason` */
 
@@ -120,16 +121,18 @@ CREATE TABLE `inquiries` (
   `firstName` varchar(63) DEFAULT NULL,
   `lastName` varchar(63) DEFAULT NULL,
   `email` varchar(63) DEFAULT NULL,
-  `message` varchar(255) DEFAULT NULL,
+  `message` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `createAt` datetime DEFAULT CURRENT_TIMESTAMP,
   `status` enum('PENDING','RESOLVED') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'PENDING',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `inquiries` */
 
 insert  into `inquiries`(`id`,`firstName`,`lastName`,`email`,`message`,`createAt`,`status`) values 
-(1,'Jaira','Mier','francisjoshuacutamora@gmail.com','Test Inquiry','2024-11-28 18:57:13','RESOLVED');
+(1,'Jaira','Mier','francisjoshuacutamora@gmail.com','Test Inquiry','2024-11-28 18:57:13','RESOLVED'),
+(2,'Jovie','Jurac','Jovie@gmail.com','Test','2024-12-04 14:26:39','PENDING'),
+(4,'Francis','monggoy','francisjoshuacutamora@gmail.com','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.','2024-12-04 14:49:05','PENDING');
 
 /*Table structure for table `installers` */
 

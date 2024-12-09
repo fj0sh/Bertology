@@ -30,6 +30,36 @@ exports.assignInstaller = (installerId, bookingId, callback) => {
   );
 };
 
+exports.assignInstallerV2 = (installerId, bookingId, bookedDate, callback) => {
+  conn.query(
+    `SELECT COUNT(*) AS conflictCount 
+     FROM booking 
+     WHERE installerId = ? 
+       AND LEFT(bookedDate, 10) = LEFT(?, 10) 
+       AND status IN ('PENDING', 'APPROVED');`,
+    [installerId, bookedDate],
+    (error, results) => {
+      if (error) {
+        return callback(error);
+      }
+
+      const conflictCount = results[0].conflictCount;
+      if (conflictCount > 0) {
+        return callback(
+          new Error("Installer already has a booking on this date.")
+        );
+      }
+
+      // No conflict, proceed with the assignment
+      conn.query(
+        "UPDATE booking SET installerId = ? WHERE id = ?",
+        [installerId, bookingId],
+        callback
+      );
+    }
+  );
+};
+
 exports.getAvailableInstallerForTheDay = (date, callback) => {
   conn.query(
     "SELECT * FROM installers WHERE id NOT IN (SELECT installerId FROM booking WHERE LEFT(bookedDate, 10) =?) AND available = 1",
@@ -82,4 +112,12 @@ exports.editInstaller = (installerId, updatedInformation, callback) => {
 
 exports.deleteInstaller = (id, callback) => {
   conn.query("DELETE FROM installers WHERE installerId = ?", id, callback);
+};
+
+exports.getInstallerBookings = (id, callback) => {
+  conn.query(
+    "SELECT b.id AS bookingId, b.bookedDate, b.status, b.carModel, b.mode, i.installerFirstName, i.installerLastName FROM booking b INNER JOIN installers i ON b.installerId = i.installerId WHERE i.installerId = 1",
+    id,
+    callback
+  );
 };

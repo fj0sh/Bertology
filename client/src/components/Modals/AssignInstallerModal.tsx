@@ -12,6 +12,7 @@ import { MdEmail } from "react-icons/md";
 import { FaHouseChimney } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
 import { succesToast } from "../toast";
+import InstallerSchedule from "./InstallerSchedule";
 
 interface ModalProps {
   isOpen: boolean;
@@ -35,18 +36,38 @@ const AssignInstallerModal = (props: ModalProps) => {
     isReassigning,
   } = props;
 
-  const { data, installerData, assignInstaller, getInstallerById } =
-    useInstallers();
+  const {
+    data,
+    installerData,
+    assignInstaller,
+    getInstallerById,
+    assignInstallerV2,
+  } = useInstallers();
 
   const { acceptBooking, refetch } = useBooking();
   const { sendMail } = useMailer();
   const [selectedInstaller, setSelectedInstaller] = useState<number | null>(
     null
   );
+  const [showSchedule, setShowSchedule] = useState(false);
 
-  const showInstaller = (id: number) => {
-    getInstallerById(id);
-    setSelectedInstaller(id);
+  const [loading, setLoading] = useState(false);
+
+  const showInstaller = async (id: number) => {
+    try {
+      setLoading(true); // Start loading
+
+      const installerData = await getInstallerById(id); // Fetch installer data
+      if (installerData) {
+        setSelectedInstaller(installerData); // Update the selected installer state
+      } else {
+        console.error("Installer data not found");
+      }
+    } catch (error) {
+      console.error("Error fetching installer data:", error);
+    } finally {
+      setLoading(false); // Stop loading in both success and error cases
+    }
   };
 
   const handleAcceptBooking = (
@@ -70,7 +91,7 @@ const AssignInstallerModal = (props: ModalProps) => {
       if (res.isConfirmed) {
         acceptBooking(id);
         console.log(`${installerId} ${bookingId}`);
-        assignInstaller(installerId, bookingId);
+        assignInstaller(installerId!, bookingId);
 
         if (isReassigning) {
           succesToast("Technician Reassigned!");
@@ -128,6 +149,13 @@ const AssignInstallerModal = (props: ModalProps) => {
   return (
     <>
       <ModalContainer width="65rem" height="45rem" z="99999">
+        {selectedInstaller && (
+          <InstallerSchedule
+            id={installerData[0].installerId || 0}
+            isOpen={showSchedule}
+            onClose={() => setShowSchedule(false)}
+          />
+        )}
         <div className="absolute top-5 right-5 border-none rounded-full hover:bg-grey p-2">
           <IoMdClose
             className="text-white text-[30px] cursor-pointer"
@@ -137,7 +165,12 @@ const AssignInstallerModal = (props: ModalProps) => {
         <div className="flex w-full h-full p-10">
           <div className="flex flex-col gap-6 w-[50%]">
             <div className="w-full h-full">
-              {installerData[0] ? (
+              {loading ? (
+                <div className="h-full w-full flex flex-col gap-2 justify-center items-center">
+                  <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full border-orangePrimary" />
+                  <p>Getting your technician please wait .......</p>
+                </div>
+              ) : installerData[0] ? (
                 <div className="flex flex-col items-center gap-3">
                   <Image
                     src={
@@ -153,13 +186,20 @@ const AssignInstallerModal = (props: ModalProps) => {
                     style={{ width: "45%", height: "45%" }}
                     className="rounded-full border border-orangeRed"
                   />
-                  <div>
+                  <div className="flex flex-col justify-center">
                     <p className="font-semibold text-[25px]">
                       {installerData[0].installerFirstName}{" "}
                       {installerData[0].installerLastName}
                     </p>
+                    <button
+                      type="button"
+                      onClick={() => setShowSchedule(true)}
+                      className="text-orangePrimary underline "
+                    >
+                      View Schedule
+                    </button>
                   </div>
-                  <div className="flex flex-col gap-3  items-left text-[15px] mx-auto w-full">
+                  <div className="flex flex-col gap-3 items-left text-[15px] mx-auto w-full">
                     <div className="flex gap-3 items-center">
                       <FaPhoneAlt size={30} color="orangeRed" />
                       {installerData[0].installerPhoneNumber}
@@ -172,7 +212,7 @@ const AssignInstallerModal = (props: ModalProps) => {
                       <MdEmail size={30} color="orangeRed" />
                       {installerData[0].installerEmail}
                     </div>
-                    <div className="">
+                    <div>
                       <p className="text-center font-semibold text-[20px] text-orangeRed">
                         Experience
                       </p>

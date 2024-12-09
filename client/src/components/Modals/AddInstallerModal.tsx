@@ -130,7 +130,8 @@ const AddInstallerModal = ({ isOpen, onClose }: ModalProps) => {
             </div>
 
             <div>
-              <InputOrange
+              <InputOrange 
+                limit={11}
                 label="Phone Number:"
                 {...register("installerPhoneNumber")}
               />

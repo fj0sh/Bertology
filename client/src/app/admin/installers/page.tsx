@@ -14,14 +14,13 @@ const Installers = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [viewInstaller, setViewInstaller] = useState(false);
   const [rowData, setRowData] = useState<InstallerType>();
-  const [searchTerm, setSearchTerm] = useState(""); // Search input
-  const [filteredData, setFilteredData] = useState<InstallerType[]>([]); // Filtered installers
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredData, setFilteredData] = useState<InstallerType[]>([]);
   const [tableView, setTableView] = useState("ACTIVE");
 
   const { tanstackData, deleteInstaller } = useInstallers();
 
   useEffect(() => {
-    // Filter installers based on search term
     const filtered = tanstackData?.filter(
       (installer: InstallerType) =>
         installer.installerFirstName
@@ -94,10 +93,10 @@ const Installers = () => {
         <InstallerModal
           isOpen={viewInstaller}
           onClose={() => setViewInstaller(false)}
-          id={rowData?.installerId}
+          id={rowData?.installerId || 0}
           firstname={rowData?.installerFirstName}
           lastname={rowData?.installerLastName}
-          image={rowData?.installerImage}
+          image={rowData?.installerImage || ""}
           address={rowData?.installerAddress}
           email={rowData?.installerEmail}
           experience={rowData?.installerExperience}

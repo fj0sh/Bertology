@@ -18,10 +18,12 @@ const installerRoute = require("./routes/installer.route");
 const mailerRoute = require("./routes/mailer/mailer.route");
 const inquiryRoute = require("./routes/inquiries.route");
 
+console.log(process.env.MAILER_PASS);
+console.log(process.env.MAILER_EMAIL);
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-
 cron();
 
 app.use("/api/auth", authRoute);

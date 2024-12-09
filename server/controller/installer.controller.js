@@ -7,7 +7,6 @@ exports.getInstallers = (req, res) => {
       return res.status(400).send("Error: " + err);
     }
 
-    console.log(result);
     return res.status(200).send(result);
   });
 };
@@ -18,7 +17,6 @@ exports.addInstaller = (req, res) => {
     if (err) {
       return res.status(400).send(err);
     }
-    console.log(result);
     return res.status(200).send(result);
   });
 };
@@ -27,6 +25,20 @@ exports.assignInstaller = (req, res) => {
   installerModel.assignInstaller(
     req.body.installerId,
     req.body.bookingId,
+    (err, result) => {
+      if (err) {
+        return res.status(400).send(err);
+      }
+
+      return res.status(200).send(result);
+    }
+  );
+};
+exports.assignInstallerV2 = (req, res) => {
+  installerModel.assignInstallerV2(
+    req.body.installerId,
+    req.body.bookingId,
+    req.body.bookedData,
     (err, result) => {
       if (err) {
         return res.status(400).send(err);
@@ -57,6 +69,15 @@ exports.editInstaller = (req, res) => {
 
 exports.deleteInstaller = (req, res) => {
   installerModel.deleteInstaller(req.params.id, (err, result) => {
+    if (err) {
+      return res.status(400).send(err);
+    }
+    return res.status(200).send(result);
+  });
+};
+
+exports.getInstallerBookings = (req, res) => {
+  installerModel.getInstallerBookings(req.params.id, (err, result) => {
     if (err) {
       return res.status(400).send(err);
     }

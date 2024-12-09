@@ -20,6 +20,7 @@ router.patch("/accept/:id", bookingController.acceptBooking);
 router.patch("/decline/:id", bookingController.declineBooking);
 router.patch("/done/:id", bookingController.setBookingAsDone);
 router.patch("/reassign", bookingController.reassignInstaller);
+router.patch("/mark", bookingController.markMissedBooking);
 
 router.delete("/:id", bookingController.deleteBooking);
 

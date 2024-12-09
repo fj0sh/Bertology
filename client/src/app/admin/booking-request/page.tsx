@@ -17,17 +17,8 @@ const BookingRequest = () => {
   const [tableView, setTableView] = useState("ALLBOOKINGS");
   const [dateFilter, setDateFilter] = useState<Date | null>(null);
 
-  const {
-    getAllBookings,
-    getSelectedTypes,
-    deleteBooking,
-    tanstackData,
-    serviceType,
-  } = useBooking();
-
-  useEffect(() => {
-    getAllBookings();
-  }, []);
+  const { getSelectedTypes, deleteBooking, tanstackData, serviceType } =
+    useBooking();
 
   const handleViewClick = (data: any, index: number) => {
     getSelectedTypes(data.data.id);
@@ -121,8 +112,6 @@ const BookingRequest = () => {
   };
 
   const installerColumn = (rowData: any) => {
-    console.log(rowData);
-
     if (rowData.data.installer.firstName && rowData.data.installer.lastName) {
       return `${rowData.data.installer.firstName} ${rowData.data.installer.lastName}`;
     } else {

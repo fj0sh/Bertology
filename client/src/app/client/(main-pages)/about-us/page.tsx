@@ -105,7 +105,7 @@ Bertology offers a 3-month warranty from the date of purchase or service complet
       </div>
       {/* -----------------------------------CONTACT/ADDITIONAL INFO------------------------------------------------------ */}
       <div
-        className="flex justify-center items-center w-full h-[70vh] "
+        className="flex justify-center items-center w-full h-[full] "
         id="contactUs"
       >
         <AboutUsInfoCard />

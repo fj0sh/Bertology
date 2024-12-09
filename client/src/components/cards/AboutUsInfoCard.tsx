@@ -37,16 +37,16 @@ const AboutUsInfoCard = () => {
   };
 
   return (
-    <div className="p-10 w-[80%] text-white">
+    <div className="p-10 lg:w-[80%] h-full text-white">
       <div className="flex flex-col gap-6 relative w-full h-full items-center">
         <div className="absolute top-5 font-semibold bg-orangePrimary w-[15rem] border-none rounded-lg text-center p-2 text-black">
           CONTACT US
         </div>
-        <div className="flex border border-orangePrimary  mt-10 rounded-lg p-10 w-full h-full ">
-          <div className=" w-[70%]  flex flex-col items-center justify-center gap-8 ">
+        <div className="lg:flex border border-orangePrimary  mt-10 rounded-lg p-10 w-full h-full ">
+          <div className=" lg:w-[70%]  flex flex-col items-center justify-center gap-8 ">
             <div className="font-semibold text-[18px]">PAYMENT METHODS:</div>
             <div className="text-center">
-              <div className="flex justify-center gap-6"> 
+              <div className="flex justify-center gap-6">
                 <Image
                   src={"/images/gcash-logo.png"}
                   width={100}

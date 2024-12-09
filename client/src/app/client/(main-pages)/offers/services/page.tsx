@@ -56,6 +56,7 @@ const Booking = () => {
   const [isModelShow, setIsModelShow] = useState(true);
   const [agreed, setAgreed] = useState(false);
   const [agreeTerms, setAgreedTerms] = useState(false);
+  const [serviceError, setServiceError] = useState("");
 
   const {
     register,
@@ -107,11 +108,9 @@ const Booking = () => {
   useEffect(() => {
     if (municipality) {
       const barangays = Locations.CEBU.municipality_list[municipality] || [];
-      setBarangay(barangays?.barangay_list); // Update barangay list
-    } else {
-      setBarangay([]); // Reset barangay list if no municipality is selected
+      setBarangay((barangays as any)?.barangay_list); // Update barangay list
     }
-  }, [municipality]);
+  }, [municipality, barangay]);
 
   const noDateSelected = () => {
     Swal.fire({
@@ -145,6 +144,8 @@ const Booking = () => {
     if (!selectedBookingDate || !selectedTimeSlot) {
       setIsSubmitting(false);
       noDateSelected();
+    } else if (!selectedService) {
+      setServiceError("Please select a service");
     } else {
       setFormData(data);
       const OTP = Math.floor(Math.random() * (999999 - 100000) + 100000);
@@ -184,7 +185,7 @@ const Booking = () => {
           formData.landmark!,
           formData.model || "",
           // selectedModel !== "" ? selectedModel : formData.model || "",
-          formData.details,
+          formData.details || "",
           paymentProof,
           `${
             formatDateForSQL(selectedBookingDate).split(" ")[0]
@@ -270,16 +271,16 @@ const Booking = () => {
       </div>
       <div className="w-full h-full lg:flex justify-center p-10 gap-x-[10rem]">
         <div className="w-full h-full items-end flex flex-col gap-8 mt-[5rem]">
-          <div className="text-white self-center flex items-center gap-2">
+          <div className="text-white lg:self-center sm:self-start flex items-center gap-2">
             <p className="font-bold text-[18px]">Selected Date:</p>
             {selectedBookingDate
               ? `${formatDateNormal(selectedBookingDate)} (${selectedTimeSlot})`
               : "Please Select a Date"}
           </div>
-          <div className="flex w-[80%] px-10 items-center justify-center">
+          <div className="flex lg:w-[80%] sm:w-[100%] px-10 items-center justify-center">
             <PrimeCalendar selectedDate={handleDate} />
           </div>
-          <div className="self-end">
+          <div className="self-center lg:pl-28 sm:pl-15">
             <p className="text-white font-semibold text-[20px]">Time Slots:</p>
 
             <TimeCard
@@ -326,7 +327,11 @@ const Booking = () => {
 
             <div className="lg:flex w-full gap-8">
               <div className="w-full">
-                <InputOrange label="First Name:" {...register("firstName")} />
+                <InputOrange
+                  required={true}
+                  label="First Name:"
+                  {...register("firstName")}
+                />
                 {errors.firstName && (
                   <p className="text-red-500 text-[13px]">
                     {`${errors.firstName?.message}`}
@@ -334,7 +339,11 @@ const Booking = () => {
                 )}
               </div>
               <div className="w-full">
-                <InputOrange label="Last Name:" {...register("lastName")} />
+                <InputOrange
+                  required={true}
+                  label="Last Name:"
+                  {...register("lastName")}
+                />
                 {errors.lastName && (
                   <p className="text-red-500 text-[13px]">
                     {`${errors.lastName?.message}`}
@@ -345,7 +354,11 @@ const Booking = () => {
 
             <div className="lg:flex w-full gap-8 *:w-full">
               <div>
-                <InputOrange label="Email:" {...register("email")} />
+                <InputOrange
+                  required={true}
+                  label="Email:"
+                  {...register("email")}
+                />
                 {errors.email && (
                   <p className="text-red-500 text-[13px]">
                     {`${errors.email.message}`}
@@ -354,7 +367,12 @@ const Booking = () => {
               </div>
 
               <div>
-                <InputOrange label="Contact Number:" {...register("number")} />
+                <InputOrange
+                  limit={11}
+                  required={true}
+                  label="Contact Number:"
+                  {...register("number")}
+                />
                 {errors.number && (
                   <p className="text-red-500 text-[13px]">
                     {`${errors.number.message}`}
@@ -374,21 +392,23 @@ const Booking = () => {
                 <>
                   <div className="lg:flex gap-8 w-full justify-around">
                     <div className="p-1 flex flex-col gap-2 w-full">
-                      <p className="text-[18px] self-start">Municipality:</p>
+                      <p className="text-[18px] self-start">
+                        Municipality: <span className="text-red-600">*</span>
+                      </p>
                       <Dropdown
                         options={municipalityList}
-                        title="Municipality"
                         onSelect={(selected) => setMunicipality(selected)}
                         getOptionLabel={(types) => types}
                         getOptionKey={(types) => types}
                       />
                     </div>
                     <div className="p-1 flex flex-col gap-2 w-full">
-                      <p className="text-[18px] self-start">Barangay:</p>
+                      <p className="text-[18px] self-start">
+                        Barangay: <span className="text-red-600">*</span>
+                      </p>
                       <Dropdown
                         disabled={!municipality}
                         options={barangay}
-                        title="Barangay"
                         onSelect={(selected) => setBarangay(selected)}
                         getOptionLabel={(types) => types}
                         getOptionKey={(types) => types}
@@ -399,6 +419,7 @@ const Booking = () => {
                   <div className="lg:flex gap-8 w-full justify-around">
                     <div className="mt-4 w-full">
                       <InputOrange
+                        required={true}
                         label="Nearest Landmark:"
                         {...register("landmark")}
                       />
@@ -410,6 +431,7 @@ const Booking = () => {
                     </div>
                     <div className="mt-4 w-full">
                       <InputOrange
+                        required={true}
                         label="House #, street, village:"
                         {...register("street")}
                       />
@@ -427,8 +449,10 @@ const Booking = () => {
             </div>
 
             <div className="lg:flex w-full gap-8">
-              <div className="flex flex-col gap-1 w-[50%]">
-                <p className="text-[18px]">Select Service:</p>
+              <div className="flex flex-col lg:gap-1 sm:gap-5 lg:w-[50%] sm:w-[100%]">
+                <p className="text-[18px]">
+                  Select Service:<span className="text-orange-500">*</span>
+                </p>
                 {tanstackData && (
                   <MultiSelect
                     value={selectedService}
@@ -459,11 +483,16 @@ const Booking = () => {
                     )}
                   />
                 )}
+                <div>
+                  {serviceError && (
+                    <p className="text-red-500">{serviceError}</p>
+                  )}
+                </div>
               </div>
 
-              <div className=" flex flex-col gap-1 w-[50%]">
+              <div className=" flex flex-col gap-1 lg:w-[50%] sm:w-[100%]">
                 <p className="text-[18px] w-full"> Down Payment:</p>
-                <div className="text-[20px] text-orangeRed justify-self-center">
+                <div className="text-[20px] text-orangePrimary justify-self-center">
                   {downPayment ? (
                     <p> ₱ {downPayment} </p>
                   ) : (
@@ -475,11 +504,12 @@ const Booking = () => {
 
             <div className="flex w-full gap-8 *:w-full">
               <div className="w-full">
-                <div className="w-1/2">
-                  <div className="w-[80%]">
+                <div className="lg:w-1/2 sm:w-full">
+                  <div className="w-[95%]">
                     <InputOrange
+                      required={true}
                       disabled={selectedModel ? true : false}
-                      label="Other/Specific Model:"
+                      label="Model(We don't accept Ford Models):"
                       {...register("model")}
                     />
                     {errors.model && (
@@ -509,8 +539,11 @@ const Booking = () => {
             {/* --------------------------------------------------------------------------------------------------PAYMENT START--------------------------------------------------------------------------------------------------------------------------------------------- */}
             <div className="flex justify-between gap-2">
               <div className="flex flex-col gap-2 w-full">
-                <p className="text-[15px]">Proof of Payment/ Receipt:</p>
-                <div className="h-[10rem] w-[10rem] border rounded-md border-orangeRed">
+                <p className="text-[15px]">
+                  Proof of Payment/ Receipt:{" "}
+                  <span className="text-red-600">*</span>
+                </p>
+                <div className="h-[10rem] w-[10rem] border-2 border-opacity-60 border-dashed rounded-md border-orangeRed">
                   <ImageUpload
                     value={paymentProof}
                     onChange={(value) => setPaymentProof(value)}

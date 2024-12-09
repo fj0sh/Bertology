@@ -8,18 +8,34 @@ interface Props {
   type?: "text" | "number" | "password";
   placeholder?: string;
   disabled?: boolean;
+  required?: boolean;
+  limit?: number;
 }
 
 const InputOrange = React.forwardRef<HTMLInputElement, Props>(
   (props: Props, ref) => {
-    const { height, label, value, type, placeholder, disabled } = props;
+    const {
+      height,
+      required,
+      label,
+      value,
+      type,
+      placeholder,
+      disabled,
+      limit,
+    } = props;
 
     return (
       <>
         <div className="w-full flex flex-col gap-2">
-          {label && <p className="text-white text-[18px]">{label}</p>}
+          {label && (
+            <p className="text-white text-[18px]">
+              {label} {required && <span className="text-red-600">*</span>}
+            </p>
+          )}
           <input
             ref={ref}
+            maxLength={limit}
             type={type}
             disabled={disabled}
             placeholder={placeholder}
