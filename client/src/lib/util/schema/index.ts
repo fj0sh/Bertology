@@ -42,6 +42,7 @@ export const InquirySchema = z.object({
     .min(1, "Email is Required")
     .email("Please enter a valid email address"),
   message: z.string().min(1, "Message is Required"),
+  reply: z.string().optional(),
   status: z.string().optional(),
 });
 

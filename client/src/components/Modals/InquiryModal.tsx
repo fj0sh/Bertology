@@ -14,19 +14,23 @@ interface ModalProps {
   email: string;
   message: string;
   status: string;
+  replyMessage: string;
 }
 
 const InquiryModal = (props: ModalProps) => {
-  const { onClose, isOpen, name, email, message, id, status } = props;
+  const { onClose, isOpen, name, email, message, id, status, replyMessage } =
+    props;
 
   const { sendMail } = useMailer();
   const { resolveInquiry } = useInquiry();
   const [reply, setReply] = useState("");
 
+  console.log(replyMessage);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     sendMail("Response to your Inquiry", email, reply, name);
-    resolveInquiry(id);
+    resolveInquiry(id, reply);
     succesToast(" Inquiry response has been sent");
     onClose?.();
   };
@@ -60,7 +64,12 @@ const InquiryModal = (props: ModalProps) => {
           </div>
         </div>
         {status !== "PENDING" ? (
-          <></>
+          <div className="flex flex-col gap-4 px-10">
+            <p className="text-[20px] font-semibold text-orangePrimary">
+              Your Reply
+            </p>
+            <p>{replyMessage}</p>
+          </div>
         ) : (
           <form
             className="w-1/2 flex flex-col pl-5 gap-5"

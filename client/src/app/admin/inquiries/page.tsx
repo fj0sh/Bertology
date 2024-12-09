@@ -23,6 +23,7 @@ const Inquiry = () => {
   };
 
   const handleViewClick = (rowData: InquiryType) => {
+    console.log(rowData.reply);
     setRowData(rowData);
     setIsModalOpen(true);
   };
@@ -51,6 +52,7 @@ const Inquiry = () => {
           message={rowData?.message}
           status={rowData?.status!}
           id={rowData.id!}
+          replyMessage={rowData.reply || ""}
         />
       )}
 

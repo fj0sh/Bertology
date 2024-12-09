@@ -20,10 +20,14 @@ exports.addInquiry = (req, res) => {
 };
 
 exports.resolveInquiry = (req, res) => {
-  inquiryController.resolveInquiry(req.params.id, (err, result) => {
-    if (err) {
-      return res.status(400).send(err);
+  inquiryController.resolveInquiry(
+    req.params.id,
+    req.body.reply,
+    (err, result) => {
+      if (err) {
+        return res.status(400).send(err);
+      }
+      return res.status(200).send(result);
     }
-    return res.status(200).send(result);
-  });
+  );
 };
