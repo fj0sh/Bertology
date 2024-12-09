@@ -30,6 +30,7 @@ import { MultiSelect } from "primereact/multiselect";
 import TermsModal from "@/components/Modals/TermsModal";
 import { useRouter } from "next/navigation";
 import usePayment from "@/hooks/requests/usePayment";
+import { succesToast } from "@/components/toast";
 
 const Booking = () => {
   const [selectedBookingDate, setSelectedBookingDate] = useState("");
@@ -68,7 +69,7 @@ const Booking = () => {
     formState: { errors },
   } = useForm<BookingType>({ resolver: zodResolver(BookingSchema) });
 
-  const { data, bookService, selectTypes } = useBooking();
+  const { bookService, selectTypes } = useBooking();
   const { tanstackData, dateInfo, getDateInformation } = useServices();
   const { sendMail } = useMailer();
   const customModel = watch("model");
@@ -117,7 +118,6 @@ const Booking = () => {
       setBarangay((barangays as any)?.barangay_list); // Update barangay list
     }
   }, [municipality]);
-  console.log(barangay);
 
   const noDateSelected = () => {
     Swal.fire({
@@ -201,9 +201,9 @@ const Booking = () => {
           formData.street
         );
 
-        console.log(bookingResponse);
         const insertId = bookingResponse.insertId;
         selectedService.map((res: any) => selectTypes(insertId, res.id));
+        succesToast("Booked Successfully");
         router.refresh();
       }
     } else {

@@ -10,8 +10,10 @@ import Swal from "sweetalert2";
 import "@/style/tables.css";
 import { succesToast } from "@/components/toast";
 import { Calendar } from "primereact/calendar";
+import useProtect from "@/hooks/fetcher/useProtect";
 
 const BookingRequest = () => {
+  useProtect();
   const [isRequestShow, setIsRequestShow] = useState(false);
   const [rowData, setRowData] = useState<BookingResponse>();
   const [tableView, setTableView] = useState("ALLBOOKINGS");
@@ -26,6 +28,8 @@ const BookingRequest = () => {
     setIsRequestShow(true);
     setRowData(data);
   };
+
+  console.log(tanstackData);
 
   const getFilteredData = () => {
     if (!dateFilter) return tanstackData;
@@ -202,6 +206,7 @@ const BookingRequest = () => {
         isOpen={isRequestShow}
         serviceTypes={serviceType}
         status={rowData?.data?.status}
+        installerName={`${rowData?.data?.installer?.firstName} ${rowData?.data?.installer?.lastName}`}
         onClose={() => setIsRequestShow(false)}
       />
       <DataTable

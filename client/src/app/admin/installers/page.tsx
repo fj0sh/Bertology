@@ -9,8 +9,10 @@ import React, { useState, useEffect } from "react";
 import "@/style/tables.css";
 import Swal from "sweetalert2";
 import { succesToast } from "@/components/toast";
+import useProtect from "@/hooks/fetcher/useProtect";
 
 const Installers = () => {
+  useProtect();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [viewInstaller, setViewInstaller] = useState(false);
   const [rowData, setRowData] = useState<InstallerType>();

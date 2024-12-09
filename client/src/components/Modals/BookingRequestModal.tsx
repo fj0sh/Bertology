@@ -27,6 +27,7 @@ interface Props {
   landmark: string;
   street: string;
 
+  installerName: string;
   serviceTypes: any;
   model?: string;
   description?: string;
@@ -48,6 +49,7 @@ const BookingRequestModal = (props: Props) => {
     landmark,
     street,
 
+    installerName,
     serviceTypes,
     model,
     description,
@@ -221,6 +223,7 @@ const BookingRequestModal = (props: Props) => {
                   {status}
                 </span>
               </p>
+              <p>Technician: {installerName}</p>
               <p>Booked Date: {date}</p>
 
               <div>

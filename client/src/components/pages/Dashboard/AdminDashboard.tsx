@@ -16,14 +16,15 @@ import useInstallers from "@/hooks/requests/useInstallers";
 import { InquiryType, InstallerType } from "@/lib/util/schema";
 import useInquiry from "@/hooks/requests/useInquiry";
 import Link from "next/link";
+import { TryAgainSwal } from "@/components/swals";
+import useProtect from "@/hooks/fetcher/useProtect";
 
 const AdminDashboard = () => {
+  useProtect();
   const { dataByDate, chartData, tanstackData, getBookingByDate } =
     useBooking();
   const { tanstackData: installers } = useInstallers();
   const { tanstackData: inquiries } = useInquiry();
-
-  console.log(chartData);
 
   const currentDate = new Date();
   const [date, setDate] = useState(formatDateForSQL(currentDate).split(" ")[0]);
@@ -86,6 +87,8 @@ const AdminDashboard = () => {
     inquiries?.filter(
       (inquiries: InquiryType) => inquiries.status === "PENDING"
     ).length || 0;
+
+  const limitedData = dataByDate.splice(0, 5);
 
   return (
     <div className="w-full h-[85vh] flex flex-col gap-4">
@@ -166,7 +169,12 @@ const AdminDashboard = () => {
             >
               See more
             </Link>
-            <DataTable tableClassName="custom-table" value={dataByDate}>
+            <DataTable
+              tableClassName="custom-table"
+              value={limitedData}
+              emptyMessage="Please Select a Date"
+              rows={5}
+            >
               <Column header="Name" body={nameColumn} />
               <Column
                 header="Status"
@@ -204,19 +212,25 @@ const AdminDashboard = () => {
             </Link>
           </div>
           <div className="flex flex-col gap-3">
-            {inquiries
-              ?.filter((inquiry: InquiryType) => inquiry.status === "PENDING")
-              .map((inquiry: InquiryType) => {
-                return (
-                  <div
-                    className="flex flex-col gap-2 max-w-[28rem] bg-asphalt p-2 shadow-lg rounded-md"
-                    key={inquiry.id}
-                  >
-                    <div>{inquiry.email}</div>
-                    <div className="indent-5 truncate">{inquiry.message}</div>
-                  </div>
-                );
-              })}
+            {inquiries ? (
+              inquiries
+                ?.filter((inquiry: InquiryType) => inquiry.status === "PENDING")
+                .map((inquiry: InquiryType) => {
+                  return (
+                    <div
+                      className="flex flex-col gap-2 max-w-[28rem] bg-asphalt p-2 shadow-lg rounded-md"
+                      key={inquiry.id}
+                    >
+                      <div>{inquiry.email}</div>
+                      <div className="indent-5 truncate">{inquiry.message}</div>
+                    </div>
+                  );
+                })
+            ) : (
+              <div>
+                <p>No Inquiries</p>
+              </div>
+            )}
           </div>
         </div>
       </div>

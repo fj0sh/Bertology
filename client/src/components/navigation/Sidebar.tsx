@@ -78,7 +78,7 @@ const Sidebar = () => {
         })}
 
         {/* Settings with Dropdown */}
-        <div className="flex flex-col">
+        {/* <div className="flex flex-col">
           <button
             className={`flex gap-6 hover:text-orangePrimary items-center text-[15px] ${
               isSettingsOpen ? "text-orangePrimary" : "text-white"
@@ -102,7 +102,7 @@ const Sidebar = () => {
               </Link>
             </div>
           )}
-        </div>
+        </div> */}
       </div>
       <button
         className="mt-auto mb-4 gap-4 text-[15px] flex items-center"

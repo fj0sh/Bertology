@@ -7,8 +7,10 @@ import useInquiry from "@/hooks/requests/useInquiry";
 import { InquiryType } from "@/lib/util/schema";
 import Loading from "@/app/loading";
 import InquiryModal from "@/components/Modals/InquiryModal";
+import useProtect from "@/hooks/fetcher/useProtect";
 
 const Inquiry = () => {
+  useProtect();
   const { tanstackData } = useInquiry();
   const [rowData, setRowData] = useState<InquiryType>();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -96,6 +98,7 @@ const Inquiry = () => {
         size="small"
         tableClassName="custom-table"
         paginatorClassName="custom-paginator"
+        emptyMessage="You have no inquiries "
       >
         <Column body={(rowData) => nameTemplate(rowData)} header="Name" />
         <Column field="email" header="Email" />

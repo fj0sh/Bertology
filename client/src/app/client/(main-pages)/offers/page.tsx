@@ -54,11 +54,12 @@ const Services = () => {
           </p>
         </div>
         <div className="h-[20rem] flex justify-center items-center gap-[2rem] ">
-          <BrandBalls />
-          <BrandBalls />
-          <BrandBalls />
-          <BrandBalls />
-          <BrandBalls />
+          <BrandBalls image="/brand_images/brand1.svg" />
+          <BrandBalls image="/brand_images/brand2.svg" />
+          <BrandBalls image="/brand_images/brand3.svg" />
+          <BrandBalls image="/brand_images/brand4.svg" />
+          <BrandBalls image="/brand_images/brand5.svg" />
+          <BrandBalls image="/brand_images/brand6.svg" />
         </div>
       </div>
     </div>
