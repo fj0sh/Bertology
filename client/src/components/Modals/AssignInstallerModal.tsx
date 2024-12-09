@@ -98,31 +98,56 @@ const AssignInstallerModal = (props: ModalProps) => {
           sendMail(
             "Technician has been reassigned",
             email,
-            `Technician has been reassigned to your booking for the ${date}  
-            <br/>
-            <div 
-            style= "
-            font-size: 20px; 
-            font-weight: bold; 
-            font-family: Arial, sans-serif; 
-            display: flex; 
-            flex-direction: column;
-            gap: 1rem;
-            ">
-              <p>
-                ${installerData[0].installerFirstName} ${installerData[0].installerLastName}
-              </p>
-
-              <div>
-                <p>
-                  Experience:
+            `Technician has been reassigned to your booking for ${date}
+              <br/>
+              <div 
+                style="
+                  font-size: 20px; 
+                  font-weight: bold; 
+                  font-family: Arial, sans-serif; 
+                  display: block; 
+                  margin-top: 1rem;
+                  line-height: 1.5;
+                "
+              >
+                <p style="margin: 0 0 1rem;">Technician:</p>
+                <p 
+                  style="
+                    font-size: 18px; 
+                    font-weight: normal; 
+                    margin: 0;
+                  "
+                >
+                  ${installerData[0].installerFirstName} ${installerData[0].installerLastName}
                 </p>
-                <p>
-                  ${installerData[0].installerExperience}
-                </p>
+                <hr 
+                  style="
+                    margin: 1rem 0; 
+                    border: none; 
+                    border-top: 1px solid #ccc;
+                  "
+                />
+                <div>
+                  <p 
+                    style="
+                      margin: 0 0 0.5rem; 
+                      font-weight: bold;
+                    "
+                  >
+                    Experience:
+                  </p>
+                  <p 
+                    style="
+                      font-size: 18px; 
+                      font-weight: normal; 
+                      margin: 0;
+                    "
+                  >
+                    ${installerData[0].installerExperience}
+                  </p>
+                </div>
               </div>
 
-            </div>
             
               `,
             `${fName} ${lName}`
@@ -132,8 +157,55 @@ const AssignInstallerModal = (props: ModalProps) => {
           sendMail(
             "Booking has been accepted",
             email,
-            `Your Booking for the ${date} has been accepted <br/>
-              ${installerData[0].installerFirstName}
+            `Your booking for ${date} has been accepted.
+              <br/>
+              <div 
+                style="
+                  font-size: 20px; 
+                  font-weight: bold; 
+                  font-family: Arial, sans-serif; 
+                  display: block; 
+                  margin-top: 1rem;
+                  line-height: 1.5;
+                "
+              >
+                <p style="margin: 0 0 1rem;">Technician:</p>
+                <p 
+                  style="
+                    font-size: 18px; 
+                    font-weight: normal; 
+                    margin: 0;
+                  "
+                >
+                  ${installerData[0].installerFirstName} ${installerData[0].installerLastName}
+                </p>
+                <hr 
+                  style="
+                    margin: 1rem 0; 
+                    border: none; 
+                    border-top: 1px solid #ccc;
+                  "
+                />
+                <div>
+                  <p 
+                    style="
+                      margin: 0 0 0.5rem; 
+                      font-weight: bold;
+                    "
+                  >
+                    Experience:
+                  </p>
+                  <p 
+                    style="
+                      font-size: 18px; 
+                      font-weight: normal; 
+                      margin: 0;
+                    "
+                  >
+                    ${installerData[0].installerExperience}
+                  </p>
+                </div>
+              </div>
             `,
             `${fName} ${lName}`
           );

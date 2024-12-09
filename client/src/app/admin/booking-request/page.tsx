@@ -209,7 +209,9 @@ const BookingRequest = () => {
           tableView === "BOOKINGHISTORY"
             ? getFilteredData()?.filter((res: any) => {
                 return (
-                  res.data.status === "DONE" || res.data.status === "DECLINED"
+                  res.data.status === "DONE" ||
+                  res.data.status === "DECLINED" ||
+                  res.data.status === "MISSED"
                 );
               })
             : tableView === "TODAYSBOOKINGS"
@@ -221,7 +223,9 @@ const BookingRequest = () => {
               })
             : getFilteredData()?.filter((res: any) => {
                 return (
-                  res.data.status !== "DONE" && res.data.status !== "DECLINED"
+                  res.data.status !== "DONE" &&
+                  res.data.status !== "DECLINED" &&
+                  res.data.status !== "MISSED"
                 );
               })
         }

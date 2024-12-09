@@ -65,6 +65,7 @@ const BookingRequestModal = (props: Props) => {
 
   const handleAcceptBooking = () => {
     setInstallerModal(true);
+    setIsReassigning(false);
   };
 
   const handleBookingDone = (id: number) => {
@@ -246,7 +247,7 @@ const BookingRequestModal = (props: Props) => {
             <div className="flex gap-4 self-end  text-black font-semibold ">
               <button
                 className=" bg-blue-500 text-[18px] rounded-sm py-1 px-2"
-                // onClick={(e) => email && handleReassign()}
+                onClick={() => email && handleDeclineBooking()}
               >
                 Send message/ Refund
               </button>

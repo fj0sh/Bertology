@@ -161,7 +161,7 @@ const InstallerModal = (props: ModalProps) => {
 
                   <button
                     type="button" // This will not submit the form
-                    className="bg-orange-500 text-white px-4 py-2 rounded "
+                    className="text-orangePrimary underline px-4 py-2 rounded "
                     onClick={() => setShowSchedule(true)}
                   >
                     View Schedule
