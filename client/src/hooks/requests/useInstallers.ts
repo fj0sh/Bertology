@@ -127,7 +127,7 @@ const useInstallers = () => {
       await instance.delete(`/installer/${id}`);
       refetch();
     } catch (error) {
-      console.log(error);
+      return error;
     }
   };
 

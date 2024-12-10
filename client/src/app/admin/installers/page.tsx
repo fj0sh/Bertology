@@ -60,6 +60,7 @@ const Installers = () => {
     }).then((res) => {
       if (res.isConfirmed) {
         succesToast("Installer Deleted Successfully");
+        // if()
         deleteInstaller(rowData.installerId);
       }
     });
@@ -74,12 +75,12 @@ const Installers = () => {
         >
           View
         </button>
-        <button
+        {/* <button
           onClick={() => handleDeleteInstaller(rowData)}
           className="px-2 py-1 bg-red-500 text-white rounded"
         >
           Delete
-        </button>
+        </button> */}
       </div>
     );
   };
