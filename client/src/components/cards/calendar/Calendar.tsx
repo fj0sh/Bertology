@@ -45,6 +45,8 @@ const PrimeCalendar = (props: Props) => {
   };
 
   const today = new Date();
+  const tomorrow = new Date();
+  tomorrow.setDate(today.getDate() + 1);
 
   return (
     <>
@@ -54,7 +56,7 @@ const PrimeCalendar = (props: Props) => {
         inline
         disabledDates={setDisable ? bookedDates : []}
         onChange={handleDateChange}
-        minDate={setDisable ? today : undefined}
+        minDate={setDisable ? tomorrow : undefined}
         pt={{
           yearTitle: { className: "px-4" },
           header: { className: "bg-orangePrimary text-white" },
