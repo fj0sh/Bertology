@@ -12,10 +12,11 @@ declare global {
 interface ImageUploadProps {
   onChange: (value: string) => void;
   value: string;
+  name?: string;
 }
 
 const ImageUpload = (props: ImageUploadProps) => {
-  const { onChange, value } = props;
+  const { onChange, value, name } = props;
 
   const handleUplaod = useCallback(
     (result: any) => {

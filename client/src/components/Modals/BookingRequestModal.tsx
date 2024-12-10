@@ -24,7 +24,10 @@ interface Props {
   proof: string;
   mode?: string;
   location?: string;
+  landmark: string;
+  street: string;
 
+  installerName: string;
   serviceTypes: any;
   model?: string;
   description?: string;
@@ -43,7 +46,10 @@ const BookingRequestModal = (props: Props) => {
     proof,
     mode,
     location,
+    landmark,
+    street,
 
+    installerName,
     serviceTypes,
     model,
     description,
@@ -61,6 +67,7 @@ const BookingRequestModal = (props: Props) => {
 
   const handleAcceptBooking = () => {
     setInstallerModal(true);
+    setIsReassigning(false);
   };
 
   const handleBookingDone = (id: number) => {
@@ -176,6 +183,8 @@ const BookingRequestModal = (props: Props) => {
               <p>Email: {email}</p>
               <p>Mode: {mode}</p>
               {mode === "HOMESERVICE" && <p>Location: {location}</p>}
+              {mode === "HOMESERVICE" && <p>Landmark: {landmark}</p>}
+              {mode === "HOMESERVICE" && <p>Street: {street}</p>}
               <p>Contact Number: {phoneNumber}</p>
               <div className="flex flex-col gap-2 mt-6">
                 <p>Proof of Payment:</p>
@@ -214,6 +223,7 @@ const BookingRequestModal = (props: Props) => {
                   {status}
                 </span>
               </p>
+              <p>Technician: {installerName}</p>
               <p>Booked Date: {date}</p>
 
               <div>
@@ -240,7 +250,7 @@ const BookingRequestModal = (props: Props) => {
             <div className="flex gap-4 self-end  text-black font-semibold ">
               <button
                 className=" bg-blue-500 text-[18px] rounded-sm py-1 px-2"
-                // onClick={(e) => email && handleReassign()}
+                onClick={() => email && handleDeclineBooking()}
               >
                 Send message/ Refund
               </button>
@@ -267,7 +277,7 @@ const BookingRequestModal = (props: Props) => {
                 {status === "APPROVED" || status === "DONE" ? null : (
                   <button
                     className="bg-red-500 text-[18px] rounded-sm py-1 px-2"
-                    onClick={(e) => email && handleDeclineBooking()}
+                    onClick={() => email && handleDeclineBooking()}
                   >
                     Decline
                   </button>
@@ -275,7 +285,7 @@ const BookingRequestModal = (props: Props) => {
                 {status === "APPROVED" && (
                   <button
                     className=" bg-blue-500 text-[18px] rounded-sm py-1 px-2"
-                    onClick={(e) => email && handleReassign()}
+                    onClick={() => email && handleReassign()}
                   >
                     Reassign Technician
                   </button>

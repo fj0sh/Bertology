@@ -38,9 +38,9 @@ const useInquiry = () => {
     }
   };
 
-  const resolveInquiry = async (id: number) => {
+  const resolveInquiry = async (id: number, reply: string) => {
     try {
-      await instance.patch(`/inquiries/${id}`);
+      await instance.patch(`/inquiries/${id}`, { reply: reply });
       refetch();
     } catch (error) {
       console.log(error);

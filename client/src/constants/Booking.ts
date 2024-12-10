@@ -1,6 +1,11 @@
 import { ServiceType } from "./Service";
 import { UserType } from "./Users";
 
+interface Installer {
+  firstName: string;
+  lastName: string;
+}
+
 interface BookingType {
   id: number;
   location: string;
@@ -22,6 +27,7 @@ interface BookingType {
   user: UserType;
   service: ServiceType;
   status: string;
+  installer?: Installer;
 }
 
 interface BookingResponse {

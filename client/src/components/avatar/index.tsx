@@ -18,20 +18,20 @@ const Avatar = () => {
       </div>
 
       <div className="relative">
-        <Link href="/admin/admin-profile">
+        <div>
           <div className="border border-black-500 rounded-full bg-white p-4 w-[50px] h-[50px]"></div>
-        </Link>
+        </div>
 
-        {/* {isDropdownOpen && (
+        {isDropdownOpen && (
           <div className="absolute top-full right-0 mt-2 w-40 bg-white rounded-lg shadow-lg z-10">
             <Link
-              href="/admin/edit-profile"
+              href="/admin/admin-profile"
               className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
             >
               Edit Profile
             </Link>
           </div>
-        )} */}
+        )}
       </div>
     </div>
   );

@@ -23,13 +23,13 @@ export default function RootLayout({
     <QueryProvider>
       <html lang="en">
         <PrimeReactProvider>
-          <body className="bg-background">
-            <ToastContainer />
-            {/* <ReactQueryDevtools /> */}
-            <UserProvider>
+          <UserProvider>
+            <body className="bg-background">
+              <ToastContainer />
+              {/* <ReactQueryDevtools /> */}
               <div className="w-full h-full bg-background">{children}</div>
-            </UserProvider>
-          </body>
+            </body>
+          </UserProvider>
         </PrimeReactProvider>
       </html>
     </QueryProvider>

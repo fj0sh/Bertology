@@ -70,9 +70,8 @@ const LandingPage = () => {
           onClose={() => setIsForgotPassOpen(false)}
         />
         <div className="relative flex flex-col lg:flex-row h-[100vh] w-full bg-opacity-85">
-          {/* Background Image */}
           <Image
-            src="/images/homeBG.jpg"
+            src="/images/homeBGv5.svg"
             layout="fill"
             objectFit="cover"
             quality={100}
@@ -80,10 +79,8 @@ const LandingPage = () => {
             className="z-10"
           />
 
-          {/* Dark Overlay */}
           <div className="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
 
-          {/* Foreground Content */}
           <div className="w-full lg:w-1/2 h-[90%] flex justify-center items-center p-10  z-20">
             <Image
               src="/images/landing-image2.png"
@@ -116,13 +113,9 @@ const LandingPage = () => {
           </div>
         </div>
 
-        {/* BOOK NOW SECTION */}
         <div className="relative w-full h-full p-6 lg:p-[3rem] flex flex-col lg:flex-row gap-6 lg:gap-10 text-white px-4 lg:px-[10rem]">
           <div className="w-full lg:w-[80%] h-full">
             <div className="flex flex-col justify-center items-start gap-4 h-full">
-              {/* <p className="text-orangeRed font-bold text-[25px] ">
-                Why choose us.
-              </p> */}
               <p className="text-[28px] lg:text-[45px] text-left font-semibold">
                 Why People Choose Our <br /> Services?
               </p>
@@ -159,7 +152,6 @@ const LandingPage = () => {
             <div></div>
           </div>
           <div className="relative w-[30%] h-[30rem] border-none rounded-lg">
-            {/* Make sure to use relative positioning */}
             <Image
               src="/images/wcu.jpg" // Correct path to the image
               layout="fill" // Make the image fill the parent container
@@ -175,7 +167,7 @@ const LandingPage = () => {
           </div>
         </div>
         {/* ============================================IMAGE CAROUSEL SECTION =======================================================================*/}
-        <div className="bg-opacity-70 flex flex-col gap-12 my-[5rem]">
+        <div className="bg-opacity-70 flex flex-col gap-12 my-[5rem] px-[10rem]">
           <div className="flex items-center text-white text-[30px] h-full w-full gap-8 pr-8">
             <div className="relative w-[40%] h-[30rem] ">
               <Image

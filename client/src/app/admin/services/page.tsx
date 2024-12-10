@@ -10,8 +10,10 @@ import ServicesModal from "@/components/Modals/ServicesModal";
 import { ServiceType } from "@/constants/Service";
 import { succesToast } from "@/components/toast";
 import Swal from "sweetalert2";
+import useProtect from "@/hooks/fetcher/useProtect";
 
 const ServiceHistory = () => {
+  useProtect();
   const { tanstackData } = useServices();
   const [showAddModal, setShowAddModal] = useState(false);
   const [showViewModal, setShowViewModal] = useState(false);

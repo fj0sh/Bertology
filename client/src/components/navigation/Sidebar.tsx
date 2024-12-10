@@ -1,7 +1,7 @@
 "use client";
 import { TbLayoutDashboardFilled } from "react-icons/tb";
 import Logo from "../Logo";
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { BsPersonFillGear } from "react-icons/bs";
 import { HiMiniWrenchScrewdriver } from "react-icons/hi2";
@@ -28,17 +28,6 @@ const navLinks = [
     title: "Technicians",
     href: "/admin/installers",
   },
-  // {
-  //   icons: <FaTruckLoading size={30} />,
-  //   title: "Orders",
-  //   href: "/admin/orders",
-  // },
-  // {
-  //   icons: <FaBoxes size={30} />,
-  //   title: "Products",
-  //   href: "/admin/products",
-  // },
-  // { icons: <HiMiniUsers size={30} />, title: "Users", href: "/admin/users" },
   {
     icons: <HiMiniWrenchScrewdriver size={30} />,
     title: "Services",
@@ -49,56 +38,80 @@ const navLinks = [
     title: "Inquiries",
     href: "/admin/inquiries",
   },
-  {
-    icons: <RiSettings4Line size={30} />,
-    title: "Settings",
-    href: "/admin/settings",
-  },
 ];
 
 const Sidebar = () => {
   const pathname = usePathname();
-
   const { isOpen, setIsOpen } = useLogoutContext();
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+
+  const handleSettingsToggle = () => {
+    setIsSettingsOpen((prev) => !prev);
+  };
 
   return (
-    <>
-      <div className="flex flex-col fixed w-[15rem] h-screen text-white bg-black gap-20 p-6">
-        <div className="mt-[15px]">
-          <Image
-            src={"/images/transp_logov2.png"}
-            alt={"Logo"}
-            width={200}
-            height={100}
-          ></Image>
-        </div>
-        <div className="flex flex-col gap-10 flex-grow">
-          {navLinks.map((links) => {
-            const isActive = pathname.startsWith(links.href);
-
-            return (
-              <Link
-                className={`flex gap-6 hover:text-orangePrimary items-center text-[15px] ${
-                  isActive ? "text-orangePrimary" : " text-white"
-                }`}
-                key={links.title}
-                href={links.href}
-              >
-                <div>{links.icons}</div>
-                <div>{links.title}</div>
-              </Link>
-            );
-          })}
-        </div>
-        <button
-          className="mt-auto mb-4 gap-4 text-[15px] flex items-center"
-          onClick={() => setIsOpen(true)}
-        >
-          <RiLogoutBoxRLine size={30} />
-          <p>Logout</p>
-        </button>
+    <div className="flex flex-col fixed w-[15rem] h-screen text-white bg-black gap-20 p-6">
+      <div className="mt-[15px]">
+        <Image
+          src={"/images/transp_logov2.png"}
+          alt={"Logo"}
+          width={200}
+          height={100}
+        />
       </div>
-    </>
+      <div className="flex flex-col gap-10 flex-grow">
+        {navLinks.map((links) => {
+          const isActive = pathname.startsWith(links.href);
+
+          return (
+            <Link
+              className={`flex relative gap-6 hover:text-orangePrimary items-center text-[15px] ${
+                isActive ? "text-orangePrimary" : "text-white"
+              }`}
+              key={links.title}
+              href={links.href}
+            >
+              <div>{links.icons}</div>
+              <div>{links.title}</div>
+            </Link>
+          );
+        })}
+
+        {/* Settings with Dropdown */}
+        {/* <div className="flex flex-col">
+          <button
+            className={`flex gap-6 hover:text-orangePrimary items-center text-[15px] ${
+              isSettingsOpen ? "text-orangePrimary" : "text-white"
+            }`}
+            onClick={handleSettingsToggle}
+          >
+            <RiSettings4Line size={30} />
+            <div>Settings</div>
+          </button>
+          {isSettingsOpen && (
+            <div className="ml-10 flex flex-col gap-4 mt-2">
+              <Link
+                href="/admin/settings/payments"
+                className={`hover:text-orangePrimary ${
+                  pathname === "/admin/settings/payments"
+                    ? "text-orangePrimary "
+                    : "text-white"
+                }`}
+              >
+                Payments
+              </Link>
+            </div>
+          )}
+        </div> */}
+      </div>
+      <button
+        className="mt-auto mb-4 gap-4 text-[15px] flex items-center"
+        onClick={() => setIsOpen(true)}
+      >
+        <RiLogoutBoxRLine size={30} />
+        <p>Logout</p>
+      </button>
+    </div>
   );
 };
 

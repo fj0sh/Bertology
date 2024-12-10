@@ -102,7 +102,7 @@ const ServicesModal = (props: ModalProps) => {
               />
             ) : (
               <p className="text-xl font-semibold text-white mt-2">
-                ${editedPrice}
+                ₱{editedPrice}
               </p>
             )}
           </div>

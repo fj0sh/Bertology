@@ -30,7 +30,7 @@ const LogoutModal = () => {
         />
       </div>
       <div className="flex flex-col items-center gap-10 text-white">
-        <p className="text-orangePrimary">LOGO</p>
+        <p className="text-orangePrimary">BERTOLOGY</p>
         <p className="text-[30px]">Are you sure you want to Logout?</p>
         <div className="flex gap-10">
           <Button title="YES" hover={true} onClick={handleLogout} />

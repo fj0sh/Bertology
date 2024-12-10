@@ -194,7 +194,9 @@ const useBooking = () => {
     const fetchBookingData = async () => {
       try {
         const res = await instance.get("/booking/status");
-        const counts = res.data.map((status: any) => status.count);
+        const counts = res.data.map((status: any) => status.COUNT);
+        console.log(res);
+        console.log(counts);
         setChartData(counts);
       } catch (error) {
         console.error(error);

@@ -6,6 +6,7 @@ import { DataTable } from "primereact/datatable";
 import { BookingType } from "@/constants/Booking";
 import { Column } from "primereact/column";
 import "@/style/tables.css";
+import { formatDateToWords } from "@/lib/function/dateFormatter";
 
 interface modalProps {
   isOpen: boolean;
@@ -23,6 +24,9 @@ const InstallerSchedule = (props: modalProps) => {
     getInstallerBooking(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
+
+  console.log(id);
+  console.log(installerBookingData);
 
   useEffect(() => {
     const filterInstallerSchedule = () => {
@@ -67,19 +71,31 @@ const InstallerSchedule = (props: modalProps) => {
     );
   };
 
+  const formattedDateBody = (rowData: any) => {
+    const date = rowData.bookedDate.split(" ")[0];
+    const time = rowData.bookedDate.split(" ")[1];
+
+    return (
+      <div className="flex flex-col gap-2">
+        <span>{formatDateToWords(date)}</span>
+        <span>{time}</span>
+      </div>
+    );
+  };
+
   if (!isOpen) return null;
 
   return (
-    <ModalContainer z="999999999">
+    <ModalContainer width="55rem" z="999999999">
       <div className="absolute top-5 right-5 border-none rounded-full hover:bg-grey p-2">
         <IoMdClose
           className="text-white text-[30px] cursor-pointer"
           onClick={onClose}
         />
       </div>
-      <div className="p-10">
+      <div className="p-10 w-full">
         <DataTable tableClassName="custom-table" value={filteredData}>
-          <Column field="bookedDate" header="Booking Date" />
+          <Column body={formattedDateBody} header="Booking Date" />
           <Column field="mode" header="Mode" />
           <Column body={statusColumn} header="Status" />
           <Column field="carModel" header="Car Model" />

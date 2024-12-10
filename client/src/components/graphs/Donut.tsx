@@ -25,18 +25,18 @@ export const DonutChart = () => {
     },
   };
   const data = {
-    labels: ["DONE", "DECLINED", "MISSED", "APPROVED", "PENDING"],
+    labels: ["PENDING", "DECLINED", "DONE", "APPROVED", "MISSED"],
     datasets: [
       {
         label: "My First Dataset",
         data: chartData.length <= 0 ? [0, 0, 0, 0, 0] : chartData,
         borderRadius: 5,
         backgroundColor: [
-          "#32E875",
-          "#F22B29",
-          "#6b7280",
-          "#3772FF",
           "#FFC857",
+          "#F22B29",
+          "#32E875",
+          "#3772FF",
+          "#6b7280",
         ],
         hoverOffset: 4,
         borderWidth: 2,

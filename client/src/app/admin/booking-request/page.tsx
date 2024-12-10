@@ -10,8 +10,10 @@ import Swal from "sweetalert2";
 import "@/style/tables.css";
 import { succesToast } from "@/components/toast";
 import { Calendar } from "primereact/calendar";
+import useProtect from "@/hooks/fetcher/useProtect";
 
 const BookingRequest = () => {
+  useProtect();
   const [isRequestShow, setIsRequestShow] = useState(false);
   const [rowData, setRowData] = useState<BookingResponse>();
   const [tableView, setTableView] = useState("ALLBOOKINGS");
@@ -21,10 +23,13 @@ const BookingRequest = () => {
     useBooking();
 
   const handleViewClick = (data: any, index: number) => {
+    console.log(data);
     getSelectedTypes(data.data.id);
     setIsRequestShow(true);
     setRowData(data);
   };
+
+  console.log(tanstackData);
 
   const getFilteredData = () => {
     if (!dateFilter) return tanstackData;
@@ -189,6 +194,8 @@ const BookingRequest = () => {
         lName={rowData?.data?.lastName}
         email={rowData?.data?.email}
         phoneNumber={rowData?.data?.contactNumber}
+        landmark={rowData?.data?.landmark || ""}
+        street={rowData?.data?.street || ""}
         proof={
           rowData?.data?.proofOfPayment ? rowData?.data?.proofOfPayment : ""
         }
@@ -199,6 +206,7 @@ const BookingRequest = () => {
         isOpen={isRequestShow}
         serviceTypes={serviceType}
         status={rowData?.data?.status}
+        installerName={`${rowData?.data?.installer?.firstName} ${rowData?.data?.installer?.lastName}`}
         onClose={() => setIsRequestShow(false)}
       />
       <DataTable
@@ -206,7 +214,9 @@ const BookingRequest = () => {
           tableView === "BOOKINGHISTORY"
             ? getFilteredData()?.filter((res: any) => {
                 return (
-                  res.data.status === "DONE" || res.data.status === "DECLINED"
+                  res.data.status === "DONE" ||
+                  res.data.status === "DECLINED" ||
+                  res.data.status === "MISSED"
                 );
               })
             : tableView === "TODAYSBOOKINGS"
@@ -218,7 +228,9 @@ const BookingRequest = () => {
               })
             : getFilteredData()?.filter((res: any) => {
                 return (
-                  res.data.status !== "DONE" && res.data.status !== "DECLINED"
+                  res.data.status !== "DONE" &&
+                  res.data.status !== "DECLINED" &&
+                  res.data.status !== "MISSED"
                 );
               })
         }

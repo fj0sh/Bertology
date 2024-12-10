@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import "../../globals.css";
 import Swal from "sweetalert2";
+import { Password } from "primereact/password";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -63,11 +64,24 @@ const Login = () => {
             label="Email:"
             onChange={(e) => setEmail(e.target.value)}
           />
-          <InputOrange
+          {/* <InputOrange
             value={password}
             label="Password:"
             type="password"
             onChange={(e) => setPassword(e.target.value)}
+          /> */}
+
+          <Password
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            toggleMask
+            feedback={false}
+            unstyled
+            className="w-full"
+            pt={{
+              root: { className: "border border-orangeRed rounded-lg" },
+              input: { className: "bg-background p-2 w-full rounded-lg" },
+            }}
           />
         </div>
 
