@@ -126,14 +126,11 @@ const ForgotPassword = () => {
         className="p-10 flex flex-col gap-6 items-center w-[90%] max-w-md bg-background bg-opacity-95 rounded-lg"
       >
         {/* Logo */}
-        <div className="w-32 h-32">
+        <div className="w-48 h-48 relative">
           <Image
             src="/images/Bertology_logo.png"
             alt="Bertology Logo"
-            width={0}
-            height={0}
-            sizes="100%"
-            style={{ width: "100%", height: "100%" }}
+            fill
             className="rounded-full"
           />
         </div>
