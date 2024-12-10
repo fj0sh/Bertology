@@ -48,8 +48,10 @@ const Login = () => {
           <Image
             src="/images/Bertology_logo.png"
             alt="Bertology Logo"
-            fill
-            className="rounded-full"
+            width={200}
+            height={200}
+            // fill
+            // className="rounded-full"
           />
         </div>
         <p className="text-[28px] font-bold text-orangePrimary tracking-wide">
@@ -70,19 +72,21 @@ const Login = () => {
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           /> */}
-
-          <Password
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            toggleMask
-            feedback={false}
-            unstyled
-            className="w-full"
-            pt={{
-              root: { className: "border border-orangeRed rounded-lg" },
-              input: { className: "bg-background p-2 w-full rounded-lg" },
-            }}
-          />
+          <div className="flex flex-col gap-2 text-[18px]">
+            <p>Password:</p>
+            <Password
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              toggleMask
+              feedback={false}
+              unstyled
+              className="w-full"
+              pt={{
+                root: { className: "border border-orangeRed rounded-lg" },
+                input: { className: "bg-background p-2 w-full rounded-lg" },
+              }}
+            />
+          </div>
         </div>
 
         {/* Submit Button */}
