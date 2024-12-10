@@ -72,12 +72,12 @@ const AboutUsInfoCard = () => {
                   </div>
                   <div className="flex gap-3">
                     <MdPhoneAndroid size={30} />
-                    <p>0909090909</p>
+                    <p>09617590889</p>
                   </div>
                 </div>
                 <div className="flex gap-3">
                   <FiPhone size={30} />
-                  <p>912334</p>
+                  <p>2612193</p>
                 </div>
               </div>
             </div>
