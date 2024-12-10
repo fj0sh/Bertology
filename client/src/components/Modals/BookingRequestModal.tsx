@@ -223,7 +223,7 @@ const BookingRequestModal = (props: Props) => {
                   {status}
                 </span>
               </p>
-              <p>Technician: {installerName}</p>
+              {status !== "DECLINED" && <p>Technician: {installerName} </p>}
               <p>Booked Date: {date}</p>
 
               <div>
