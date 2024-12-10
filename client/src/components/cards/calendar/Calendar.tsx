@@ -57,8 +57,8 @@ const PrimeCalendar = (props: Props) => {
         minDate={setDisable ? today : undefined}
         pt={{
           yearTitle: { className: "px-4" },
-          header: { className: "bg-orangeRed text-white" },
-          panel: { className: "bg-white border-white text-background" },
+          header: { className: "bg-orangePrimary text-white" },
+          panel: { className: "bg-zinc-200 border-white text-background" },
         }}
       />
     </>

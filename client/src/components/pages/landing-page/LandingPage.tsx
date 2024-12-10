@@ -160,7 +160,7 @@ const LandingPage = () => {
               alt="image.jpg"
             />
             <div className="bg-black bg-opacity-50 w-full h-full absolute top-0 left-0 flex items-center justify-center">
-              <p className="text-[80px] text-orangeRed font-semibold text-center">
+              <p className="text-[80px] text-orangePrimary font-semibold text-center">
                 Why Choose Us?
               </p>
             </div>
@@ -179,7 +179,7 @@ const LandingPage = () => {
                 alt="image.jpg"
               />
               <div className="bg-black bg-opacity-50 w-full h-full absolute top-0 left-0 flex items-center justify-center">
-                <p className="text-[40px] lg:text-[70px]  font-semibold text-center text-orangeRed">
+                <p className="text-[40px] lg:text-[70px]  font-semibold text-center text-orangePrimary">
                   Installation
                 </p>
               </div>

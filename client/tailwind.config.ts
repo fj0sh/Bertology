@@ -13,6 +13,9 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },
+      screens: {
+        tablet: "768px",
+      },
       colors: {
         orangePrimary: "#F96C2F",
         black: "#000000",

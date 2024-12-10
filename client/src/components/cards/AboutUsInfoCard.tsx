@@ -37,13 +37,13 @@ const AboutUsInfoCard = () => {
   };
 
   return (
-    <div className="p-10 w-[80%] text-white">
+    <div className="p-10 lg:w-[80%] h-full text-white">
       <div className="flex flex-col gap-6 relative w-full h-full items-center">
         <div className="absolute top-5 font-semibold bg-orangePrimary w-[15rem] border-none rounded-lg text-center p-2 text-black">
           CONTACT US
         </div>
-        <div className="flex border border-orangeRed  mt-10 rounded-lg p-10 w-full h-full ">
-          <div className=" w-[70%]  flex flex-col items-center justify-center gap-8 ">
+        <div className="lg:flex border border-orangePrimary  mt-10 rounded-lg p-10 w-full h-full ">
+          <div className=" lg:w-[70%]  flex flex-col items-center justify-center gap-8 ">
             <div className="font-semibold text-[18px]">PAYMENT METHODS:</div>
             <div className="text-center">
               <div className="flex justify-center gap-6">
@@ -88,7 +88,7 @@ const AboutUsInfoCard = () => {
             onSubmit={handleSubmit(submitInquiry)}
           >
             <div className="flex flex-col gap-3">
-              <h2 className="text-[18px] font-semibold text-orangeRed">
+              <h2 className="text-[18px] font-semibold text-orangePrimary">
                 We’d Love to Hear From You!
               </h2>
               <p className="text-justify">
@@ -105,12 +105,12 @@ const AboutUsInfoCard = () => {
             <div className="w-full text-white flex flex-col gap-1">
               <p className="text-[18px]">Message:</p>
               <textarea
-                className="border border-orangeRed rounded-lg bg-background w-full h-full max-h-[115px] min-h-[80px] p-1"
+                className="border border-orangePrimary rounded-lg bg-background w-full h-full max-h-[115px] min-h-[80px] p-1"
                 {...register("message")}
               />
             </div>
             <button
-              className="bg-orangeRed self-end text-[18px] px-4 py-1 rounded-md"
+              className="bg-orangePrimary self-end text-[18px] px-4 py-1 rounded-md"
               type="submit"
             >
               Submit

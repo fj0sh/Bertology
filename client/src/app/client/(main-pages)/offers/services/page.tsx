@@ -277,18 +277,18 @@ const Booking = () => {
           setUserOTP={setUserOTP} // Pass the setUserOTP function
         />
       </div>
-      <div className="w-full h-full flex justify-center p-10 gap-x-[10rem]">
+      <div className="w-full h-full lg:flex justify-center p-10 gap-x-[10rem]">
         <div className="w-full h-full items-end flex flex-col gap-8 mt-[5rem]">
-          <div className="text-white self-center flex items-center gap-2">
+          <div className="text-white lg:self-center sm:self-start flex items-center gap-2">
             <p className="font-bold text-[18px]">Selected Date:</p>
             {selectedBookingDate
               ? `${formatDateNormal(selectedBookingDate)} (${selectedTimeSlot})`
               : "Please Select a Date"}
           </div>
-          <div className="flex w-[80%] px-10 items-center justify-center">
+          <div className="flex lg:w-[80%] sm:w-[100%] px-10 items-center justify-center">
             <PrimeCalendar selectedDate={handleDate} />
           </div>
-          <div className="self-center pl-28">
+          <div className="self-center lg:pl-28 sm:pl-15">
             <p className="text-white font-semibold text-[20px]">Time Slots:</p>
 
             <TimeCard
@@ -304,7 +304,7 @@ const Booking = () => {
             className="w-full text-white bg-black rounded-[15px] p-8 flex flex-col gap-3"
             onSubmit={handleSubmit(onSubmit)}
           >
-            <p className="text-[30px] font-semibold text-orangeRed">
+            <p className="text-[30px] font-semibold text-orangePrimary">
               Service Detail
             </p>
 
@@ -333,7 +333,7 @@ const Booking = () => {
               </div>
             </div>
 
-            <div className="flex w-full gap-8">
+            <div className="lg:flex w-full gap-8">
               <div className="w-full">
                 <InputOrange
                   required={true}
@@ -360,7 +360,7 @@ const Booking = () => {
               </div>
             </div>
 
-            <div className="flex w-full gap-8 *:w-full">
+            <div className="lg:flex w-full gap-8 *:w-full">
               <div>
                 <InputOrange
                   required={true}
@@ -398,7 +398,7 @@ const Booking = () => {
             >
               {serviceMode === "homeService" ? (
                 <>
-                  <div className="flex gap-8 w-full justify-around">
+                  <div className="lg:flex gap-8 w-full justify-around">
                     <div className="p-1 flex flex-col gap-2 w-full">
                       <p className="text-[18px] self-start">
                         Municipality: <span className="text-red-600">*</span>
@@ -424,7 +424,7 @@ const Booking = () => {
                     </div>
                   </div>
 
-                  <div className="flex gap-8 w-full justify-around">
+                  <div className="lg:flex gap-8 w-full justify-around">
                     <div className="mt-4 w-full">
                       <InputOrange
                         required={true}
@@ -456,10 +456,10 @@ const Booking = () => {
               )}
             </div>
 
-            <div className="flex w-full gap-8 ">
-              <div className="flex flex-col gap-1 w-[50%]">
+            <div className="lg:flex w-full gap-8">
+              <div className="flex flex-col lg:gap-1 sm:gap-5 lg:w-[50%] sm:w-[100%]">
                 <p className="text-[18px]">
-                  Select Service:<span className="text-red-600">*</span>
+                  Select Service:<span className="text-orange-500">*</span>
                 </p>
                 {tanstackData && (
                   <MultiSelect
@@ -498,9 +498,9 @@ const Booking = () => {
                 </div>
               </div>
 
-              <div className=" flex flex-col gap-1 w-[50%]">
+              <div className=" flex flex-col gap-1 lg:w-[50%] sm:w-[100%]">
                 <p className="text-[18px] w-full"> Down Payment:</p>
-                <div className="text-[20px] text-orangeRed justify-self-center">
+                <div className="text-[20px] text-orangePrimary justify-self-center">
                   {downPayment ? (
                     <p> ₱ {downPayment} </p>
                   ) : (
@@ -512,7 +512,7 @@ const Booking = () => {
 
             <div className="flex w-full gap-8 *:w-full">
               <div className="w-full">
-                <div className="w-1/2">
+                <div className="lg:w-1/2 sm:w-full">
                   <div className="w-[95%]">
                     <InputOrange
                       required={true}
