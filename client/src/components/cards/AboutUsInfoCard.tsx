@@ -63,7 +63,7 @@ const AboutUsInfoCard = () => {
             </div>
             <hr className="w-[80%] border " />
             <div className=" gap-10 w-full flex flex-col items-center p-4">
-              <p className="font-semibold text-[18px]">CONTACT INFO:</p>
+              <p className="font-semibold text-[18px]">CONTACT INFO</p>
               <div className="flex flex-col items-center gap-8 w-full">
                 <div className="flex gap-4 w-full justify-center">
                   <div className="flex gap-3">
